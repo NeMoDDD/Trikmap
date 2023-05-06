@@ -1,13 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
+import MapComponent from "./components/Map/Json/MapGeoJsonMarkers";
 import './App.css';
-import MapComponent from "./components/Map/Map";
 
 function App() {
-  return (
-    <div className="App">
-      <MapComponent/>
-    </div>
-  );
+    return (
+        <MapComponent />
+    );
 }
 
 export default App;
