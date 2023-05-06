@@ -1,0 +1,103 @@
+.search{ 
+    height: 40vh;  
+    background-position: center;  
+    background-image: url(https://iaunrc.indiana.edu/images/banners/banners-3072x1024/kyrgyzstan-mountains.jpg);
+    background-repeat: no-repeat; 
+    background-size: cover;
+} 
+.search__container{ 
+    height: 100%;
+}  
+.search__item{  
+    height: 100%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center;
+} 
+.search__title{ 
+    font-weight: 900; 
+    font-size: 52px; 
+    color:white
+} 
+
+.hotel{ 
+    height: 1600px; 
+    display: flex;
+    flex-direction: column;  
+    width: 100%;
+    justify-content: space-around; 
+    align-items: center;
+} 
+.hotel__row{ 
+    border-radius: 4px; 
+    border: 1px solid black;
+    box-shadow: 2px 2px 16px rgba(0,0,0,.1); 
+    height: 313px; 
+    width: 70%;
+    display: flex; 
+    justify-content: space-between;
+    
+}  
+.hotel__item{ 
+    width: 30%;  
+    height: 100%;
+}
+.hotel__info{ 
+    width: 25%; 
+    height: 100%;
+} 
+.hotel__text{  
+    height: 100%;
+    padding: 15px 0; 
+    display: flex;   
+    padding: 55px 0; 
+    flex-direction: column; 
+    justify-content: space-between; 
+} 
+.hotel__name{ 
+    font-size: 32px;
+    font-weight: 900;
+    cursor: pointer;
+}  
+.hotel__address { 
+    font-size: 18px; 
+    font-size: 700;
+}
+.hotel__info_wrapper{ 
+    height: 100%;   
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 35px 25px 33px 25px;  
+} 
+.hotel__btn{  
+    border: none; 
+    outline: none;
+    padding: 15px 60px; 
+    border-radius: 5px; 
+    background-color:  #67a1d6; 
+    color: white;
+}
+.swiper__item{ 
+    height: 100%;
+} 
+.img_slide{ 
+    height: 100%; 
+    width: 100%;
+} 
+.spinner{ 
+    height: 30vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}  
+.spin{ 
+    height: 50px; 
+    width: 50px;
+} 
+.search_btn{ 
+    width: 200px; 
+    height: 50px;
+}
