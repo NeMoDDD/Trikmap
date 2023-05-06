@@ -1,10 +1,11 @@
-import React from "react"
+import React from "react" 
+import { setNewHotel } from "../../../reduxStore/hotelReducer"
 import { connect } from "react-redux"
 import Addhotel from "./addhotel"
  class addhotelContainer extends React.Component { 
     render(){ 
         return( 
-         <Addhotel />   
+         <Addhotel {...this.props} />   
         )
     }
 } 
@@ -15,4 +16,4 @@ const mapStateToProps =(state) =>{
     }
 }
 
-export default connect(mapStateToProps, {})(addhotelContainer)
+export default connect(mapStateToProps, {setNewHotel})(addhotelContainer)

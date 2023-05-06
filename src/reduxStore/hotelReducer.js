@@ -1,4 +1,4 @@
-import { collection,getDocs,doc,getDoc, query, limit,where, onSnapshot} from "@firebase/firestore";   
+import { collection,getDocs,doc,getDoc, query, limit,where, setDoc} from "@firebase/firestore";   
 import {db, firestore } from '../firebase/firebase-booking'
 
  let initialState = { 
@@ -78,12 +78,8 @@ export const getOrderHotelTC = (document) =>{
 export const getSerchingCityTC = (searchingCity) =>{ 
     return async (dispatch) =>{   
                 if(searchingCity === ''){  
-                   debugger
-                    console.log('failed');
                    return dispatch(getHotelsTC())
                 } 
-                console.log(typeof(searchingCity)); 
-                debugger
                 const city = query(  
                     collection(firestore, 'Hotels'), 
                     where( 'city' , '==', searchingCity) ,
@@ -93,11 +89,34 @@ export const getSerchingCityTC = (searchingCity) =>{
                 const  querySnap = await getDocs(city)  
                 const alldocs = querySnap.forEach((snap) =>{  
                     data.push(snap.data())
-                })  
-                debugger
-                dispatch(setSearchingCityAC(data))
-                         
-            }
-
+                }) 
+                dispatch(setSearchingCityAC(data))            
+            } 
+}
+ 
+export const setNewHotel = async (data) =>{ 
+//     const data = { 
+//             city:
+//             "Бишкек",
+//             region:
+//             "Чуйская область",
+//             street:
+//             "ул. Абая 40 1 этаж",
+//         addvantages:{ 
+//             cleaning:
+//             false,
+//             freebreakfast:
+//             false,
+//             wifi:
+//             true
+//         },
+//     name,
+//     photo: [  
+// ],  
+// subtitle: ,
+// title:, 
+// rating,
+//     }  
     
+    await setDoc(doc(db, "Hotels", data.name), data);
 }

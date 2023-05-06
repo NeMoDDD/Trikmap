@@ -52,9 +52,9 @@ import { NavLink } from 'react-router-dom';
                     <div> 
 
                     <div className={s.hotel__stars}>Рейтинг: {item.rating} / 5 </div>  
-                    <div className={s.hotel__address}>Город: {item.address.city}</div>
-                    <div className={s.hotel__address}>Область: {item.address.region}</div>
-                    <div className={s.hotel__address}>Улица:  {item.address.street}</div> 
+                    <div className={s.hotel__address}>Город: {item.city}</div>
+                    <div className={s.hotel__address}>Область: {item.region}</div>
+                    <div className={s.hotel__address}>Улица:  {item.street}</div> 
                     <div className={s.hotel__advantages}>{item.addvantages.wifi ? <p>Wifif</p> : null}</div> 
                     </div>
                 </div> 

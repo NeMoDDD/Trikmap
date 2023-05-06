@@ -8,7 +8,9 @@ const OrderHotel = (props) =>{
             <div className={s.hotel__container}> 
                 <div className={s.hotel__name}>{props.orderingHotel.name}</div>
                 <div className={s.hotel__rating}>{props.orderingHotel.rating} </div>
-                <div className={s.hotel__address}></div>
+                <div className={s.hotel__address}> 
+                    {props.orderingHotel.city}
+                 </div>
                 <div className={s.hotel__imgages}> 
                     <div className={s.hotel__main_img}><img src="" alt="" /></div> 
                 </div> 

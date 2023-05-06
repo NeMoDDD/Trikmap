@@ -18,8 +18,8 @@ const HotelSearch = props => {
                     <div className=''>  
                         <select onChange={selectCity}>  
                             <option value="">CHoose City</option>
-                            <option value="Bishkek">Bishkek</option>
-                            <option value="Karakol">Karakol</option>
+                            <option value="Бишкек">Бишкек</option>
+                            <option value="Каракол">Каракол</option>
                         </select>
                     </div>
                 </div> 
