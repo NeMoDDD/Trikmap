@@ -55,7 +55,7 @@ class MapComponent extends React.Component {
                     <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
                 }
                 {this.state.geoJsonIsVisibleTalas &&
-                    <TalasGeoJsonLayer url="places.json" cluster={false}/>
+                    <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
                 }
 
                 {/*<Marker position={center}>*/}

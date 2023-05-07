@@ -17,7 +17,7 @@ export default function TalasGeoJsonLayer ({url, cluster}) {
             const abortController = new AbortController();
 
             fetchData(url, { signal: abortController.signal }).then(data => {
-                setData(data.talas);
+                setData(data.osh);
             });
             // cancel fetch on component unmount
             return () => {
@@ -35,7 +35,7 @@ export default function TalasGeoJsonLayer ({url, cluster}) {
             {data.map(f => (
                 <Marker
                     key={JSON.stringify(f.properties)}
-                    position={f.geometry.coordinates.reverse()}
+                    position={f.geometry.coordinate.reverse()}
                 >
                     <Popup minWidth={200} closeButton={false}>
                         <div style={{backgroundColor:"red", color:"white"}}>
