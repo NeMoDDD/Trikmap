@@ -1,7 +1,6 @@
 import React from "react";
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import GeojsonLayer from './GeojsonLayerFunc';
 import '../Map.css';
 import ChuyGeoJsonLayer from "../Regions/Chuy/ChuyJsonLayerFunc";
 import TalasGeoJsonLayer from "../Regions/Talas/TalasJsonLayerFunc";
@@ -11,10 +10,9 @@ L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
 
 class MapComponent extends React.Component {
     state = {
-        lat: 55.702868,
-        lng: 37.530865,
-        zoom: 3,
-
+        lat: 41.875969,
+        lng: 73.603698,
+        zoom: 7,
         geoJsonIsVisibleChuy: false,
         geoJsonIsVisibleTalas: false,
     };
@@ -54,15 +52,15 @@ class MapComponent extends React.Component {
                 </div>
 
                 {this.state.geoJsonIsVisibleChuy &&
-                    <ChuyGeoJsonLayer url="places.json" cluster={false}/>
+                    <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
                 }
                 {this.state.geoJsonIsVisibleTalas &&
                     <TalasGeoJsonLayer url="places.json" cluster={false}/>
                 }
 
-                <Marker position={center}>
-                    <Popup><div>Hello</div></Popup>
-                </Marker>
+                {/*<Marker position={center}>*/}
+                {/*    <Popup><div>Hello</div></Popup>*/}
+                {/*</Marker>*/}
             </MapContainer>
         );
     }

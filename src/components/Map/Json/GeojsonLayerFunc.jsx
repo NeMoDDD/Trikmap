@@ -25,6 +25,7 @@ export default function GeojsonLayer ({url, cluster}) {
             };
         }
 
+
     }, [url]);
 
     let GroupComponent = cluster ? MarkerClusterGroup : FeatureGroup;

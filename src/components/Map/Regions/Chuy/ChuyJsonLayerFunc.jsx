@@ -34,13 +34,13 @@ export default function ChuyGeoJsonLayer ({url, cluster}) {
         <GroupComponent>
             {data.map(f => (
                 <Marker
-                    key={JSON.stringify(f.properties)}
-                    position={f.geometry.coordinates.reverse()}
+                    key={f.properties.id}
+                    position={f.geometry.coordinate.reverse()}
                 >
                     <Popup minWidth={200} closeButton={false}>
                         <div style={{backgroundColor:"red", color:"white"}}>
-                            <b>Hello</b>
-                            <p>I am {f.properties.name}</p>
+                            <p>{f.properties.name}</p>
+                            <p>{f.properties.description}</p>
                         </div>
                     </Popup>
                 </Marker>
