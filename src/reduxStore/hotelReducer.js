@@ -94,29 +94,10 @@ export const getSerchingCityTC = (searchingCity) =>{
             } 
 }
  
-export const setNewHotel = async (data) =>{ 
-//     const data = { 
-//             city:
-//             "Бишкек",
-//             region:
-//             "Чуйская область",
-//             street:
-//             "ул. Абая 40 1 этаж",
-//         addvantages:{ 
-//             cleaning:
-//             false,
-//             freebreakfast:
-//             false,
-//             wifi:
-//             true
-//         },
-//     name,
-//     photo: [  
-// ],  
-// subtitle: ,
-// title:, 
-// rating,
-//     }  
-    
-    await setDoc(doc(db, "Hotels", data.name), data);
+export const setNewHotel =  (data) =>{   
+    return async ()=>{ 
+        const photo = data.photo.flatMap(({ value }) => value); 
+        console.log(photo)
+        await setDoc(doc(db, "Hotels", data.name), {...data, photo});
+    }
 }

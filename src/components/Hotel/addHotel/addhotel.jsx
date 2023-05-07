@@ -5,7 +5,7 @@ import s from './addHotel.module.css'
 const Addhotel = (props) =>{ 
     const onSubmit = (formData) => {      
         reset() 
-        // props.setNewHotel(formData)
+        props.setNewHotel(formData)
         console.log(formData)
     }  
 
@@ -19,13 +19,13 @@ const Addhotel = (props) =>{
         reset, 
     } = useForm( { 
         mode: 'onBlur', 
-        defaultValues: { 
-            cart: []
-        }
+        // defaultValues: { 
+        //     photo: ['']
+        // }
     })
     const { fields, append, prepend } = useFieldArray({
         control,
-        name: "cart"
+        name: "photo"
       });
     return( 
         <div> 
@@ -125,18 +125,17 @@ const Addhotel = (props) =>{
          </label> 
       
                     {fields.map((field, index)=>{ 
-                        return <section key={field.id}> 
-                        <input type="text" {...register(`photo[${index}]`)}  />
+                        return <div key={field.id}> 
+                        <input type="text" {...register(`photo[${index}].value`)}  />
                         
-                        </section>
+                        </div>
                     })}
-    <button onClick={()=>append()}>Append</button>
+    <button type='button' onClick={()=>append()}>Append</button>
         {errors.server && <div>{errors.server.message}</div>}
-<input type="submit" value="Зарегестрировать отель" />
+<input type="submit" disabled={!isValid} value="Зарегестрировать отель" />
     </form>
     
         </div>
     )
 }  
 export default Addhotel 
-//disabled={!isValid}
