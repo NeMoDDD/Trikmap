@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getDocs,  orderBy,startAfter,where, collection, getFirestore,doc,setDoc,getDoc, addDoc, onSnapshot, limit,query} from "@firebase/firestore";  
+import {getDocs,  orderBy,startAfter,where, startAt,collection, getFirestore,doc,setDoc,getDoc, addDoc, onSnapshot, limitToLast,  endBefore,limit,query} from "@firebase/firestore";  
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -99,45 +99,79 @@ console.log(some)
 //   });
 
   
-//   async function limited (log = false){ 
+// async function limited (log = false){ 
   
 
-//     const first = query(collection(db, "Hotels"), limit(2)); 
-//     const documentSnapshots = await getDocs(first); 
-//     const cityList = documentSnapshots.docs.map(doc => doc.data()); 
-   
-   
-//     console.log(documentSnapshots.length);
-//     console.log(cityList) 
-//     const nextQuery = query(ref,limit(2),orderBy('rating'), startAfter(cityList.length) ) 
-//     const lol = await getDocs(nextQuery) 
-//     const cityLists = lol.docs.map(doc => doc.data());
-//     // const next = query(collection(db, "Hotels"),
-//     // startAfter(documentSnapshots),
-//     // limit(2));  
-//     console.log('nextone', cityLists);
-    
-  
+    // const first = query(collection(db, "Hotels"), limit(2)); 
+    // const documentSnapshots = await getDocs(first); 
+    // const cityList = documentSnapshots.docs.map(doc => doc.data()); 
+    // console.log(cityList) 
+    // const nextQuery = query(ref,limit(2),orderBy('rating'), startAfter(cityList.length) ) 
+    // const lol = await getDocs(nextQuery) 
+    // const cityLists = lol.docs.map(doc => doc.data());
+    // console.log('nextone', cityLists);
+//     const first = query(collection(db, "Hotels"), orderBy("rating"), limit(1));
+//     const documentSnapshots = await getDocs(first);
+//     const cityLists = documentSnapshots.docs.map(doc => doc.data());
+// const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+// console.log(cityLists); 
 
-// } 
+// const next = query(collection(db, "Hotels"),
+//     orderBy("rating"),
+//     startAfter(lastVisible),
+//     limit(2)); 
+
+//     const docnext = await getDocs(next);
+//     const cityListsa = docnext.docs.map(doc => doc.data());
+//  console.log(cityListsa) 
 
 
-// limited()  
-// const myCollectionRef = collection(db, "Hotels");
-// let arr = []
-// getDocs(myCollectionRef)
-//   .then((querySnapshot) => {
-//     querySnapshot.forEach((doc) => {
-//       console.log(doc.data().city); 
-//      arr.push(doc.data().city)   
-//      console.log(arr)
-//     });
+//   }  
+
+
+
+//limited()  
+
+// async function so (){ 
+//   ref.orderBy('rating', 'asc').limit(3) 
+//   .get() 
+//   .then((collection) =>{ 
+//     console.log(collection.docs)
 //   })
-//   .catch((error) => {
-//     console.log("Error getting documents: ", error);
-//   });  
-//let arr = ['Бишкек','Ош','Ош','Каракол'] 
-// let uniqueArray = arr.filter((item, pos)=> {
-//   return arr.indexOf(item) === pos;
-// })
-// console.log(uniqueArray)
+// } 
+// so()
+const usersCollection = collection(db, "Hotels");
+const PAGE_SIZE = 2; 
+
+ 
+
+
+// Получаем страницу по номеру
+const getPage = async (pageNumber) => {
+  const startAfterDoc = (pageNumber - 1) * PAGE_SIZE > 0 ? (await getPage(pageNumber - 1)).lastVisible : null;
+  const usersQuery = query(usersCollection, orderBy("rating"), startAfter(startAfterDoc), limit(PAGE_SIZE));
+  const usersSnapshot = await getDocs(usersQuery);
+  const lastVisible = usersSnapshot.docs[usersSnapshot.docs.length-1]; 
+  const lol = usersSnapshot.docs.map(doc => ( doc.data() )) 
+  console.log(lol) 
+  return {
+    //data: usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+    lastVisible: lastVisible
+  };
+};
+
+// Получаем следующую страницу
+const getNextPage = async (currentPageNumber) => {
+  return await getPage(currentPageNumber + 1);
+};
+
+// Получаем предыдущую страницу
+const getPrevPage = async (currentPageNumber) => {
+  return await getPage(currentPageNumber - 1);
+};
+
+// Получаем страницу по номеру
+const getPageByNumber = async (pageNumber) => {
+  return await getPage(pageNumber);
+}; 
+getPageByNumber(2)

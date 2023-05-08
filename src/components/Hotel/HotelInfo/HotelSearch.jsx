@@ -2,11 +2,8 @@
 import s from './HotelInfo.module.css' 
 
 const HotelSearch = props => {   
-    console.log(props)
     const selectCity = (e) => {  
-        
         props.getSerchingCityTC(e.target.value) 
-        console.log(e.target.value);
     }
     return ( 
         <div className={s.search}> 
@@ -15,7 +12,7 @@ const HotelSearch = props => {
                     <div className={s.search__title}> 
                     Поиск мест размещения для последующего бронирования
                     </div>  
-                    <div className=''>  
+                    <div>  
                         <select onChange={selectCity}>  
                             <option value="">CHoose City</option>
                             {props.selectedHotelCity.map(item => (<option value={item}>{item}</option>))}

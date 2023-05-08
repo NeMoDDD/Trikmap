@@ -21,7 +21,7 @@ import { NavLink } from 'react-router-dom';
             </div>
         )
     }
-
+    
     return( 
        <div className={s.hotel}>   
       
