@@ -9,9 +9,9 @@ import {db, firestore } from '../firebase/firebase-booking'
 
    ],
    isFetching: false, 
-   searchCity:  [],
-
+   selectedHotelCity: []
 }    
+const GET_SELECT_HOTEL_CITY = 'GET_SELECT_HOTEL_CITY' 
 const  GET_HOTEL ='GET_HOTEL'
 const TOGGLE_FETCH ='TOGGLE_FETCH'
 const SET_HOTELS = 'SET_HOTELS' 
@@ -41,6 +41,12 @@ export const hotelReducer = (state = initialState, action) =>{
                 ...state, 
                 hotels:action.data
             }
+        } 
+        case GET_SELECT_HOTEL_CITY: { 
+            return{ 
+                ...state, 
+                selectedHotelCity: action.data
+            }
         }
         default: 
         return state
@@ -51,7 +57,7 @@ export const setHotelsAC = ( data) => ({type: SET_HOTELS, data})
 export const toggleFetchingAC = (toggle) =>({type: TOGGLE_FETCH, toggle})
 export const getOrderingHotelAC = (data) =>({type:GET_HOTEL, data})
 export const setSearchingCityAC = (data) =>({type: SET_SEARCH, data}) 
-
+export const getSelectedHotelCityAC = (data) =>({type: GET_SELECT_HOTEL_CITY, data})
 
 //Thunk Creators
 export const getHotelsTC = () => { 
@@ -100,4 +106,25 @@ export const setNewHotel =  (data) =>{
         console.log(photo)
         await setDoc(doc(db, "Hotels", data.name), {...data, photo});
     }
+} 
+export const getSelectedHotelCityTC = () =>{ 
+    return (dispath) =>{  
+        const myCollectionRef = collection(db, "Hotels")
+        const arr = [] 
+    getDocs(myCollectionRef)
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => arr.push(doc.data().city)); 
+        let uniqueArray = arr.filter((item, pos)=> {
+              return arr.indexOf(item) === pos;
+            }) 
+        dispath(getSelectedHotelCityAC(uniqueArray)) 
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    })
+    .finally(() =>{ 
+        dispath(toggleFetchingAC(false)) 
+    })  
+
 }
+} 

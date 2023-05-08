@@ -18,8 +18,7 @@ const HotelSearch = props => {
                     <div className=''>  
                         <select onChange={selectCity}>  
                             <option value="">CHoose City</option>
-                            <option value="Бишкек">Бишкек</option>
-                            <option value="Каракол">Каракол</option>
+                            {props.selectedHotelCity.map(item => (<option value={item}>{item}</option>))}
                         </select>
                     </div>
                 </div> 

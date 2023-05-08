@@ -99,27 +99,45 @@ console.log(some)
 //   });
 
   
-  async function limited (log = false){ 
+//   async function limited (log = false){ 
   
 
-    const first = query(collection(db, "Hotels"), limit(2)); 
-    const documentSnapshots = await getDocs(first); 
-    const cityList = documentSnapshots.docs.map(doc => doc.data()); 
+//     const first = query(collection(db, "Hotels"), limit(2)); 
+//     const documentSnapshots = await getDocs(first); 
+//     const cityList = documentSnapshots.docs.map(doc => doc.data()); 
    
    
-    console.log(documentSnapshots.length);
-    console.log(cityList) 
-    const nextQuery = query(ref,limit(2),orderBy('rating'), startAfter(cityList.length) ) 
-    const lol = await getDocs(nextQuery) 
-    const cityLists = lol.docs.map(doc => doc.data());
-    // const next = query(collection(db, "Hotels"),
-    // startAfter(documentSnapshots),
-    // limit(2));  
-    console.log('nextone', cityLists);
+//     console.log(documentSnapshots.length);
+//     console.log(cityList) 
+//     const nextQuery = query(ref,limit(2),orderBy('rating'), startAfter(cityList.length) ) 
+//     const lol = await getDocs(nextQuery) 
+//     const cityLists = lol.docs.map(doc => doc.data());
+//     // const next = query(collection(db, "Hotels"),
+//     // startAfter(documentSnapshots),
+//     // limit(2));  
+//     console.log('nextone', cityLists);
     
   
 
-} 
+// } 
 
 
-limited()
+// limited()  
+// const myCollectionRef = collection(db, "Hotels");
+// let arr = []
+// getDocs(myCollectionRef)
+//   .then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       console.log(doc.data().city); 
+//      arr.push(doc.data().city)   
+//      console.log(arr)
+//     });
+//   })
+//   .catch((error) => {
+//     console.log("Error getting documents: ", error);
+//   });  
+//let arr = ['Бишкек','Ош','Ош','Каракол'] 
+// let uniqueArray = arr.filter((item, pos)=> {
+//   return arr.indexOf(item) === pos;
+// })
+// console.log(uniqueArray)

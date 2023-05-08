@@ -19,11 +19,8 @@ const Addhotel = (props) =>{
         reset, 
     } = useForm( { 
         mode: 'onBlur', 
-        // defaultValues: { 
-        //     photo: ['']
-        // }
     })
-    const { fields, append, prepend } = useFieldArray({
+    const { fields, append} = useFieldArray({
         control,
         name: "photo"
       });
