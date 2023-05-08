@@ -8,6 +8,7 @@ import OshGeoJsonLayer from "../Regions/Osh/OshJsonLayerFunc";
 import BatkenGeoJsonLayer from "../Regions/Batken/BatkenJsonLayerFunc";
 import NarynGeoJsonLayer from "../Regions/Naryn/NarynJsonLayerFunc";
 import JalalAbadGeoJsonLayer from "../Regions/JalalAbad/JalalAbadJsonLayerFunc";
+import IssykKolGeoJsonLayer from "../Regions/IssykKol/IssykKolJsonLayerFunc";
 
 // указываем путь к файлам marker
 L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
@@ -108,6 +109,18 @@ class MapComponent extends React.Component {
             )
         }))
     }
+    onGeojsonToggleIssykKol = () => {
+        this.setState(prevState => ({
+            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
+                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
+            )
+        }))
+        this.setState(prevState => ({
+            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
+                obj => (obj.name === "issykkol" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
+            )
+        }))
+    }
 
     render() {
         let center = [this.state.lat, this.state.lng];
@@ -124,46 +137,49 @@ class MapComponent extends React.Component {
                         <input type="radio"
                                name="layertoggle" id="all"
                                value={"all"} onChange={this.onGeojsonToggleAll}/>
-                        <label htmlFor={"all"}>All</label>
+                        <label htmlFor={"all"}>Все</label>
                     </div>
                     <div className="region-name__geojson">
                         <input type="radio"
                                name="layertoggle" id="chuy"
                                value={"chuy"} onChange={this.onGeojsonToggleChuy}/>
-                        <label htmlFor={"chuy"}>Chuy</label>
+                        <label htmlFor={"chuy"}>Чуй</label>
                     </div>
                     <div className="region-name__geojson">
                         <input type="radio"
                                name="layertoggle" id="talas"
                                value={"talas"} onChange={this.onGeojsonToggleTalas}/>
-                        <label htmlFor={"talas"}>Talas</label>
+                        <label htmlFor={"talas"}>Талас</label>
                     </div>
                     <div className="region-name__geojson">
                         <input type="radio"
                                name="layertoggle" id="osh"
                                value={"osh"} onChange={this.onGeojsonToggleOsh}/>
-                        <label htmlFor={"osh"}>Osh</label>
+                        <label htmlFor={"osh"}>Ош</label>
                     </div>
                     <div className="region-name__geojson">
                         <input type="radio"
                                name="layertoggle" id="batken"
                                value={"batken"} onChange={this.onGeojsonToggleBatken}/>
-                        <label htmlFor={"batken"}>Batken</label>
+                        <label htmlFor={"batken"}>Баткен</label>
                     </div>
                     <div className="region-name__geojson">
                         <input type="radio"
                                name="layertoggle" id="jalalabad"
                                value={"jalalabad"} onChange={this.onGeojsonToggleJalalAbad}/>
-                        <label htmlFor={"jalalabad"}>JalalAbad</label>
+                        <label htmlFor={"jalalabad"}>Джалал-Абад</label>
                     </div>
                     <div className="region-name__geojson">
                         <input type="radio"
                                name="layertoggle" id="naryn"
                                value={"naryn"} onChange={this.onGeojsonToggleNaryn}/>
-                        <label htmlFor={"talas"}>Naryn</label>
+                        <label htmlFor={"talas"}>Нарын</label>
                     </div>
                     <div className="region-name__geojson">
-
+                        <input type="radio"
+                               name="layertoggle" id="issykkol"
+                               value={"issykkol"} onChange={this.onGeojsonToggleIssykKol}/>
+                        <label htmlFor={"issykkol"}>Иссык-Куль</label>
                     </div>
 
                 </div>
@@ -186,7 +202,9 @@ class MapComponent extends React.Component {
                 {this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible &&
                     <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
                 }
-
+                {this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible &&
+                    <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                }
 
                 {/*<Marker position={center}>*/}
                 {/*    <Popup><div>Hello</div></Popup>*/}
