@@ -17,7 +17,7 @@ export default function OshGeoJsonLayer ({url, cluster}) {
             const abortController = new AbortController();
 
             fetchData(url, { signal: abortController.signal }).then(data => {
-                setData(data.talas);
+                setData(data.osh);
             });
             // cancel fetch on component unmount
             return () => {

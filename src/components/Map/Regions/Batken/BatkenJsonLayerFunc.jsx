@@ -10,21 +10,20 @@ const fetchData = function fetchData(url, options) {
         .then(data => data);
 }
 
-export default function GeojsonLayer ({url, cluster}) {
+export default function BatkenGeoJsonLayer ({url, cluster}) {
     const [data, setData] = useState([]);
     useEffect(()=> {
         if (url) {
             const abortController = new AbortController();
 
             fetchData(url, { signal: abortController.signal }).then(data => {
-                setData(data.Talas);
+                setData(data.batken);
             });
             // cancel fetch on component unmount
             return () => {
                 abortController.abort();
             };
         }
-
 
     }, [url]);
 
@@ -35,13 +34,13 @@ export default function GeojsonLayer ({url, cluster}) {
         <GroupComponent>
             {data.map(f => (
                 <Marker
-                    key={JSON.stringify(f.properties)}
-                    position={f.geometry.coordinates.reverse()}
+                    key={f.properties.id}
+                    position={f.geometry.coordinate.reverse()}
                 >
                     <Popup minWidth={200} closeButton={false}>
                         <div style={{backgroundColor:"red", color:"white"}}>
-                            <b>Hello</b>
-                            <p>I am {f.properties.name}</p>
+                            <p>{f.properties.name}</p>
+                            <p>{f.properties.description}</p>
                         </div>
                     </Popup>
                 </Marker>

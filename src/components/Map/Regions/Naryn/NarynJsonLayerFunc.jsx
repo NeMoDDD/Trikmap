@@ -10,14 +10,14 @@ const fetchData = function fetchData(url, options) {
         .then(data => data);
 }
 
-export default function OshGeoJsonLayer ({url, cluster}) {
+export default function NarynGeoJsonLayer ({url, cluster}) {
     const [data, setData] = useState([]);
     useEffect(()=> {
         if (url) {
             const abortController = new AbortController();
 
             fetchData(url, { signal: abortController.signal }).then(data => {
-                setData(data.talas);
+                setData(data.naryn);
             });
             // cancel fetch on component unmount
             return () => {
