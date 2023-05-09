@@ -1,11 +1,12 @@
 @import url("~leaflet/dist/leaflet.css");
 @import url("~react-leaflet-markercluster/dist/styles.min.css");
 
-body,
-#root,
 .leaflet-container {
-  height: 100vh;
-  width: 100vw;
+  height: 70vh;
+  width: 60vw;
+  position: absolute;
+  right: 20%;
+  top: 15%;
 }
 
 .zoom-slider {
@@ -29,17 +30,42 @@ body,
   width: 200px;
   height: 20px;
 }
+.main {
+  height: 100vh;
+  width: 100%;
+}
 
 .geojson-toggle {
-  position: absolute;
-  top: 40px;
-  right: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20%;
+  margin-top: 5.5%;
   z-index: 1000;
-  margin-top: 20px;
   background: white;
   font-size: 14px;
   padding: 4px;
   border-radius: 3px;
+}
+
+.region-name__geojson {
+  margin-left: 10px;
+}
+
+.geojson-toggle__btn {
+  transition: all 0.2s linear;
+}
+
+.geojson-toggle__btn:hover {
+  color: green !important;
+  border: 1px solid green !important;
+}
+.geojson-toggle__btn__active {
+  border: 1px solid green;
+  color: green;
+}
+.geojson-toggle__btn__active:hover {
+  color: green !important;
+  border: 1px solid green !important;
 }
 
 .popup-fixed {
@@ -50,6 +76,11 @@ body,
   margin: 0;
   border-radius: 0;
 }
+
+
+.popup-fixed p span {
+  font-weight: 600;
+}
 .leaflet-popup-tip-container {
   display: none;
 }
@@ -58,3 +89,4 @@ body,
   border-radius: 0;
   height: 100vh;
 }
+

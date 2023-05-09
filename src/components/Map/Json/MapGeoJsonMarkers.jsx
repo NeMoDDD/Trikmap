@@ -9,9 +9,10 @@ import BatkenGeoJsonLayer from "../Regions/Batken/BatkenJsonLayerFunc";
 import NarynGeoJsonLayer from "../Regions/Naryn/NarynJsonLayerFunc";
 import JalalAbadGeoJsonLayer from "../Regions/JalalAbad/JalalAbadJsonLayerFunc";
 import IssykKolGeoJsonLayer from "../Regions/IssykKol/IssykKolJsonLayerFunc";
-
+import { Button } from "antd"
 // указываем путь к файлам marker
 L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
+
 class MapComponent extends React.Component {
     state = {
         lat: 41.875969,
@@ -26,10 +27,11 @@ class MapComponent extends React.Component {
             {geoJsonIsVisible: true, name: "jalalabad"},
             {geoJsonIsVisible: true, name: "naryn"},
             {geoJsonIsVisible: true, name: "issykkol"},
+            {geoJsonIsVisible: true, name: "all"},
         ]
     };
 
-    onGeojsonToggleAll = () => {
+    onGeojsonToggleAll = (e) => {
         this.setState(prevState => ({
             geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
                 obj => (obj ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
@@ -123,92 +125,66 @@ class MapComponent extends React.Component {
 
     render() {
         let center = [this.state.lat, this.state.lng];
-        
-        return (
-            <MapContainer zoom={this.state.zoom} center={center}>
-                <TileLayer
-                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                />
 
+        return (
+            <div className="main">
                 <div className="geojson-toggle">
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="all"
-                               value={"all"} onChange={this.onGeojsonToggleAll}/>
-                        <label htmlFor={"all"}>Все</label>
+                        <Button type="default" onClick={this.onGeojsonToggleAll} className={this.state.geoJsonIsVisibleAll[7].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Все</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="chuy"
-                               value={"chuy"} onChange={this.onGeojsonToggleChuy}/>
-                        <label htmlFor={"chuy"}>Чуй</label>
+                        <Button type="default" onClick={this.onGeojsonToggleChuy} className={this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Чуй</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="talas"
-                               value={"talas"} onChange={this.onGeojsonToggleTalas}/>
-                        <label htmlFor={"talas"}>Талас</label>
+                        <Button type="default" onClick={this.onGeojsonToggleTalas} className={this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Талас</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="osh"
-                               value={"osh"} onChange={this.onGeojsonToggleOsh}/>
-                        <label htmlFor={"osh"}>Ош</label>
+                        <Button type="default" onClick={this.onGeojsonToggleOsh} className={this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Ош</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="batken"
-                               value={"batken"} onChange={this.onGeojsonToggleBatken}/>
-                        <label htmlFor={"batken"}>Баткен</label>
+                        <Button type="default" onClick={this.onGeojsonToggleBatken} className={this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Баткен</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="jalalabad"
-                               value={"jalalabad"} onChange={this.onGeojsonToggleJalalAbad}/>
-                        <label htmlFor={"jalalabad"}>Джалал-Абад</label>
+                        <Button type="default" onClick={this.onGeojsonToggleJalalAbad} className={this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Джалал-Абад</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="naryn"
-                               value={"naryn"} onChange={this.onGeojsonToggleNaryn}/>
-                        <label htmlFor={"talas"}>Нарын</label>
+                        <Button type="default" onClick={this.onGeojsonToggleNaryn} className={this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Нарын</Button>
                     </div>
                     <div className="region-name__geojson">
-                        <input type="radio"
-                               name="layertoggle" id="issykkol"
-                               value={"issykkol"} onChange={this.onGeojsonToggleIssykKol}/>
-                        <label htmlFor={"issykkol"}>Иссык-Куль</label>
+                        <Button type="default" onClick={this.onGeojsonToggleIssykKol} className={this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Иссык-Куль</Button>
                     </div>
 
                 </div>
+                <MapContainer zoom={this.state.zoom} center={center} zoomControl={false}>
+                    <TileLayer
+                        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                    />
 
-                {this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible &&
-                    <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
-                {this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible &&
-                    <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
-                {this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible &&
-                    <OshGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
-                {this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible &&
-                    <BatkenGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
-                {this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible &&
-                    <JalalAbadGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
-                {this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible &&
-                    <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
-                {this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible &&
-                    <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
-                }
 
-                {/*<Marker position={center}>*/}
-                {/*    <Popup><div>Hello</div></Popup>*/}
-                {/*</Marker>*/}
-            </MapContainer>
+                    {this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible &&
+                        <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                    {this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible &&
+                        <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                    {this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible &&
+                        <OshGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                    {this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible &&
+                        <BatkenGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                    {this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible &&
+                        <JalalAbadGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                    {this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible &&
+                        <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                    {this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible &&
+                        <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                    }
+                </MapContainer>
+            </div>
         );
     }
 };

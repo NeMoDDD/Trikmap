@@ -1,6 +1,6 @@
 import React from "react";
 import L from 'leaflet';
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import {MapContainer, Marker, Popup, TileLayer, Pane} from "react-leaflet";
 import './Map.css';
 
 
@@ -24,7 +24,14 @@ class MapComponent extends React.Component {
                 />
 
                 <Marker position={center}>
-                    <Popup>Какой то крутой текст!!!</Popup>
+                    <Popup pane="myPane" className={'popup-fixed'}>Какой то крутой текст!!!</Popup>
+                    <Pane name="myPane" style={{ zIndex: 500 }}>
+                        {/* Содержимое панели */}
+                        <div style={{ backgroundColor: 'white', padding: '10px' }}>
+                            <h3>Панель</h3>
+                            <p>Содержимое панели внутри всплывающего окна.</p>
+                        </div>
+                    </Pane>
                 </Marker>
             </MapContainer>
         )

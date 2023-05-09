@@ -38,14 +38,15 @@ export default function NarynGeoJsonLayer ({url, cluster}) {
                     position={f.geometry.coordinate.reverse()}
                 >
                     <Popup
-                        minWidth={300}
+                        maxWidth={250}
+                        maxHeight={650}
                         closeButton={true}
-                        closeOnEscapeKey={false}
                         className={'popup-fixed'}
-                        autoPan={true}>
-                        <div style={{backgroundColor:"red", color:"white"}}>
-                            <p>{f.properties.name}</p>
-                            <p>{f.properties.description}</p>
+                        autoPan={false}>
+                        <div className="popup-info">
+                            <p><span>Название: </span>{f.properties.name}</p>
+                            <p><span>Местоположение: </span>{f.properties.location}</p>
+                            <p><span>Описание: </span>{f.properties.description}</p>
                         </div>
                     </Popup>
                 </Marker>

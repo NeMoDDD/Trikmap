@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Marker, FeatureGroup, Popup, Pane} from 'react-leaflet';
+import {Marker, FeatureGroup, Popup} from 'react-leaflet';
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../../Map.css"
 const fetchData = function fetchData(url, options) {
@@ -38,15 +38,15 @@ export default function ChuyGeoJsonLayer({url, cluster}) {
                     position={f.geometry.coordinate.reverse()}
                 >
                     <Popup
-                        minWidth={300}
-                        maxHeight={1000}
+                        maxWidth={250}
+                        maxHeight={650}
                         closeButton={true}
-                        closeOnEscapeKey={false}
-                        className={'popup-fixed '}
-                        autoPan={true}>
-                        <div style={{backgroundColor: "red", color: "white"}}>
-                            <p>{f.properties.name}</p>
-                            <p>{f.properties.description}</p>
+                        className={'popup-fixed'}
+                        autoPan={false}>
+                        <div className="popup-info">
+                            <p><span>Название: </span>{f.properties.name}</p>
+                            <p><span>Местоположение: </span>{f.properties.location}</p>
+                            <p><span>Описание: </span>{f.properties.description}</p>
                         </div>
                     </Popup>
                 </Marker>
