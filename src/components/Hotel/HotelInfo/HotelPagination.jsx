@@ -4,13 +4,15 @@ const HotelPagination = (props) =>{
         let pages = []; 
         for(let i = 1; i<= pagesCount; i++){ 
             pages.push(i)
-        }  
-        const onPageChange = () =>{ 
-            props.getNextPageTC(props.lastVisible)
+        }   
+        const onChangePage = (i) =>{ 
+            console.log(i) 
+            props.getCurrentPageAC(i)
         }
+
     return( 
         <div> 
-            {pages.map(item => <button onClick={onPageChange}>{item}</button>)}
+            {pages.map((item, index) => <button key={index+item}  className={item === props.currentPage? 'active' : ''} onClick={()=>onChangePage(item)}>{item}</button>)}
         </div>
     )
 } 

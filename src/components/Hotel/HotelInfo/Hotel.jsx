@@ -11,7 +11,9 @@ import { NavLink } from 'react-router-dom';
 
 
  const Hotel = props => { 
-    // const Swiper = require('swiper'); 
+    const lastPostIndex = props.currentPage * props.pageSize; 
+    const firstPostIndex = lastPostIndex - props.pageSize
+    const data = props.hotels.slice( firstPostIndex, lastPostIndex)
 
     if(props.isFetch){ 
         return(  
@@ -29,7 +31,7 @@ import { NavLink } from 'react-router-dom';
        
           <p>Hotels</p>
         
-         {props.hotels.map((item) => {  
+         {data.map((item) => {  
             return (<div className={s.hotel__row}> 
             <div className={`${s.hotel__item} ${s.hotel__swiper}`}> 
             <Swiper 

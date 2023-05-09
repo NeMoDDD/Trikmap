@@ -140,38 +140,38 @@ console.log(some)
 //   })
 // } 
 // so()
-const usersCollection = collection(db, "Hotels");
-const PAGE_SIZE = 2; 
+// const usersCollection = collection(db, "Hotels");
+// const PAGE_SIZE = 2; 
 
  
 
 
-// Получаем страницу по номеру
-const getPage = async (pageNumber) => {
-  const startAfterDoc = (pageNumber - 1) * PAGE_SIZE > 0 ? (await getPage(pageNumber - 1)).lastVisible : null;
-  const usersQuery = query(usersCollection, orderBy("rating"), startAfter(startAfterDoc), limit(PAGE_SIZE));
-  const usersSnapshot = await getDocs(usersQuery);
-  const lastVisible = usersSnapshot.docs[usersSnapshot.docs.length-1]; 
-  const lol = usersSnapshot.docs.map(doc => ( doc.data() )) 
-  console.log(lol) 
-  return {
-    //data: usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })),
-    lastVisible: lastVisible
-  };
-};
+// // Получаем страницу по номеру
+// const getPage = async (pageNumber) => {
+//   const startAfterDoc = (pageNumber - 1) * PAGE_SIZE > 0 ? (await getPage(pageNumber - 1)).lastVisible : null;
+//   const usersQuery = query(usersCollection, orderBy("rating"), startAfter(startAfterDoc), limit(PAGE_SIZE));
+//   const usersSnapshot = await getDocs(usersQuery);
+//   const lastVisible = usersSnapshot.docs[usersSnapshot.docs.length-1]; 
+//   const lol = usersSnapshot.docs.map(doc => ( doc.data() )) 
+//   console.log(lol) 
+//   return {
+//     //data: usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+//     lastVisible: lastVisible
+//   };
+// };
 
-// Получаем следующую страницу
-const getNextPage = async (currentPageNumber) => {
-  return await getPage(currentPageNumber + 1);
-};
+// // Получаем следующую страницу
+// const getNextPage = async (currentPageNumber) => {
+//   return await getPage(currentPageNumber + 1);
+// };
 
-// Получаем предыдущую страницу
-const getPrevPage = async (currentPageNumber) => {
-  return await getPage(currentPageNumber - 1);
-};
+// // Получаем предыдущую страницу
+// const getPrevPage = async (currentPageNumber) => {
+//   return await getPage(currentPageNumber - 1);
+// };
 
-// Получаем страницу по номеру
-const getPageByNumber = async (pageNumber) => {
-  return await getPage(pageNumber);
-}; 
-getPageByNumber(2)
+// // Получаем страницу по номеру
+// const getPageByNumber = async (pageNumber) => {
+//   return await getPage(pageNumber);
+// }; 
+// getPageByNumber(2)

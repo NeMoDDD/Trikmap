@@ -5,26 +5,22 @@ import {db, firestore } from '../firebase/firebase-booking'
 const ref = collection(db, "Hotels");
  let initialState = { 
     totalDocs : null, 
-    pageSize: 1,   
+    pageSize: 1, 
+    currentPage: 1,   
     lastVisible: '',
     hotels : [],  
    orderingHotel : [],
    isFetching: false, 
    selectedHotelCity: []
-} 
-// let pagesCount = Math.ceil(props.totalUsers / props.pageSize)
-//         let pages = []; 
-//         for(let i = 1; i<= pagesCount; i++){ 
-//             pages.push(i)
-//         } 
+}  
+const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE'
 const GET_SELECT_HOTEL_CITY = 'GET_SELECT_HOTEL_CITY' 
 const  GET_HOTEL ='GET_HOTEL'
 const TOGGLE_FETCH ='TOGGLE_FETCH'
 const SET_HOTELS = 'SET_HOTELS' 
 const SET_SEARCH = 'SET_SEARCH' 
 const GET_TOTAL_DOCS = 'GET_TOTAL_DOCS'  
-const SET_LAST_VISIBLE = 'SET_LAST_VISIBLE' 
-const GET_NEXT_PAGE = 'GET_NEXT_PAGE'
+
 export const hotelReducer = (state = initialState, action) =>{ 
      switch(action.type){ 
         case SET_HOTELS: {  
@@ -63,11 +59,10 @@ export const hotelReducer = (state = initialState, action) =>{
                 totalDocs: action.data
             }
         } 
-        case SET_LAST_VISIBLE: {  
-            debugger
-            return {  
+        case GET_CURRENT_PAGE: { 
+            return{ 
                 ...state, 
-                lastVisible: action.data
+                currentPage: action.data
             }
         }
         default: 
@@ -81,18 +76,15 @@ export const getOrderingHotelAC = (data) =>({type:GET_HOTEL, data})
 export const setSearchingCityAC = (data) =>({type: SET_SEARCH, data}) 
 export const getSelectedHotelCityAC = (data) =>({type: GET_SELECT_HOTEL_CITY, data})
 export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
-export const setLastVisibleAC = (data) => ({type: SET_LAST_VISIBLE, data}) 
-export const getPageAC = (data) => ({type: GET_NEXT_PAGE, data})
+export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data })
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {   
-            const first = query(ref, orderBy("rating"), limit(initialState.pageSize));
-            const documentSnapshots = await getDocs(first);
-            const cityLists = documentSnapshots.docs.map(doc => doc.data());
-            const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-            dispath(setLastVisibleAC(lastVisible))
-            dispath(setHotelsAC(cityLists)) 
-            dispath(toggleFetchingAC(false))  
+        const citiesCol = collection(db, 'Hotels');
+        const citySnapshot = await getDocs(citiesCol);
+        const cityList = citySnapshot.docs.map(doc => doc.data()); 
+        dispath(setHotelsAC(cityList)) 
+        dispath(toggleFetchingAC(false))  
         } 
     }
 export const getOrderHotelTC = (document) =>{ 
@@ -158,15 +150,3 @@ export const getTotalDocsTC = () => async (dispatch)=>{
     const snapshot = await getCountFromServer(ref); 
     dispatch(getTotalDocsAC(snapshot.data().count))
 } 
-export const getNextPageTC = (data) => async (dispatch) => { 
-    debugger
-    const next = query(collection(db, "Hotels"),
-    orderBy("rating"),
-    startAfter(data),
-    limit(initialState.pageSize)); 
-    const documentSnapshots = await getDocs(next);
-    const cityListsa = documentSnapshots.docs.map(doc => doc.data());  
-    const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-    dispatch(setLastVisibleAC(lastVisible))
-    dispatch(setHotelsAC(cityListsa))
-}
