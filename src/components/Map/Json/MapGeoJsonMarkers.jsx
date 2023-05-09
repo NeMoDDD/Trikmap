@@ -12,7 +12,6 @@ import IssykKolGeoJsonLayer from "../Regions/IssykKol/IssykKolJsonLayerFunc";
 
 // указываем путь к файлам marker
 L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
-
 class MapComponent extends React.Component {
     state = {
         lat: 41.875969,
@@ -124,7 +123,7 @@ class MapComponent extends React.Component {
 
     render() {
         let center = [this.state.lat, this.state.lng];
-
+        
         return (
             <MapContainer zoom={this.state.zoom} center={center}>
                 <TileLayer

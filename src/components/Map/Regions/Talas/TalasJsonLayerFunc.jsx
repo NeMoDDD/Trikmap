@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { Marker, FeatureGroup, Popup } from 'react-leaflet';
 import MarkerClusterGroup from "react-leaflet-markercluster";
-
+import "../../Map.css"
 const fetchData = function fetchData(url, options) {
     let request = fetch(url, options);
 
@@ -37,7 +37,14 @@ export default function OshGeoJsonLayer ({url, cluster}) {
                     key={f.properties.id}
                     position={f.geometry.coordinate.reverse()}
                 >
-                    <Popup minWidth={200} closeButton={false}>
+                    <Popup
+                        minWidth={300}
+                        closeButton={true}
+                        maxHeight={900}
+
+                        closeOnEscapeKey={false}
+                        className={'popup-fixed'}
+                        autoPan={true}>
                         <div style={{backgroundColor:"red", color:"white"}}>
                             <p>{f.properties.name}</p>
                             <p>{f.properties.description}</p>
