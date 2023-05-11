@@ -1,11 +1,11 @@
 import {NavLink} from "react-router-dom";
-import RegisterForm from "../RegisterForm";
+import LogIn from "../LogIn";
 
 const LoginPage = () => {
     return (
         <div>
             <h3>Вход</h3>
-            <RegisterForm/>
+            <LogIn/>
             <p>
                 or <NavLink to={"/register"}>Зарегистрироваться</NavLink>
             </p>

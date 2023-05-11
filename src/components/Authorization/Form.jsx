@@ -6,8 +6,7 @@ const isValidEmail = email =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
     );
-
-export default function RegisterForm() {
+const Form = ({btnValue, handleClick}) => {
     const {register, handleSubmit, reset, formState: {errors}} = useForm({
         mode: "onBlur",
     });
@@ -22,23 +21,28 @@ export default function RegisterForm() {
         }
         return isValid
     };
-    const onSubmit = (data) => {
+    const onSubmit = () => {
+        handleClick(email, password)
         reset()
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={"register-form"}>
-            <input className="register-form__input" onChange={(e) => {setEmail(e.target.value)}} placeholder="Email" {...register("email", {
-                required: "Это поле обязательное!", validate: handleEmailValidation
+            <input className="register-form__input" placeholder="Email" {...register("email", {
+                required: "Это поле обязательное!", validate: handleEmailValidation,
+                onChange: (e) => setEmail(e.target.value)
             })} />
             {errors.email && <span>{errors.email.message || "Неверный email"}</span>}
-            <input className="register-form__input" onChange={(e) => {setPassword(e.target.value)}} placeholder="Пароль" {...register("password", {
+            <input className="register-form__input" placeholder="Пароль" {...register("password", {
                 required: true, minLength: {
                     value: 6,
                     message: "Минимум 6 символов!"
-                }
+                },
+                onChange: (e) => setPassword(e.target.value)
             })} />
             {errors.password && <span>{errors.password.message || "Это поле обязательное!"}</span>}
-            <input className="register-form__btn" type="submit"/>
+            <input className="register-form__btn" type="submit" value={btnValue}/>
         </form>
     );
 }
+
+export default Form;
