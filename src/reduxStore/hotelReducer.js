@@ -102,7 +102,8 @@ export const getOrderHotelTC = (document) =>{
 export const getSerchingCityTC = (searchingCity) =>{ 
     return async (dispatch) =>{   
                 if(searchingCity === ''){  
-                   return dispatch(getHotelsTC())
+                dispatch(getHotelsTC())
+                return dispatch(getTotalDocsTC())
                 } 
                 const city = query(  
                     collection(firestore, 'Hotels'), 
@@ -113,7 +114,8 @@ export const getSerchingCityTC = (searchingCity) =>{
                 const  querySnap = await getDocs(city)  
                 const alldocs = querySnap.forEach((snap) =>{  
                     data.push(snap.data())
-                }) 
+                })    
+                dispatch(getTotalDocsAC(data.length))
                 dispatch(setSearchingCityAC(data))            
             } 
 }
