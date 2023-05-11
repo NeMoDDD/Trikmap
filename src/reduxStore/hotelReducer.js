@@ -1,4 +1,4 @@
-import { collection,getDocs,doc,getDoc, startAfter,query, limit,where, setDoc, getCountFromServer,orderBy} from "@firebase/firestore";   
+import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer} from "@firebase/firestore";   
 import {db, firestore } from '../firebase/firebase-booking'
  
 
@@ -112,7 +112,7 @@ export const getSerchingCityTC = (searchingCity) =>{
                 )    
                 const data = []
                 const  querySnap = await getDocs(city)  
-                const alldocs = querySnap.forEach((snap) =>{  
+                querySnap.forEach((snap) =>{  
                     data.push(snap.data())
                 })    
                 dispatch(getTotalDocsAC(data.length))
