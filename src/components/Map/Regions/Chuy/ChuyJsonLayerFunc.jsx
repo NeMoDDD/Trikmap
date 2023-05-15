@@ -42,7 +42,7 @@ export default function ChuyGeoJsonLayer({url, cluster}) {
                         maxHeight={650}
                         closeButton={true}
                         className={'popup-fixed'}
-                        autoPan={false}>
+                        autoPan={true}>
                         <div className="popup-info">
                             <p><span>Название: </span>{f.properties.name}</p>
                             <p><span>Местоположение: </span>{f.properties.location}</p>

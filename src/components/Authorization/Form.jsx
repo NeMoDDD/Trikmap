@@ -3,18 +3,18 @@ import "./style.css"
 import {useState} from "react";
 import {Button, Input} from "antd";
 import {EyeTwoTone, EyeInvisibleOutlined} from '@ant-design/icons';
-import {useAuth} from "./hooks/use-auth";
 
 const isValidEmail = email =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
     );
-const Form = ({btnValue, handleClick}) => {
+const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
     const { control, handleSubmit, reset, formState: {errors}} = useForm({
         mode: "onBlur",
     });
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [nickname, setNickname] = useState("")
     const handleEmailValidation = email => {
         const isValid = isValidEmail(email);
 
@@ -24,17 +24,30 @@ const Form = ({btnValue, handleClick}) => {
         }
         return isValid
     };
-    const {isAuth} = useAuth()
-    const [isAuthSubmit, setIsAuthSubmit] = useState(true)
     const onSubmit = () => {
-        handleClick(email, password)
-        if (!isAuth) {
-            setIsAuthSubmit(false)
+        if (btnValue === "Зарегистрироваться") {
+            handleClick(email, password, nickname)
+        } else {
+            handleClick(email, password)
         }
+
     };
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className={"register-form"}>
+                { btnValue === "Зарегистрироваться" ? <Controller
+                    name="nickname"
+                    control={control}
+                    rules={{
+                        required: "Это поле обязательное!",
+                        onChange: (e) => setNickname(e.target.value)
+                    }}
+                    render={({field}) => <Input {...field}
+                                                placeholder="Имя"
+                                                className="register-form__input"
+                    />}/> : null }
+                {errors.nickname && <span>{errors.nickname.message}</span>}
+
                 <Controller
                     name="email"
                     control={control}
@@ -64,7 +77,7 @@ const Form = ({btnValue, handleClick}) => {
                     />}
                 />
                 {errors.password && <span>{errors.password.message || "Это поле обязательное!"}</span>}
-                {!isAuthSubmit && <span>Неверный email или пароль</span>}
+                {!isAuthSubmit && <span>{errorMessage}</span>}
                 <Controller
                     name="btn-submit"
                     control={control}
