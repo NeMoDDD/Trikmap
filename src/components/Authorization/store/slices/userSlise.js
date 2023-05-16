@@ -5,8 +5,10 @@ const initialState = {
     token: null,
     id: null,
     nickname: null,
-    userImg: null
+    userImg: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
 }
+
+// const storage = getStorage();
 
 const userSlice = createSlice({
     name: "user",
@@ -17,6 +19,7 @@ const userSlice = createSlice({
             state.token = action.payload.token
             state.id = action.payload.id
             state.nickname = action.payload.nickname
+            state.userImg = action.payload.userImg
         },
         removeUser(state) {
             state.email = null
@@ -31,5 +34,6 @@ const userSlice = createSlice({
 })
 
 export const {setUser, removeUser, setUserImg} = userSlice.actions
+
 
 export default userSlice.reducer

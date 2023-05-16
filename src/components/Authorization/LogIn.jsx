@@ -22,7 +22,8 @@ const LogIn = () => {
                     email: user.email,
                     id: user.uid,
                     token: user.accessToken,
-                    nickname: user.displayName
+                    nickname: user.displayName,
+                    userImg: user.photoURL
                 }))
 
                 push("/personal-account")
