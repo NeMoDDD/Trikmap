@@ -5,3 +5,22 @@
 .attraction__img {
     width: 200px;
 }
+
+.geojsonToggle__btn__active {
+    border: 1px solid green;
+    color: green;
+}
+
+.geojsonToggle__btn__active:hover {
+    color: green !important;
+    border: 1px solid green !important;
+}
+
+.geojsonToggle__btn {
+
+}
+
+.geojsonToggle__btn:hover {
+    color: green !important;
+    border: 1px solid green !important;
+}
