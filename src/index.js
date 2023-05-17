@@ -5,7 +5,7 @@ import {Provider} from "react-redux"
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./components/Authorization/store";
+import {store} from "./components/store";
 import "./components/Authorization/firebase/firebase"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

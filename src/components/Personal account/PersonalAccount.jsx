@@ -2,7 +2,7 @@ import {Navigate, NavLink} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import style from "./PersonalAccount.module.css"
 import {useDispatch} from "react-redux";
-import {removeUser, setUserImg} from "../Authorization/store/slices/userSlise";
+import {removeUser, setUserImg} from "../store/slices/userSlise";
 import {Button} from "antd";
 import {upload, useAuthh} from "../Authorization/firebase/firebase";
 import {useAuth} from "../Authorization/hooks/use-auth";

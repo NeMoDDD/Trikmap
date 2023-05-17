@@ -1,0 +1,7 @@
+.attraction {
+    display: flex;
+}
+
+.attraction__img {
+    width: 200px;
+}

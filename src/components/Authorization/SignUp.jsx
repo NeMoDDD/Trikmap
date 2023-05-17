@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {setUser} from "./store/slices/userSlise";
+import {setUser} from "../store/slices/userSlise";
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import Form from "./Form";
 import {useNavigate} from "react-router-dom";
