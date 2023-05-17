@@ -5,13 +5,13 @@ import {db, firestore } from '../firebase/firebase-booking'
 const ref = collection(db, "Hotels");
  let initialState = { 
     totalDocs : null, 
-    pageSize: 1, 
+    pageSize: 2, 
     currentPage: 1,   
     lastVisible: '',
     hotels : [],  
-   orderingHotel : [],
-   isFetching: false, 
-   selectedHotelCity: []
+    orderingHotel : [],
+    isFetching: false, 
+    selectedHotelCity: []
 }  
 const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE'
 const GET_SELECT_HOTEL_CITY = 'GET_SELECT_HOTEL_CITY' 

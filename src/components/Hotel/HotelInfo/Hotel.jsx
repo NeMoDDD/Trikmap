@@ -26,10 +26,6 @@ import { NavLink } from 'react-router-dom';
     
     return( 
        <div className={s.hotel}>   
-      
-       
-       
-          <p>Hotels</p>
         
          {data.map((item) => {  
             return (<div className={s.hotel__row}> 

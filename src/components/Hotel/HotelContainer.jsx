@@ -6,7 +6,7 @@ import HotelInfo from "./HotelInfo";
 import React from "react";
 class HotelContainer extends React.Component{ 
     componentDidMount() {   
-        //this.props.toggleFetchingAC(true)
+        this.props.toggleFetchingAC(true)
         this.props.getHotelsTC()   
         this.props.getSelectedHotelCityTC()   
         this.props.getTotalDocsTC()
