@@ -6,22 +6,28 @@ import {getDocs,  orderBy,startAfter,where, startAt,collection, getFirestore,doc
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// Import the functions you need from the SDKs you need
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBonj03by4roWxY0N6Byi6gY36TKc81qKY",
-  authDomain: "trikmap-39edf.firebaseapp.com",
-  projectId: "trikmap-39edf",
-  storageBucket: "trikmap-39edf.appspot.com",
-  messagingSenderId: "734921073378",
-  appId: "1:734921073378:web:e8bd0343e16da37dc4f4bb"
+  apiKey: "AIzaSyBC3gfZhdZ-86TIiMlXGo8fqfmuNXHFwsg",
+  authDomain: "trikmap-c997c.firebaseapp.com",
+  projectId: "trikmap-c997c",
+  storageBucket: "trikmap-c997c.appspot.com",
+  messagingSenderId: "761319112010",
+  appId: "1:761319112010:web:94a4d0526becc96ae795b3"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig); 
 export const db = getFirestore(app)  
 export const firestore = getFirestore()
-const some  = doc(firestore, 'Hotels/hNYXI4X7eZvWEVQrZTIH')  
 const ref  = collection(db, 'Hotels') 
-console.log(some)
+
 
 // function write ( ){ 
 //     const data = { 
