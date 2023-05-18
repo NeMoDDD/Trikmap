@@ -44,6 +44,7 @@ export default function IssykKolGeoJsonLayer ({url, cluster}) {
                         className={'popup-fixed'}
                         autoPan={false}>
                         <div className="popup-info">
+                            <img src={f.properties.image} alt="photo of object" className={"image-object"}/>
                             <p><span>Название: </span>{f.properties.name}</p>
                             <p><span>Местоположение: </span>{f.properties.location}</p>
                             <p><span>Описание: </span>{f.properties.description}</p>

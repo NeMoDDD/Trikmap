@@ -1,5 +1,6 @@
 import style from "./Attraction.module.css"
 const Attraction = ({imgSrc, title, location, description}) => {
+    console.log(imgSrc)
     return (
         <div className={style.attraction}>
             <div>
@@ -9,6 +10,7 @@ const Attraction = ({imgSrc, title, location, description}) => {
                 <h2>Название: {title}</h2>
                 <p>Местотположение: {location}</p>
                 <p>Описание: {description}</p>
+
             </div>
         </div>
     )

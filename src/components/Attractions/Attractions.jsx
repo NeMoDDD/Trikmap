@@ -77,7 +77,7 @@ const Attractions = () => {
         return (region === regionOn ? dataRegion.map((d, index) => <Attraction location={d.properties.location}
                                                                             description={d.properties.description}
                                                                             title={d.properties.name}
-                                                                            imgSrc={null}
+                                                                            imgSrc={d.properties.image}
                                                                             key={index}
         />) : null)
     }

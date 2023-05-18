@@ -90,3 +90,8 @@
   height: 100vh;
 }
 
+.image-object {
+  width: 100%;
+  max-width: 250px;
+  height: 150px;
+}
