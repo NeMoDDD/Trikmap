@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import Tour from "./Tours";
 import React from "react";
 class TourContainer extends React.Component{
@@ -6,4 +7,10 @@ class TourContainer extends React.Component{
             <Tour/>
         )
     }
+}  
+const mapStateToProps = (state) =>{ 
+    return{ 
+
+    }
 }
+export default connect(mapStateToProps, {})(TourContainer)

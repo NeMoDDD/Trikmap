@@ -18,7 +18,6 @@ import { NavLink } from 'react-router-dom';
     if(props.isFetch){ 
         return(  
             <div className={s.spinner} > 
-
             <Spinner className={s.spin} color='blue' colorScheme='cyan'/>
             </div>
         )
@@ -37,9 +36,8 @@ import { NavLink } from 'react-router-dom';
             slidesPerView={1}
             navigation 
             pagination={{ clickable: true }}
-        
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log('slide change')}
         >
        {item.photo.map(i =><SwiperSlide><img className={s.img_slide} src={i} alt="PhotoOfHotel" /></SwiperSlide>)}
       </Swiper>
@@ -48,7 +46,6 @@ import { NavLink } from 'react-router-dom';
                 <div className={s.hotel__text}> 
                     <div className={s.hotel__name}>{item.name}</div> 
                     <div> 
-
                     <div className={s.hotel__stars}>Рейтинг: {item.rating} / 5 </div>  
                     <div className={s.hotel__address}>Город: {item.city}</div>
                     <div className={s.hotel__address}>Область: {item.region}</div>

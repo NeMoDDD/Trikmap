@@ -20,6 +20,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "reselect": "^4.1.8",
     "swiper": "^9.2.4",
     "web-vitals": "^2.1.4"
   },

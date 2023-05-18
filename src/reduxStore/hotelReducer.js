@@ -11,11 +11,14 @@ const ref = collection(db, "Hotels");
     hotels : [],  
     orderingHotel : [],
     isFetching: false, 
-    selectedHotelCity: []
-}  
+    selectedHotelCity: [], 
+    selectedHotelRegion: ['hello','some'],
+}   
+const myCollectionRef = collection(db, "Hotels");
 const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE'
 const GET_SELECT_HOTEL_CITY = 'GET_SELECT_HOTEL_CITY' 
-const  GET_HOTEL ='GET_HOTEL'
+const GET_SELECT_HOTEL_REGION = 'GET_SELECT_HOTEL_REGION' 
+const GET_HOTEL ='GET_HOTEL'
 const TOGGLE_FETCH ='TOGGLE_FETCH'
 const SET_HOTELS = 'SET_HOTELS' 
 const SET_SEARCH = 'SET_SEARCH' 
@@ -64,6 +67,12 @@ export const hotelReducer = (state = initialState, action) =>{
                 ...state, 
                 currentPage: action.data
             }
+        } 
+        case GET_SELECT_HOTEL_REGION:{ 
+            return{ 
+                ...state,  
+                selectedHotelRegion: action.data
+            }
         }
         default: 
         return state
@@ -76,7 +85,8 @@ export const getOrderingHotelAC = (data) =>({type:GET_HOTEL, data})
 export const setSearchingCityAC = (data) =>({type: SET_SEARCH, data}) 
 export const getSelectedHotelCityAC = (data) =>({type: GET_SELECT_HOTEL_CITY, data})
 export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
-export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data })
+export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data }) 
+export const getSelectedRegionAC = (data) =>({type: GET_SELECT_HOTEL_REGION, data})
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {   
@@ -147,7 +157,20 @@ export const getSelectedHotelCityTC = () =>{
     })  
 
 }
-}   
+}    
+export const getSelectedHotelRegionTC = () => {
+    return async (dispatch) => {
+      try {
+        dispatch(toggleFetchingAC(true));
+        const querySnapshot = await getDocs(myCollectionRef);
+        const uniqueArray = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));
+        dispatch(getSelectedRegionAC(uniqueArray));
+        dispatch(toggleFetchingAC(false));
+      } catch (error) {
+        console.log("Error getting documents: ", error);
+      }
+    };
+  };  
 export const getTotalDocsTC = () => async (dispatch)=>{ 
     const snapshot = await getCountFromServer(ref); 
     dispatch(getTotalDocsAC(snapshot.data().count))

@@ -1,38 +1,41 @@
 import { connect } from "react-redux";
 import { compose } from "redux"; 
-import { getHotelsTC, toggleFetchingAC, getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC,getCurrentPageAC } from "../../reduxStore/hotelReducer"; 
+import { getHotelsTC, toggleFetchingAC, getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC,getCurrentPageAC,getSelectedHotelRegionTC } from "../../reduxStore/hotelReducer"; 
 
 import HotelInfo from "./HotelInfo"; 
 import React from "react";
-class HotelContainer extends React.Component{ 
-    componentDidMount() {   
-        this.props.toggleFetchingAC(true)
+import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
+class HotelContainer extends React.PureComponent{ 
+    componentDidMount() {    
         this.props.getHotelsTC()   
-        this.props.getSelectedHotelCityTC()   
+        this.props.getSelectedHotelCityTC()    
+        this.props.getSelectedHotelRegionTC()
         this.props.getTotalDocsTC()
     }  
     
     
     render(){ 
-
         return(  
         <HotelInfo totalDocs={this.props.totalDocs} getCurrentPageAC={this.props.getCurrentPageAC}
         hotels={this.props.hotels}  currentPage={this.props.currentPage}
         selectedHotelCity={this.props.selectedHotelCity} isFetch={this.props.isFetch}  
-        getSerchingCityTC={this.props.getSerchingCityTC} pageSize={this.props.pageSize}/>    
+        getSerchingCityTC={this.props.getSerchingCityTC} pageSize={this.props.pageSize} 
+        selectedHotelRegion={this.props.selectedHotelRegion} 
+        />    
         )
     }
 } 
 const mapStateToProps = (state) => {  
-    return{ 
-        hotels: state.hotelPage.hotels,  
-        selectedHotelCity: state.hotelPage.selectedHotelCity,
-        isFetch : state.hotelPage.isFetching, 
-        totalDocs : state.hotelPage.totalDocs, 
-        pageSize: state.hotelPage.pageSize, 
-        currentPage: state.hotelPage.currentPage
+    return{  
+        hotels: getHotels(state),
+        selectedHotelCity: getSelectedHotelCity(state),
+        isFetch : isFetching(state), 
+        totalDocs : getTotalDocs(state), 
+        pageSize: getPageSize(state), 
+        currentPage: getCurrentPage(state), 
+        selectedHotelRegion: getSelectedHotelRegion(state) 
     }
 }
 export default compose( 
-    connect(mapStateToProps, {getHotelsTC, toggleFetchingAC, getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC, getCurrentPageAC})(HotelContainer )
+    connect(mapStateToProps, {getHotelsTC, getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC, getCurrentPageAC, getSelectedHotelRegionTC})(HotelContainer )
 ) 
