@@ -3,9 +3,11 @@ import React, {useEffect, useState} from "react";
 import style from "./PersonalAccount.module.css"
 import {useDispatch} from "react-redux";
 import {removeUser, setUserImg} from "../store/slices/userSlise";
-import {Button} from "antd";
+import { Button, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import {upload, useAuthh} from "../Authorization/firebase/firebase";
 import {useAuth} from "../Authorization/hooks/use-auth";
+import {lastId} from "leaflet/src/core/Util";
 
 const PersonalAccount = () => {
     const {nickname, email, isAuth, userImg} = useAuth()
@@ -14,8 +16,51 @@ const PersonalAccount = () => {
     const [photo, setPhoto] = useState(null);
     const [photoURL, setPhotoURL] = useState();
     const [loading, setLoading] = useState(false);
+
+
+    // Пропсы для upload
+    // const props = {
+    //     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    //     onChange({ file, fileList }) {
+    //         if (file.status === 'uploading') {
+    //             setPhoto(file[0])
+    //             debugger
+    //         } else if (file.status === "done") {
+    //             console.log(1)
+    //             upload(photo, currentUser, setLoading);
+    //             dispatch(setUserImg({
+    //                 userImg: photoURL
+    //             }))
+    //         }
+    //     },
+    //     defaultFileList: [
+    //         // {
+    //         //     uid: '1',
+    //         //     name: 'xxx.png',
+    //         //     status: 'uploading',
+    //         //     url: 'http://www.baidu.com/xxx.png',
+    //         //     percent: 33,
+    //         // },
+    //         // {
+    //         //     uid: '2',
+    //         //     name: 'yyy.png',
+    //         //     status: 'done',
+    //         //     url: 'http://www.baidu.com/yyy.png',
+    //         // },
+    //         // {
+    //         //     uid: '3',
+    //         //     name: 'zzz.png',
+    //         //     status: 'error',
+    //         //     response: 'Server Error 500',
+    //         //     // custom error message to show
+    //         //     url: 'http://www.baidu.com/zzz.png',
+    //         // },
+    //     ],
+    // };
+
     const onUpdateProfileImg = (e) => {
         if (e.target.files[0]) {
+            console.log(e.target.files[0])
             setPhoto(e.target.files[0])
         }
     }
@@ -45,6 +90,9 @@ const PersonalAccount = () => {
                                     />
                                     <input type={"file"} name="userPhoto" onChange={onUpdateProfileImg}/>
                                     <button onClick={onClickProfileImg} disabled={loading || !photo}>Загрузить</button>
+                                    {/*<Upload {...props}>*/}
+                                    {/*    <Button icon={<UploadOutlined />}>Upload</Button>*/}
+                                    {/*</Upload>*/}
                                 </div>
                             </div>
                             <div>

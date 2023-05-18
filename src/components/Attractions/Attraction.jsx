@@ -1,15 +1,19 @@
 import style from "./Attraction.module.css"
+import { Image } from 'antd';
+
 const Attraction = ({imgSrc, title, location, description}) => {
     console.log(imgSrc)
     return (
         <div className={style.attraction}>
-            <div>
-                <img className={style.attraction__img} src={imgSrc} alt="Attraction image"/>
+            <div className={style.imageBlock__attraction}>
+                <Image
+                    className={style.attraction__img} src={imgSrc} alt="Attraction image"
+                />
             </div>
-            <div>
-                <h2>Название: {title}</h2>
-                <p>Местотположение: {location}</p>
-                <p>Описание: {description}</p>
+            <div className={style.contentBlock__attraction}>
+                <p><b>Название: </b>{title}</p>
+                <p><b>Местотположение: </b>{location}</p>
+                <p><b>Описание: </b>{description}</p>
 
             </div>
         </div>

@@ -81,9 +81,9 @@ const Attractions = () => {
                                                                             key={index}
         />) : null)
     }
-    return (<div>
-        <div className="geojson-toggle">
-            <div className="region-name__geojson">
+    return (<div className={style.main}>
+        <div className={style.geojsonToggle}>
+            <div className={style.regionName__geojson}>
                 <Button type="default" onClick={onClickAllRegion}
                         className={region === "all" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Все</Button>
                 <Button type="default" onClick={onClickChuyRegion}
