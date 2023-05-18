@@ -73,8 +73,8 @@ const Attractions = () => {
         onClickRegion("issykkol", totalCountIssykkol)
     }
 
-    const regionVisible = (regionOn) => {
-        return (region === regionOn ? dataAll.map((d, index) => <Attraction location={d.properties.location}
+    const regionVisible = (regionOn, dataRegion) => {
+        return (region === regionOn ? dataRegion.map((d, index) => <Attraction location={d.properties.location}
                                                                             description={d.properties.description}
                                                                             title={d.properties.name}
                                                                             imgSrc={null}
@@ -112,29 +112,29 @@ const Attractions = () => {
         <Pagination defaultCurrent={currentPage} total={totalCount} defaultPageSize={pageSize}
                     showSizeChanger={false} onChange={setCurrentPageClick}/>
         {
-            regionVisible("all")
+            regionVisible("all", dataAll)
         }
 
         {
-            regionVisible("chuy")
+            regionVisible("chuy", dataChuy)
         }
         {
-            regionVisible("talas")
+            regionVisible("talas", dataTalas)
         }
         {
-            regionVisible("osh")
+            regionVisible("osh", dataOsh)
         }
         {
-            regionVisible("batken")
+            regionVisible("batken", dataBatken)
         }
         {
-            regionVisible("jalalabad")
+            regionVisible("jalalabad", dataJalalabad)
         }
         {
-            regionVisible("naryn")
+            regionVisible("naryn", dataNaryn)
         }
         {
-            regionVisible("issykkol")
+            regionVisible("issykkol", dataIssykkol)
         }
     </div>)
 }

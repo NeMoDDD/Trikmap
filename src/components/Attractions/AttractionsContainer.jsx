@@ -4,10 +4,6 @@ class AttractionsContainer extends React.Component {
     componentDidMount() {
 
     }
-    // onPageChanged = (currentPage, pageSize) => {
-    //     this.props.getUsers(currentPage, pageSize)
-    // }
-
     render() {
         return (
             <div>
