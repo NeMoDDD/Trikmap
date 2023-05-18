@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import classes from './Header.module.css'
 import Logo from '../../assets/Лого.svg'
 export default function Header() {
@@ -12,24 +12,24 @@ export default function Header() {
                 <h3>TRIKMAP</h3>
             </div>
             <div className={classes.link}>
-                <a href="#">
+                <NavLink to="/">
                     Главная
-                </a>
-                <a href="#">
+                </NavLink>
+                <NavLink to="/">
                     Отели
-                </a>
-                <a href="#">
+                </NavLink>
+                <NavLink to="/">
                     Туры
-                </a>
-                <a href="#">
+                </NavLink>
+                <NavLink to="/">
                     Достопримечательности
-                </a>
-                <a href="#">
+                </NavLink>
+                <NavLink to="/">
                     Личный кабинет
-                </a>
+                </NavLink>
             </div>
             <div className={classes.login}>
-                <a>Войти</a>
+                <NavLink to= '/'>Войти</NavLink>
                 <button>
                     Регистрация
                 </button>

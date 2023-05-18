@@ -21,17 +21,11 @@
 }
 .logo{
     display: flex;
-    position: relative;
-    text-align: center;
+    width: 15%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
-.logo h3{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
+
 .login button{
     width: 127px;
     height: 35px;
