@@ -1,5 +1,5 @@
 import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer} from "@firebase/firestore";   
-import {db, firestore } from '../firebase/firebase-booking'
+import {db } from '../firebase/firebase-booking'
  
 
 const ref = collection(db, "Hotels");
@@ -7,12 +7,11 @@ const ref = collection(db, "Hotels");
     totalDocs : null, 
     pageSize: 2, 
     currentPage: 1,   
-    lastVisible: '',
     hotels : [],  
     orderingHotel : [],
     isFetching: false, 
     selectedHotelCity: [], 
-    selectedHotelRegion: ['hello','some'],
+    selectedHotelRegion: [],
 }   
 const myCollectionRef = collection(db, "Hotels");
 const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE'
@@ -90,74 +89,67 @@ export const getSelectedRegionAC = (data) =>({type: GET_SELECT_HOTEL_REGION, dat
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {   
-        const citiesCol = collection(db, 'Hotels');
-        const citySnapshot = await getDocs(citiesCol);
+        const citySnapshot = await getDocs(ref);
         const cityList = citySnapshot.docs.map(doc => doc.data()); 
         dispath(setHotelsAC(cityList)) 
         dispath(toggleFetchingAC(false))  
         } 
     }
-export const getOrderHotelTC = (document) =>{ 
-    return async (dispatch) =>{ 
-        const docRef = doc(db, "Hotels", document);
-        const docSnap = await getDoc(docRef);  
-        if (docSnap.exists()) { 
-            dispatch(getOrderingHotelAC(docSnap.data()))
-          console.log("Document data:", docSnap.data());
-        } else {
-          console.log("No such document!");
-        }
+  
+export const getOrderHotelTC = (document) => {
+  return async (dispatch) => {
+    try {
+      const docRef = doc(ref, document);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        dispatch(getOrderingHotelAC(docSnap.data()));
+      }
+    } catch (error) {
+      console.log("Error getting document:", error);
     }
-}  
-export const getSerchingCityTC = (searchingCity) =>{ 
-    return async (dispatch) =>{   
-                if(searchingCity === ''){  
-                dispatch(getHotelsTC())
-                return dispatch(getTotalDocsTC())
-                } 
-                const city = query(  
-                    collection(firestore, 'Hotels'), 
-                    where( 'city' , '==', searchingCity) ,
-                    limit(10)            
-                )    
-                const data = []
-                const  querySnap = await getDocs(city)  
-                querySnap.forEach((snap) =>{  
-                    data.push(snap.data())
-                })    
-                dispatch(getTotalDocsAC(data.length))
-                dispatch(setSearchingCityAC(data))            
-            } 
-}
- 
+  };
+};
+export const getSerchingCityTC = (searchingCity) => {
+  return async (dispatch) => {
+    if (searchingCity === '') {
+      await Promise.all([dispatch(getHotelsTC()), dispatch(getTotalDocsTC())]);
+      return;
+    }
+
+    const city = query(
+      ref,
+      where('city', '==', searchingCity),
+      limit(20)
+    );
+
+    const querySnap = await getDocs(city);
+    const data = querySnap.docs.map((snap) => snap.data());
+
+    dispatch(getTotalDocsAC(data.length));
+    dispatch(setSearchingCityAC(data));
+  };
+};
+
 export const setNewHotel =  (data) =>{   
     return async ()=>{ 
         const photo = data.photo.flatMap(({ value }) => value); 
-        console.log(photo)
-        await setDoc(doc(db, "Hotels", data.name), {...data, photo});
-    }
-} 
-export const getSelectedHotelCityTC = () =>{ 
-    return (dispath) =>{  
-        const myCollectionRef = collection(db, "Hotels")
-        const arr = [] 
-    getDocs(myCollectionRef)
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => arr.push(doc.data().city)); 
-        let uniqueArray = arr.filter((item, pos)=> {
-              return arr.indexOf(item) === pos;
-            }) 
-        dispath(getSelectedHotelCityAC(uniqueArray)) 
-    })
-    .catch((error) => {
+        await setDoc(doc(ref, data.name), {...data, photo});
+      }
+    } 
+   
+export const getSelectedHotelCityTC = () => {
+    return async (dispatch) => {
+      try {
+        dispatch(toggleFetchingAC(true));
+        const querySnapshot = await getDocs(myCollectionRef);
+        const uniqueArray = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city)));
+        dispatch(getSelectedHotelCityAC(uniqueArray));
+        dispatch(toggleFetchingAC(false));
+      } catch (error) {
         console.log("Error getting documents: ", error);
-    })
-    .finally(() =>{ 
-        dispath(toggleFetchingAC(false)) 
-    })  
-
-}
-}    
+      }
+    };
+  }; 
 export const getSelectedHotelRegionTC = () => {
     return async (dispatch) => {
       try {
@@ -172,6 +164,62 @@ export const getSelectedHotelRegionTC = () => {
     };
   };  
 export const getTotalDocsTC = () => async (dispatch)=>{ 
-    const snapshot = await getCountFromServer(ref); 
-    dispatch(getTotalDocsAC(snapshot.data().count))
+  const snapshot = await getCountFromServer(ref); 
+  dispatch(getTotalDocsAC(snapshot.data().count))
 } 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const getSelectedHotelCityTC = () =>{ 
+  //     return (dispath) =>{  
+    //         const myCollectionRef = collection(db, "Hotels")
+//         const arr = [] 
+//     getDocs(myCollectionRef)
+//         .then((querySnapshot) => {
+  //             querySnapshot.forEach((doc) => arr.push(doc.data().city)); 
+  //         let uniqueArray = arr.filter((item, pos)=> {
+    //               return arr.indexOf(item) === pos;
+    //             }) 
+    //         dispath(getSelectedHotelCityAC(uniqueArray)) 
+    //     })
+    //     .catch((error) => {
+      //         console.log("Error getting documents: ", error);
+//     })
+//     .finally(() =>{ 
+//         dispath(toggleFetchingAC(false)) 
+//     })  
+
+// }
+// }  
+// export const getSerchingCityTC = (searchingCity) =>{ 
+//     return async (dispatch) =>{   
+//                 if(searchingCity === ''){  
+//                 dispatch(getHotelsTC())
+//                 return dispatch(getTotalDocsTC())
+//                 } 
+//                 const city = query(  
+//                     collection(firestore, 'Hotels'), 
+//                     where( 'city' , '==', searchingCity) , 
+//                     limit(20)            
+//                 )    
+//                 const data = []
+//                 const  querySnap = await getDocs(city)  
+//                 querySnap.forEach((snap) =>{  
+//                     data.push(snap.data())
+//                 })    
+//                 dispatch(getTotalDocsAC(data.length))
+//                 dispatch(setSearchingCityAC(data))            
+//             } 
+// }

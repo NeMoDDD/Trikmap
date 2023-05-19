@@ -14,7 +14,8 @@ class HotelContainer extends React.PureComponent{
     }  
     
     
-    render(){ 
+    render(){  
+        console.log('render');
         return(  
         <HotelInfo totalDocs={this.props.totalDocs} getCurrentPageAC={this.props.getCurrentPageAC}
         hotels={this.props.hotels}  currentPage={this.props.currentPage}
