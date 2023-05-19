@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+.about{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Alice';
+}
+.title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.text{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
