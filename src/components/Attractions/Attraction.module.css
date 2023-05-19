@@ -50,3 +50,8 @@
     display: flex;
     justify-content: center;
 }
+
+.selectBlock {
+    display: flex;
+    justify-content: space-around;
+}

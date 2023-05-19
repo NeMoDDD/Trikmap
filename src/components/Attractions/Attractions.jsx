@@ -3,8 +3,9 @@ import {setCurrentPage} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useState} from "react";
-import {Button, Pagination} from "antd";
+import {Button, Pagination, Select} from "antd";
 import style from "./Attraction.module.css"
+import {selectOptions} from "@testing-library/user-event/dist/select-options";
 
 const Attractions = () => {
     const dispatch = useDispatch()
@@ -22,7 +23,9 @@ const Attractions = () => {
         totalCountTalas
     } = useSelector(state => state.attractions)
     const [totalCount, setTotalCount] = useState(totalCountAll)
+    const [totalCountOfType, setTotalCountOfType] = useState(0)
     const [region, setRegion] = useState("all")
+    const [type, setType] = useState("All")
 
     const lastPostIndex = currentPage * pageSize;
     const firstPostIndex = lastPostIndex - pageSize
@@ -34,6 +37,10 @@ const Attractions = () => {
     const dataJalalabad = data.jalalabad.slice(firstPostIndex, lastPostIndex)
     const dataNaryn = data.naryn.slice(firstPostIndex, lastPostIndex)
     const dataIssykkol = data.issykkol.slice(firstPostIndex, lastPostIndex)
+
+    const onSelectChange = (value) => {
+        setType(value)
+    };
 
     const setCurrentPageClick = (id) => {
         dispatch(setCurrentPage({
@@ -74,12 +81,20 @@ const Attractions = () => {
     }
 
     const regionVisible = (regionOn, dataRegion) => {
-        return (region === regionOn ? dataRegion.map((d, index) => <Attraction location={d.properties.location}
-                                                                            description={d.properties.description}
-                                                                            title={d.properties.name}
-                                                                            imgSrc={d.properties.image}
-                                                                            key={index}
-        />) : null)
+        return (region === regionOn && type !== "All" ? dataRegion.filter(p => p.properties.type === type)
+            .map((p, index) => {
+                return (
+                    <Attraction location={p.properties.location}
+                                    description={p.properties.description}
+                                    title={p.properties.name}
+                                    imgSrc={p.properties.image}
+                                    key={index}/>)
+            })  : (region === regionOn && type === "All" ? dataRegion.map((d, index) => <Attraction location={d.properties.location}
+                                                                                        description={d.properties.description}
+                                                                                        title={d.properties.name}
+                                                                                        imgSrc={d.properties.image}
+                                                                                        key={index}
+        />) : null))
     }
     return (<div className={style.main}>
         <div className={style.geojsonToggle}>
@@ -101,8 +116,125 @@ const Attractions = () => {
                 <Button type="default" onClick={onClickIssykkolRegion}
                         className={region === "issykkol" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Иссык-Куль</Button>
             </div>
-
         </div>
+        <div className={style.selectBlock}>
+            <Select
+                defaultValue="All"
+                style={{
+                    width: 120,
+                }}
+                onChange={onSelectChange}
+
+                options={[
+                    {
+                        value: 'park',
+                        label: 'Парки',
+                    },
+                    {
+                        value: 'gorge',
+                        label: 'Ущелья',
+                    },
+                    {
+                        value: 'valley',
+                        label: 'Долины',
+                    },
+                    {
+                        value: 'theatre',
+                        label: 'Театры',
+                    },
+                    {
+                        value: 'museum',
+                        label: 'Музеи',
+                    },
+                    {
+                        value: 'gallery',
+                        label: 'Галлереи',
+                    },
+                    {
+                        value: 'canyon',
+                        label: 'Каньоны',
+                    },
+                    {
+                        value: 'lake',
+                        label: 'Озера',
+                    },
+                    {
+                        value: 'river',
+                        label: 'Реки',
+                    },
+                    {
+                        value: 'tower',
+                        label: 'Башни',
+                    },
+                    {
+                        value: 'place',
+                        label: 'Площади',
+                    },
+                    {
+                        value: 'circus',
+                        label: 'Цирки',
+                    },
+                    {
+                        value: 'statue',
+                        label: 'Статуи',
+                    },
+                    {
+                        value: 'philharmonic',
+                        label: 'Филармонии',
+                    },
+                    {
+                        value: 'mosque',
+                        label: 'Мечети',
+                    },
+                    {
+                        value: 'mausoleum',
+                        label: 'Мавзолеи',
+                    },
+                    {
+                        value: 'nature park',
+                        label: 'Природные парки',
+                    },
+                    {
+                        value: 'waterfall',
+                        label: 'Водопады',
+                    },
+                    {
+                        value: 'historical complex',
+                        label: 'Исторические комплексы',
+                    },
+                    {
+                        value: 'mountain',
+                        label: 'Горы',
+                    },
+                    {
+                        value: 'cave',
+                        label: 'Пещеры',
+                    },
+                    {
+                        value: 'fortress',
+                        label: 'Крпепости',
+                    },
+                    {
+                        value: 'recreation area',
+                        label: 'Зоны отдыха',
+                    },
+                    {
+                        value: 'nature reserves',
+                        label: 'Природные заповедники',
+                    },
+                    {
+                        value: 'pass',
+                        label: 'Перевалы',
+                    },
+                    {
+                        value: 'water reservoir',
+                        label: 'Водохранилища',
+                    },
+
+                ]}
+            />
+        </div>
+
         {/*<Paginator pageSize={pageSize}*/}
         {/*           portionSize={portionSize}*/}
         {/*           currentPage={currentPage}*/}

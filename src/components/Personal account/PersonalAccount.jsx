@@ -3,13 +3,14 @@ import React, {useEffect, useState} from "react";
 import style from "./PersonalAccount.module.css"
 import {useDispatch} from "react-redux";
 import {removeUser, setUserImg} from "../store/slices/userSlise";
-import { Button, Upload } from 'antd';
+import {Button, Spin, Upload} from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import {upload, useAuthh} from "../Authorization/firebase/firebase";
 import {useAuth} from "../Authorization/hooks/use-auth";
 import {lastId} from "leaflet/src/core/Util";
 
 const PersonalAccount = () => {
+
     const {nickname, email, isAuth, userImg} = useAuth()
     const dispatch = useDispatch()
     const currentUser = useAuthh()
@@ -57,6 +58,8 @@ const PersonalAccount = () => {
     //         // },
     //     ],
     // };
+
+
 
     const onUpdateProfileImg = (e) => {
         if (e.target.files[0]) {

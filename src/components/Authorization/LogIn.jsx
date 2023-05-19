@@ -5,6 +5,7 @@ import Form from "./Form";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useAuth} from "./hooks/use-auth";
+import Spiner from "../helpers/spiner";
 
 const LogIn = () => {
     const dispatch = useDispatch()
@@ -12,6 +13,7 @@ const LogIn = () => {
     const [isAuthSubmit, setIsAuthSubmit] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
     const {nickname} = useAuth()
+
 
     const handleLogin = (email, password) => {
         const auth = getAuth();
@@ -43,6 +45,7 @@ const LogIn = () => {
     }
     return (
         <div>
+            {/*<Spiner isFetching={}/>*/}
             <Form btnValue="Войти"
                   handleClick={handleLogin}
                   isAuthSubmit={isAuthSubmit}
