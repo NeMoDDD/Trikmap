@@ -7,6 +7,7 @@ const HotelInfo = (props) => {
     return( 
         <div> 
             <HotelSearch    
+            getSerchingRegionTC={props.getSerchingRegionTC} 
             selectedHotelRegion={props.selectedHotelRegion} 
             selectedHotelCity={props.selectedHotelCity} 
             getSerchingCityTC={props.getSerchingCityTC}/> 

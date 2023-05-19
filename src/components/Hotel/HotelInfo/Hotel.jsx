@@ -5,7 +5,6 @@ import  {EffectFlip, Navigation, Pagination, A11y, } from 'swiper';
 import 'swiper/css' 
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';  
-import { Spinner } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
  
 
@@ -15,19 +14,13 @@ import { NavLink } from 'react-router-dom';
     const firstPostIndex = lastPostIndex - props.pageSize
     const data = props.hotels.slice( firstPostIndex, lastPostIndex)
 
-    if(props.isFetch){ 
-        return(  
-            <div className={s.spinner} > 
-            <Spinner className={s.spin} color='blue' colorScheme='cyan'/>
-            </div>
-        )
-    }
+    
     
     return( 
        <div className={s.hotel}>   
         
-         {data.map((item) => {  
-            return (<div className={s.hotel__row}> 
+         {data.map((item,index) => {  
+            return (<div key={index} className={s.hotel__row}> 
             <div className={`${s.hotel__item} ${s.hotel__swiper}`}> 
             <Swiper 
             className={s.swiper__item}
@@ -39,7 +32,7 @@ import { NavLink } from 'react-router-dom';
             // onSwiper={(swiper) => console.log(swiper)}
             // onSlideChange={() => console.log('slide change')}
         >
-       {item.photo.map(i =><SwiperSlide><img className={s.img_slide} src={i} alt="PhotoOfHotel" /></SwiperSlide>)}
+       {item.photo.map((i,index) =><SwiperSlide key={index}><img className={s.img_slide} src={i} alt="PhotoOfHotel" /></SwiperSlide>)}
       </Swiper>
             </div> 
             <div className={`${s.hotel__item } ${s.hotel__main}`}> 

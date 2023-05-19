@@ -128,6 +128,26 @@ export const getSerchingCityTC = (searchingCity) => {
     dispatch(getTotalDocsAC(data.length));
     dispatch(setSearchingCityAC(data));
   };
+}; 
+export const getSerchingRegionTC = (searchingRegion) => {
+  return async (dispatch) => {
+    if (searchingRegion === '') {
+      await Promise.all([dispatch(getHotelsTC()), dispatch(getTotalDocsTC())]);
+      return;
+    }
+
+    const city = query(
+      ref,
+      where('region', '==', searchingRegion),
+      limit(20)
+    );
+
+    const querySnap = await getDocs(city);
+    const data = querySnap.docs.map((snap) => snap.data());
+
+    dispatch(getTotalDocsAC(data.length));
+    dispatch(setSearchingCityAC(data));
+  };
 };
 
 export const setNewHotel =  (data) =>{   
