@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCurrentPage} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Pagination, Select} from "antd";
 import style from "./Attraction.module.css"
 import {selectOptions} from "@testing-library/user-event/dist/select-options";
@@ -22,8 +22,9 @@ const Attractions = () => {
         totalCountTalas
     } = useSelector(state => state.attractions)
     const [totalCount, setTotalCount] = useState(totalCountAll)
-    const [totalCountOfType, setTotalCountOfType] = useState(0)
+    const [totalCountOfType, setTotalCountOfType] = useState(1)
     const [region, setRegion] = useState("all")
+    const [dataRegion, setDataRegion] = useState(data.all)
     const [type, setType] = useState("All")
 
     const lastPostIndex = currentPage * pageSize;
@@ -32,7 +33,8 @@ const Attractions = () => {
     const onSelectChange = (value) => {
         if (value !== "All") {
             setType(value)
-            onClickRegion("all", data.all.filter(p => p.properties.type === value).length)
+            setTotalCountOfType(data.all.filter(p => p.properties.type === value).length)
+            onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length)
         }
         setType(value)
     };
@@ -42,41 +44,55 @@ const Attractions = () => {
             currentPage: id
         }))
     }
-    const onClickRegion = (region, totalCount, dataRegion) => {
+    const onClickRegion = (region, totalCount) => {
+        if (type !== "All") {
+            setTotalCount(dataRegion.filter(p => p.properties.type === type).length)
+            setTotalCountOfType(dataRegion.filter(p => p.properties.type === type).length)
+        } else {
+            setTotalCount(totalCount)
+        }
         dispatch(setCurrentPage({
             currentPage: 1
         }))
         setRegion(region)
-        if (type !== "All") {
-            setTotalCount(dataRegion.filter(p => p.properties.type === type).length)
-        }
-        setTotalCount(totalCount)
     }
 
     const onClickAllRegion = () => {
-        onClickRegion("all", totalCountAll, data.all)
+        onClickRegion("all", totalCountAll)
+        setDataRegion(data.all)
     }
     const onClickChuyRegion = () => {
-        onClickRegion("chuy", totalCountChuy, data.chuy)
+        onClickRegion("chuy", totalCountChuy)
+        setDataRegion(data.chuy)
     }
     const onClickTalasRegion = () => {
-        onClickRegion("talas", totalCountTalas, data.talas)
+        onClickRegion("talas", totalCountTalas)
+        setDataRegion(data.talas)
     }
     const onClickOshRegion = () => {
-        onClickRegion("osh", totalCountOsh, data.osh)
+        onClickRegion("osh", totalCountOsh)
+        setDataRegion(data.osh)
     }
     const onClickBatkenRegion = () => {
-        onClickRegion("batken", totalCountBatken, data.batken)
+        onClickRegion("batken", totalCountBatken)
+        setDataRegion(data.batken)
     }
     const onClickJalalabadRegion = () => {
-        onClickRegion("jalalabad", totalCountJalabad, data.jalalabad)
+        onClickRegion("jalalabad", totalCountJalabad)
+        setDataRegion(data.jalalabad)
     }
     const onClickNarynRegion = () => {
-        onClickRegion("naryn", totalCountNaryn, data.naryn)
+        onClickRegion("naryn", totalCountNaryn)
+        setDataRegion(data.naryn)
     }
     const onClickIssykkolRegion = () => {
-        onClickRegion("issykkol", totalCountIssykkol, data.issykkol)
+        onClickRegion("issykkol", totalCountIssykkol)
+        setDataRegion(data.issykkol)
     }
+
+    useEffect(() => {
+        console.log(totalCountOfType);
+    }, [totalCountOfType]);
 
     const regionVisible = (regionOn, dataRegion) => {
         return (region === regionOn && type !== "All" ? dataRegion.filter(p => p.properties.type === type).slice((firstPostIndex), lastPostIndex)
