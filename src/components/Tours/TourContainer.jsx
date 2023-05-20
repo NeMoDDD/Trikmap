@@ -1,16 +1,22 @@
 import { connect } from "react-redux";
-import Tour from "./Tours";
-import React from "react";
-class TourContainer extends React.Component{
-    render(){ 
+import Tours from "./AllTours/Tours";
+import React from "react"; 
+import { getTourTC } from "../../reduxStore/tourReducer";
+import { getToursSelector } from "../../Selectors/TourSelectors";
+class TourContainer extends React.PureComponent{
+    componentDidMount(){ 
+        this.props.getTourTC()
+    } 
+    render(){  
+        console.log('render');
         return( 
-            <Tour/>
+            <Tours tours={this.props.tours}/>
         )
     }
 }  
 const mapStateToProps = (state) =>{ 
     return{ 
-
+        tours: getToursSelector(state)
     }
 }
-export default connect(mapStateToProps, {})(TourContainer)
+export default connect(mapStateToProps, {getTourTC})(TourContainer)

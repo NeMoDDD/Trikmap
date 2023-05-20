@@ -13,8 +13,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig); 
 export const db = getFirestore(app)  
 export const firestore = getFirestore()
+const hotelRef = collection(db, "Tours")
 
-
+const getHotelsTC = async() => { 
+    console.log(
+      're'
+    );
+      const citySnapshot = await getDocs(hotelRef);
+      const cityList = citySnapshot.docs.map(doc => doc.data()); 
+      console.log(cityList)
+      
+  }
+ getHotelsTC()
 
 // function write ( ){ 
 //     const data = { 
@@ -168,3 +178,5 @@ export const firestore = getFirestore()
 //   return await getPage(pageNumber);
 // }; 
 // getPageByNumber(2)
+ 
+
