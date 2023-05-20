@@ -11,7 +11,6 @@ const Attractions = () => {
     const dispatch = useDispatch()
     const {
         pageSize,
-        portionSize,
         currentPage,
         totalCountAll,
         totalCountChuy,
@@ -29,16 +28,12 @@ const Attractions = () => {
 
     const lastPostIndex = currentPage * pageSize;
     const firstPostIndex = lastPostIndex - pageSize
-    const dataAll = data.all.slice(firstPostIndex, lastPostIndex)
-    const dataChuy = data.chuy.slice(firstPostIndex, lastPostIndex)
-    const dataTalas = data.talas.slice(firstPostIndex, lastPostIndex)
-    const dataOsh = data.osh.slice(firstPostIndex, lastPostIndex)
-    const dataBatken = data.batken.slice(firstPostIndex, lastPostIndex)
-    const dataJalalabad = data.jalalabad.slice(firstPostIndex, lastPostIndex)
-    const dataNaryn = data.naryn.slice(firstPostIndex, lastPostIndex)
-    const dataIssykkol = data.issykkol.slice(firstPostIndex, lastPostIndex)
 
     const onSelectChange = (value) => {
+        if (value !== "All") {
+            setType(value)
+            onClickRegion("all", data.all.filter(p => p.properties.type === value).length)
+        }
         setType(value)
     };
 
@@ -47,54 +42,58 @@ const Attractions = () => {
             currentPage: id
         }))
     }
-    const onClickRegion = (region, totalCount) => {
+    const onClickRegion = (region, totalCount, dataRegion) => {
         dispatch(setCurrentPage({
             currentPage: 1
         }))
         setRegion(region)
+        if (type !== "All") {
+            setTotalCount(dataRegion.filter(p => p.properties.type === type).length)
+        }
         setTotalCount(totalCount)
     }
 
     const onClickAllRegion = () => {
-        onClickRegion("all", totalCountAll)
+        onClickRegion("all", totalCountAll, data.all)
     }
     const onClickChuyRegion = () => {
-        onClickRegion("chuy", totalCountChuy)
+        onClickRegion("chuy", totalCountChuy, data.chuy)
     }
     const onClickTalasRegion = () => {
-        onClickRegion("talas", totalCountTalas)
+        onClickRegion("talas", totalCountTalas, data.talas)
     }
     const onClickOshRegion = () => {
-        onClickRegion("osh", totalCountOsh)
+        onClickRegion("osh", totalCountOsh, data.osh)
     }
     const onClickBatkenRegion = () => {
-        onClickRegion("batken", totalCountBatken)
+        onClickRegion("batken", totalCountBatken, data.batken)
     }
     const onClickJalalabadRegion = () => {
-        onClickRegion("jalalabad", totalCountJalabad)
+        onClickRegion("jalalabad", totalCountJalabad, data.jalalabad)
     }
     const onClickNarynRegion = () => {
-        onClickRegion("naryn", totalCountNaryn)
+        onClickRegion("naryn", totalCountNaryn, data.naryn)
     }
     const onClickIssykkolRegion = () => {
-        onClickRegion("issykkol", totalCountIssykkol)
+        onClickRegion("issykkol", totalCountIssykkol, data.issykkol)
     }
 
     const regionVisible = (regionOn, dataRegion) => {
-        return (region === regionOn && type !== "All" ? dataRegion.filter(p => p.properties.type === type)
+        return (region === regionOn && type !== "All" ? dataRegion.filter(p => p.properties.type === type).slice((firstPostIndex), lastPostIndex)
             .map((p, index) => {
                 return (
                     <Attraction location={p.properties.location}
-                                    description={p.properties.description}
-                                    title={p.properties.name}
-                                    imgSrc={p.properties.image}
-                                    key={index}/>)
-            })  : (region === regionOn && type === "All" ? dataRegion.map((d, index) => <Attraction location={d.properties.location}
-                                                                                        description={d.properties.description}
-                                                                                        title={d.properties.name}
-                                                                                        imgSrc={d.properties.image}
-                                                                                        key={index}
-        />) : null))
+                                description={p.properties.description}
+                                title={p.properties.name}
+                                imgSrc={p.properties.image}
+                                key={index}/>)
+            }) : (region === regionOn && type === "All" ? dataRegion.slice(firstPostIndex, lastPostIndex).map((d, index) =>
+            <Attraction location={d.properties.location}
+                        description={d.properties.description}
+                        title={d.properties.name}
+                        imgSrc={d.properties.image}
+                        key={index}
+            />) : null))
     }
     return (<div className={style.main}>
         <div className={style.geojsonToggle}>
@@ -126,6 +125,10 @@ const Attractions = () => {
                 onChange={onSelectChange}
 
                 options={[
+                    {
+                        value: 'All',
+                        label: 'Все',
+                    },
                     {
                         value: 'park',
                         label: 'Парки',
@@ -244,29 +247,29 @@ const Attractions = () => {
         <Pagination defaultCurrent={currentPage} total={totalCount} defaultPageSize={pageSize}
                     showSizeChanger={false} onChange={setCurrentPageClick}/>
         {
-            regionVisible("all", dataAll)
+            regionVisible("all", data.all)
         }
 
         {
-            regionVisible("chuy", dataChuy)
+            regionVisible("chuy", data.chuy)
         }
         {
-            regionVisible("talas", dataTalas)
+            regionVisible("talas", data.talas)
         }
         {
-            regionVisible("osh", dataOsh)
+            regionVisible("osh", data.osh)
         }
         {
-            regionVisible("batken", dataBatken)
+            regionVisible("batken", data.batken)
         }
         {
-            regionVisible("jalalabad", dataJalalabad)
+            regionVisible("jalalabad", data.jalalabad)
         }
         {
-            regionVisible("naryn", dataNaryn)
+            regionVisible("naryn", data.naryn)
         }
         {
-            regionVisible("issykkol", dataIssykkol)
+            regionVisible("issykkol", data.issykkol)
         }
     </div>)
 }
