@@ -13,19 +13,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig); 
 export const db = getFirestore(app)  
 export const firestore = getFirestore()
-const hotelRef = collection(db, "Tours")
+const ref = collection(db, 'Hotels')
 
-const getHotelsTC = async() => { 
-    console.log(
-      're'
-    );
-      const citySnapshot = await getDocs(hotelRef);
-      const cityList = citySnapshot.docs.map(doc => doc.data()); 
-      console.log(cityList)
-      
-  }
- getHotelsTC()
 
+// const hotelRef = collection(db, "Hotels")
+// const arr = []
+// const getHotelsTC = async() => { 
+//       const citySnapshot = await getDocs(hotelRef);
+//       const cityList = citySnapshot.docs.map(doc => doc.data()); 
+//       console.log(cityList);
+//       findHotelByName(cityList, 'Aurum Hotel')
+//   }
+//  getHotelsTC()
+//  function findHotelByName(hotels, name) { 
+//   let response = hotels.find((hotel) => hotel.name === name) || null; 
+//   console.log(response);
+// }
 // function write ( ){ 
 //     const data = { 
 //         subtitile: 'meow'
@@ -102,22 +105,22 @@ const getHotelsTC = async() => {
 //   });
 
   
-// async function limited (log = false){ 
+//async function limited (log = false){ 
+  //     const first = query(collection(db, "Hotels"), limit(2)); 
+  //     const documentSnapshots = await getDocs(first); 
+  //     const cityList = documentSnapshots.docs.map(doc => doc.data()); 
+  //     console.log(cityList) 
+  //     const nextQuery = query(ref,limit(2),orderBy('rating'), startAfter(cityList.length) ) 
+  //     const lol = await getDocs(nextQuery) 
+  //     const cityLists = lol.docs.map(doc => doc.data());
+  //     console.log('nextone', cityLists); 
   
 
-    // const first = query(collection(db, "Hotels"), limit(2)); 
-    // const documentSnapshots = await getDocs(first); 
-    // const cityList = documentSnapshots.docs.map(doc => doc.data()); 
-    // console.log(cityList) 
-    // const nextQuery = query(ref,limit(2),orderBy('rating'), startAfter(cityList.length) ) 
-    // const lol = await getDocs(nextQuery) 
-    // const cityLists = lol.docs.map(doc => doc.data());
-    // console.log('nextone', cityLists);
-//     const first = query(collection(db, "Hotels"), orderBy("rating"), limit(1));
-//     const documentSnapshots = await getDocs(first);
-//     const cityLists = documentSnapshots.docs.map(doc => doc.data());
-// const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-// console.log(cityLists); 
+// //     const first = query(collection(db, "Hotels"), orderBy("rating"), limit(1));
+// //     const documentSnapshots = await getDocs(first);
+// //     const cityLists = documentSnapshots.docs.map(doc => doc.data());
+// // const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+// // console.log(cityLists); 
 
 // const next = query(collection(db, "Hotels"),
 //     orderBy("rating"),
@@ -127,13 +130,22 @@ const getHotelsTC = async() => {
 //     const docnext = await getDocs(next);
 //     const cityListsa = docnext.docs.map(doc => doc.data());
 //  console.log(cityListsa) 
+//------
 
 
+
+//     const startAt = 1 * 2 - 2;
+//     const first = query(collection(db, "Hotels"), orderBy("rating"), limit(2));
+//         const documentSnapshots = await getDocs(first);
+//         const cityLists = documentSnapshots.docs.map(doc => doc.data());
+//         const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+//     console.log(cityLists);  
+//     console.log(lastVisible);
 //   }  
 
 
 
-//limited()  
+// limited()  
 
 // async function so (){ 
 //   ref.orderBy('rating', 'asc').limit(3) 
@@ -149,10 +161,10 @@ const getHotelsTC = async() => {
  
 
 
-// // Получаем страницу по номеру
+// Получаем страницу по номеру
 // const getPage = async (pageNumber) => {
-//   const startAfterDoc = (pageNumber - 1) * PAGE_SIZE > 0 ? (await getPage(pageNumber - 1)).lastVisible : null;
-//   const usersQuery = query(usersCollection, orderBy("rating"), startAfter(startAfterDoc), limit(PAGE_SIZE));
+//   const startAfterDoc = (pageNumber - 1) * 2 > 0 ? (await getPage(pageNumber - 1)).lastVisible : null;
+//   const usersQuery = query(ref, orderBy("rating"), startAfter(startAfterDoc), limit(2));
 //   const usersSnapshot = await getDocs(usersQuery);
 //   const lastVisible = usersSnapshot.docs[usersSnapshot.docs.length-1]; 
 //   const lol = usersSnapshot.docs.map(doc => ( doc.data() )) 
@@ -177,6 +189,6 @@ const getHotelsTC = async() => {
 // const getPageByNumber = async (pageNumber) => {
 //   return await getPage(pageNumber);
 // }; 
-// getPageByNumber(2)
+// getNextPage(1)
  
 
