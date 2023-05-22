@@ -1,17 +1,17 @@
 
-import Hotel from "./HotelInfo/Hotel" 
+import Hotels from "./HotelInfo/Hotels" 
 import HotelSearch from "./HotelInfo/HotelSearch"  
 import HotelPagination from "./HotelInfo/HotelPagination"
 
 const HotelInfo = (props) => {   
     return( 
         <div> 
-            <HotelSearch    
+            {/* <HotelSearch    
             getSerchingRegionTC={props.getSerchingRegionTC} 
             selectedHotelRegion={props.selectedHotelRegion} 
             selectedHotelCity={props.selectedHotelCity} 
-            getSerchingCityTC={props.getSerchingCityTC}/> 
-            <Hotel {...props}/> 
+            getSerchingCityTC={props.getSerchingCityTC}/>  */}
+            <Hotels {...props}/> 
             <HotelPagination   
                 getCurrentPageAC={props.getCurrentPageAC}
                 currentPage={props.currentPage}

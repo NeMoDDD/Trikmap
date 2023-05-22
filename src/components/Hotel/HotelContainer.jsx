@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { compose } from "redux"; 
-import { getHotelsTC, toggleFetchingAC, getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC,getCurrentPageAC,getSelectedHotelRegionTC,getSerchingRegionTC } from "../../reduxStore/hotelReducer"; 
+import { getHotelsTC,  getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC,getCurrentPageAC,getSelectedHotelRegionTC,getSerchingRegionTC } from "../../reduxStore/hotelReducer"; 
 import { Spinner } from "@chakra-ui/react"; 
 import s from './HotelInfo/HotelInfo.module.css'
 import HotelInfo from "./HotelInfo"; 
-import React,{ useEffect,useCallback }from "react";
+import React,{ useEffect}from "react";
 import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
 
 
@@ -15,9 +15,9 @@ const HotelContainer = React.memo(({ getHotelsTC,
    
       useEffect(() => {
         getHotelsTC();
-        getSelectedHotelCityTC();
-        getSelectedHotelRegionTC();
-        getTotalDocsTC();
+        // getSelectedHotelCityTC();
+        // getSelectedHotelRegionTC();
+        // getTotalDocsTC();
       },[]);
      
 

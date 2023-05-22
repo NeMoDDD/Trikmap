@@ -5,7 +5,7 @@ import {db } from '../firebase/firebase-booking'
 const ref = collection(db, "Hotels");
  let initialState = { 
     totalDocs : null, 
-    pageSize: 2, 
+    pageSize: 3, 
     currentPage: 1,   
     hotels : [],  
     orderingHotel : [],

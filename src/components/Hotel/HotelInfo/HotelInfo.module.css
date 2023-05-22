@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
 .search{ 
     height: 40vh;  
     background-position: center;  
-    background-image: url(https://iaunrc.indiana.edu/images/banners/banners-3072x1024/kyrgyzstan-mountains.jpg);
+    background-image: url(../../../assets/img/top_background.3cfb43c4.jpg);
     background-repeat: no-repeat; 
     background-size: cover;
 } 
 .search__container{ 
-    height: 100%;
+    height: 100%; 
+    padding: 0 80px;
 }  
 .search__item{  
     height: 100%;
@@ -16,53 +18,105 @@
     align-items: center;
 } 
 .search__title{ 
-    font-weight: 900; 
-    font-size: 52px; 
-    color:white
+    color: #fff;
+    font-size: 42px; 
+    font-weight: 800;
+    text-align: center;
+} 
+ 
+.search__form{  
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 60%; 
+    height: 60px;
+}
+.search__form_city, .search__form_region,.search__form_rating{   
+    padding: 7px 15px 7px 15px;
+    width: 30%;
+    height: 60px; 
+    border:none; 
+    font-size: 16px;
+}   
+
+
+.search__form_city{ 
+    border-radius: 5px 0 0 5px; 
+    border-right: 1px solid #ccc;
+}
+.search__form_region{ 
+    width: 43%; 
+    border-radius: 0; 
+    border-right: 1px solid #ccc;
+}
+.search__form_rating{ 
+    width: 25% ; 
+    border-radius: 0 5px 5px 0;
+}  
+select:active, select:focus{ 
+    outline: none;
 } 
 
-.hotel{ 
-    height: 100%; 
+.hotel{  
+  height: 100vh;
+}  
+.hotel__container{ 
+    height: 100%;  
     display: flex;
     flex-direction: column;  
-    width: 100%;
     justify-content: space-around; 
     align-items: center;
-} 
+
+}
 .hotel__row{ 
     border-radius: 4px; 
     border: 1px solid black;
     box-shadow: 2px 2px 16px rgba(0,0,0,.1); 
-    height: 313px; 
+    height: 33%; 
     width: 70%;
     display: flex; 
     justify-content: space-between;
-    
-}  
+}   
 .hotel__item{ 
-    width: 30%;  
-    height: 100%;
+    width: 32.3%;
+}
+.hotel__swiper{ 
+    width: 25%;
 }
 .hotel__info{ 
     width: 25%; 
-    height: 100%;
 } 
-.hotel__text{  
-    height: 100%;
-    padding: 15px 0; 
-    display: flex;   
-    padding: 55px 0; 
-    flex-direction: column; 
-    justify-content: space-between; 
-} 
-.hotel__name{ 
-    font-size: 32px;
-    font-weight: 900;
-    cursor: pointer;
+.hotel__main{  
+    height: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }  
-.hotel__address { 
-    font-size: 18px; 
-    font-size: 700;
+.border{ 
+    height: 1px; 
+    border-top: 1px solid #e5e5e5;
+}
+.hotel__main_container{ 
+    height: 100%; 
+    display: flex;  
+    width: 100%;
+    flex-direction: column; 
+    justify-content: space-around; 
+}
+.hotel__name{  
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px;
+    font-weight: 700; 
+    line-height: 42px;
+}  
+.hotel__address {  
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    
+
+
 }
 .hotel__info_wrapper{ 
     height: 100%;   

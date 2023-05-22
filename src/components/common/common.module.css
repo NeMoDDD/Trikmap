@@ -1,0 +1,6 @@
+.advantages{ 
+    display: flex; 
+} 
+.advantages__img{ 
+    height: 15px;
+}

@@ -15,14 +15,17 @@ const HotelSearch = props => {
                     <div className={s.search__title}> 
                     Поиск мест размещения для последующего бронирования
                     </div>  
-                    <div>  
-                        <select onChange={selectCity}>  
-                            <option value="">CHoose City</option>
+                    <div className={s.search__form}>  
+                        <select className={s.search__form_city} onChange={selectCity}>  
+                            <option value="">Выберите Город</option>
                             {props.selectedHotelCity.map(item => (<option value={item}>{item}</option>))}
                         </select> 
-                        <select onChange={selectRegion}>  
+                        <select className={s.search__form_region} onChange={selectRegion}>  
                             <option value="" >Выберите Регион</option>
                             {props.selectedHotelRegion.map(item => (<option value={item}>{item}</option>))}
+                        </select> 
+                        <select className={s.search__form_rating} >  
+                            <option value="" >Выберите звезды</option>
                         </select>
                     </div>
                 </div> 
