@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+.main{
+    display: flex;
+    flex-direction: column;
+    
+}
+.title{
+    text-align: center;
+    font-family: 'Alice';
+    font-size: 26px;
+}
+.img_block{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: #4C265E;
+    font-size: 20px;
+}

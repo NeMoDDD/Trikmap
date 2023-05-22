@@ -1,5 +1,5 @@
 import React from 'react'
-import s from '../Wonders/Wonder.module.css'
+import s from '../wonders/Wonder.module.css'
 export default function Wonder({images, imageAlt}) {
 
   return (

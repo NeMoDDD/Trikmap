@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+
+.main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.title {
+    font-size: 26px;
+    font-family: 'Alice';
+    text-align: center;
+}
+
+.btn_container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn_block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+.btn_container button{
+    margin: 2px;
+    background-color: #007D34;
+    color:  #FDFDFD ;
+    border-radius: 10px;
+    border: none;
+    padding:  6px 12px;
+}
+.map{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}

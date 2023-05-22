@@ -1,8 +1,9 @@
 import React from 'react'
-import Welcome from './components/Welcome/Welcome';
-import About from './components/About/About';
+import Welcome from './components/welcome/Welcome';
+import About from './components/about/About';
+import Map from './components/map/Map';
 //импорты картинки
-import Wonder from './components/Wonders/Wonder';
+import Wonder from './components/wonders/Wonder';
 import Issyk from '../../assets/image 11.jpg';
 import Sary from '../../assets/image 13.jpg';
 import Soun from '../../assets/Сон-Куль-1 1.jpg';
@@ -11,6 +12,7 @@ import Fireplace from '../../assets/image 8.jpg';
 import Waterfall from '../../assets/image 16.jpg';
 import AlaArcha from '../../assets/image 6.jpg';
 import JetiOguz from '../../assets/image 19.jpg'
+import LandMarks from './components/landMarks/LandMarks';
 
 
 
@@ -25,12 +27,15 @@ export default function Content() {
     {imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'}, 
     {imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}   
   ];
+  
   const imageAlt = 'Изображение';
   return (
     <div>
       <Welcome/>
       <Wonder images={images} imageAlt={imageAlt}/>
       <About/>
+      <Map/>
+      <LandMarks/>
     </div>
   )
 }
