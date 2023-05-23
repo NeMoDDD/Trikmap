@@ -1,6 +1,13 @@
 .advantages{ 
-    display: flex; 
-} 
+    display: flex;  
+    align-items: center;  
+    margin-top: 1em;
+}  
+
 .advantages__img{ 
-    height: 15px;
+    height: 20px;
+} 
+.advantages__title{ 
+    font-size: 16px;  font-family: 'Poppins', sans-serif; 
+    margin-left: 0.8em;
 }

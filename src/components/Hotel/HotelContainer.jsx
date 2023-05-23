@@ -15,9 +15,9 @@ const HotelContainer = React.memo(({ getHotelsTC,
    
       useEffect(() => {
         getHotelsTC();
-        // getSelectedHotelCityTC();
-        // getSelectedHotelRegionTC();
-        // getTotalDocsTC();
+        getSelectedHotelCityTC();
+        getSelectedHotelRegionTC();
+        getTotalDocsTC();
       },[]);
      
 

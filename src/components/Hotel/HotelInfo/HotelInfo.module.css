@@ -58,7 +58,7 @@ select:active, select:focus{
 } 
 
 .hotel{  
-  height: 100vh;
+  height: 135vh;
 }  
 .hotel__container{ 
     height: 100%;  
@@ -69,10 +69,10 @@ select:active, select:focus{
 
 }
 .hotel__row{ 
-    border-radius: 4px; 
-    border: 1px solid black;
+    border-radius: 4px;  
     box-shadow: 2px 2px 16px rgba(0,0,0,.1); 
-    height: 33%; 
+    height: 35vh;  
+    /* height: 313px; */
     width: 70%;
     display: flex; 
     justify-content: space-between;
@@ -81,8 +81,9 @@ select:active, select:focus{
     width: 32.3%;
 }
 .hotel__swiper{ 
-    width: 25%;
-}
+    width: 25%; 
+} 
+
 .hotel__info{ 
     width: 25%; 
 } 
@@ -105,26 +106,31 @@ select:active, select:focus{
 }
 .hotel__name{  
     font-family: 'Poppins', sans-serif;
-    font-size: 34px;
+    font-size: 26px;
     font-weight: 700; 
-    line-height: 42px;
-}  
-.hotel__address {  
+    line-height: 36px;
+}   
+.hotel__stars{ 
+    margin-top: 0.3em;
+} 
+.hotel__text { 
+    display: flex;
+}
+.hotel__address { 
+    margin-left: 0.5em;  
     font-family: 'Poppins', sans-serif; 
     font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    
-
-
+    font-size: 17px;
+    line-height: 18px;
 }
 .hotel__info_wrapper{ 
     height: 100%;   
     display: flex; 
     flex-direction: column; 
     justify-content: space-between; 
-    align-items: center;
-    padding: 35px 25px 33px 25px;  
+    align-items: center;   
+    padding: 12% 7.58% 11% 9.15%;
+    border-left:1px solid #e5e5e5;
 } 
 .hotel__btn{  
     border: none; 
@@ -133,13 +139,22 @@ select:active, select:focus{
     border-radius: 5px; 
     background-color:  #67a1d6; 
     color: white;
+} 
+.hotel__title{ 
+    color: #615f6c;  
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 400;
+    font-size: 16px;  
+    line-height: 22px;
+
 }
 .swiper__item{ 
     height: 100%;
 } 
 .img_slide{ 
     height: 100%; 
-    width: 100%;
+    width: 100%; 
+    border-radius:4px 0 0 4px;
 } 
 .spinner{ 
     height: 30vh;
@@ -154,4 +169,16 @@ select:active, select:focus{
 .search_btn{ 
     width: 200px; 
     height: 50px;
+} 
+.hotel__advantages{ 
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+}  
+.hotel__box{ 
+    margin-left: 2em;
+} .hotel__pagination{ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center
 }

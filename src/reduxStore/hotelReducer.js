@@ -1,7 +1,5 @@
 import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer} from "@firebase/firestore";   
 import {db } from '../firebase/firebase-booking'
- 
-
 const ref = collection(db, "Hotels");
  let initialState = { 
     totalDocs : null, 

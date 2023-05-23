@@ -6,7 +6,11 @@ import 'swiper/css'
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';  
 import { NavLink } from 'react-router-dom'; 
-import Advantages from '../../common/Advantages';
+import Advantages from '../../common/Advantages'; 
+import wifiIcon from '../../../assets/img/wifi_icon.png' 
+import breakfastIcon from '../../../assets/img/breakFastIcon.png' 
+import cleaningIcon from '../../../assets/img/cleaning_Icon.png' 
+import iconAdress from '../../../assets/img/adressIcon.png'
 const Hotel = ({item,...props}) =>{  
 
     return( 
@@ -32,12 +36,15 @@ const Hotel = ({item,...props}) =>{
                     <div className={s.hotel__name}>{item.name}</div> 
                     <div className={s.hotel__stars}><Rate disabled value={item.rating}  /> </div>  
                 </div> 
-                <div className={s.hotel__text}>  
+                <div className={s.hotel__text}>   
+                    <div > <img src={iconAdress} alt="Icon of Address" /></div>
                     <div className={s.hotel__address}>{item.city}, {item.region}, {item.street}</div>
                 </div>   
                 <div className={s.border}></div>
-                <div className={s.hotel__advantages}> 
-                    {item.addvantages.wifi ? <Advantages value={'WiFi'} img={'https://cdn-icons-png.flaticon.com/512/748/748151.png'}/> : null}
+                <div className={s.hotel__advantages}>  
+                    {item.addvantages.wifi && <Advantages value={'WiFi'} img={wifiIcon}/>} 
+                   {item.addvantages.wifi && <div className={s.hotel__box}> <Advantages value={'Бесплатное питание'} img={breakfastIcon}/></div>}  
+                    {item.addvantages.wifi && <Advantages value={'Ежедневная уборка'} img={cleaningIcon}/>} 
                 </div>
             </div>  
                 </div>
@@ -45,7 +52,7 @@ const Hotel = ({item,...props}) =>{
             <div className={`${s.hotel__item}  ${s.hotel__info}`}>  
                 <div className={s.hotel__info_wrapper}> 
                     <div className={s.hotel__title}>{item.title} </div> 
-                    <div><button className={s.hotel__btn}><NavLink to={`/hotels/${item.name}`}>Посмотреть</NavLink></button></div>
+                    <div><NavLink to={`/hotels/${item.name}`}><button className={s.hotel__btn}>Посмотреть</button></NavLink></div>
                 </div>
             </div> 
         </div>
