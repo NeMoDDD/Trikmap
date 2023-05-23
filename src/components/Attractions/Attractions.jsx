@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentPage, setTotalCountOfType} from "../store/slices/attractionsSlice";
+import {setCurrentPage} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useEffect, useState} from "react";
@@ -32,10 +32,7 @@ const Attractions = () => {
     const onSelectChange = (value) => {
         if (value !== "All") {
             setType(value)
-            dispatch(setTotalCountOfType({
-                totalCountOfType: data.all.filter(p => p.properties.type === value).length
-            }))
-            console.log(totalCountOfType)
+
             onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length)
         }
         setType(value)
@@ -48,10 +45,7 @@ const Attractions = () => {
     }
     const onClickRegion = (region, totalCount) => {
         if (type !== "All") {
-            setTotalCount(dataRegion.filter(p => p.properties.type === type).length)
-            dispatch(setTotalCountOfType({
-                totalCountOfType: dataRegion.filter(p => p.properties.type === type).length
-            }))
+            setTotalCount(totalCount)
         } else {
             setTotalCount(totalCount)
         }
@@ -93,11 +87,6 @@ const Attractions = () => {
         onClickRegion("issykkol", totalCountIssykkol)
         setDataRegion(data.issykkol)
     }
-
-    useEffect(() => {
-        console.log(totalCountOfType);
-        setTotalCountOfType(totalCountOfType)
-    }, [totalCountOfType]);
 
     const regionVisible = (regionOn, dataRegion) => {
         return (region === regionOn && type !== "All" ? dataRegion.filter(p => p.properties.type === type).slice((firstPostIndex), lastPostIndex)
