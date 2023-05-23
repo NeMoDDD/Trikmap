@@ -1,11 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentPage} from "../store/slices/attractionsSlice";
+import {setCurrentPage, setTotalCountOfType} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useEffect, useState} from "react";
 import {Button, Pagination, Select} from "antd";
 import style from "./Attraction.module.css"
-import {selectOptions} from "@testing-library/user-event/dist/select-options";
 
 const Attractions = () => {
     const dispatch = useDispatch()
@@ -19,10 +18,10 @@ const Attractions = () => {
         totalCountJalabad,
         totalCountNaryn,
         totalCountOsh,
-        totalCountTalas
+        totalCountTalas,
+        totalCountOfType,
     } = useSelector(state => state.attractions)
     const [totalCount, setTotalCount] = useState(totalCountAll)
-    const [totalCountOfType, setTotalCountOfType] = useState(1)
     const [region, setRegion] = useState("all")
     const [dataRegion, setDataRegion] = useState(data.all)
     const [type, setType] = useState("All")
@@ -33,7 +32,10 @@ const Attractions = () => {
     const onSelectChange = (value) => {
         if (value !== "All") {
             setType(value)
-            setTotalCountOfType(data.all.filter(p => p.properties.type === value).length)
+            dispatch(setTotalCountOfType({
+                totalCountOfType: data.all.filter(p => p.properties.type === value).length
+            }))
+            console.log(totalCountOfType)
             onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length)
         }
         setType(value)
@@ -47,7 +49,9 @@ const Attractions = () => {
     const onClickRegion = (region, totalCount) => {
         if (type !== "All") {
             setTotalCount(dataRegion.filter(p => p.properties.type === type).length)
-            setTotalCountOfType(dataRegion.filter(p => p.properties.type === type).length)
+            dispatch(setTotalCountOfType({
+                totalCountOfType: dataRegion.filter(p => p.properties.type === type).length
+            }))
         } else {
             setTotalCount(totalCount)
         }
@@ -92,6 +96,7 @@ const Attractions = () => {
 
     useEffect(() => {
         console.log(totalCountOfType);
+        setTotalCountOfType(totalCountOfType)
     }, [totalCountOfType]);
 
     const regionVisible = (regionOn, dataRegion) => {
