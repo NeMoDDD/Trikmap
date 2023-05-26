@@ -1,27 +1,24 @@
 import { connect } from "react-redux";
 import { compose } from "redux"; 
-import { getHotelsTC,  getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC,getCurrentPageAC,getSelectedHotelRegionTC,getSerchingRegionTC } from "../../reduxStore/hotelReducer"; 
+import { getHotelsTC,allOptionsFlow, getSerchingCityTC,getTotalDocsTC,getCurrentPageAC,getSerchingRegionTC,getSerchingRatingTC  } from "../../reduxStore/hotelReducer"; 
 import { Spinner } from "@chakra-ui/react"; 
 import s from './HotelInfo/HotelInfo.module.css'
 import HotelInfo from "./HotelInfo"; 
 import React,{ useEffect}from "react";
-import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
+import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRatingSelector, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
 
 
 const HotelContainer = React.memo(({ getHotelsTC,
-    getSelectedHotelCityTC,
-    getSelectedHotelRegionTC,
     getTotalDocsTC,...props}) => {
    
       useEffect(() => {
+        props.allOptionsFlow()
         getHotelsTC();
-        getSelectedHotelCityTC();
-        getSelectedHotelRegionTC();
         getTotalDocsTC();
       },[]);
      
 
-    
+    console.log('render');
     if(props.isFetch){ 
         return(  
             <div className={s.spinner} > 
@@ -43,11 +40,12 @@ const mapStateToProps = (state) => {
         totalDocs : getTotalDocs(state), 
         pageSize: getPageSize(state), 
         currentPage: getCurrentPage(state), 
-        selectedHotelRegion: getSelectedHotelRegion(state) 
+        selectedHotelRegion: getSelectedHotelRegion(state), 
+        selectedHotelRating: getSelectedHotelRatingSelector(state)
     }
 }
 export default compose( 
-    connect(mapStateToProps, {getHotelsTC, getSerchingCityTC, getSelectedHotelCityTC, getTotalDocsTC, getCurrentPageAC, getSelectedHotelRegionTC,getSerchingRegionTC})(HotelContainer )
+    connect(mapStateToProps, {getHotelsTC, allOptionsFlow,getSerchingCityTC, getTotalDocsTC, getCurrentPageAC,getSerchingRegionTC,getSerchingRatingTC})(HotelContainer )
 ) 
 
         // class HotelContainer extends React.PureComponent{ 

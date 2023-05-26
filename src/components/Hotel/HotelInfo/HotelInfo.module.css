@@ -51,7 +51,11 @@
 }
 .search__form_rating{ 
     width: 25% ; 
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0; 
+    background-color:white; 
+    display: flex; 
+    align-items: center; 
+    justify-content:  space-between;
 }  
 select:active, select:focus{ 
     outline: none;
@@ -110,9 +114,7 @@ select:active, select:focus{
     font-weight: 700; 
     line-height: 36px;
 }   
-.hotel__stars{ 
-    margin-top: 0.3em;
-} 
+
 .hotel__text { 
     display: flex;
 }

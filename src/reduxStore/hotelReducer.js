@@ -9,12 +9,14 @@ const ref = collection(db, "Hotels");
     orderingHotel : [],
     isFetching: false, 
     selectedHotelCity: [], 
-    selectedHotelRegion: [],
+    selectedHotelRegion: [], 
+    selectedHotelRating: [],
 }   
-const myCollectionRef = collection(db, "Hotels");
+
 const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE'
 const GET_SELECT_HOTEL_CITY = 'GET_SELECT_HOTEL_CITY' 
-const GET_SELECT_HOTEL_REGION = 'GET_SELECT_HOTEL_REGION' 
+const GET_SELECT_HOTEL_REGION = 'GET_SELECT_HOTEL_REGION'  
+const GET_SELECT_HOTEL_RATING = 'GET_SELECT_HOTEL_RATING' 
 const GET_HOTEL ='GET_HOTEL'
 const TOGGLE_FETCH ='TOGGLE_FETCH'
 const SET_HOTELS = 'SET_HOTELS' 
@@ -70,6 +72,12 @@ export const hotelReducer = (state = initialState, action) =>{
                 ...state,  
                 selectedHotelRegion: action.data
             }
+        } 
+        case GET_SELECT_HOTEL_RATING: { 
+          return{ 
+            ...state, 
+            selectedHotelRating: action.data
+          }
         }
         default: 
         return state
@@ -77,20 +85,24 @@ export const hotelReducer = (state = initialState, action) =>{
 }  
 //Action Creators 
 export const setHotelsAC = ( data) => ({type: SET_HOTELS, data}) 
-export const toggleFetchingAC = (toggle) =>({type: TOGGLE_FETCH, toggle})
 export const getOrderingHotelAC = (data) =>({type:GET_HOTEL, data})
-export const setSearchingCityAC = (data) =>({type: SET_SEARCH, data}) 
+export const setSearchingCityAC = (data) =>({type: SET_SEARCH, data})  
+
+export const getSelectedHotelRatingAC = (data) =>({type: GET_SELECT_HOTEL_RATING, data})
 export const getSelectedHotelCityAC = (data) =>({type: GET_SELECT_HOTEL_CITY, data})
+export const getSelectedRegionAC = (data) =>({type: GET_SELECT_HOTEL_REGION, data}) 
+
+export const toggleFetchingAC = (toggle) =>({type: TOGGLE_FETCH, toggle})
 export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
 export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data }) 
-export const getSelectedRegionAC = (data) =>({type: GET_SELECT_HOTEL_REGION, data})
 //Thunk Creators
 export const getHotelsTC = () => { 
-    return async (dispath) => {   
+    return async (dispath) => {    
+        dispath(toggleFetchingAC(true))
         const citySnapshot = await getDocs(ref);
         const cityList = citySnapshot.docs.map(doc => doc.data()); 
         dispath(setHotelsAC(cityList)) 
-        dispath(toggleFetchingAC(false))  
+        dispath(toggleFetchingAC(false))    
         } 
     }
   
@@ -107,46 +119,25 @@ export const getOrderHotelTC = (document) => {
     }
   };
 };
-export const getSerchingCityTC = (searchingCity) => {
-  return async (dispatch) => {
-    if (searchingCity === '') {
-      await Promise.all([dispatch(getHotelsTC()), dispatch(getTotalDocsTC())]);
-      return;
-    }
-
-    const city = query(
-      ref,
-      where('city', '==', searchingCity),
-      limit(20)
-    );
-
-    const querySnap = await getDocs(city);
-    const data = querySnap.docs.map((snap) => snap.data());
-
-    dispatch(getTotalDocsAC(data.length));
-    dispatch(setSearchingCityAC(data));
-  };
-}; 
-export const getSerchingRegionTC = (searchingRegion) => {
-  return async (dispatch) => {
-    if (searchingRegion === '') {
-      await Promise.all([dispatch(getHotelsTC()), dispatch(getTotalDocsTC())]);
-      return;
-    }
-
-    const city = query(
-      ref,
-      where('region', '==', searchingRegion),
-      limit(20)
-    );
-
-    const querySnap = await getDocs(city);
-    const data = querySnap.docs.map((snap) => snap.data());
-
-    dispatch(getTotalDocsAC(data.length));
-    dispatch(setSearchingCityAC(data));
-  };
-};
+export const getSerchingCityTC = (searchingCity) =>  async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity,setSearchingCityAC) 
+export const getSerchingRatingTC = (searchingRating) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating,setSearchingCityAC)  
+export const getSerchingRegionTC = (searchingRegion) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion,setSearchingCityAC)
+const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC) =>{ 
+  if (searchingOption === '') {
+    await Promise.all([dispatch(getHotelsTC()), dispatch(getTotalDocsTC())]);
+    return;
+  } 
+  const city = query(
+    ref,
+    where(optionMethod, '==', searchingOption),
+    limit(20)
+  ); 
+  const querySnap = await getDocs(city);
+  const data = querySnap.docs.map((snap) => snap.data()); 
+  dispatch(getTotalDocsAC(data.length)); 
+  console.log(data);
+  dispatch(AC(data));
+}
 
 export const setNewHotel =  (data) =>{   
     return async ()=>{ 
@@ -155,39 +146,20 @@ export const setNewHotel =  (data) =>{
       }
     } 
    
-export const getSelectedHotelCityTC = () => {
-    return async (dispatch) => {
-      try {
-        dispatch(toggleFetchingAC(true));
-        const querySnapshot = await getDocs(myCollectionRef);
-        const uniqueArray = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city)));
-        dispatch(getSelectedHotelCityAC(uniqueArray));
-        dispatch(toggleFetchingAC(false));
-      } catch (error) {
-        console.log("Error getting documents: ", error);
-      }
-    };
-  }; 
-export const getSelectedHotelRegionTC = () => {
-    return async (dispatch) => {
-      try {
-        dispatch(toggleFetchingAC(true));
-        const querySnapshot = await getDocs(myCollectionRef);
-        const uniqueArray = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));
-        dispatch(getSelectedRegionAC(uniqueArray));
-        dispatch(toggleFetchingAC(false));
-      } catch (error) {
-        console.log("Error getting documents: ", error);
-      }
-    };
-  };  
 export const getTotalDocsTC = () => async (dispatch)=>{ 
   const snapshot = await getCountFromServer(ref); 
   dispatch(getTotalDocsAC(snapshot.data().count))
 } 
  
-
-
+export const allOptionsFlow = () =>async(dispatch) =>{ 
+      const querySnapshot = await getDocs(ref);
+      const ratingOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().rating))); 
+      const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 
+      const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));
+      dispatch(getSelectedHotelRatingAC(ratingOptions)) 
+      dispatch(getSelectedHotelCityAC(cityOptions)) 
+      dispatch(getSelectedRegionAC(regionOptions))
+}
 
 
 

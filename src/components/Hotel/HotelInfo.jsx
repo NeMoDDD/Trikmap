@@ -6,7 +6,9 @@ import HotelPagination from "./HotelInfo/HotelPagination"
 const HotelInfo = (props) => {   
     return( 
         <div> 
-            <HotelSearch    
+            <HotelSearch     
+            getSerchingRatingTC={props.getSerchingRatingTC} 
+            selectedHotelRating={props.selectedHotelRating}
             getSerchingRegionTC={props.getSerchingRegionTC} 
             selectedHotelRegion={props.selectedHotelRegion} 
             selectedHotelCity={props.selectedHotelCity} 

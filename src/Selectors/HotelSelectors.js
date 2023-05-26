@@ -18,4 +18,7 @@ export const getCurrentPage = state =>{
 } 
 export const getSelectedHotelRegion = state =>{ 
     return state.hotelPage.selectedHotelRegion
+} 
+export const getSelectedHotelRatingSelector = state =>{ 
+    return state.hotelPage.selectedHotelRating
 }
