@@ -2,16 +2,17 @@ import React from 'react'
 import Welcome from './components/welcome/Welcome';
 import About from './components/about/About';
 import Map from './components/map/Map';
-//импорты картинки
 import Wonder from './components/wonders/Wonder';
-import Issyk from '../../assets/image 11.jpg';
-import Sary from '../../assets/image 13.jpg';
-import Soun from '../../assets/Сон-Куль-1 1.jpg';
-import Ala from '../../assets/image 7.jpg';
-import Fireplace from '../../assets/image 8.jpg';
-import Waterfall from '../../assets/image 16.jpg';
-import AlaArcha from '../../assets/image 6.jpg';
-import JetiOguz from '../../assets/image 19.jpg'
+import s from './Content.module.css'
+//импорты картинки
+import Issyk from '../../assets/img/image 11.jpg';
+import Sary from '../../assets/img/image 13.jpg';
+import Soun from '../../assets/img/Сон-Куль-1 1.jpg';
+import Ala from '../../assets/img/image 7.jpg';
+import Fireplace from '../../assets/img/image 8.jpg';
+import Waterfall from '../../assets/img/image 16.jpg';
+import AlaArcha from '../../assets/img/image 6.jpg';
+import JetiOguz from '../../assets/img/image 19.jpg'
 import LandMarks from './components/landMarks/LandMarks';
 
 
@@ -30,7 +31,7 @@ export default function Content() {
   
   const imageAlt = 'Изображение';
   return (
-    <div>
+    <div className={s.container}>
       <Welcome/>
       <Wonder images={images} imageAlt={imageAlt}/>
       <About/>

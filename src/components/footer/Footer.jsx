@@ -1,8 +1,8 @@
 import React from 'react'
 import classes from './Footer.module.css'
-import Whatsapp from '../../assets/ватсапп.svg';
-import Telegram from '../../assets/Telegram.svg';
-import Instagram from '../../assets/instgrm.svg'
+import Whatsapp from '../../assets/img/ватсапп.svg';
+import Telegram from '../../assets/img/Telegram.svg';
+import Instagram from '../../assets/img/instgrm.svg'
 export default function Footer() {
   return (
       <div className={classes.main}>
@@ -10,7 +10,7 @@ export default function Footer() {
               <div className={classes.footer_item}>
                 <div className={classes.info}>
                   <div>
-                    <p>Политика конфиденциальности</p>
+                    Политика конфиденциальности
                   </div>
                   <div>
                     О нас

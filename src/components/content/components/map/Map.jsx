@@ -1,5 +1,5 @@
 import React from 'react'
-import MapImg from '../../../../assets/Map.jpg'
+import MapImg from '../../../../assets/img/Map.jpg'
 import s from './Map.module.css'
 export default function Map() {
     const buttons = [

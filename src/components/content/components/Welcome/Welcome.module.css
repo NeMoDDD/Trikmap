@@ -1,22 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+/* .container{
+    padding: 0 6.25%;
+} */
 .main{
     width: 100%;
-    height: 35em;
+    height: 43em;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     text-align: start;
-    background-image: url(../../../../assets/Welcome.png);
+    background-image: url(../../../../assets/img/Welcome.png);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 5%;
+    border-radius: 4% 4% 0 0;
 
 }
 .title{ 
     width: 70%;
-    height: 40em;
     display: flex;
     justify-content: flex-start;
     font-family: 'Alice';
     font-size: 30px;
+    padding-top: 2em;
     color:#FFFFFF;
+}
+@media (max-width: 767px) {
+    /* .main{
+       height: 20em;
+       border-radius: 15px;
+    }
+    .title{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+ } */}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+}
+
+
+@media (min-width: 1024px) {
+  
 }

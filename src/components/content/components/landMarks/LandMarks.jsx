@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './LandMarks.module.css';
-import Museum from '../../../../assets/Музеи.jpg'
-import Park from '../../../../assets/Парки.jpg';
-import Memorial from '../../../../assets/Памятники.jpg';
+import Museum from '../../../../assets/img/Музеи.jpg'
+import Park from '../../../../assets/img/Парки.jpg';
+import Memorial from '../../../../assets/img/Памятники.jpg';
 
 
 export default function LandMarks() {

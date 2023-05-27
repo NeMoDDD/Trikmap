@@ -5,6 +5,7 @@
     justify-content: center;
     flex-direction: column;
     font-family: 'Alice';
+    margin-top: 5%;
 }
 .title{
     width: 100%;

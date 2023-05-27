@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 .main{
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
+    margin-top: 5%;
+    
 }
 .title{
     width: 100%;
@@ -13,18 +15,31 @@
     font-weight: 400;
 }
 .img{
-    width: 100%;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    
-    grid-gap: 10px;
+    width: 100%; 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    flex-wrap: wrap;
+}
+.column{
+    flex-basis: 25%;
 }
 .img img{
-    width: 285px;
-    height: 240px;
+    height: 340px;
     border-radius: 10px;
+}
+@media (max-width: 767px) {
+    .img{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+}
+
+
+@media (min-width: 1024px) {
+  
 }
