@@ -155,10 +155,8 @@ export const allOptionsFlow = () =>async(dispatch) =>{
       const querySnapshot = await getDocs(ref);
       const ratingOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().rating))); 
       const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 
-      const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));
-      dispatch(getSelectedHotelRatingAC(ratingOptions)) 
-      dispatch(getSelectedHotelCityAC(cityOptions)) 
-      dispatch(getSelectedRegionAC(regionOptions))
+      const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region))); 
+      Promise.all([dispatch(getSelectedHotelCityAC(cityOptions)),dispatch(getSelectedHotelRatingAC(ratingOptions)),dispatch(getSelectedRegionAC(regionOptions))]);
 }
 
 
