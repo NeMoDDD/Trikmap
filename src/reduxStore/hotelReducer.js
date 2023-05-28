@@ -100,7 +100,9 @@ export const getHotelsTC = () => {
     return async (dispath) => {    
         dispath(toggleFetchingAC(true))
         const citySnapshot = await getDocs(ref);
-        const cityList = citySnapshot.docs.map(doc => doc.data()); 
+        const cityList = citySnapshot.docs.map(doc => doc.data());  
+        const snapshot = await getCountFromServer(ref); 
+        dispath(getTotalDocsAC(snapshot.data().count))
         dispath(setHotelsAC(cityList)) 
         dispath(toggleFetchingAC(false))    
         } 
@@ -119,23 +121,37 @@ export const getOrderHotelTC = (document) => {
     }
   };
 };
-export const getSerchingCityTC = (searchingCity) =>  async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity,setSearchingCityAC) 
-export const getSerchingRatingTC = (searchingRating) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating,setSearchingCityAC)  
-export const getSerchingRegionTC = (searchingRegion) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion,setSearchingCityAC)
-const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC) =>{ 
+export const getSerchingCityTC = (searchingCity, rating = false) =>  async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity,setSearchingCityAC,+rating) 
+export const getSerchingRatingTC = (searchingRating ) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating,setSearchingCityAC)  
+export const getSerchingRegionTC = (searchingRegion, rating = false) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion,setSearchingCityAC,+rating)
+ 
+const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC,rating) =>{ 
   if (searchingOption === '') {
-    await Promise.all([dispatch(getHotelsTC()), dispatch(getTotalDocsTC())]);
+    await Promise.all([dispatch(getHotelsTC())]);
     return;
-  } 
-  const city = query(
-    ref,
+  }  
+  if(!rating){ 
+    const city = query(
+      ref,
     where(optionMethod, '==', searchingOption),
     limit(20)
+    ); 
+    const querySnap = await getDocs(city);
+    const data = querySnap.docs.map((snap) => snap.data()); 
+    dispatch(getTotalDocsAC(data.length)); 
+    dispatch(AC(data)); 
+    return;
+  }   
+  const city = query(
+    ref,
+  where(optionMethod, '==', searchingOption), 
+  where('rating', '==', rating),
+  limit(20)
   ); 
   const querySnap = await getDocs(city);
   const data = querySnap.docs.map((snap) => snap.data()); 
+  console.log(data); 
   dispatch(getTotalDocsAC(data.length)); 
-  console.log(data);
   dispatch(AC(data));
 }
 
@@ -146,12 +162,8 @@ export const setNewHotel =  (data) =>{
       }
     } 
    
-export const getTotalDocsTC = () => async (dispatch)=>{ 
-  const snapshot = await getCountFromServer(ref); 
-  dispatch(getTotalDocsAC(snapshot.data().count))
-} 
- 
-export const allOptionsFlow = () =>async(dispatch) =>{ 
+    
+    export const allOptionsFlow = () =>async(dispatch) =>{ 
       const querySnapshot = await getDocs(ref);
       const ratingOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().rating))); 
       const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 
@@ -166,6 +178,10 @@ export const allOptionsFlow = () =>async(dispatch) =>{
 
 
 
+// export const getTotalDocsTC = () => async (dispatch)=>{ 
+//   const snapshot = await getCountFromServer(ref); 
+//   dispatch(getTotalDocsAC(snapshot.data().count))
+// } 
 
 
 
