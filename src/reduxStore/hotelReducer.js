@@ -99,11 +99,13 @@ export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data })
 export const getHotelsTC = () => { 
     return async (dispath) => {    
         dispath(toggleFetchingAC(true))
+         
         const citySnapshot = await getDocs(ref);
-        const cityList = citySnapshot.docs.map(doc => doc.data());  
+        const cityList = citySnapshot.docs.map(doc => doc.data());   
+
         const snapshot = await getCountFromServer(ref); 
-        dispath(getTotalDocsAC(snapshot.data().count))
-        dispath(setHotelsAC(cityList)) 
+        dispath(getTotalDocsAC(snapshot.data().count)) 
+        dispath(setHotelsAC(cityList))  
         dispath(toggleFetchingAC(false))    
         } 
     }
@@ -177,7 +179,7 @@ export const setNewHotel =  (data) =>{
 
 
 
-
+// Promise.all([dispath(getTotalDocsAC(snapshot.data().count)) ,dispath(getSelectedHotelCityAC(cityOptions)),dispath(getSelectedHotelRatingAC(ratingOptions)),dispath(getSelectedRegionAC(regionOptions)),dispath(setHotelsAC(cityList)),dispath(toggleFetchingAC(false))]); 
 // export const getTotalDocsTC = () => async (dispatch)=>{ 
 //   const snapshot = await getCountFromServer(ref); 
 //   dispatch(getTotalDocsAC(snapshot.data().count))

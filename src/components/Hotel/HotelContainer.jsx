@@ -4,15 +4,23 @@ import { getHotelsTC,allOptionsFlow, getSerchingCityTC,getCurrentPageAC,getSerch
 import { Spinner } from "@chakra-ui/react"; 
 import s from './HotelInfo/HotelInfo.module.css'
 import HotelInfo from "./HotelInfo"; 
-import React,{ useEffect}from "react";
+import React,{ useEffect, useCallback}from "react";
 import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRatingSelector, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
 
 
-const HotelContainer = React.memo(({ ...props}) => {
-      useEffect(() => {
-        props.allOptionsFlow()
-        props.getHotelsTC();
-      },[]);
+const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,...props}) => {
+  const memoizedAllOptionsFlow = useCallback(() => {
+    allOptionsFlow();
+  }, [allOptionsFlow]);
+
+  const memoizedGetHotelsTC = useCallback(() => {
+    getHotelsTC();
+  }, [getHotelsTC]);
+
+  useEffect(() => {
+    memoizedAllOptionsFlow();
+    memoizedGetHotelsTC()
+  }, [memoizedAllOptionsFlow,memoizedGetHotelsTC]);
     if(props.isFetch){ 
         return(  
             <div className={s.spinner} > 
@@ -29,17 +37,17 @@ const HotelContainer = React.memo(({ ...props}) => {
 const mapStateToProps = (state) => {  
     return{  
         hotels: getHotels(state),
-        selectedHotelCity: getSelectedHotelCity(state),
         isFetch : isFetching(state), 
         totalDocs : getTotalDocs(state), 
         pageSize: getPageSize(state), 
         currentPage: getCurrentPage(state), 
+        selectedHotelCity: getSelectedHotelCity(state),
         selectedHotelRegion: getSelectedHotelRegion(state), 
         selectedHotelRating: getSelectedHotelRatingSelector(state)
     }
 }
 export default compose( 
-    connect(mapStateToProps, {getHotelsTC, allOptionsFlow,getSerchingCityTC,getCurrentPageAC,getSerchingRegionTC,getSerchingRatingTC})(HotelContainer )
+    connect(mapStateToProps, {getHotelsTC, allOptionsFlow,getSerchingCityTC,getCurrentPageAC,getSerchingRegionTC,getSerchingRatingTC})(HotelContainer)
 ) 
 
         // class HotelContainer extends React.PureComponent{ 
