@@ -1,6 +1,7 @@
 import s from './HotelInfo.module.css'    
 import Hotel from './Hotel';
- const Hotels = props => { 
+import React from 'react';
+ const Hotels = React.memo((props) => { 
     const lastPostIndex = props.currentPage * props.pageSize; 
     const firstPostIndex = lastPostIndex - props.pageSize
     const data = props.hotels.slice( firstPostIndex, lastPostIndex)
@@ -11,6 +12,6 @@ import Hotel from './Hotel';
         </div>   
        </div>  
     )
-} 
+} )
 export default Hotels
             

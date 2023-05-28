@@ -2,11 +2,13 @@
 import Hotels from "./HotelInfo/Hotels" 
 import HotelSearch from "./HotelInfo/HotelSearch"  
 import HotelPagination from "./HotelInfo/HotelPagination"
+import React from "react"
 
-const HotelInfo = (props) => {   
+const HotelInfo = React.memo((props) => {   
     return( 
         <div> 
-            <HotelSearch     
+            <HotelSearch      
+            getHotelsTC={props.getHotelsTC}
             getSerchingRatingTC={props.getSerchingRatingTC} 
             selectedHotelRating={props.selectedHotelRating}
             getSerchingRegionTC={props.getSerchingRegionTC} 
@@ -22,5 +24,5 @@ const HotelInfo = (props) => {
              />
         </div>
     )
-} 
+} )
 export default HotelInfo

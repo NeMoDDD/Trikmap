@@ -1,6 +1,7 @@
 import { Pagination } from "antd";
 import s from './HotelInfo.module.css'
-const HotelPagination = (props) =>{ 
+import React from "react";
+const HotelPagination = React.memo((props) =>{ 
     let pagesCount = Math.ceil(props.totalDocs / props.pageSize)
         let pages = []; 
         for(let i = 1; i<= pagesCount; i++){ 
@@ -16,5 +17,5 @@ const HotelPagination = (props) =>{
             <Pagination onChange={(e) => onChangePage(e)} total={pagesCount *10}/>   
         </div>
     )
-} 
+} )
 export default HotelPagination

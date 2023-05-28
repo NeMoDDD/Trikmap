@@ -19,26 +19,44 @@
 } 
 .search__title{ 
     color: #fff;
-    font-size: 42px; 
+    font-size: 37px; 
     font-weight: 800;
     text-align: center;
 } 
  
 .search__form{  
     display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+    width: 60%;  
+    height: 45%;
+
+} 
+.search__form_selects{ 
+    width: 100%; 
+    display: flex; 
     justify-content: center; 
     align-items: center;
-    width: 60%; 
-    height: 60px;
 }
 .search__form_city, .search__form_region,.search__form_rating{   
     padding: 7px 15px 7px 15px;
     width: 30%;
-    height: 60px; 
+    height:3.8em; 
     border:none; 
     font-size: 16px;
 }   
-
+.form__button{ 
+    padding: 2% 15%; 
+    border-radius: 5px;
+    background-color: #67a1d6; 
+    border: none; 
+    color: white; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 600; 
+    font-size: 18px;  
+    line-height: 24px;
+}
 
 .search__form_city{ 
     border-radius: 5px 0 0 5px; 
@@ -62,7 +80,7 @@ select:active, select:focus{
 } 
 
 .hotel{  
-  height: 135vh;
+  height: 100em;
 }  
 .hotel__container{ 
     height: 100%;  
@@ -76,7 +94,6 @@ select:active, select:focus{
     border-radius: 4px;  
     box-shadow: 2px 2px 16px rgba(0,0,0,.1); 
     height: 35vh;  
-    /* height: 313px; */
     width: 70%;
     display: flex; 
     justify-content: space-between;
