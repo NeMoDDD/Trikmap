@@ -1,57 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-.main{
-    max-width: 100%;
-    height: 100px;
-    background-color: #F5E8FB;
-}
-.header{
-    width: 100%;
-    height: 100px;
-    max-width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.header a {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 28px;
-    text-decoration: none;
-    color: #000000;;
-}
-.logo{
-    display: flex;
-    width: 15%;
-    align-items: center;
-    justify-content: space-between;
+
+.main {
+  max-width: 100%;
+  height: 100px;
+  background-color: #F5E8FB;
 }
 
-.login button{
-    width: 127px;
-    height: 35px;
-    background-color: #007D34;
-    border: none;
-    border-radius: 10px;
-    color: #F6F6F6;
+.header {
+  width: 100%;
+  height: 100px;
+  max-width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.login a{
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    text-decoration: none;
-    color: #000000;;
+
+
+.header a {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 28px;
+  text-decoration: none;
+  color: #000000;
+  z-index: 3;
+  ;
 }
-@media (max-width: 1440px){
-  .main{
+.link{
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  width: 15%;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+}
+
+.login button {
+  width: 127px;
+  height: 35px;
+  background-color: #007D34;
+  border: none;
+  border-radius: 10px;
+  color: #F6F6F6;
+  z-index: 3;
+}
+
+.login a {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  color: #000000;
+  z-index: 3;
+  ;
+}
+
+@media (max-width: 1440px) {
+  .main {
     max-width: 1200px;
   }
-  .logo{
+
+  .logo {
     position: relative;
     flex-direction: column;
     font-size: 10px;
   }
-  .logo h3{
+
+  .logo h3 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     color: #F5E8FB;
@@ -59,20 +78,24 @@
     top: 60%;
   }
 }
-@media (max-width: 1200px){
-  .main{
+
+@media (max-width: 1200px) {
+  .main {
     max-width: 970px;
   }
-  .header a{
+  
+  .header a {
     padding: 14px;
     font-size: 12px;
   }
-  .logo{
+
+  .logo {
     position: relative;
     flex-direction: column;
     font-size: 10px;
   }
-  .logo h3{
+
+  .logo h3 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     color: #F5E8FB;
@@ -80,118 +103,129 @@
     top: 60%;
   }
 }
-@media (max-width: 992px){
-  .main{
+
+@media (max-width: 992px) {
+  .main {
     max-width: 750px;
   }
-  .header a{
+
+  .header a {
     padding: 7px;
     font-size: 10px;
   }
-  .logo{
+
+  .logo {
     position: relative;
     flex-direction: column;
     font-size: 10px;
   }
-  .logo h3{
+
+  .logo h3 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     color: #F5E8FB;
     position: absolute;
     top: 60%;
   }
-  .login button{
+
+  .login button {
     width: 65px;
     height: 20px;
     font-size: 8px;
     border-radius: 5px
   }
 }
+
 @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 10px;
-    }
-  
-    .header a {
-      padding: 5px;
-    }
-  
-    .logo {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  
-    .login {
-      display: none;
-    }
-  
-    .mobile-menu {
-      display: block;
-      cursor: pointer;
-    }
-  
-    .mobile-menu .burger {
-      width: 25px;
-      height: 3px;
-      background-color: #000000;
-      margin-bottom: 5px;
-    }
-  
-    .open .burger {
-      transform: rotate(45deg);
-      background-color: #ffffff;
-    }
-  
-    .open .burger:before, .open .burger:after {
-      transform: rotate(90deg);
-      background-color: #ffffff;
-    }
-  
-    .open .burger:after {
-      transform: rotate(180deg);
-    }
-  
-    .link {
-      display: none;
-    }
-  
-    .open .link {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .open .link a {
-      padding: 10px;
-    }
+ 
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
   }
-  .mobileMenu {
+  .header::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #F5E8FB;
+  z-index: 2;
+}
+  .header a {
+    padding: 5px;
+  }
+
+  .logo {
+    flex: 0 0 40px;
+  }
+
+  .login {
     display: none;
-    cursor: pointer;
   }
-  
+  .link{
+    width: 30%;
+    height: 20%;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 120px 10px 20px 10px;
+  }
+  .link a {
+    font-size: 10px;
+    row-gap: 30px;
+  }
+  .burger_container{
+    width: 100%;
+  }
   .burger {
-    width: 25px;
-    height: 3px;
-    background-color: #000000;
-    margin-bottom: 5px;
-    transition: transform 0.3s, background-color 0.3s;
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    position: relative;
+    z-index: 2;
   }
-  
-  .burgerActive {
-    transform: rotate(45deg);
-    background-color: #ffffff;
+  .burger span{
+    position: absolute;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 9px;
   }
-  
-  .burgerActive:before,
-  .burgerActive:after {
-    transform: rotate(90deg);
-    background-color: #ffffff;
+
+  .burger:before,
+  .burger:after {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0
   }
-  
-  .burgerActive:after {
-    transform: rotate(180deg);
+  .burger:before{
+    top: 0;
+
   }
-  
+  .burger:after{
+    bottom: 0;
+  }
+  .burger.active span{ 
+    transform: scale(0);
+
+  }
+  .burger.active::before{
+    top: 50%;
+    transform: rotate(-45deg) translate(0, -50%);
+  }
+  .burger.active::after{
+    bottom:  50%;
+    transform: rotate(45deg) translate(0, 50%);
+  }
+}
