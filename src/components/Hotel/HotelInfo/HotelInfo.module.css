@@ -331,4 +331,22 @@ select:active, select:focus{
  .search__form_city, .search__form_region,.search__form_rating{  
     height: 3.2em;
 }
+} 
+@media screen and (min-height: 1100px) {   
+    .search__title{ 
+        font-size: 38px;
+    } 
+    .form__button{ 
+        padding: 3% 18%;
+    font-size: 22px;
+    line-height: 28px;
+    }
+    .search__form{ 
+        width: 98%;
+    } 
+    .search__form_city, .search__form_region,.search__form_rating{  
+        height: 4.15em;
+        font-size: 18px;
+    }
+    
 }
