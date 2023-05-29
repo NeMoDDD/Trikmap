@@ -58,7 +58,7 @@ const HotelSearch =  React.memo((props) => {
                         {props.selectedHotelRating.map(item => (<option value={item}>{item}</option>))}
                         </select>
                         </div> 
-                    <button  className={s.form__button} type='submit'>Найти <SearchOutlined/></button>
+                    <div className={s.form__btn}><button  className={s.form__button} type='submit'>Найти <SearchOutlined/></button></div>
                     </form> 
                 </div> 
             </div>

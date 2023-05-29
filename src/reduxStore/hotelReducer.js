@@ -98,15 +98,16 @@ export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data })
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {    
-        dispath(toggleFetchingAC(true))
-         
-        const citySnapshot = await getDocs(ref);
-        const cityList = citySnapshot.docs.map(doc => doc.data());   
-
-        const snapshot = await getCountFromServer(ref); 
-        dispath(getTotalDocsAC(snapshot.data().count)) 
-        dispath(setHotelsAC(cityList))  
-        dispath(toggleFetchingAC(false))    
+        //dispath(toggleFetchingAC(true))
+        //const citySnapshot = await getDocs(ref);
+        //const cityList = citySnapshot.docs.map(doc => doc.data());   
+        const snapshot = await getCountFromServer(ref);  
+        // Promise.all([dispath(getTotalDocsAC(snapshot.data().count)), 
+        //   dispath(setHotelsAC(cityList)),  
+        //   dispath(toggleFetchingAC(false)),]) 
+        dispath(getTotalDocsAC(snapshot.data().count))
+        //dispath(setHotelsAC(cityList))
+        //dispath(toggleFetchingAC(false))
         } 
     }
   
@@ -165,11 +166,13 @@ export const setNewHotel =  (data) =>{
     } 
    
     
-    export const allOptionsFlow = () =>async(dispatch) =>{ 
+    export const allOptionsFlow = () => async(dispatch)=>{  
+      debugger
       const querySnapshot = await getDocs(ref);
       const ratingOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().rating))); 
       const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 
-      const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region))); 
+      const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));  
+      console.log(cityOptions,ratingOptions);
       Promise.all([dispatch(getSelectedHotelCityAC(cityOptions)),dispatch(getSelectedHotelRatingAC(ratingOptions)),dispatch(getSelectedRegionAC(regionOptions))]);
 }
 
