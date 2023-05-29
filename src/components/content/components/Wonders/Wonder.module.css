@@ -17,7 +17,7 @@
 .img{
     width: 100%; 
     display: flex; 
-    justify-content: space-around; 
+    justify-content: space-between; 
     align-items: center; 
     flex-wrap: wrap;
 }
@@ -28,18 +28,5 @@
     height: 340px;
     border-radius: 10px;
 }
-@media (max-width: 767px) {
-    .img{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    }
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    
-}
 
 
-@media (min-width: 1024px) {
-  
-}
