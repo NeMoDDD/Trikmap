@@ -2,7 +2,7 @@
 import React from 'react'
 import s from './HotelInfo.module.css'  
 import { useForm } from 'react-hook-form' 
-
+// import axios from 'axios';
 import {SearchOutlined} from '@ant-design/icons';
 const HotelSearch =  React.memo((props) => {     
     const { 
@@ -12,19 +12,24 @@ const HotelSearch =  React.memo((props) => {
     } = useForm( { 
         mode: 'onBlur', 
     },) 
-    const onSubmit =(data) =>{ 
+    const onSubmit = (data) =>{ 
+    //     const address = 'Шоорукова 41, Бишкек, Кыргызстан'  
+    //     const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
+    // const response = await axios.get(apiUrl);    
+    // console.log(response);
         if(data.city && (data.rating !== '')){ 
             return props.getSerchingCityTC(data.city, data.rating)
         } else if (data.region && (data.rating !== '')){  
             return props.getSerchingRegionTC(data.region, data.rating)
-        }  
-        if(data.city){ 
+        }   
+        if(data.city){  
             return props.getSerchingCityTC(data.city)
-        }else if (data.region){ 
+        }else if (data.region){  
             return props.getSerchingRegionTC(data.region)
         } else if (data.rating){ 
             return props.getSerchingRatingTC(data.rating)
-        } 
+        }   
+
         props.getHotelsTC()
     }
     return ( 

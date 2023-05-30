@@ -44,7 +44,7 @@ const Hotel = ({item,...props}) =>{
                 <div className={s.hotel__advantages}>  
                     {item.addvantages.wifi && <Advantages value={'WiFi'} img={wifiIcon}/>} 
                    {item.addvantages.wifi && <div className={s.hotel__box}> <Advantages value={'Бесплатное питание'} img={breakfastIcon}/></div>}  
-                    {item.addvantages.wifi && <Advantages value={'Ежедневная уборка'} img={cleaningIcon}/>} 
+                    {item.addvantages.wifi ? <Advantages value={'Ежедневная уборка'} img={cleaningIcon}/> : null} 
                 </div>
             </div>  
                 </div>

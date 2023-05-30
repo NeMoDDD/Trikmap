@@ -9,22 +9,19 @@ const firebaseConfig = {
   appId: "1:734921073378:web:e8bd0343e16da37dc4f4bb"
 };
 
-
 const app = initializeApp(firebaseConfig); 
 export const db = getFirestore(app)  
 export const firestore = getFirestore()
 const ref = collection(db, 'Hotels')
 
 
-// const hotelRef = collection(db, "Hotels")
-// const arr = []
+
 // const getHotelsTC = async() => { 
-//       const citySnapshot = await getDocs(hotelRef);
+//       const citySnapshot = await getDocs(ref);
 //       const cityList = citySnapshot.docs.map(doc => doc.data()); 
 //       console.log(cityList);
-//       findHotelByName(cityList, 'Aurum Hotel')
 //   }
-//  getHotelsTC()
+// getHotelsTC()
 //  function findHotelByName(hotels, name) { 
 //   let response = hotels.find((hotel) => hotel.name === name) || null; 
 //   console.log(response);

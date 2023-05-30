@@ -9,17 +9,19 @@ import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelect
 
 
 const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props}) => {
-  // const memoizedAllOptionsFlow = useCallback(() => {
-  //   allOptionsFlow();
-  // }, [allOptionsFlow]);
+  const memoizedAllOptionsFlow = useCallback(() => {
+    allOptionsFlow();
+  }, [allOptionsFlow]);
 
   const memoizedGetHotelsTC = useCallback(() => {
     getHotelsTC();
   }, [getHotelsTC]);
-  useEffect(() => { 
-    // memoizedAllOptionsFlow();
+  useEffect(() => {  
+    // const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
+    // const response = await axios.get(apiUrl);   
+    memoizedAllOptionsFlow();
     memoizedGetHotelsTC() 
-  }, [memoizedGetHotelsTC]); 
+  }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]); 
     if(isFetch){ 
         return(  
             <div className={s.spinner} > 
@@ -27,7 +29,8 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
             </div> 
             )} 
   return ( 
-      <HotelInfo
+      <HotelInfo 
+      getHotelsTC={getHotelsTC}
       {...props}
       />
   );

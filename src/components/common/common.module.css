@@ -10,4 +10,32 @@
 .advantages__title{ 
     font-size: 16px;  font-family: 'Poppins', sans-serif; 
     margin-left: 0.8em;
+} 
+@media screen and (max-width:1273px) {
+    .advantages__title{ 
+        font-size: 14px;  
+    }  
+    .advantages{ 
+        margin-top: 0.35em;
+    } 
+    .advantages__img{ 
+        height: 15px;
+    }
+} 
+@media screen and (max-width:740px) {
+    .advantages__img{ 
+        height: 20px;
+    } 
+    .advantages__title{ 
+        font-size: 16px;  
+    }  
+    .advantages{ 
+        margin-top: 0; 
+        margin-right: 0.3em;
+    } 
+} 
+@media screen and (max-width:595px){ 
+    .advantages{ 
+        margin-top: 0.35em;
+    }
 }
