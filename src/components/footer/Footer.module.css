@@ -32,61 +32,24 @@
     display: inline-block;
     margin-right: 14px;
 }
-/* @media only screen and (max-width: px ) {
+@media screen and (max-width: 1440px){
     .main{
-        width: 100%;
+        max-width: 100%;
     }
-    .link{
-         flex-direction: column;
-    }
-    .img{
-        width: 28px;
-    }
-   
 }
-@media screen and (max-width: 600px ) {
-    .img{
-        width: 20%;
+@media screen and (max-width: 1200px){
+    .main{
+        max-width: 100%;
     }
-   
 }
-@media screen and (max-width: 400px) {
-    .container{
-        width: 400px;
-        padding: 0 40px;
-    }
+@media screen and (max-width: 992px){
     .main{
-        width: 100%;
-        justify-content: center;
-
+        max-width: 100%;
     }
-    .link{
-        
-        font-size: 15px;
-    }
-    .follow{
-        margin: 0;
-        font-size: 15px;
-    }
-    .icons{
-        display: flex;
-        justify-content: space-around;
-        align-items:center
-    }
-    .img{
-        width: 20%;
-        margin: 0;
-    }
-    .info{
-        width: 20%;
-        justify-content: center;
-        font-size: 10px;
-    }
-} */
-/* Пример медиазапроса для мобильных устройств */
-@media (max-width: 767px) {
+}
+@media screen and (max-width: 768px) {
     .main{
-        max-width: 767px;
+        max-width: 100%;
         height: 100px;
         padding: 0 60px;
     }
@@ -115,14 +78,27 @@
         display: inline-block;
         margin-right: 14px;
     }
-  }
+}
+@media screen and (max-width: 400px){
+    .main{
+        max-width: 100%;
+    }
+    .info{
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 10px;
+    }
+    .link{
+        justify-content: center;
+    }
+    .follow{
+        font-size: 12px;
+    }
+    .icons img{
+        width: 25px;
+
+    }
+}
   
-  /* Пример медиазапроса для планшетов и небольших десктопов */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    
-  }
-  
-  /* Пример медиазапроса для больших десктопов */
-  @media (min-width: 1024px) {
-    
-  }
