@@ -22,12 +22,12 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
     memoizedAllOptionsFlow();
     memoizedGetHotelsTC() 
   }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]); 
-    if(isFetch){ 
-        return(  
-            <div className={s.spinner} > 
+  if(isFetch){ 
+    return(  
+      <div className={s.spinner} > 
             <Spinner className={s.spin} color='blue' colorScheme='cyan'/>
             </div> 
-            )} 
+            )}  
   return ( 
       <HotelInfo 
       getHotelsTC={getHotelsTC}

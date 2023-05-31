@@ -1,0 +1,194 @@
+.hotel{  
+    position: relative ; 
+    z-index: 5;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 100%;  
+    background-color: #e5e5e5;
+} 
+.hotel__container{ 
+    padding: 0 22%; 
+    height: 100%;  
+    width: 100%;
+    background-color:white
+} 
+.hotel__nav{  
+    padding-top: 5%;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 5.5%;
+} 
+.nav__link{ 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 700;
+    font-size: 26px;  
+    line-height: 22px; 
+    text-decoration: none;  
+    color: rgb(47, 46, 65);
+}  
+.hotel__item{    
+    padding-top:4.5% ;
+    height: 100%;
+    display: flex; 
+    flex-direction: column;  
+} 
+.hotel__rating{ 
+    padding: 2.5% 0 ;
+} 
+.hotel__addvantages,.hotel__description{ 
+    padding: 5% 0 0 0;
+}
+.hotel__name{ 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 700;
+    font-size: 54px;   
+    color: #2f2e41;
+    line-height: 28px; 
+}   
+.hotel__description_title, .hotel__addvantages_title{  
+    font-family: 'Poppins', sans-serif;  
+    font-weight: 700;
+    font-size: 42px;
+    color: #2f2e41; 
+}  
+.hotel__description_title{ 
+    padding-bottom: 2.5%;
+}
+
+.hotel__address_inner{ 
+    display: flex; 
+}
+.hotel__address{  
+    margin-left: 0.5em;
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 400;
+    font-size: 24px;  
+    line-height: 21px; 
+
+} 
+.hotel__description_subtitle{  
+    font-family: 'Poppins', sans-serif;  
+    font-weight: 400; 
+    line-height: 32px;
+    font-size: 21px;
+    color: #4f4f4f;
+} 
+.hotel__map{   
+    
+    margin-top: 7%;    
+display: grid;  
+place-self: center;
+    height: 50vh; 
+    width: 80%;
+} 
+.map{   
+    border: 2px solid #67a1d6;
+    height: 100%; border-radius: 10px;
+    box-shadow: #67a1d6 0px 3px 8px;
+} 
+.hotel__swiper_big{ 
+    height:550px; 
+    width: 100%; 
+
+}  
+
+.hotel__imgages{  
+    padding-top: 5%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    max-width: 60em
+} 
+.swiper__img{ 
+    border-radius: 15px;
+    height: 100%;  
+    width: 100%;
+} 
+.hotel__swipet_wrapper{ 
+    /* display: flex; 
+    justify-content: center; 
+    align-items: center; */
+} 
+@media screen and (max-width:1500px) {
+    .hotel__container{ 
+        padding: 0 15%;
+    } 
+    .hotel__name{ 
+        font-size: 44px;   
+        line-height: 28px; 
+    }   
+    .hotel__description_title, .hotel__addvantages_title{  
+        font-size: 40px;
+    }   
+.hotel__description_subtitle{  
+    line-height: 28px;
+    font-size: 21px;
+} 
+} 
+@media screen and (max-width:1024px) {
+    .hotel__map{ 
+        height: 50vh; 
+        width: 100%;
+    } 
+} 
+@media screen  and (max-width:768px){
+    .hotel__container{ 
+        padding: 0 5%;
+    } 
+    .nav__link{ 
+        font-size: 21px;  
+    }  
+} 
+@media screen and (max-width:650px) {
+    .hotel__swiper_big{ 
+        height:380px;
+    }  
+    .hotel__imgages{  
+        max-width: 60em
+    }  
+    .hotel__name{ 
+        font-size: 38px;
+        line-height: 28px;
+    } 
+    .hotel__address{ 
+        font-size: 19px;
+    line-height: 21px;
+    } 
+    .hotel__description_title, .hotel__addvantages_title{  
+        font-size: 36px;
+    }    
+    .hotel__description_subtitle{  
+        line-height: 24px;
+        font-size: 18px;
+    } 
+} 
+@media screen and (max-width:450px) {
+    .hotel__description_title, .hotel__addvantages_title{  
+        font-size: 28px;
+    }    
+    .hotel__description_subtitle{  
+        line-height: 24px;
+        font-size: 16px;
+    }  
+    .hotel__map{ 
+        height: 45vh; 
+    }  
+    .hotel__name{ 
+        font-size: 32px;
+        line-height: 28px;
+    } 
+    .hotel__address{ 
+        font-size: 17px;
+    } 
+    .hotel__item{    
+        padding-top:8.5% ;
+    } 
+    .hotel__rating{ 
+        padding: 4.5% 0 ;
+    } 
+    .hotel__addvantages,.hotel__description{ 
+        padding: 15% 0 0 0;
+    }
+}

@@ -3,15 +3,18 @@ import { useLocation,useNavigate,useParams } from "react-router-dom";
 import {    getOrderHotelTC } from "../../../../reduxStore/hotelReducer";
   import React from "react"; 
   import OrderHotel from "./OrderHotel";
+import { isFetching } from "../../../../Selectors/HotelSelectors";
 class OrderHotelContainer extends React.Component{  
     componentDidMount( ){ 
         let hotelName = this.props.router.params.hotel  
         this.props.getOrderHotelTC(hotelName) 
-    }
+    } 
     render(){  
-        debugger
+        if(this.props.isFetch){ 
+            return <>Loading</>   
+        }
         return( 
-            <OrderHotel orderingHotel={this.props.orderingHotel}/>
+            <OrderHotel coordinates={this.props.coordinates} orderingHotel={this.props.orderingHotel}/>
         )
     }
 }
@@ -36,7 +39,9 @@ function withRouter(Component) {
 
 const mapStateToProps = (state) =>{ 
     return{ 
-        orderingHotel: state.hotelPage.orderingHotel
+        orderingHotel: state.hotelPage.orderingHotel, 
+        isFetch: isFetching(state), 
+        coordinates: state.hotelPage.coordinates
     }
 }
 export default connect(mapStateToProps, {getOrderHotelTC})(withRouter(OrderHotelContainer))

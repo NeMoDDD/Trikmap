@@ -1,5 +1,6 @@
 import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer} from "@firebase/firestore";   
-import {db } from '../firebase/firebase-booking'
+import {db } from '../firebase/firebase-booking' 
+import axios from "axios";
 const ref = collection(db, "Hotels");
  let initialState = { 
     totalDocs : null, 
@@ -10,18 +11,20 @@ const ref = collection(db, "Hotels");
     isFetching: false, 
     selectedHotelCity: [], 
     selectedHotelRegion: [], 
-    selectedHotelRating: [],
+    selectedHotelRating: [], 
+    coordinates: []
 }   
-
-const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE'
-const GET_SELECT_HOTEL_CITY = 'GET_SELECT_HOTEL_CITY' 
-const GET_SELECT_HOTEL_REGION = 'GET_SELECT_HOTEL_REGION'  
-const GET_SELECT_HOTEL_RATING = 'GET_SELECT_HOTEL_RATING' 
-const GET_HOTEL ='GET_HOTEL'
-const TOGGLE_FETCH ='TOGGLE_FETCH'
-const SET_HOTELS = 'SET_HOTELS' 
-const SET_SEARCH = 'SET_SEARCH' 
-const GET_TOTAL_DOCS = 'GET_TOTAL_DOCS'  
+const defaultValue = 'HOTEL/'
+const GET_CURRENT_PAGE = defaultValue +'GET_CURRENT_PAGE'
+const GET_SELECT_HOTEL_CITY = defaultValue + 'GET_SELECT_HOTEL_CITY' 
+const GET_SELECT_HOTEL_REGION = defaultValue + 'GET_SELECT_HOTEL_REGION'  
+const GET_SELECT_HOTEL_RATING = defaultValue + 'GET_SELECT_HOTEL_RATING' 
+const GET_HOTEL = defaultValue +'GET_HOTEL'
+const TOGGLE_FETCH =defaultValue +'TOGGLE_FETCH'
+const SET_HOTELS = defaultValue +'SET_HOTELS' 
+const SET_SEARCH = defaultValue +'SET_SEARCH' 
+const GET_TOTAL_DOCS = defaultValue +'GET_TOTAL_DOCS'   
+const SET_COORDINATES = defaultValue +'SET_COORDINATES'
 
 export const hotelReducer = (state = initialState, action) =>{ 
      switch(action.type){ 
@@ -78,6 +81,9 @@ export const hotelReducer = (state = initialState, action) =>{
             ...state, 
             selectedHotelRating: action.data
           }
+        } 
+        case SET_COORDINATES:{ 
+          return {...state, coordinates: action.data}
         }
         default: 
         return state
@@ -95,6 +101,8 @@ export const getSelectedRegionAC = (data) =>({type: GET_SELECT_HOTEL_REGION, dat
 export const toggleFetchingAC = (toggle) =>({type: TOGGLE_FETCH, toggle})
 export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
 export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data }) 
+ 
+const setCoordinatedAC = (data) =>({type:SET_COORDINATES, data}) 
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {    
@@ -105,23 +113,26 @@ export const getHotelsTC = () => {
         Promise.all([dispath(getTotalDocsAC(snapshot.data().count)), 
         dispath(setHotelsAC(cityList)),  
         dispath(toggleFetchingAC(false)),]) 
-        dispath(getTotalDocsAC(snapshot.data().count))
-        dispath(setHotelsAC(cityList))
-        dispath(toggleFetchingAC(false))
         } 
     }
   
 export const getOrderHotelTC = (document) => {
-  return async (dispatch) => {
+  return async (dispatch) => { 
+    dispatch(toggleFetchingAC(true))
     try {
       const docRef = doc(ref, document);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        dispatch(getOrderingHotelAC(docSnap.data()));
+      const docSnap = await getDoc(docRef); 
+      if (docSnap.exists()) { 
+      const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
+      const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
+      const response = await axios.get(apiUrl);    
+      dispatch(setCoordinatedAC(response.data))
+      dispatch(getOrderingHotelAC(docSnap.data()));
       }
     } catch (error) {
       console.log("Error getting document:", error);
-    }
+    } 
+    dispatch(toggleFetchingAC(false))
   };
 };
 export const getSerchingCityTC = (searchingCity, rating = false) =>  async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity,setSearchingCityAC,+rating) 
@@ -167,7 +178,7 @@ export const setNewHotel =  (data) =>{
    
     
     export const allOptionsFlow = () => async(dispatch)=>{  
-      debugger
+
       const querySnapshot = await getDocs(ref);
       const ratingOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().rating))); 
       const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 
