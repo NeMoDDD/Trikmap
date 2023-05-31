@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 
 .main {
-    max-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 5%;
@@ -19,16 +19,13 @@
 
 .img {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
-
-.column {
-    flex-basis: 25%;
-}
-
 .img img {
     height: 340px;
     border-radius: 10px;
@@ -43,9 +40,7 @@
     .img{
         width: 100%;
     }
-    .img img {
-        height: 170px;
-    }
+
 }
 @media screen and (max-width: 1840px) {
     .main {
@@ -57,7 +52,7 @@
         width: 100%;
     }
     .img img {
-        height: 200px;
+        height: 300px;
     }
 }
 @media screen and (max-width: 1790px) {
@@ -99,6 +94,19 @@
         height: 260px;
     }
 }
+@media screen and (max-width: 1440px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 230px;
+    }
+}
 @media screen and (max-width: 1400px) {
     .main {
         max-width: 100%;
@@ -112,7 +120,7 @@
         height: 230px;
     }
 }
-@media screen and (max-width: 1230px) {
+@media screen and (max-width: 1250px) {
     .main {
         max-width: 100%;
         justify-content: center;
@@ -141,7 +149,7 @@
 
 
 @media screen and (max-width: 930px) {
-    @media screen and (max-width: 1790px) {
+
         .main {
             max-width: 100%;
             justify-content: center;
@@ -149,15 +157,14 @@
         }
         .img{
             width: 100%;
+            font-size: 10px;
         }
         .img img {
             height: 120px;
         }
     }
-}
 
 @media screen and (max-width: 680px) {
-    @media screen and (max-width: 1790px) {
         .main {
             max-width: 100%;
             justify-content: center;
@@ -165,12 +172,13 @@
         }
         .img{
             width: 100%;
+            align-items: center;
+            font-size: 7px;
         }
         .img img {
             height: 100px;
         }
     }
-}
 
 @media screen and (max-width: 540px) {
         .main {

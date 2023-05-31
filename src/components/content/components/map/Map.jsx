@@ -11,28 +11,29 @@ export default function Map() {
         'Джалал-Абад',
         'Ош',
         'Баткен'
-    ]
+    ];
     return (
         <div className={s.main}>
             <div className={s.title}>
                 <h2> Карта поездки </h2>
             </div>
-            <div className={s.btn_container}>
-            <div className={s.btn_region}>
-                <button>Регионы</button>
-            </div>
-            <div className={s.btn_block}>
-                {buttons.map((button, index) => (
-                    <div key={index}>
-                        <button key={index}>{button}</button>
-                    </div>
-                ))}
-            </div>
-            </div>
-            <div className={s.map}>
-                <img src={MapImg} alt="Map" />
-            </div>
 
+            <div className={s.btn_container}>
+                <div className={s.btn_block}>
+                    <div className={s.btn_region}>
+                        <button>Регионы</button>
+                    </div>
+                    {buttons.map((button, index) => (
+                        <div key={index}>
+                            <button key={index}>{button}</button>
+                        </div>
+                    ))}
+                </div>
+
+                <div className={s.map}>
+                    <img src={MapImg} alt="Map" />
+                </div>
+            </div>
         </div>
     )
 }

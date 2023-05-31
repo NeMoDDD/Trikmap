@@ -28,13 +28,13 @@
 }
 @media (max-width: 1920px) {
     .main{
-        max-width: 1440px;
+        max-width: 100%;
     }
     
 }
 @media (max-width: 1200px) {
     .main{
-        max-width: 970px;
+        max-width: 100%;
     }
     .title{
         font-size: 20px;
@@ -43,13 +43,13 @@
 }
 @media (max-width: 992px) {
     .main{
-        max-width: 750px;
+        max-width: 100%;
     }
     
 }
 @media (max-width: 767px) {
     .main{
-        max-width: none;
+        max-width: 100%;
     }
     .title{
         font-size: 15px;
