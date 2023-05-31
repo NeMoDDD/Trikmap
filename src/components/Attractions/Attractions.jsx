@@ -121,7 +121,7 @@ const Attractions = () => {
                 <Button type="default" onClick={onClickChuyRegion}
                         className={region === "chuy" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Чуй</Button>
                 <Button type="default" onClick={onClickTalasRegion}
-                        className={region === "talas" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Талас< /Button>
+                        className={region === "talas" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Талас</Button>
                 <Button type="default" onClick={onClickOshRegion}
                         className={region === "osh" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Ош</Button>
                 <Button type="default" onClick={onClickBatkenRegion}
