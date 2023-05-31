@@ -18,19 +18,15 @@
     color: #4C265E;
     font-size: 20px;
 }
+@media (max-width: 1400px){
+    .title{
+        font-size: 15px;
+    }
+}
 @media (max-width: 767px) {
     .img_block{
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    
-}
-
-
-@media (min-width: 1024px) {
-  
 }

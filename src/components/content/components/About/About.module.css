@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 26px;
+    font-size: 28px;
 }
 .item{
     width: 100%;
@@ -23,4 +23,47 @@
     width: 50%;
     display: flex;
     justify-content: center;
+    line-height: 2;
+}
+@media(max-width: 1900px){
+    .text{
+        width: 100%;
+        font-size: 15px;
+    }
+}
+@media (max-width: 1400px){
+    .title{
+        font-size: 15px;
+    }
+}
+@media(max-width: 1161px){
+    
+    .text{
+        width: 100%;
+    }
+}
+@media(max-width: 884px){
+    .text{
+        width: 100%;
+        font-size: 10px;
+
+    }
+}
+@media(max-width: 737px){
+    .text{
+        width: 100%;
+        font-size: 9px;
+    }
+}
+@media(max-width: 638px){
+    .text{
+        width: 100%;
+        font-size: 8px;
+    }
+}
+@media(max-width: 465px){
+    .text{
+        width: 100%;
+        font-size: 6px;
+    }
 }
