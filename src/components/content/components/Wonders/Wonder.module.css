@@ -24,6 +24,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 10px;
     justify-content: center;
+    justify-items: center;
     align-items: center;
 }
 .img img {
@@ -119,9 +120,6 @@
     .img img {
         height: 230px;
     }
-    .title{
-        font-size: 12px;
-    }
 }
 @media screen and (max-width: 1250px) {
     .main {
@@ -138,36 +136,44 @@
     }
 }
 @media screen and (max-width: 1190px) {
-    .main {
-        max-width: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-    .img{
-        width: 100%;
-    }
-    .img img {
-        height: 170px;
-    }
-}
-
-
-@media screen and (max-width: 930px) {
-
         .main {
-            max-width: 100%;
             justify-content: center;
             align-items: center;
         }
         .img{
-            width: 100%;
-            font-size: 10px;
+            width: auto;
+            grid-column-gap: 16px;
+            grid-row-gap: 23px;
+            object-fit: fill;
+            grid-template-rows: auto auto;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-columns: 1fr;
+            display: grid;
         }
-        .img img {
-            height: 120px;
+        .img img{
+            height:  300px;
         }
     }
-
+@media screen and (max-width:806px){
+    .main {
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        width: 100%;
+        font-weight: 700;
+        justify-items: center;
+    }
+    .title{
+        width: 50%;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 18px;
+    }  
+    
+}
 @media screen and (max-width: 680px) {
         .main {
             max-width: 100%;
@@ -177,10 +183,9 @@
         .img{
             width: 100%;
             align-items: center;
-            font-size: 7px;
         }
         .img img {
-            height: 100px;
+            height: 300px;
         }
     }
 
@@ -194,7 +199,7 @@
             width: 100%;
         }
         .img img {
-            height: 80px;
+            height: 270px;
         }
     }
     @media screen and (max-width: 420px) {
@@ -205,9 +210,8 @@
         }
         .img{
             width: 100%;
-            font-size: 7px;
         }
         .img img {
-            height: 70px;
+            height: 240px;
         }
     }    

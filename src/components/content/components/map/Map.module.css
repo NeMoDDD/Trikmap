@@ -54,11 +54,7 @@
     display: flex;
     justify-content: flex-end;
 }
-@media (max-width: 1400px){
-    .title{
-        font-size: 15px;
-    }
-}
+
 @media (max-width: 1367px){
     
     .btn_container button{
@@ -119,6 +115,11 @@
         .btn_container button{
             margin: 5px;
             padding:  5px 9px;
+        }
+    }
+    @media (max-width: 806px){
+        .title{
+            font-size: 18px;
         }
     }
     @media (max-width: 785px){

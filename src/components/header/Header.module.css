@@ -61,6 +61,11 @@
 .menu{
     display: none
   }
+  @media screen and (max-width: 1920px) {
+    .main{
+      width: 100%;
+    }
+  }
 @media screen and (max-width: 1440px) {
   .main {
     max-width: 100%;
@@ -88,7 +93,7 @@
 
   .header a {
     padding: 14px;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .logo {
@@ -113,7 +118,7 @@
 
   .header a {
     padding: 7px;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .logo {
@@ -131,15 +136,16 @@
   }
 
   .login button {
-    width: 65px;
-    height: 20px;
-    font-size: 8px;
+    width: 70px;
+    height: 30px;
+    font-size: 10px;
     border-radius: 5px
   }
 }
 
 @media screen and (max-width: 768px) {
   .main{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center

@@ -20,22 +20,31 @@
     justify-content: center;
 }
 .text{
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: center;
-    line-height: 2;
+    line-height: 2.4;
 }
-@media(max-width: 1900px){
+p {
+    font-size: 20px;
+    line-height: 2;
+  }
+  @media (max-width: 806px){
+    .title{
+        font-size: 18px;
+    }
+}
+  @media screen and (max-width: 768px) {
     .text{
         width: 100%;
-        font-size: 15px;
     }
-}
-@media (max-width: 1400px){
-    .title{
-        font-size: 15px;
+    p {
+      font-size: 14px;
     }
-}
+  }
+
+
+/* 
 @media(max-width: 1161px){
     
     .text{
@@ -66,4 +75,4 @@
         width: 100%;
         font-size: 6px;
     }
-}
+} */
