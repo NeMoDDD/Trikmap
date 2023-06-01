@@ -77,7 +77,9 @@
       .title {
         margin-bottom: 20px;
       }
-      
+      .btn_container button{
+        width: 100px;
+      }
       .btn_container {
         display: flex;
         flex-direction: row;
@@ -85,7 +87,6 @@
         align-items: flex-start;
         margin-bottom: 20px;
       }
-      
       .btn_block {
         display: flex;
         flex-direction: column;

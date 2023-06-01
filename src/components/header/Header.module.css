@@ -8,7 +8,6 @@
 
 .header {
   width: 100%;
-  height: 100px;
   max-width: auto;
   display: flex;
   align-items: center;
@@ -59,12 +58,14 @@
   z-index: 3;
   ;
 }
-
+.menu{
+    display: none
+  }
 @media screen and (max-width: 1440px) {
   .main {
     max-width: 100%;
   }
-
+  
   .logo {
     position: relative;
     flex-direction: column;
@@ -139,11 +140,21 @@
 
 @media screen and (max-width: 768px) {
   .main{
-    max-width: 768px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .menu{
+    /* display: block;
+    justify-content: flex-end; */  
+    display: flex;   
+    justify-content: center; 
+    align-content: center;
+    /* height:0; */
   }
   .header {
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between; 
+    align-items: center;
     padding: 10px;
   }
 
@@ -152,7 +163,15 @@
   }
 
   .logo {
-    flex: 0 0 40px;
+   display: flex;
+   justify-content: flex-start;
+   align-self: flex-start
+  }
+  .logo img {
+    height: 60px;
+  }
+  .logo h3{
+    font-size: 8px;
   }
 
   .login {
@@ -163,73 +182,26 @@
     width: 99%;
     height: 20%;
     display: none;
-    flex-direction: column;
-    align-items: flex-end;
-    position: absolute;
-    top: 0;
-    left: 0;
+  
   }
 
   .link a {
     font-size: 10px;
     row-gap: 30px;
   }
-
-  .burger_container {
-    width: 100%;
-  }
-
-  .burger {
-    display: block;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    padding: 10px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .burger span {
-    position: absolute;
-    background-color: #000;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    top: 9px;
-  }
-
-  .burger:before,
-  .burger:after {
-    content: '';
-    background-color: #000;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0
-  }
-
-  .burger:before {
-    top: 0;
-
-  }
-
-  .burger:after {
-    bottom: 0;
-  }
-
-  .burger.active span {
-    transform: scale(0);
-
-  }
-
-  .burger.active::before {
-    top: 50%;
-    transform: rotate(-45deg) translate(0, -50%);
-  }
-
-  .burger.active::after {
-    bottom: 50%;
-    transform: rotate(45deg) translate(0, 50%);
-  }
+}
+.customMenuList button {
+  background-color: #2ad151;  
+  border: none;
+  padding: 6px 12px;
+  margin: 2px;
+  border-radius: 8px;
+  color: #fff
+}
+.customMenuButton{
+  background-color: #00831f;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  padding: 6px 12px;
 }
