@@ -21,8 +21,6 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 
 
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
-
-    console.log(orderingHotel);
     return(   
         <div className={s.hotel}>  
         <div className={s.hotel__container}> 
