@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import s from './OrderHotel.module.css'
 import Advantages from '../../../common/Advantages'; 
 import wifiIcon from '../../../../assets/img/wifi_icon.png' 
@@ -57,7 +57,9 @@ const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{
                     <div className={s.hotel__description_title}>Описание</div>
                     <div className={s.hotel__description_subtitle}>{orderingHotel.subtitle} </div>
                  </div> 
-                 
+                 <div className={s.hotel__order}> 
+                    <div className={s.hotel__order_wrapper}><Link className={s.order_link} to={orderingHotel.booking}><button className={s.order_btn}>Забронировать на Booking</button></Link></div>
+                 </div>
                  <div className={s.hotel__addvantages}>   
                     <div className={s.hotel__addvantages_title}>Удобства</div>
                     <div className={s.hotel__addvantages_inner}>  

@@ -11,7 +11,8 @@ import wifiIcon from '../../../assets/img/wifi_icon.png'
 import breakfastIcon from '../../../assets/img/breakFastIcon.png' 
 import cleaningIcon from '../../../assets/img/cleaning_Icon.png' 
 import iconAdress from '../../../assets/img/adressIcon.png'
-const Hotel = ({item,...props}) =>{  
+import React from 'react';
+const Hotel = React.memo(({item,...props}) =>{  
 
     return( 
         <> 
@@ -59,5 +60,5 @@ const Hotel = ({item,...props}) =>{
         
         </>
     )
-} 
+} )
 export default Hotel

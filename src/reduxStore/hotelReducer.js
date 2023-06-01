@@ -92,7 +92,7 @@ export const hotelReducer = (state = initialState, action) =>{
 //Action Creators 
 export const setHotelsAC = ( data) => ({type: SET_HOTELS, data}) 
 export const getOrderingHotelAC = (data) =>({type:GET_HOTEL, data})
-export const setSearchingCityAC = (data) =>({type: SET_SEARCH, data})  
+export const setSearchingCityAC = (data) =>({type: SET_HOTELS, data})  
 
 export const getSelectedHotelRatingAC = (data) =>({type: GET_SELECT_HOTEL_RATING, data})
 export const getSelectedHotelCityAC = (data) =>({type: GET_SELECT_HOTEL_CITY, data})
@@ -135,9 +135,9 @@ export const getOrderHotelTC = (document) => {
     dispatch(toggleFetchingAC(false))
   };
 };
-export const getSerchingCityTC = (searchingCity, rating = false) =>  async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity,setSearchingCityAC,+rating) 
-export const getSerchingRatingTC = (searchingRating ) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating,setSearchingCityAC)  
-export const getSerchingRegionTC = (searchingRegion, rating = false) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion,setSearchingCityAC,+rating)
+export const getSerchingCityTC = (searchingCity, rating = false) =>  async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity,setHotelsAC,+rating) 
+export const getSerchingRatingTC = (searchingRating ) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating,setHotelsAC)  
+export const getSerchingRegionTC = (searchingRegion, rating = false) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion,setHotelsAC,+rating)
  
 const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC,rating) =>{ 
   if (searchingOption === '') {
@@ -178,7 +178,6 @@ export const setNewHotel =  (data) =>{
    
     
     export const allOptionsFlow = () => async(dispatch)=>{  
-
       const querySnapshot = await getDocs(ref);
       const ratingOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().rating))); 
       const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 

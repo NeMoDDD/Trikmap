@@ -17,8 +17,6 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
     getHotelsTC();
   }, [getHotelsTC]);
   useEffect(() => {  
-    // const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
-    // const response = await axios.get(apiUrl);   
     memoizedAllOptionsFlow();
     memoizedGetHotelsTC() 
   }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]); 
@@ -28,6 +26,7 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
             <Spinner className={s.spin} color='blue' colorScheme='cyan'/>
             </div> 
             )}  
+            console.log('render'); 
   return ( 
       <HotelInfo 
       getHotelsTC={getHotelsTC}

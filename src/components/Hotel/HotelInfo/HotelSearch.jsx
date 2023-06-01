@@ -13,10 +13,6 @@ const HotelSearch =  React.memo((props) => {
         mode: 'onBlur', 
     },) 
     const onSubmit = (data) =>{ 
-    //     const address = 'Шоорукова 41, Бишкек, Кыргызстан'  
-    //     const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
-    // const response = await axios.get(apiUrl);    
-    // console.log(response);
         if(data.city && (data.rating !== '')){ 
             return props.getSerchingCityTC(data.city, data.rating)
         } else if (data.region && (data.rating !== '')){  
@@ -47,7 +43,7 @@ const HotelSearch =  React.memo((props) => {
                           onChange={() => resetField('region')}
                          >                      
                             <option value="">Все города</option>
-                            {props.selectedHotelCity.map(item => (<option value={item}>{item}</option>))}
+                            {props.selectedHotelCity.map((item, index) => (<option key={index} value={item}>{item}</option>))}
                         </select>  
 
                         <select 
@@ -55,12 +51,12 @@ const HotelSearch =  React.memo((props) => {
                         onChange={() => resetField('city')}
                         >  
                             <option value="">Все регионы</option>
-                            {props.selectedHotelRegion.map(item => (<option value={item}>{item}</option>))}
+                            {props.selectedHotelRegion.map((item,index) => (<option key={index} value={item}>{item}</option>))}
                         </select> 
                         
                         <select className={s.search__form_rating} {...register('rating')} defaultValue={"Выберите Рейтинг"}> 
                         <option value="">Все рейтинги</option>   
-                        {props.selectedHotelRating.map(item => (<option value={item}>{item}</option>))}
+                        {props.selectedHotelRating.map((item,index) => (<option key={index} value={item}>{item}</option>))}
                         </select>
                         </div> 
                     <div className={s.form__btn}><button  className={s.form__button} type='submit'>Найти <SearchOutlined/></button></div>

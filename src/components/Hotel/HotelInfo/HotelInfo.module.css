@@ -215,7 +215,7 @@ select:active, select:focus{
     align-items: center
 } 
 
-@media screen and (max-width:1443px) {
+@media screen and (max-width:1574px) {
     .hotel__box{ 
         margin: 0; 
     } 

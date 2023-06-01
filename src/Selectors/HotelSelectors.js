@@ -5,24 +5,40 @@ export const isFetching = createSelector(
   [getLoadStatusState],
   (isFetching) => isFetching,
 ); 
-export  const getHotels = (state) =>{ 
-    return state.hotelPage.hotels
-} 
-export  const getSelectedHotelCity = (state) =>{ 
-    return state.hotelPage.selectedHotelCity
-} 
-export const getTotalDocs = state =>{ 
-    return state.hotelPage.totalDocs
-} 
-export const getPageSize = state =>{ 
-    return state.hotelPage.pageSize
-} 
-export const getCurrentPage = state =>{ 
-    return state.hotelPage.currentPage
-} 
-export const getSelectedHotelRegion = state =>{ 
-    return state.hotelPage.selectedHotelRegion
-} 
-export const getSelectedHotelRatingSelector = state =>{ 
-    return state.hotelPage.selectedHotelRating
-} 
+
+const getHotelPageState = state => state.hotelPage;
+
+export const getHotels = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.hotels
+);
+
+export const getSelectedHotelCity = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.selectedHotelCity
+);
+
+export const getTotalDocs = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.totalDocs
+);
+
+export const getPageSize = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.pageSize
+);
+
+export const getCurrentPage = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.currentPage
+);
+
+export const getSelectedHotelRegion = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.selectedHotelRegion
+);
+
+export const getSelectedHotelRatingSelector = createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.selectedHotelRating
+);
