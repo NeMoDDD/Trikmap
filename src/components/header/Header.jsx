@@ -1,36 +1,87 @@
 import React from 'react';
-import classes from './Header.module.css'
+import classes from './Header.module.css';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../assets/img/Лого.svg'
+import Logo from '../../assets/img/Лого.svg';
+import { motion } from 'framer-motion';
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   Button
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
+
+const NavLinkMotion = motion(NavLink);
+
 const Header = () => {
   return (
     <div className={classes.main}>
-      <div div className={classes.header}>
+      <div className={classes.header}>
         <div className={classes.logo}>
           <img src={Logo} alt="logo" />
           <h3>TRIKMAP</h3>
         </div>
         <div className={classes.link}>
-          <NavLink to="/">Главная</NavLink>
-          <NavLink to="/">Отели</NavLink>
-          <NavLink to="/">Туры</NavLink>
-          <NavLink to="/">Достопримечательности</NavLink>
-          <NavLink to="/">Личный кабинет</NavLink>
+          <NavLinkMotion
+            exact
+            to="/"
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#007D34' }}
+            transition={{ duration: 0.3 }}
+          >
+            Главная
+          </NavLinkMotion>
+          <NavLinkMotion
+            to="/hotels"
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#007D34' }}
+            transition={{ duration: 0.3 }}
+          >
+            Отели
+          </NavLinkMotion>
+          <NavLinkMotion
+            to="/tours"
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#007D34' }}
+            transition={{ duration: 0.3 }}
+          >
+            Туры
+          </NavLinkMotion>
+          <NavLinkMotion
+            to="/landmarks"
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#007D34' }}
+            transition={{ duration: 0.3 }}
+          >
+            Достопримечательности
+          </NavLinkMotion>
+          <NavLinkMotion
+            to="/profile"
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#007D34' }}
+            transition={{ duration: 0.3 }}
+          >
+            Личный кабинет
+          </NavLinkMotion>
         </div>
 
         <div className={classes.login}>
-          <NavLink to="/">Войти</NavLink>
-          <button>Регистрация</button>
+          <NavLinkMotion
+            to="/"
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#007D34' }}
+            transition={{ duration: 0.3 }}
+          >
+            Войти
+          </NavLinkMotion>
+          <motion.button
+            whileHover={{ scale: 1 }}
+            whileTap={{ scale: 0.9 }}
+            className={classes.registerButton}
+          >
+            Регистрация
+          </motion.button>
         </div>
-
-
         <div className={classes.menu}>
           <Menu className = {classes.menu_wrapper}>
             <MenuButton as={Button}  className={classes.customMenuButton}>

@@ -31,6 +31,24 @@
     height: 340px;
     border-radius: 10px;
 }
+.imageWrapper {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  .imageWrapper:hover {
+    opacity: 0.8;
+    background-color: #000;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
 
 @media screen and (max-width: 1920px) {
     .main {
