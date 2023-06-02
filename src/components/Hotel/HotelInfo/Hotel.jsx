@@ -13,9 +13,9 @@ import cleaningIcon from '../../../assets/img/cleaning_Icon.png'
 import iconAdress from '../../../assets/img/adressIcon.png'
 import React from 'react';
 const Hotel = React.memo(({item,...props}) =>{  
-
+    
     return( 
-        <> 
+        <>  
         <div className={s.hotel__row}> 
         <div className={`${s.hotel__item} ${s.hotel__swiper}`}> 
                

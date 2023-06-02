@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');  
+.content{  
+    box-sizing: border-box;
+    height: 100%;
+} 
+.main{    
+    position: relative;
+    background-attachment: fixed;
+    background-image: url(../../../assets/img/tours_bg.jpg); 
+    height: 100vh; 
+    width: 100%;  
+    background-position: center; 
+    background-size:cover;
+    background-repeat:no-repeat;
+} 
+.content__container{   
+    position: relative;
+    padding: 0 12%;
+    height: 100%; 
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2))
+}   
+.content__main{ 
+    height: 100%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+}
+.main__item{  
+    height: 80%;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+} 
+.main__title{ 
+    font-family: 'Poppins', sans-serif; 
+    color: white; 
+    font-weight: 900; 
+    font-size: 74px;   
+    text-align: center;
+    line-height: 74px;
+} 
+.main__subtitle{  
+    padding-top: 5%;
+    font-family: 'Poppins', sans-serif; 
+    color: white;  
+    font-size: 22px; 
+    font-weight: 400; 
+    line-height: 34px;
+}  
+.arrow_down{ 
+ 
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-end;    
+}
+.custom__arrow svg{  
+   font-size: 60px;
+    color: white;animation: bounce 0.7s infinite alternate;
+} 
+@keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-20px); } }
+
+
+.tour__description{ 
+    height: 13em; 
+    background-color: #eeeeee;
+}  
+.description__container{ 
+    height: 100%; 
+    padding: 0 30%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+} 
+.description__title{ 
+    color:rgb(113, 113, 113);  
+    font-family:  'Poppins', sans-serif; 
+    font-weight: 100; 
+    font-size: 24px; 
+    line-height: 28px; 
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1520px) { 
+    .custom__arrow svg{  
+        font-size: 56px;
+     } 
+    .main__title{ 
+        font-size: 56px;   
+        line-height: 64px;
+    } 
+    .main__subtitle{   
+        text-align: center;
+        font-size: 18px; 
+        line-height: 34px;
+    }   
+    .description__container{ 
+        padding: 0 25%;
+    } 
+    .description__title{ 
+        font-size: 21px; 
+        line-height: 26px; 
+    }
+    
+} 
+@media screen and (max-width: 1144px) { 
+    .content__container{ 
+        padding: 0 6%;
+    }
+    .main__title{ 
+        font-size: 52px;   
+    }  
+    .description__container{ 
+        padding: 0 15%;
+    } 
+} 
+@media screen and (max-width:550px) {
+    .content__container{ 
+        padding: 0 3%;
+    }
+    .main__title{ 
+        font-size: 44px;  
+        line-height: 64px;  
+    }   
+    .custom__arrow svg{  
+        font-size: 42px;
+     }   
+     .description__container{ 
+        padding: 0 5%;
+    } 
+    .description__title{ 
+        font-size: 19px; 
+    }
+
+} 
+@media screen and (max-width:430px) {
+    .main__title{ 
+        font-size: 40px;  
+        line-height: 54px;  
+    }   
+    .custom__arrow svg{  
+        font-size: 42px;
+     } 
+     .main__subtitle{   
+        font-size: 16px; 
+    }   
+    .description__container{ 
+        padding: 0 3%;
+    } 
+    .description__title{ 
+        font-size: 17px; 
+        line-height: 22px; 
+    }
+} 
+@media screen and (max-width:369px) {
+    .main__title{ 
+        font-size: 32px;  
+        line-height: 44px;  
+    }   
+    .custom__arrow svg{  
+        font-size: 38px;
+     } 
+     .main__subtitle{   
+        font-size: 15px;  
+        line-height: 24px;
+    }   
+    .description__title{ 
+        font-size: 15px; 
+        line-height: 20px; 
+    }
+}

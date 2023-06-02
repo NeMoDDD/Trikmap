@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import Tours from "./AllTours/Tours";
 import React from "react"; 
 import { getTourTC } from "../../reduxStore/tourReducer";
 import { getToursSelector } from "../../Selectors/TourSelectors";
+import TourInfo from "./ToursInfo";
 class TourContainer extends React.PureComponent{
     componentDidMount(){ 
         this.props.getTourTC()
@@ -10,7 +10,7 @@ class TourContainer extends React.PureComponent{
     render(){  
         console.log('render');
         return( 
-            <Tours tours={this.props.tours}/>
+            <TourInfo {...this.props}/>
         )
     }
 }  

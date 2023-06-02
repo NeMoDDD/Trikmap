@@ -62,8 +62,11 @@
     font-weight: 600; 
     font-size: 18px;  
     line-height: 24px;
+cursor: pointer; 
 }
-
+.form__button:focus{ 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .search__form_city{ 
     border-radius: 5px 0 0 5px; 
     border-right: 1px solid #ccc;
@@ -170,8 +173,13 @@ select:active, select:focus{
     font-family: 'Poppins', sans-serif; 
     border-radius: 5px; 
     background-color:  #67a1d6; 
-    color: white;
-} 
+    color: white; 
+    cursor: pointer;
+}  
+.hotel__btn:focus{ 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .hotel__title{ 
     color: #615f6c;  
     font-family: 'Poppins', sans-serif; 
@@ -201,7 +209,8 @@ select:active, select:focus{
 .search_btn{ 
     width: 200px; 
     height: 50px;
-} 
+}  
+
 .hotel__advantages{ 
     display: flex; 
     flex-wrap: wrap;

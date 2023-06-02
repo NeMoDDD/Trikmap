@@ -1,6 +1,10 @@
+import ContentTour from "./ContentTour"
+
 const TourInfo = props =>{ 
     return( 
-        <div></div>
+        <div> 
+            <ContentTour/>
+        </div>
     )
 } 
 export default TourInfo
