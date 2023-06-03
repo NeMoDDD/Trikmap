@@ -4,7 +4,8 @@
     height: 100%;
 } 
 .main{    
-    position: relative;
+    /* position: relative; */ 
+    position: sticky;
     background-attachment: fixed;
     background-image: url(../../../assets/img/tours_bg.jpg); 
     height: 100vh; 
@@ -13,8 +14,9 @@
     background-size:cover;
     background-repeat:no-repeat;
 } 
-.content__container{   
-    position: relative;
+.content__container{    
+    position: sticky;
+    background-attachment: fixed;
     padding: 0 12%;
     height: 100%; 
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2))
