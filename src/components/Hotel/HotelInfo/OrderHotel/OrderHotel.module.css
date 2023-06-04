@@ -107,11 +107,7 @@ place-self: center;
     height: 100%;  
     width: 100%;
 } 
-.hotel__swipet_wrapper{ 
-    /* display: flex; 
-    justify-content: center; 
-    align-items: center; */
-}   
+ 
 .hotel__order{ 
     padding-top: 3.5%;
 } 
