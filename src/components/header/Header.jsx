@@ -30,8 +30,8 @@ const Header = () => {
         
         <div className={classes.link} style={hideOrShow}>
           <NavLink to="/">Главная</NavLink>
-          <NavLink to="/">Отели</NavLink>
-          <NavLink to="/">Туры</NavLink>
+          <NavLink to="/hotels">Отели</NavLink>
+          <NavLink to="/tours">Туры</NavLink>
           <NavLink to="/">Достопримечательности</NavLink>
           <NavLink to="/">Личный кабинет</NavLink>
         </div>

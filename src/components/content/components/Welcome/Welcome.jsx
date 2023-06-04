@@ -1,5 +1,5 @@
 import React from 'react'
-import s from '../welcome/Welcome.module.css'
+import s from './Welcome.module.css'
 export default function Welcome() {
   return (
       <div className={s.container}>

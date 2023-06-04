@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Heart from '../../../../assets/img/DefaultHeart.svg'
-import s from '../wonders/Wonder.module.css'
+import s from './Wonder.module.css'
 export default function Wonder({images, imageAlt}) {
   const [heart, setHeart] = useState(false)
   

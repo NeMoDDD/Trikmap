@@ -1,8 +1,8 @@
 import React from 'react'
-import Welcome from './components/welcome/Welcome';
-import About from './components/about/About';
+import Welcome from './components/Welcome/Welcome';
+import About from './components/About/About';
 import Map from './components/map/Map';
-import Wonder from './components/wonders/Wonder';
+import Wonder from './components/Wonders/Wonder';
 import s from './Content.module.css'
 //импорты картинки
 import Issyk from '../../assets/img/image 11.jpg';
