@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {useEffect, useState} from "react";
 
 import {getFirestore} from "@firebase/firestore";   
+
 //erbol 
 const firebaseConfigBooking = {
   apiKey: "AIzaSyBonj03by4roWxY0N6Byi6gY36TKc81qKY",
@@ -27,9 +28,9 @@ const firebaseConfig = {
     messagingSenderId: "761319112010",
     appId: "1:761319112010:web:94a4d0526becc96ae795b3"
 };
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const storage = getStorage(app);
+// const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const storage = getStorage();
 
 export function useAuthh() {
     const [currentUser, setCurrentUser] = useState();

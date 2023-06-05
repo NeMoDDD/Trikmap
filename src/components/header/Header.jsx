@@ -56,7 +56,7 @@ const Header = () => {
             Достопримечательности
           </NavLinkMotion>
           <NavLinkMotion
-            to="/profile"
+            to="/personal-account"
             activeClassName={classes.activeLink}
             whileHover={{ color: '#007D34' }}
             transition={{ duration: 0.3 }}
@@ -67,7 +67,7 @@ const Header = () => {
 
         <div className={classes.login}>
           <NavLinkMotion
-            to="/"
+            to="/login"
             activeClassName={classes.activeLink}
             whileHover={{ color: '#007D34' }}
             transition={{ duration: 0.3 }}
