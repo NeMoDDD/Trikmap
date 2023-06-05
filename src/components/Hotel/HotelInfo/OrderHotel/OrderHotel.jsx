@@ -1,4 +1,4 @@
-import { NavLink,Link } from 'react-router-dom';
+import { NavLink,Link, useLocation } from 'react-router-dom';
 import s from './OrderHotel.module.css'
 import Advantages from '../../../common/Advantages'; 
 import wifiIcon from '../../../../assets/img/wifi_icon.png' 
@@ -21,6 +21,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 
 
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
+    const info = useLocation() 
     return(   
         <div className={s.hotel}>  
         <div className={s.hotel__container}> 

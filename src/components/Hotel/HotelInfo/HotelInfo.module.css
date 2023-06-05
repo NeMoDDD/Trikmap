@@ -221,9 +221,9 @@ select:active, select:focus{
 } .hotel__pagination{ 
     display: flex; 
     justify-content: center; 
-    align-items: center
+    align-items: center;
+    margin: 4% 0 5% 0 ;
 } 
-
 @media screen and (max-width:1574px) {
     .hotel__box{ 
         margin: 0; 

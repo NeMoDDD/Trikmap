@@ -1,11 +1,17 @@
 import { DatePicker} from 'antd';
 import s from './Form.module.css'
 import { useForm, Controller } from "react-hook-form"
-const FormOrderHotel = () => {
-    const { RangePicker } = DatePicker;
+import { connect } from "react-redux";
+import { getOrderingHotelOptions } from '../../../../../Selectors/HotelSelectors';
+import { getUserEmail, getUserId } from '../../../../../Selectors/UserSelecors'; 
+import { getHotels } from '../../../../../Selectors/HotelSelectors'; 
+
+const FormOrderHotel = ({...props}) => {
+    
     const { control, handleSubmit, reset, register, formState: { errors } } = useForm({
         mode: "onBlur",
-    });
+    }); 
+    console.log(props);
     const onSubmit = (data) => {
         console.log(data);
         reset()
@@ -44,7 +50,7 @@ const FormOrderHotel = () => {
                                 rules={{
                                     required: true,
                                 }}
-                                render={({ field }) => <RangePicker  className={s.input_range} {...field}
+                                render={({ field }) => <DatePicker.RangePicker  className={s.input_range} {...field}
                                 />}
                             />
                             {errors.data && <div className={s.error}>{errors.data.message || "Это поле обязательное!"}</div>}
@@ -82,5 +88,12 @@ const FormOrderHotel = () => {
             </form>
         </div>
     )
+} 
+const mapStateToProps = (state) =>{ 
+    return{ 
+        name: getOrderingHotelOptions(state), 
+        email: getUserEmail(state), 
+        id: getUserId(state)
+    }
 }
-export default FormOrderHotel
+export default connect(mapStateToProps, {getHotels})(FormOrderHotel)
