@@ -5,7 +5,8 @@ import {Provider} from "react-redux"
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./components/store";
+// import {store} from "./components/store"; 
+import store from './reduxStore/redux-store';
 import "./components/Authorization/firebase/firebase"
 
 
