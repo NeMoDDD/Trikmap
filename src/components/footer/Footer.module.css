@@ -2,7 +2,7 @@
 .main{
     width: 100%;
     height: 100px;
-    background-color: #F5E8FB;
+    background-color: #67a1d6;
 }
 .footer{
     display: flex;
@@ -16,6 +16,7 @@
 .info{
     display: flex;
     flex-direction: column;
+    color: #f6f6f6
 }
 .link{
     display: flex;
@@ -27,6 +28,7 @@
     display: flex;
     justify-content: center;
     margin-right: 43px;
+    color: #f6f6f6
 }
 .img{
     display: inline-block;

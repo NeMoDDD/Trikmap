@@ -18,7 +18,7 @@ const Header = () => {
     <div className={classes.main}>
       <div className={classes.header}>
         <div className={classes.logo}>
-          <img src={Logo} alt="logo" />
+          <img src={Logo} alt="logo" className={classes.logo_img} />
           <h3>TRIKMAP</h3>
         </div>
         <div className={classes.link}>
@@ -26,7 +26,7 @@ const Header = () => {
             exact
             to="/"
             activeClassName={classes.activeLink}
-            whileHover={{ color: '#007D34' }}
+            whileHover={{ color: '#382ca3' }}
             transition={{ duration: 0.3 }}
           >
             Главная
@@ -34,7 +34,7 @@ const Header = () => {
           <NavLinkMotion
             to="/hotels"
             activeClassName={classes.activeLink}
-            whileHover={{ color: '#007D34' }}
+            whileHover={{ color: '#382ca3' }}
             transition={{ duration: 0.3 }}
           >
             Отели
@@ -42,7 +42,7 @@ const Header = () => {
           <NavLinkMotion
             to="/tours"
             activeClassName={classes.activeLink}
-            whileHover={{ color: '#007D34' }}
+            whileHover={{ color: '#382ca3' }}
             transition={{ duration: 0.3 }}
           >
             Туры
@@ -50,7 +50,7 @@ const Header = () => {
           <NavLinkMotion
             to="/attractions"
             activeClassName={classes.activeLink}
-            whileHover={{ color: '#007D34' }}
+            whileHover={{ color: '#382ca3' }}
             transition={{ duration: 0.3 }}
           >
             Достопримечательности
@@ -58,7 +58,7 @@ const Header = () => {
           <NavLinkMotion
             to="/personal-account"
             activeClassName={classes.activeLink}
-            whileHover={{ color: '#007D34' }}
+            whileHover={{ color: '#382ca3' }}
             transition={{ duration: 0.3 }}
           >
             Личный кабинет
@@ -69,7 +69,7 @@ const Header = () => {
           <NavLinkMotion
             to="/login"
             activeClassName={classes.activeLink}
-            whileHover={{ color: '#007D34' }}
+            whileHover={{ color: '#382ca3' }}
             transition={{ duration: 0.3 }}
           >
             Войти
