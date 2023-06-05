@@ -54,11 +54,7 @@
     display: flex;
     justify-content: flex-end;
 }
-@media (max-width: 1400px){
-    .title{
-        font-size: 15px;
-    }
-}
+
 @media (max-width: 1367px){
     
     .btn_container button{
@@ -77,7 +73,9 @@
       .title {
         margin-bottom: 20px;
       }
-      
+      .btn_container button{
+        width: 100px;
+      }
       .btn_container {
         display: flex;
         flex-direction: row;
@@ -85,7 +83,6 @@
         align-items: flex-start;
         margin-bottom: 20px;
       }
-      
       .btn_block {
         display: flex;
         flex-direction: column;
@@ -118,6 +115,11 @@
         .btn_container button{
             margin: 5px;
             padding:  5px 9px;
+        }
+    }
+    @media (max-width: 806px){
+        .title{
+            font-size: 18px;
         }
     }
     @media (max-width: 785px){

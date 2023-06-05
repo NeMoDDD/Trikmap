@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Welcome from './components/Welcome/Welcome';
 import About from './components/About/About';
 import Map from './components/map/Map';
@@ -15,8 +17,6 @@ import AlaArcha from '../../assets/img/image 6.jpg';
 import JetiOguz from '../../assets/img/image 19.jpg'
 import LandMarks from './components/landMarks/LandMarks';
 
-
-
 export default function Content() {
   const images = [
     {imageUrl: Issyk, text: 'Озеро Иссык-Куль'}, 
@@ -28,15 +28,72 @@ export default function Content() {
     {imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'}, 
     {imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}   
   ];
-  
   const imageAlt = 'Изображение';
+
+  const [refWonder, inViewWonder] = useInView({
+    triggerOnce: true,
+    threshold: 0.2
+  });
+
+  const [refAbout, inViewAbout] = useInView({
+    triggerOnce: true,
+    threshold: 0.2
+  });
+
+  const [refMap, inViewMap] = useInView({
+    triggerOnce: true,
+    threshold: 0.2
+  });
+
+  const [refLandMarks, inViewLandMarks] = useInView({
+    triggerOnce: true,
+    threshold: 0.2
+  });
+
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } }
+  };
+
   return (
     <div className={s.container}>
-      <Welcome/>
-      <Wonder images={images} imageAlt={imageAlt}/>
-      <About/>
-      <Map/>
-      <LandMarks/>
+      <Welcome />
+      <motion.div
+        className={s.content}
+        ref={refWonder}
+        initial="hidden"
+        animate={inViewWonder ? 'visible' : 'hidden'}
+        variants={variants}
+      >
+        <Wonder images={images} imageAlt={imageAlt} />
+      </motion.div>
+      <motion.div
+        className={s.content}
+        ref={refAbout}
+        initial="hidden"
+        animate={inViewAbout ? 'visible' : 'hidden'}
+        variants={variants}
+      >
+        <About />
+      </motion.div>
+      <motion.div
+        className={s.content}
+        ref={refMap}
+        initial="hidden"
+        animate={inViewMap ? 'visible' : 'hidden'}
+        variants={variants}
+      >
+        <Map />
+      </motion.div>
+      <motion.div
+        className={s.content}
+        ref={refLandMarks}
+        initial="hidden"
+        animate={inViewLandMarks ? 'visible' : 'hidden'}
+        variants={variants}
+      >
+        <LandMarks />
+      </motion.div>
     </div>
-  )
+  );
 }
