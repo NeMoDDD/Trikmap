@@ -19,7 +19,11 @@ const Header = () => {
       <div className={classes.header}>
         <div className={classes.logo}>
           <img src={Logo} alt="logo" className={classes.logo_img} />
-          <h3>TRIKMAP</h3>
+
+          <h3> <NavLinkMotion exact to='/'
+            activeClassName={classes.activeLink}
+            whileHover={{ color: '#382ca3' }}
+            transition={{ duration: 0.3 }} >TRIKMAP</NavLinkMotion></h3>
         </div>
         <div className={classes.link}>
           <NavLinkMotion
@@ -74,28 +78,38 @@ const Header = () => {
           >
             Войти
           </NavLinkMotion>
-          <NavLink to = '/register'>
-          <motion.button
-            whileHover={{ scale: 1 }}
-            whileTap={{ scale: 0.9 }}
-            className={classes.registerButton}
+          <NavLink to='/register'>
+            <motion.button
+              whileHover={{ scale: 1 }}
+              whileTap={{ scale: 0.9 }}
+              className={classes.registerButton}
 
-          >
-            Регистрация
-          </motion.button>
+            >
+              Регистрация
+            </motion.button>
           </NavLink>
         </div>
         <div className={classes.menu}>
-          <Menu className = {classes.menu_wrapper}>
-            <MenuButton as={Button}  className={classes.customMenuButton}>
+          <Menu className={classes.menu_wrapper}>
+            <MenuButton as={Button} className={classes.customMenuButton}>
               Меню
             </MenuButton >
             <MenuList className={classes.customMenuList}>
-              <MenuItem >Главная</MenuItem>
-              <MenuItem >Отели</MenuItem>
-              <MenuItem>Туры</MenuItem>
-              <MenuItem>Достопримечательности</MenuItem>
-              <MenuItem>Личный кабинет</MenuItem>
+              <NavLink to='/'>
+                <MenuItem>Главная</MenuItem>
+              </NavLink>
+              <NavLink to='/hotels'>
+                <MenuItem>Отели</MenuItem>
+              </NavLink>
+              <NavLink to='/tours'>
+                <MenuItem>Туры</MenuItem>
+              </NavLink>
+              <NavLink to='/attractions'>
+                <MenuItem>Достопримечательности</MenuItem>
+              </NavLink>
+              <NavLink to='/personal-account'>
+                <MenuItem>Личный кабинет</MenuItem>
+              </NavLink>
             </MenuList>
           </Menu>
         </div>

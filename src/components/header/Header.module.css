@@ -29,7 +29,10 @@
 .link {
   display: flex;
 }
-
+.logo a{
+  padding: 0;
+  margin: 0;
+}
 .logo {
   display: flex;
   width: 13%;
@@ -200,8 +203,16 @@
     row-gap: 30px;
   }
 }
+.menu{
+  position: relative;
+  z-index: 1;
+}
+.customMenuList a{
+  padding: 0;
+}
+
 .customMenuList button {
-  background-color: #2ad151;  
+  background-color: #3b6790;  
   border: none;
   padding: 6px 12px;
   margin: 2px;
@@ -209,9 +220,9 @@
   color: #fff
 }
 .customMenuButton{
-  background-color: #00831f;
+  background-color: #f6f6f6;
   border: none;
-  color: #fff;
+  color: #67a1d6;
   border-radius: 5px;
   padding: 6px 12px;
 }
