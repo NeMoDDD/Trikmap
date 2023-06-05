@@ -48,7 +48,7 @@ const Header = () => {
             Туры
           </NavLinkMotion>
           <NavLinkMotion
-            to="/landmarks"
+            to="/attractions"
             activeClassName={classes.activeLink}
             whileHover={{ color: '#007D34' }}
             transition={{ duration: 0.3 }}
@@ -74,13 +74,16 @@ const Header = () => {
           >
             Войти
           </NavLinkMotion>
+          <NavLink to = '/register'>
           <motion.button
             whileHover={{ scale: 1 }}
             whileTap={{ scale: 0.9 }}
             className={classes.registerButton}
+
           >
             Регистрация
           </motion.button>
+          </NavLink>
         </div>
         <div className={classes.menu}>
           <Menu className = {classes.menu_wrapper}>
