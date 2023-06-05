@@ -39,9 +39,8 @@
   z-index: 3;
 }
 
-.login button {
-  width: 127px;
-  height: 35px;
+.login .registerButton {
+  padding: 12px 25px;
   background-color: #007D34;
   border: none;
   border-radius: 10px;
@@ -135,7 +134,7 @@
     top: 60%;
   }
 
-  .login button {
+  .login .registerButton {
     width: 70px;
     height: 30px;
     font-size: 10px;
@@ -202,7 +201,7 @@
   padding: 6px 12px;
   margin: 2px;
   border-radius: 8px;
-  color: #fff
+  color: #fff;
 }
 .customMenuButton{
   background-color: #00831f;
