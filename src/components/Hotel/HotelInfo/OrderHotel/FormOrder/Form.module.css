@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.order {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e6e5e5;
+}
+
+.form {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    height: 85%;
+    width: 40%;
+    border-radius: 15px;
+}
+
+.order__wrapper {
+    height: 100%;
+    padding: 13% 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.order__item_title {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 75%;
+}
+
+.order__title {
+    color: rgba(0, 0, 0, 0.88);
+    text-align: center;
+    line-height: 54px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+}
+
+.order__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.item__input {
+    position: relative;
+}
+
+.item__title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: rgba(87, 87, 87, 0.88);
+    padding-bottom: 0.8%;
+}
+
+.input_amount,
+.input_num,
+.input_range,
+.input_select {
+    border-radius: 5px;
+    font-size: 14px;
+    position: relative;
+    padding: 2% 1%;
+    width: 100%;
+    border: 1px solid #979797;
+}
+
+.input_amount:focus,
+.input_num:focus {
+    outline: #4096ff;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    font-family: 'Poppins' sans-serif;
+}
+
+.order_btn input {
+    background-color: #67a1d6;
+    padding: 4% 0;
+    width: 100%;
+    color: white;
+    font-size: 'Poppins', sans-serif;
+    border: none;
+    font-size: 20px;
+    line-height: 28px;
+    border-radius: 9px;
+}
+
+@media screen and (max-width:1475px) {
+    .form {
+        width: 45%;
+    }
+
+    .order__title {
+        line-height: 48px;
+        font-size: 41px;
+    }
+
+    .order__wrapper {
+        padding: 7% 8%;
+    }
+
+    .item__title {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width:1075px) {
+    .form {
+        width: 55%;
+    }
+
+    .order__title {
+        line-height: 48px;
+        font-size: 36px;
+    }
+
+    .order__wrapper {
+        padding: 5% 6%;
+    }
+
+    .item__title {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .form {
+        width: 65%;
+    }
+
+    .order__title {
+        line-height: 40px;
+        font-size: 32px;
+    }
+
+    .order__wrapper {
+        padding: 5% 6%;
+    }
+
+    .item__title {
+        font-size: 15px;
+    }
+
+    .order__form {
+        height: 80%;
+    }
+
+    .error {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width:555px) {
+    .form {
+        width: 80%;
+    }
+
+    .order__title {
+        font-size: 28px;
+    }
+
+    .item__title {
+        font-size: 14px;
+    }
+
+    .error {
+        font-size: 0.6em;
+    }
+}
+
+@media screen and (max-width:395px) {
+    .form {
+        width: 88%;
+    }
+
+    .order__title {
+        font-size: 24px;
+    }
+
+    .item__title {
+        font-size: 14px;
+    }
+
+    .error {
+        font-size: 0.6em;
+    }
+
+    .order__wrapper {
+        padding: 3% 4%;
+    }
+
+    .order_btn input {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-height:1000px) {
+    .order_btn input {
+        padding: 2% 0;
+        font-size: 18px;
+    }
+
+    .input_amount,
+    .input_num,
+    .input_range,
+    .input_select {
+        font-size: 14px;
+        padding: 1.5% 1%;
+
+    }
+
+    .order__wrapper {
+        padding: 7% 8%;
+    }
+}
+
+@media screen and (max-height:800px) {
+    .order__title {
+        font-size: 34px;
+    }
+
+    .order__wrapper {
+        padding: 3% 8%;
+    }
+
+    .order__form {
+        height: 80%;
+    }
+
+    .item__title {
+        font-size: 16px;
+    }
+
+    .form {
+
+        height: 92%;
+
+    }
+}
+
+@media screen and (max-height:680px) {
+    .order__title {
+        font-size: 28px;
+    }
+
+    .order__wrapper {
+        padding: 2% 8%;
+    }
+
+    .item__title {
+        font-size: 14px;
+    }
+
+    .form {
+        height: 95%;
+    }
+
+    .error {
+        font-size: 0.6em;
+    }
+
+    .input_amount,
+    .input_num,
+    .input_range,
+    .input_select {
+        font-size: 14px;
+        padding: 1% 1%;
+
+    }
+}

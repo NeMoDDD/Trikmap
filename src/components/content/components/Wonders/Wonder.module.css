@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Alice';
+    font-weight: 400;
+}
+
+.img {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.img img {
+    height: 340px;
+    border-radius: 10px;
+}
+.imageWrapper {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  .imageWrapper:hover {
+    opacity: 0.8;
+    background-color: #000;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+
+@media screen and (max-width: 1920px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 1840px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 300px;
+    }
+}
+@media screen and (max-width: 1790px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 240px;
+    }
+}
+@media screen and (max-width: 1680px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 280px;
+    }
+}
+@media screen and (max-width: 1520px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 260px;
+    }
+}
+@media screen and (max-width: 1440px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 230px;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 230px;
+    }
+}
+@media screen and (max-width: 1250px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .img{
+        width: 100%;
+    }
+    .img img {
+        height: 215px;
+    }
+}
+@media screen and (max-width: 1190px) {
+        .main {
+            justify-content: center;
+            align-items: center;
+        }
+        .img{
+            width: auto;
+            grid-column-gap: 16px;
+            grid-row-gap: 23px;
+            object-fit: fill;
+            grid-template-rows: auto auto;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-columns: 1fr;
+            display: grid;
+        }
+        .img img{
+            height:  300px;
+        }
+    }
+@media screen and (max-width:806px){
+    .main {
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        width: 100%;
+        font-weight: 700;
+        justify-items: center;
+    }
+    .title{
+        width: 50%;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 18px;
+    }  
+    
+}
+@media screen and (max-width: 680px) {
+        .main {
+            max-width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .img{
+            width: 100%;
+            align-items: center;
+        }
+        .img img {
+            height: 300px;
+        }
+    }
+
+@media screen and (max-width: 540px) {
+        .main {
+            max-width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .img{
+            width: 100%;
+        }
+        .img img {
+            height: 270px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .main {
+            max-width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .img{
+            width: 100%;
+        }
+        .img img {
+            height: 240px;
+        }
+    }    
