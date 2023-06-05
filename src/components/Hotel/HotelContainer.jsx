@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
 import { compose } from "redux"; 
 import { getHotelsTC,allOptionsFlow,toggleFetchingAC, getSerchingCityTC,getCurrentPageAC,getSerchingRegionTC,getSerchingRatingTC  } from "../../reduxStore/hotelReducer"; 
-import { Spinner } from "@chakra-ui/react"; 
-import s from './HotelInfo/HotelInfo.module.css'
 import HotelInfo from "./HotelInfo"; 
 import React,{ useEffect, useCallback}from "react";
 import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRatingSelector, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
+import { Preloader } from "../common/Preloader";
 
 
 const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props}) => {
@@ -21,11 +20,8 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
     memoizedGetHotelsTC() 
   }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]); 
   if(isFetch){ 
-    return(  
-      <div className={s.spinner} > 
-            <Spinner className={s.spin} color='blue' colorScheme='cyan'/>
-            </div> 
-            )}  
+    return <Preloader/> 
+  }  
             console.log('render'); 
   return ( 
       <HotelInfo 

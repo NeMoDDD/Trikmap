@@ -58,7 +58,10 @@ const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{
                     <div className={s.hotel__description_subtitle}>{orderingHotel.subtitle} </div>
                  </div> 
                  <div className={s.hotel__order}> 
-                    <div className={s.hotel__order_wrapper}><Link className={s.order_link} to={orderingHotel.booking}><button className={s.order_btn}>Забронировать на Booking</button></Link></div>
+                    <div className={s.hotel__order_wrapper}> 
+                    <Link className={s.order_link} to={orderingHotel.booking}><button className={s.order_btn}>Забронировать на Booking</button></Link> 
+                    <Link className={s.order_link} to={`/hotels/${orderingHotel.name}/order`}><button className={s.order_btn}>Забронировать у нас</button></Link>
+                    </div>
                  </div>
                  <div className={s.hotel__addvantages}>   
                     <div className={s.hotel__addvantages_title}>Удобства</div>

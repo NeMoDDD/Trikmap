@@ -4,6 +4,7 @@ import {    getOrderHotelTC } from "../../../../reduxStore/hotelReducer";
   import React from "react"; 
   import OrderHotel from "./OrderHotel";
 import { isFetching } from "../../../../Selectors/HotelSelectors";
+import { Preloader } from "../../../common/Preloader";
 class OrderHotelContainer extends React.Component{  
     componentDidMount( ){ 
         let hotelName = this.props.router.params.hotel  
@@ -11,7 +12,7 @@ class OrderHotelContainer extends React.Component{
     } 
     render(){  
         if(this.props.isFetch){ 
-            return <>Loading</>   
+            return <Preloader/>   
         }
         return( 
             <OrderHotel coordinates={this.props.coordinates} orderingHotel={this.props.orderingHotel}/>

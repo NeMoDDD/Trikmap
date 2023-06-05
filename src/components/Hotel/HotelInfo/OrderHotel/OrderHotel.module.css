@@ -6,7 +6,8 @@
     justify-content: center; 
     align-items: center;
     height: 100%;  
-    background-color: #e5e5e5;
+    background-color: #e5e5e5; 
+    margin-bottom: 8%;
 } 
 .hotel__container{ 
     padding: 0 22%; 
@@ -113,11 +114,11 @@ place-self: center;
 } 
 .hotel__order_wrapper{ 
     display: flex; 
-    justify-content: center;
+    justify-content: space-around;
 } 
 .order_link{ 
     height: 5em; 
-    width: 28em;
+    width: 22em;
 }
 .order_btn{    
     cursor: pointer;
@@ -155,6 +156,22 @@ place-self: center;
     .hotel__map{ 
         height: 50vh; 
         width: 100%;
+    }  
+    .order_link{ 
+        height: 4em; 
+        width: 15em;
+    } 
+    .order_btn{    
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;  
+        font-weight: 400; 
+        font-size: 17px;
+        border: none; 
+        border-radius: 10px; 
+        height: 100%; 
+        width: 100%;
+        color: white;
+        background-color: #67a1d6;
     } 
 } 
 @media screen  and (max-width:768px){
@@ -189,14 +206,23 @@ place-self: center;
     } 
     .hotel__order{ 
         padding-top: 4.5%;
+    }  
+    .hotel__order_wrapper{ 
+        flex-direction: column; 
+        justify-content: space-between; 
+        align-items: center;
     } 
     .order_link{ 
-        height: 4em; 
-        width: 21em;
+        height: 4em;  
+        width: 20em;
+    }  
+    .order_link:first-child{ 
+        margin-bottom: 22px; 
     } 
-    .order_btn{   
-        font-size: 18px;  
-}  }
+    .order_btn{    
+        font-size: 17px;
+    } 
+  }
 @media screen and (max-width:450px) {
     .hotel__description_title, .hotel__addvantages_title{  
         font-size: 28px;
