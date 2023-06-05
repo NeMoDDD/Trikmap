@@ -1,23 +1,33 @@
-import { DatePicker} from 'antd';
+import { Alert, DatePicker} from 'antd';
 import s from './Form.module.css'
 import { useForm, Controller } from "react-hook-form"
 import { connect } from "react-redux";
-import { getOrderingHotelOptions } from '../../../../../Selectors/HotelSelectors';
+import { getOrderingHotelOptions, isSucceedSelector } from '../../../../../Selectors/HotelSelectors';
 import { getUserEmail, getUserId } from '../../../../../Selectors/UserSelecors'; 
-import { getHotels } from '../../../../../Selectors/HotelSelectors'; 
+import { setBookTC } from '../../../../../reduxStore/hotelReducer';
+import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 
-const FormOrderHotel = ({...props}) => {
-    
+const FormOrderHotel = ({name,...props}) => { 
     const { control, handleSubmit, reset, register, formState: { errors } } = useForm({
         mode: "onBlur",
-    }); 
-    console.log(props);
-    const onSubmit = (data) => {
-        console.log(data);
+    });  
+    const [disabled, setDisabled] = useState(false)
+    const navigate = useNavigate() 
+    useEffect(()=>{ 
+        if(!props.id){ 
+            return navigate('/login', {replace:true})
+        }
+    })
+
+    const onSubmit = (data) => { 
+        setDisabled(true)
+        props.setBookTC([data.date[0].$d,data.date[1].$d], props.email, props.id, name.name, data.number, data.amount, data.type) 
+        setDisabled(false) 
         reset()
     }
     return (
-        <div className={s.order}>
+        <div className={s.order}> 
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.order__wrapper}>
                     <div className={s.order__item_title}><div className={s.order__title}>Бронирование Отеля <strong>Aurum Hotel</strong></div></div>
@@ -45,7 +55,7 @@ const FormOrderHotel = ({...props}) => {
                         <div className={s.item__title}>Дата въезда-выезда</div>
                             <div className={s.item__input}> 
                             <Controller
-                                name="data"
+                                name="date"
                                 control={control}
                                 rules={{
                                     required: true,
@@ -82,7 +92,7 @@ const FormOrderHotel = ({...props}) => {
                         </div> 
                         </div>
 
-                        <div className={s.order_btn}> <input type="submit" value={'Забронировать'}></input></div>
+                        <div className={s.order_btn}> {props.isSucceed ? <Alert message="Вы успешно забронировали!" type="success" showIcon></Alert> :<input disabled={disabled} type="submit" value={'Забронировать'}></input>}</div>
                     </div>
                 </div>
             </form>
@@ -93,7 +103,8 @@ const mapStateToProps = (state) =>{
     return{ 
         name: getOrderingHotelOptions(state), 
         email: getUserEmail(state), 
-        id: getUserId(state)
+        id: getUserId(state), 
+        isSucceed: isSucceedSelector(state)
     }
 }
-export default connect(mapStateToProps, {getHotels})(FormOrderHotel)
+export default connect(mapStateToProps, {setBookTC})(FormOrderHotel)

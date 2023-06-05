@@ -8,4 +8,8 @@ export const getUserEmail = createSelector(
 export const getUserId = createSelector(
     [getUsersState],
     user => user.id
+  ); 
+  export const getUserName = createSelector(
+    [getUsersState],
+    user => user.nickname
   );

@@ -18,6 +18,7 @@ import "swiper/css/thumbs";
 //import "./style.css";
 
 import { FreeMode, Navigation, Thumbs } from "swiper"; 
+import CommentContainer from './CommentsHotel/CommentContainer';
 
 
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
@@ -75,7 +76,10 @@ const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{
                 </div>  
                 {coordinates.length > 0 && <div className={s.hotel__map}>   
                     <OrderMap  lon={coordinates[0].lon} lat={coordinates[0].lat}/> 
-                </div>}
+                </div>} 
+                <div className={s.hotel__comments}> 
+                    <CommentContainer hotel={orderingHotel.name}/>
+                </div>
             </div>
         </div>
         </div>
