@@ -1,5 +1,5 @@
 import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer} from "@firebase/firestore";   
-import {db } from '../firebase/firebase-booking' 
+import {db } from '../components/Authorization/firebase/firebase' 
 import axios from "axios";
 const ref = collection(db, "Hotels");
  let initialState = { 
