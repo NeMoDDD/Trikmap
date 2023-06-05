@@ -27,9 +27,9 @@ const firebaseConfig = {
     messagingSenderId: "761319112010",
     appId: "1:761319112010:web:94a4d0526becc96ae795b3"
 };
-// const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const storage = getStorage();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const storage = getStorage(app);
 
 export function useAuthh() {
     const [currentUser, setCurrentUser] = useState();
