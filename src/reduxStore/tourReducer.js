@@ -1,5 +1,5 @@
 import {collection,getDocs,doc,getDoc, query, limit,where, orderBy,setDoc, getCountFromServer} from "@firebase/firestore";   
-import {db} from '../firebase/firebase-booking'
+import {db} from '../components/Authorization/firebase/firebase'
 import { toggleFetchingAC } from "./hotelReducer";
 
 const tourRef = collection(db, "Tours")
