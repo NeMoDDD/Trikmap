@@ -31,7 +31,6 @@ const LogIn = () => {
                 push("/personal-account")
             })
             .catch((error) => {
-                console.log(error.code)
                 if (error.code === "auth/wrong-password") {
                     setIsAuthSubmit(false)
                     setErrorMessage("Неверный email или пароль")
@@ -40,7 +39,6 @@ const LogIn = () => {
                     setErrorMessage("Слишком много запросов. Попробуйте позже!")
                 }
             })
-        console.log(nickname)
 
     }
     return (
