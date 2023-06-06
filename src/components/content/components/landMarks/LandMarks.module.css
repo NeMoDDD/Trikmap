@@ -11,6 +11,16 @@
     font-family: 'Alice';
     font-size: 26px;
     margin-bottom: 5%;
+} 
+.test{ 
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    height: 80%;
+} 
+.landMarks__img{ 
+    height: 100%;
 }
 .img_block{
     display: flex;

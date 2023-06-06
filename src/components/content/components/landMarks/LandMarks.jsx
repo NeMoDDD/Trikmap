@@ -20,11 +20,15 @@ export default function LandMarks() {
       <div className={s.img_block}>
         {images.map((image, index) => (
           <div key={index}>
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
+            <motion.div 
+              className={s.test}
+              // whileHover={{ scale: 1.1 }}
+              // transition={{ duration: 0.3 }}
             >
-              <img
+              <motion.img  
+              className={s.landMarks__img}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
                 key={index}
                 src={image.imageUrl}
                 alt={`${index + 1}`}
