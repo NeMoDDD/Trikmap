@@ -5,10 +5,9 @@ import { addCommentTC } from "../../../../../reduxStore/hotelReducer"
 import { getCommentsSelector } from "../../../../../Selectors/HotelSelectors"
 import { getUserEmail, getUserName } from "../../../../../Selectors/UserSelecors"
 
-const CommentContainer = React.memo(({comments,name,email,addCommentTC,...props}) =>{ 
-
+const CommentContainer = React.memo(({comments,name,email,...props}) =>{ 
     return( 
-        <Comments hotel={props.hotel} addCommentTC={addCommentTC} comments={comments} email={email} name={name} />
+        <Comments hotel={props.hotel} addCommentTC={props.addCommentTC} comments={comments} email={email} name={name} />
     )
 }  )
  

@@ -3,15 +3,14 @@ import sendIcon from '../../../../../assets/img/send.png'
 import { useForm, Controller } from "react-hook-form" 
 import React from 'react'
 import s from './Comment.module.css'  
-const CommentsForm = React.memo((name,email,...props) => {  
-    console.log(props); 
+const CommentsForm = React.memo(({name,email,...props}) => {  
     const { TextArea } = Input;
     const { control, handleSubmit, reset,  formState: { errors } } = useForm({
         mode: "onBlur",
     });
     const onSubmit = (data) => {  
-        const {comment} = data
-        props.addCommentTC(props.hotel, { name,email, comment})
+        const {title} = data
+        props.addCommentTC(props.hotel, { name,email, title})
         reset()
     }
     return (
@@ -19,7 +18,7 @@ const CommentsForm = React.memo((name,email,...props) => {
             <div className={s.add__input}>
                 <div className={s.item__input}>
                     <Controller
-                        name="comment"
+                        name="title"
                         control={control}
                         rules={{
                             required: true, 

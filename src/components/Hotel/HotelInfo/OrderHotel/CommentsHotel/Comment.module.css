@@ -67,4 +67,32 @@
 .error{ 
     font-size: 14px; 
     color: red;
+} 
+@media screen and (max-width: 700px) {
+        .row__name{ 
+            font-size: 20px; 
+        } 
+        .row__title{ 
+            font-size: 16px; 
+        }  
+        .comment__description{ 
+            font-size: 36px;
+        } 
+} 
+@media screen and (max-width: 450px) { 
+        .comment_row{ 
+            width: 100%;
+        }
+        .row__name{ 
+            font-size: 18px; 
+        } 
+        .row__title{ 
+            font-size: 15px; 
+        }  
+        .comment__description{ 
+            font-size: 28px;
+        }  
+        .add__input{ 
+            width: 70%;
+        }
 }

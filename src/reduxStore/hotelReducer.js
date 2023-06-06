@@ -143,21 +143,21 @@ export const getHotelsTC = () => {
         dispatch(toggleFetchingAC(false))
       };
     };
-export const getOrderHotelTC = (document) => {
-  return async (dispatch) => { 
+export const getOrderHotelTC = (document) => { 
+  return async (dispatch) => {  
     dispatch(toggleFetchingAC(true))
-    try {
+    try { 
       const docRef = doc(ref, document);
       const docSnap = await getDoc(docRef); 
       if (docSnap.exists()) { 
-      const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
-      const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
-      const response = await axios.get(apiUrl);    
-      dispatch(setCoordinatedAC(response.data))
-      dispatch(getOrderingHotelAC(docSnap.data()));
+        const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
+        const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
+        const response = await axios.get(apiUrl);    
+        dispatch(setCoordinatedAC(response.data))
+        dispatch(getOrderingHotelAC(docSnap.data())); 
+        dispatch(getCommentsTC(document))
       }
     } catch (error) {
-
     } 
     dispatch(toggleFetchingAC(false))
   };
@@ -220,12 +220,10 @@ export const setBookTC = (date,email,id,name, num,amount,type) => async(dispatch
   }
 } 
 export const addCommentTC = (document, dataObj) => async(dispatch) =>{ 
-  debugger 
   try{  
-    debugger
     const postRef = doc(commentRef, document);
     await updateDoc(postRef, {
-      comments: dataObj
+      data: arrayUnion(dataObj)
     }); 
     dispatch(getCommentsTC(document))
   } catch{ 

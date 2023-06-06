@@ -8,7 +8,7 @@ import { Preloader } from "../../../common/Preloader";
 class OrderHotelContainer extends React.Component{  
     componentDidMount( ){ 
         let hotelName = this.props.router.params.hotel  
-        this.props.getCommentsTC(hotelName)
+        //this.props.getCommentsTC(hotelName)
         this.props.getOrderHotelTC(hotelName)   
     } 
     render(){  
