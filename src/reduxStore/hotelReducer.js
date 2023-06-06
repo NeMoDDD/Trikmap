@@ -1,6 +1,7 @@
 import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer,  updateDoc,arrayUnion } from "@firebase/firestore";   
 import {db } from '../components/Authorization/firebase/firebase' 
 import axios from "axios";
+import { setErrorAC } from "./appReducer";
 
 const ref = collection(db, "Hotels"); 
 const commentRef = collection(db, "Comments");
@@ -16,7 +17,7 @@ const commentRef = collection(db, "Comments");
     selectedHotelRating: [], 
     coordinates: [], 
     isSucceed: false, 
-    comments: []
+    comments: [], 
 }   
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue +'GET_CURRENT_PAGE'
@@ -30,7 +31,7 @@ const SET_SEARCH = defaultValue +'SET_SEARCH'
 const GET_TOTAL_DOCS = defaultValue +'GET_TOTAL_DOCS'   
 const SET_COORDINATES = defaultValue +'SET_COORDINATES' 
 const SET_SUCCEED = defaultValue + 'SET_SUCCEED' 
-const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'
+const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS' 
 export const hotelReducer = (state = initialState, action) =>{ 
      switch(action.type){ 
         case SET_HOTELS: {  
@@ -97,7 +98,7 @@ export const hotelReducer = (state = initialState, action) =>{
           return { 
             ...state, comments: action.data
           }
-        }
+        } 
         default: 
         return state
      }
@@ -116,19 +117,23 @@ export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
 export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data }) 
 const setSucceedAC = (data) =>({type:SET_SUCCEED, data})
 const setCoordinatedAC = (data) =>({type:SET_COORDINATES, data}) 
-const getHotelComments = (data) =>({type: GET_HOTEL_COMMENTS, data}) 
+const getHotelComments = (data) =>({type: GET_HOTEL_COMMENTS, data})  
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {    
-        dispath(toggleFetchingAC(true))
+      dispath(toggleFetchingAC(true))
+      try{ 
         const citySnapshot = await getDocs(ref);
         const cityList = citySnapshot.docs.map(doc => doc.data());   
         const snapshot = await getCountFromServer(ref);  
         Promise.all([dispath(getTotalDocsAC(snapshot.data().count)), 
-        dispath(setHotelsAC(cityList)),  
-        dispath(toggleFetchingAC(false)),]) 
-        } 
-    }
+        dispath(setHotelsAC(cityList))]) 
+      } catch{ 
+        dispath(setErrorAC(true))
+      } 
+      dispath(toggleFetchingAC(false))
+        }} 
+
     export const getCommentsTC = (document) => {
       return async (dispatch) => { 
         dispatch(toggleFetchingAC(true))
@@ -138,7 +143,8 @@ export const getHotelsTC = () => {
           if (docSnap.exists()) {    
           dispatch(getHotelComments(docSnap.data()))
           }
-        } catch (error) {
+        } catch (error) { 
+          dispatch(setErrorAC(true))
         } 
         dispatch(toggleFetchingAC(false))
       };
@@ -157,7 +163,8 @@ export const getOrderHotelTC = (document) => {
         dispatch(getOrderingHotelAC(docSnap.data())); 
         dispatch(getCommentsTC(document))
       }
-    } catch (error) {
+    } catch (error) { 
+      dispatch(setErrorAC(true))
     } 
     dispatch(toggleFetchingAC(false))
   };
@@ -190,8 +197,7 @@ const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC,rat
   limit(20)
   ); 
   const querySnap = await getDocs(city);
-  const data = querySnap.docs.map((snap) => snap.data()); 
-  console.log(data); 
+  const data = querySnap.docs.map((snap) => snap.data());  
   dispatch(getTotalDocsAC(data.length)); 
   dispatch(AC(data));
 }
@@ -216,19 +222,16 @@ export const setBookTC = (date,email,id,name, num,amount,type) => async(dispatch
     await setDoc(doc(db, "OrderingHotel",id), {data:date,email:email,id:id,name:name,number: num,amount: amount,type :type});  
     dispatch(setSucceedAC(true))
   }catch{ 
-    console.log('Data do not send');
+    dispatch(setErrorAC(true))
   }
 } 
 export const addCommentTC = (document, dataObj) => async(dispatch) =>{ 
-  try{  
     const postRef = doc(commentRef, document);
     await updateDoc(postRef, {
       data: arrayUnion(dataObj)
     }); 
     dispatch(getCommentsTC(document))
-  } catch{ 
-
-  }
+  
 }
 
 

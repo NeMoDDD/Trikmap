@@ -15,7 +15,7 @@ const mapStateToProps = (state) =>{
     return{ 
         comments: getCommentsSelector(state), 
         email: getUserEmail(state), 
-        name: getUserName(state)
+        name: getUserName(state), 
     }
 }
 export default connect(mapStateToProps, {addCommentTC})(CommentContainer)
