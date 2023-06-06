@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentPage, setTotalCountOfType} from "../store/slices/attractionsSlice";
+import {setCurrentPage} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useEffect, useState} from "react";
@@ -19,25 +19,30 @@ const Attractions = () => {
         totalCountNaryn,
         totalCountOsh,
         totalCountTalas,
-        totalCountOfType,
+        // totalCountOfType,
     } = useSelector(state => state.attractions)
     const [totalCount, setTotalCount] = useState(totalCountAll)
     const [region, setRegion] = useState("all")
     const [dataRegion, setDataRegion] = useState(data.all)
-    const [type, setType] = useState("All")
+    const [type, setType] = useState("all")
+    const [totalCountOfType, setTotalCountOfType] = useState()
 
     const lastPostIndex = currentPage * pageSize;
     const firstPostIndex = lastPostIndex - pageSize
 
     const onSelectChange = (value) => {
-        if (value !== "All") {
-            setType(value)
-            dispatch(setTotalCountOfType({
-                totalCountOfType: data.all.filter(p => p.properties.type === value).length
-            }))
-            console.log(totalCountOfType)
-            onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length)
+        setType(value)
+        if (value !== "all") {
+            setTotalCount(dataRegion.filter(p => p.properties.type === value).length)
+            setTotalCountOfType(dataRegion.filter(p => p.properties.type === value).length)
+        } else {
+            setTotalCount(dataRegion.length)
         }
+        dispatch(setCurrentPage({
+            currentPage: 1
+        }))
+        // onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length, null)
+        // }
         setType(value)
     };
 
@@ -46,14 +51,11 @@ const Attractions = () => {
             currentPage: id
         }))
     }
-    const onClickRegion = (region, totalCount) => {
-        if (type !== "All") {
-            setTotalCount(dataRegion.filter(p => p.properties.type === type).length)
-            dispatch(setTotalCountOfType({
-                totalCountOfType: dataRegion.filter(p => p.properties.type === type).length
-            }))
+    const onClickRegion = (region, totalCount, totalCountOfRegion, data) => {
+        if (type === "all") {
+            setTotalCount(totalCountOfRegion)
         } else {
-            setTotalCount(totalCount)
+            setTotalCount(data.filter(p => p.properties.type === type).length)
         }
         dispatch(setCurrentPage({
             currentPage: 1
@@ -62,45 +64,40 @@ const Attractions = () => {
     }
 
     const onClickAllRegion = () => {
-        onClickRegion("all", totalCountAll)
         setDataRegion(data.all)
+        onClickRegion("all", null, totalCountAll, data.all)
     }
     const onClickChuyRegion = () => {
-        onClickRegion("chuy", totalCountChuy)
         setDataRegion(data.chuy)
+        onClickRegion("chuy", null, totalCountChuy, data.chuy)
     }
     const onClickTalasRegion = () => {
-        onClickRegion("talas", totalCountTalas)
         setDataRegion(data.talas)
+        onClickRegion("talas", null, totalCountTalas, data.talas)
     }
     const onClickOshRegion = () => {
-        onClickRegion("osh", totalCountOsh)
         setDataRegion(data.osh)
+        onClickRegion("osh", null, totalCountOsh, data.osh)
     }
     const onClickBatkenRegion = () => {
-        onClickRegion("batken", totalCountBatken)
         setDataRegion(data.batken)
+        onClickRegion("batken", null, totalCountBatken, data.batken)
     }
     const onClickJalalabadRegion = () => {
-        onClickRegion("jalalabad", totalCountJalabad)
         setDataRegion(data.jalalabad)
+        onClickRegion("jalalabad", null, totalCountJalabad, data.jalalabad)
     }
     const onClickNarynRegion = () => {
-        onClickRegion("naryn", totalCountNaryn)
         setDataRegion(data.naryn)
+        onClickRegion("naryn", null, totalCountNaryn, data.naryn)
     }
     const onClickIssykkolRegion = () => {
-        onClickRegion("issykkol", totalCountIssykkol)
         setDataRegion(data.issykkol)
+        onClickRegion("issykkol", null, totalCountIssykkol, data.issykkol)
     }
 
-    useEffect(() => {
-        console.log(totalCountOfType);
-        setTotalCountOfType(totalCountOfType)
-    }, [totalCountOfType]);
-
     const regionVisible = (regionOn, dataRegion) => {
-        return (region === regionOn && type !== "All" ? dataRegion.filter(p => p.properties.type === type).slice((firstPostIndex), lastPostIndex)
+        return (region === regionOn && type !== "all" ? dataRegion.filter(p => p.properties.type === type).slice((firstPostIndex), lastPostIndex)
             .map((p, index) => {
                 return (
                     <Attraction location={p.properties.location}
@@ -108,7 +105,7 @@ const Attractions = () => {
                                 title={p.properties.name}
                                 imgSrc={p.properties.image}
                                 key={index}/>)
-            }) : (region === regionOn && type === "All" ? dataRegion.slice(firstPostIndex, lastPostIndex).map((d, index) =>
+            }) : (region === regionOn && type === "all" ? dataRegion.slice(firstPostIndex, lastPostIndex).map((d, index) =>
             <Attraction location={d.properties.location}
                         description={d.properties.description}
                         title={d.properties.name}
@@ -124,7 +121,7 @@ const Attractions = () => {
                 <Button type="default" onClick={onClickChuyRegion}
                         className={region === "chuy" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Чуй</Button>
                 <Button type="default" onClick={onClickTalasRegion}
-                        className={region === "talas" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Талас< /Button>
+                        className={region === "talas" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Талас</Button>
                 <Button type="default" onClick={onClickOshRegion}
                         className={region === "osh" ? style.geojsonToggle__btn__active : style.geojsonToggle__btn}>Ош</Button>
                 <Button type="default" onClick={onClickBatkenRegion}
@@ -139,7 +136,7 @@ const Attractions = () => {
         </div>
         <div className={style.selectBlock}>
             <Select
-                defaultValue="All"
+                defaultValue="all"
                 style={{
                     width: 120,
                 }}
@@ -147,7 +144,7 @@ const Attractions = () => {
 
                 options={[
                     {
-                        value: 'All',
+                        value: 'all',
                         label: 'Все',
                     },
                     {

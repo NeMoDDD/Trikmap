@@ -16,6 +16,7 @@ import Waterfall from '../../assets/img/image 16.jpg';
 import AlaArcha from '../../assets/img/image 6.jpg';
 import JetiOguz from '../../assets/img/image 19.jpg'
 import LandMarks from './components/landMarks/LandMarks';
+import MapComponent from "../Map/Json/MapGeoJsonMarkers";
 
 export default function Content() {
   const images = [
@@ -84,6 +85,7 @@ export default function Content() {
         variants={variants}
       >
         <Map />
+        {/*  <MapComponent/>*/}
       </motion.div>
       <motion.div
         className={s.content}

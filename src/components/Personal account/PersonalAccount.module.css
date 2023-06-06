@@ -1,11 +1,12 @@
 .main {
     height: 100vh;
+    max-height: available;
     width: 100%;
+    padding: 1em 5em 0 5em;
 }
 
 .userInfo {
     display: flex;
-    justify-content: space-around;
 }
 
 .profileImgBlock__userInfo {
@@ -14,5 +15,9 @@
 }
 
 .profileImg__userInfo {
-    width: 150px;
+    width: 200px;
+}
+
+.userInfo__summary {
+    margin-left: 20px;
 }

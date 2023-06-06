@@ -1,12 +1,16 @@
 .main {
     width: 100%;
-    height: 100vh;
+    height: auto;
+    padding: 0 5em;
 }
 
 .attraction {
     display: flex;
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 3em;
+    border: 1px solid #67a1d6;
+    border-radius: 15px;
+    padding: 25px 30px;
 }
 
 .attraction__img {
@@ -20,7 +24,10 @@
 
 .contentBlock__attraction {
     width: 60%;
+    padding: 0 0 10px 0;
     margin-left: 2em;
+    height: 400px;
+    overflow-y: scroll;
 }
 
 .geojsonToggle__btn__active {
@@ -54,4 +61,35 @@
 .selectBlock {
     display: flex;
     justify-content: space-around;
+}
+
+@media screen and (max-width: 900px){
+    .main {
+        padding: 0 1em;
+    }
+    .geojsonToggle__btn {
+        margin-top: 1em;
+    }
+    .geojsonToggle__btn__active {
+        margin-top: 1em;
+    }
+    .selectBlock {
+        margin-bottom: 1em;
+    }
+    .attraction {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .imageBlock__attraction {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .contentBlock__attraction {
+        width: 100%;
+        margin-left: 10px;
+        height: 200px;
+    }
+    .contentBlock__attraction p {
+        font-size: 14px;
+    }
 }
