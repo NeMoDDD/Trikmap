@@ -90,8 +90,11 @@ select:active, select:focus{
 
 .hotel{   
     height: 100%;  
+}   
+.wrapper{ 
     background-color: #ededed;
-}  
+
+}
 .hotel__container{    
     padding-top: 3%;
     height: 100%;  
@@ -223,7 +226,7 @@ select:active, select:focus{
     display: flex; 
     justify-content: center; 
     align-items: center;
-    margin: 4% 0 5% 0 ;
+   padding:  4% 0 5% 0 ;
 } 
 @media screen and (max-width:1574px) {
     .hotel__box{ 

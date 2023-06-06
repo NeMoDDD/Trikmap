@@ -205,7 +205,8 @@ const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC,rat
 export const setNewHotel =  (data) =>{   
     return async ()=>{ 
         const photo = data.photo.flatMap(({ value }) => value); 
-        await setDoc(doc(ref, data.name), {...data, photo});
+        await setDoc(doc(ref, data.name), {...data, photo}); 
+        await setDoc(doc(commentRef, data.name), {});
       }
     } 
    

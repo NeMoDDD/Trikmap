@@ -19,7 +19,7 @@ import AttractionsContainer from "./components/Attractions/AttractionsContainer"
 import Error from './components/common/Error'
 import FormOrderHotel from './components/Hotel/HotelInfo/OrderHotel/FormOrder/FormOrderHotel';
 import ErrorCatch from './hoc/ErrorCatch';
-
+import AddHotelContainer from './components/Hotel/addHotel/addhotelContainer'
 
 function App() {
   return (
@@ -35,8 +35,8 @@ function App() {
         <Route path={'/register'} element={<RegisterPage />} />
         <Route path={'/personal-account'} element={<PersonalAccount />} />
         <Route path={'/attractions'} element={<AttractionsContainer />} />
-        <Route path='*' element={<Error />}
-        />
+        <Route path='*' element={<Error />} /> 
+        <Route path='/add' element={<AddHotelContainer/>}/>
       </Routes>
 
       <Footer />

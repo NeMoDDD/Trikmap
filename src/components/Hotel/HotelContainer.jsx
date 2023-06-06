@@ -21,8 +21,7 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
   }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]); 
   if(isFetch){ 
     return <Preloader/> 
-  }  
-            console.log('render'); 
+  }   
   return ( 
       <HotelInfo 
       getHotelsTC={getHotelsTC}
@@ -39,7 +38,7 @@ const mapStateToProps = (state) => {
         currentPage: getCurrentPage(state), 
         selectedHotelCity: getSelectedHotelCity(state),
         selectedHotelRegion: getSelectedHotelRegion(state), 
-        selectedHotelRating: getSelectedHotelRatingSelector(state)
+        selectedHotelRating: getSelectedHotelRatingSelector(state), 
     }
 }
 export default compose( 

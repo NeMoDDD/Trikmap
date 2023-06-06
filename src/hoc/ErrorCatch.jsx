@@ -1,9 +1,10 @@
 import { connect } from "react-redux"
 import { getError } from "../Selectors/AppSelecort"
-import Error from '../components/common/Error'
+import Error from '../components/common/Error' 
+import { setErrorAC } from "../reduxStore/appReducer"
 const ErrorCatch = ({children,...props}) =>{ 
     if(props.isError){ 
-        return <Error/>
+        return <Error setError = {props.setErrorAC}  />
     } 
     return children
 } 
@@ -12,4 +13,4 @@ const mapStateToProps = (state) =>{
         isError: getError(state)
     }
 }
-export default connect(mapStateToProps, {})(ErrorCatch)
+export default connect(mapStateToProps, {setErrorAC})(ErrorCatch)

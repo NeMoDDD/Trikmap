@@ -3,10 +3,10 @@ import Hotels from "./HotelInfo/Hotels"
 import HotelSearch from "./HotelInfo/HotelSearch"  
 import HotelPagination from "./HotelInfo/HotelPagination"
 import React from "react"
-
+import s from './HotelInfo/HotelInfo.module.css'
 const HotelInfo = React.memo((props) => {   
     return( 
-        <div> 
+        <div className={s.wrapper}> 
             <HotelSearch      
             getHotelsTC={props.getHotelsTC}
             getSerchingRatingTC={props.getSerchingRatingTC} 
