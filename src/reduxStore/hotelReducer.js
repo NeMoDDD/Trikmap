@@ -2,7 +2,6 @@ import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromS
 import {db } from '../components/Authorization/firebase/firebase' 
 import axios from "axios";
 import { setErrorAC } from "./appReducer";
-
 const ref = collection(db, "Hotels"); 
 const commentRef = collection(db, "Comments");
  let initialState = { 
@@ -17,7 +16,7 @@ const commentRef = collection(db, "Comments");
     selectedHotelRating: [], 
     coordinates: [], 
     isSucceed: false, 
-    comments: [], 
+    comments: [],  
 }   
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue +'GET_CURRENT_PAGE'
@@ -31,7 +30,7 @@ const SET_SEARCH = defaultValue +'SET_SEARCH'
 const GET_TOTAL_DOCS = defaultValue +'GET_TOTAL_DOCS'   
 const SET_COORDINATES = defaultValue +'SET_COORDINATES' 
 const SET_SUCCEED = defaultValue + 'SET_SUCCEED' 
-const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS' 
+const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'  
 export const hotelReducer = (state = initialState, action) =>{ 
      switch(action.type){ 
         case SET_HOTELS: {  
@@ -118,6 +117,7 @@ export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data })
 const setSucceedAC = (data) =>({type:SET_SUCCEED, data})
 const setCoordinatedAC = (data) =>({type:SET_COORDINATES, data}) 
 const getHotelComments = (data) =>({type: GET_HOTEL_COMMENTS, data})  
+// const setErrorAC = (data) => ({type: SET_HOTEL_ERROR, data}) 
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {    
@@ -156,12 +156,12 @@ export const getOrderHotelTC = (document) => {
       const docRef = doc(ref, document);
       const docSnap = await getDoc(docRef); 
       if (docSnap.exists()) { 
+        dispatch(getCommentsTC(document))
         const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
         const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
         const response = await axios.get(apiUrl);    
         dispatch(setCoordinatedAC(response.data))
         dispatch(getOrderingHotelAC(docSnap.data())); 
-        dispatch(getCommentsTC(document))
       }
     } catch (error) { 
       dispatch(setErrorAC(true))

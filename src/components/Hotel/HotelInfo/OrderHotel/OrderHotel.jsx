@@ -1,4 +1,4 @@
-import { NavLink,Link, useLocation } from 'react-router-dom';
+import { NavLink,Link} from 'react-router-dom';
 import s from './OrderHotel.module.css'
 import Advantages from '../../../common/Advantages'; 
 import wifiIcon from '../../../../assets/img/wifi_icon.png' 
@@ -22,7 +22,6 @@ import CommentContainer from './CommentsHotel/CommentContainer';
 
 
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
-    const info = useLocation() 
     return(   
         <div className={s.hotel}>  
         <div className={s.hotel__container}> 
@@ -62,7 +61,7 @@ const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{
                  <div className={s.hotel__order}> 
                     <div className={s.hotel__order_wrapper}> 
                     <Link className={s.order_link} to={orderingHotel.booking}><button className={s.order_btn}>Забронировать на Booking</button></Link> 
-                    <Link className={s.order_link} to={`/hotels/${orderingHotel.name}/order`}><button className={s.order_btn}>Забронировать у нас</button></Link>
+                    <Link target='_blank' className={s.order_link} to={`/hotels/${orderingHotel.name}/order`}><button className={s.order_btn}>Забронировать у нас</button></Link>
                     </div>
                  </div>
                  <div className={s.hotel__addvantages}>   

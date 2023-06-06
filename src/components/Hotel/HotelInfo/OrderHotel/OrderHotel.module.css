@@ -75,17 +75,21 @@
     font-weight: 400; 
     line-height: 32px;
     font-size: 21px;
-    color: #4f4f4f;
+    color: #4f4f4f; 
+
 } 
 .hotel__map{   
-    
+    position: relative;
     margin-top: 7%;    
-display: grid;  
-place-self: center;
+display: grid I !important;  
+place-self: center; 
     height: 50vh; 
     width: 80%;
 } 
-.map{   
+.map{      
+    top: 0; 
+    left: 0; 
+    width: 100%;
     border: 2px solid #67a1d6;
     height: 100%; border-radius: 10px;
     box-shadow: #67a1d6 0px 3px 8px;

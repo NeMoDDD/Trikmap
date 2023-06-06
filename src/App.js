@@ -27,7 +27,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Content />} />
-        <Route path='/hotels' element={<ErrorCatch> <HotelContainer /> </ErrorCatch>} />
+        <Route path='/hotels' element={<ErrorCatch> <HotelContainer/> </ErrorCatch>} />
         <Route path='/hotels/:hotel' element={<ErrorCatch><OrderingHotel /></ErrorCatch>} />
         <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
         <Route path='/hotels/:hotel/order' element={<ErrorCatch><FormOrderHotel/> </ErrorCatch>}/>
