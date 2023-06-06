@@ -1,3 +1,16 @@
-export const getToursSelector = (state) =>{ 
-    return state.tourReducer.tours
-}
+import { createSelector } from 'reselect';
+
+const getToursState = state => state.tourPage;
+
+export const  getToursSelector = createSelector(
+  [getToursState],
+  tourPage => tourPage.tours
+); 
+export const isFetchSelector = createSelector( 
+    [getToursState], 
+    tourPage => tourPage.isFetching
+) 
+export const defineTourSelector = createSelector( 
+    [getToursState], 
+    tourPage => tourPage.selectedTour
+)

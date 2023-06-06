@@ -20,6 +20,7 @@ import Error from './components/common/Error'
 import FormOrderHotel from './components/Hotel/HotelInfo/OrderHotel/FormOrder/FormOrderHotel';
 import ErrorCatch from './hoc/ErrorCatch';
 import AddHotelContainer from './components/Hotel/addHotel/addhotelContainer'
+import DefineTourContainer from './components/Tours/AllTours/defineTour/DefineTourContainer';
 
 function App() {
   return (
@@ -27,10 +28,13 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Content />} />
+         
         <Route path='/hotels' element={<ErrorCatch> <HotelContainer/> </ErrorCatch>} />
         <Route path='/hotels/:hotel' element={<ErrorCatch><OrderingHotel /></ErrorCatch>} />
-        <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
         <Route path='/hotels/:hotel/order' element={<ErrorCatch><FormOrderHotel/> </ErrorCatch>}/>
+         
+        <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
+        <Route path='/tours/:tour' element={<DefineTourContainer/>}/> 
         <Route path={'/login'} element={<LoginPage />} />
         <Route path={'/register'} element={<RegisterPage />} />
         <Route path={'/personal-account'} element={<PersonalAccount />} />
