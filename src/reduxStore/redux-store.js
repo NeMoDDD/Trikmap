@@ -4,11 +4,13 @@ import { hotelReducer } from './hotelReducer'
 import tourReducer from './tourReducer'
 import userReducer from '../components/store/slices/userSlise' 
 import attractionReducer from '../components/store/slices/attractionsSlice'
+import { appReducer } from './appReducer'
 let reducers = combineReducers({  
     hotelPage: hotelReducer,
     tourReducer, 
     user: userReducer,
-    attractions: attractionReducer,
+    attractions: attractionReducer, 
+    app: appReducer
 }) 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

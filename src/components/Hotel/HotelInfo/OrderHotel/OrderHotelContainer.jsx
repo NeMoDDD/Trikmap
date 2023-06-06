@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { useLocation,useNavigate,useParams } from "react-router-dom"; 
-import {    getOrderHotelTC } from "../../../../reduxStore/hotelReducer";
+import {    getOrderHotelTC, getCommentsTC } from "../../../../reduxStore/hotelReducer";
   import React from "react"; 
   import OrderHotel from "./OrderHotel";
 import { isFetching } from "../../../../Selectors/HotelSelectors";
@@ -8,7 +8,8 @@ import { Preloader } from "../../../common/Preloader";
 class OrderHotelContainer extends React.Component{  
     componentDidMount( ){ 
         let hotelName = this.props.router.params.hotel  
-        this.props.getOrderHotelTC(hotelName) 
+        //this.props.getCommentsTC(hotelName)
+        this.props.getOrderHotelTC(hotelName)   
     } 
     render(){  
         if(this.props.isFetch){ 
@@ -45,6 +46,6 @@ const mapStateToProps = (state) =>{
         coordinates: state.hotelPage.coordinates
     }
 }
-export default connect(mapStateToProps, {getOrderHotelTC})(withRouter(OrderHotelContainer))
+export default connect(mapStateToProps, {getOrderHotelTC,getCommentsTC})(withRouter(OrderHotelContainer))
 
 

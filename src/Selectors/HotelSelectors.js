@@ -41,4 +41,16 @@ export const getSelectedHotelRegion = createSelector(
 export const getSelectedHotelRatingSelector = createSelector(
   [getHotelPageState],
   hotelPage => hotelPage.selectedHotelRating
+); 
+export const getOrderingHotelOptions= createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.orderingHotel
+); 
+export const isSucceedSelector= createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.isSucceed
+); 
+export const getCommentsSelector= createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.comments
 );

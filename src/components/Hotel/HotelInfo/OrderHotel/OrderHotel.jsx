@@ -1,4 +1,4 @@
-import { NavLink,Link } from 'react-router-dom';
+import { NavLink,Link, useLocation } from 'react-router-dom';
 import s from './OrderHotel.module.css'
 import Advantages from '../../../common/Advantages'; 
 import wifiIcon from '../../../../assets/img/wifi_icon.png' 
@@ -18,9 +18,11 @@ import "swiper/css/thumbs";
 //import "./style.css";
 
 import { FreeMode, Navigation, Thumbs } from "swiper"; 
+import CommentContainer from './CommentsHotel/CommentContainer';
 
 
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
+    const info = useLocation() 
     return(   
         <div className={s.hotel}>  
         <div className={s.hotel__container}> 
@@ -74,7 +76,10 @@ const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{
                 </div>  
                 {coordinates.length > 0 && <div className={s.hotel__map}>   
                     <OrderMap  lon={coordinates[0].lon} lat={coordinates[0].lat}/> 
-                </div>}
+                </div>} 
+                <div className={s.hotel__comments}> 
+                    <CommentContainer hotel={orderingHotel.name}/>
+                </div>
             </div>
         </div>
         </div>

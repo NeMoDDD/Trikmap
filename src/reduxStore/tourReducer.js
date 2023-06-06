@@ -1,15 +1,13 @@
-import {collection,getDocs,doc,getDoc, query, limit,where, orderBy,setDoc, getCountFromServer} from "@firebase/firestore";   
+import {collection,getDocs,doc,getDoc} from "@firebase/firestore";   
 import {db} from '../components/Authorization/firebase/firebase'
 import { toggleFetchingAC } from "./hotelReducer";
-
+import { setErrorAC } from "./appReducer";
 const tourRef = collection(db, "Tours")
 
 const defaultType = 'TOUR_REDUCER/'
 const SET_TOURS = defaultType +'SET_TOURS'
 const SET_SELECTED_TOUR = defaultType + 'SET_SELECTED_TOUR'
 const TOGGLE_FETCH = defaultType + 'TOGGLE_FETCH' 
-const GET_TOTAL_TOURS = defaultType + 'GET_TOTAL_TOURS' 
-const SET_TOUR_ERROR = defaultType + 'SET_TOUR_ERROR' 
 const initialState = { 
     // totalDocs : null, 
     // pageSize: 2, 
@@ -17,7 +15,6 @@ const initialState = {
     tours : [],  
     isFetching: false, 
     selectedTour: [], 
-    error: false
 } 
 const tourReducer = (state = initialState, action) =>{ 
     switch(action.type){  
@@ -37,12 +34,6 @@ const tourReducer = (state = initialState, action) =>{
                 ...state, 
                 isFetching: action.data 
             }
-        }  
-        case SET_TOUR_ERROR:{ 
-            return{ 
-                ...state, 
-                error: action.data
-            }
         } 
         default: 
         return state
@@ -52,7 +43,7 @@ const tourReducer = (state = initialState, action) =>{
 const setTourAC = (data) => ({type:SET_TOURS,data})
 const setSelectedTourAC = (data) =>({type: SET_SELECTED_TOUR, data}) 
 const toggleLoaderAC = (data) =>({type:TOGGLE_FETCH , data}) 
-const setErrorAC = (data) =>({type:SET_TOUR_ERROR, data})
+
 export const getTourTC = () => async(dispatch) =>{ 
     dispatch(toggleLoaderAC(true)) 
     try{ 

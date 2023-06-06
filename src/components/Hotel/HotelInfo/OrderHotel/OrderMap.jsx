@@ -9,8 +9,7 @@ const customIcon = L.icon({
     iconSize: [32, 32],
     iconAnchor: [16, 32],
    });  
-const OrderMap = React.memo((props) =>{ 
-    debugger    
+const OrderMap = React.memo((props) =>{  
     const ZOOM_LEVEL = 20.5;
     const mapRef = useRef();  
     const mapSettings = { 
