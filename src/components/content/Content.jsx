@@ -84,8 +84,8 @@ export default function Content() {
         animate={inViewMap ? 'visible' : 'hidden'}
         variants={variants}
       >
-        <Map />
-        {/*  <MapComponent/>*/}
+        {/*<Map />*/}
+          <MapComponent/>
       </motion.div>
       <motion.div
         className={s.content}
