@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { Marker, FeatureGroup, Popup } from 'react-leaflet';
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../../Map.css"
+import {Image} from "antd";
 const fetchData = function fetchData(url, options) {
     let request = fetch(url, options);
 
@@ -35,7 +36,7 @@ export default function JalalAbadGeoJsonLayer ({url, cluster}) {
             {data.map(f => (
                 <Marker
                     key={f.properties.id}
-                    position={f.geometry.coordinate.reverse()}
+                    position={f.geometry.coordinate}
                 >
                     <Popup
                         maxWidth={250}
@@ -44,7 +45,7 @@ export default function JalalAbadGeoJsonLayer ({url, cluster}) {
                         className={'popup-fixed'}
                         autoPan={false}>
                         <div className="popup-info">
-                            <img src={f.properties.image} alt="photo of object" className={"image-object"}/>
+                            <Image src={f.properties.image} alt="photo of object" className={"image-object"}/>
                             <p><span>Название: </span>{f.properties.name}</p>
                             <p><span>Местоположение: </span>{f.properties.location}</p>
                             <p><span>Описание: </span>{f.properties.description}</p>
