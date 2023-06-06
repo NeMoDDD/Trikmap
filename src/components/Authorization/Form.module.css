@@ -1,0 +1,22 @@
+.registerForm__input__error {
+    border: 1px solid red;
+    width: 70%;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.registerForm__input {
+    width: 70%;
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.error__message {
+    color: red;
+    margin-top: 5px;
+}
+
+.registerForm__btn {
+    width: auto;
+    margin-top: 15px;
+}

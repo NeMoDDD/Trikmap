@@ -7,10 +7,10 @@ import './App.css';
 import Header from './components/header/Header';
 import Content from './components/content/Content'
 import Footer from './components/footer/Footer';
-// import { lazy } from 'react';
-// const HotelContainer = lazy(()=> import('./components/Hotel/HotelContainer')) 
-// const OrderingHotel = lazy(()=> import('./components/Hotel/HotelInfo/OrderHotel/OrderHotelContainer')) 
-// const ToursContainer = lazy(()=> import('./components/Tours/TourContainer')) 
+import {lazy} from 'react';
+// const HotelContainer = lazy(()=> import('./components/Hotel/HotelContainer'))
+// const OrderingHotel = lazy(()=> import('./components/Hotel/HotelInfo/OrderHotel/OrderHotelContainer'))
+// const ToursContainer = lazy(()=> import('./components/Tours/TourContainer'))
 import HotelContainer from './components/Hotel/HotelContainer'
 import OrderingHotel from './components/Hotel/HotelInfo/OrderHotel/OrderHotelContainer'
 import ToursContainer from './components/Tours/TourContainer'

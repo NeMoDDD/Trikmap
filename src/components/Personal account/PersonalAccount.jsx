@@ -98,17 +98,11 @@ const PersonalAccount = () => {
                                     {/*</Upload>*/}
                                 </div>
                             </div>
-                            <div>
-                                <h3>{nickname}</h3>
-                                <h3>{email}</h3>
-                            </div>
-                            <div>
-                                <Button block onClick={() => {
-                                    dispatch(removeUser())
-                                }}>Выйти</Button>
+                            <div className={style.userInfo__summary}>
+                                <h3>Имя:  {nickname}</h3>
+                                <h3>Почта:  {email}</h3>
                             </div>
                         </div>
-                        <NavLink to={"/"}>Home</NavLink>
                     </div> :
                     <Navigate to={"/login"}/>
             }

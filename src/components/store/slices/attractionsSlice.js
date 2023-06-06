@@ -16,37 +16,18 @@ const initialState = {
     totalCountOsh: data.osh.length,
     totalCountTalas: data.talas.length,
     totalCountAll: (data.chuy.length + data.batken.length + data.issykkol.length + data.jalalabad.length + data.naryn.length + data.osh.length + data.talas.length),
-    totalCountOfType: 1,
 }
 
 const attractionsSlice = createSlice({
     name: "attractions",
     initialState,
     reducers: {
-        setAttractions(state, action) {
-            state.attractionsList = action.payload.attractionsList
-        },
-        setTotalCount(state, action) {
-            state.totalCount = action.payload.totalCount
-        },
         setCurrentPage(state, action) {
             state.currentPage = action.payload.currentPage
         },
-        setTotalCountOfType(state, action) {
-            return {
-                ...state,
-                totalCountOfType: action.payload.totalCountOfType
-            }
-        }
     }
 })
 
-export const {setAttractions, setTotalCount, setCurrentPage, setTotalCountOfType} = attractionsSlice.actions
-
-export const setAttractionsTC = (data) => {
-    return async (dispatch) => {
-        dispatch(setAttractionsTC(data))
-    }
-}
+export const {setCurrentPage} = attractionsSlice.actions
 
 export default attractionsSlice.reducer

@@ -1,8 +1,7 @@
 import style from "./Attraction.module.css"
-import { Image } from 'antd';
+import { Image, Skeleton} from 'antd';
 
 const Attraction = ({imgSrc, title, location, description}) => {
-    console.log(imgSrc)
     return (
         <div className={style.attraction}>
             <div className={style.imageBlock__attraction}>

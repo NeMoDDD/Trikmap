@@ -3,6 +3,7 @@ import "./style.css"
 import {useState} from "react";
 import {Button, Input} from "antd";
 import {EyeTwoTone, EyeInvisibleOutlined} from '@ant-design/icons';
+import style from "./Form.module.css"
 
 const isValidEmail = email =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -44,9 +45,9 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     }}
                     render={({field}) => <Input {...field}
                                                 placeholder="Имя"
-                                                className="register-form__input"
+                                                className={errors.nickname ? style.registerForm__input__error : style.registerForm__input}
                     />}/> : null }
-                {errors.nickname && <span>{errors.nickname.message}</span>}
+                {errors.nickname && <span className={style.error__message}>{errors.nickname.message}</span>}
 
                 <Controller
                     name="email"
@@ -57,9 +58,9 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     }}
                     render={({field}) => <Input {...field}
                                                 placeholder="Email"
-                                                className="register-form__input"
+                                                className={errors.email ? style.registerForm__input__error : style.registerForm__input}
                     />}/>
-                {errors.email && <span>{errors.email.message || "Неверный email"}</span>}
+                {errors.email && <span className={style.error__message}>{errors.email.message || "Неверный email"}</span>}
                 <Controller
                     name="password"
                     control={control}
@@ -73,16 +74,16 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                                                          iconRender={(visible) => (visible ? <EyeTwoTone/> :
                                                              <EyeInvisibleOutlined/>)}
                                                          placeholder="Пароль"
-                                                         className="register-form__input"
+                                                         className={errors.password ? style.registerForm__input__error : style.registerForm__input}
                     />}
                 />
-                {errors.password && <span>{errors.password.message || "Это поле обязательное!"}</span>}
-                {!isAuthSubmit && <span>{errorMessage}</span>}
+                {errors.password && <span className={style.error__message}>{errors.password.message || "Это поле обязательное!"}</span>}
+                {!isAuthSubmit && <span className={style.error__message}>{errorMessage}</span>}
                 <Controller
                     name="btn-submit"
                     control={control}
                     render={({field}) => <Button {...field}
-                                                 className="register-form__btn"
+                                                 className={style.registerForm__btn}
                                                  type="primary"
                                                  htmlType="submit"
                     >{btnValue}</Button>}
