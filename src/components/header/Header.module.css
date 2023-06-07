@@ -124,7 +124,7 @@
 
   .header a {
     padding: 7px;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .logo {
@@ -144,7 +144,7 @@
   .login .registerButton {
     width: 70px;
     height: 30px;
-    font-size: 10px;
+    font-size: 15px;
     border-radius: 5px
   }
 }
@@ -203,13 +203,20 @@
   }
 }
 .menu{
+  display: flex;
+  justify-content: left;
   position: relative;
   z-index: 1;
 }
 .customMenuList a{
   padding: 0;
+  
 }
-
+.customMenuList{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start
+}
 .customMenuList button {
   background-color: #3b6790;  
   border: none;

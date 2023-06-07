@@ -57,8 +57,9 @@ export default function Content() {
   };
 
   return (
-    <div className={s.container}>
+      <div>
       <Welcome />
+      <div className={s.container}>
       <motion.div
         className={s.content}
         ref={refWonder}
@@ -96,6 +97,7 @@ export default function Content() {
       >
         <LandMarks />
       </motion.div>
+    </div>
     </div>
   );
 }
