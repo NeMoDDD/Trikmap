@@ -9,14 +9,13 @@
     justify-content: center;
     align-items: flex-start;
     text-align: start;
-    background-image: url(../../../../assets/img/Welcome.png);
+    background-image: url(../../../../assets/img/welcome.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 5%;
-    border-radius: 4% 4% 0 0;
-
 }
+
 .title{ 
     width: 70%;
     display: flex;
@@ -50,6 +49,7 @@
 @media (max-width: 767px) {
     .main{
         max-width: 100%;
+        justify-self: center;
     }
     .title{
         font-size: 15px;
