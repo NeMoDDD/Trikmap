@@ -6,9 +6,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e6e5e5;
+    background-color: #e6e5e5; 
+    position: relative;
 }
-
+.back{ 
+    position: absolute; 
+    top:2%; 
+    left:8% ;
+    cursor: pointer
+} 
+.back_title{ 
+    font-family:  'Poppins0', sans-serif; 
+    font-size: 24px; 
+    font-weight: 600; 
+    
+}
 .form {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: white;

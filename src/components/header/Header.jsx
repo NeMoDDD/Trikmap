@@ -18,13 +18,22 @@ const NavLinkMotion = motion(NavLink);
 
 const Header = () => {
     const dispatch = useDispatch()
-    const { isAuth } = useAuth()
+    const {isAuth} = useAuth()
     return (
         <div className={classes.main}>
             <div className={classes.header}>
                 <div className={classes.logo}>
-                    <img src={Logo} alt="logo"/>
-                    <h3>TRIKMAP</h3>
+                    <NavLinkMotion
+                        to="/"
+                    >
+                        <img src={Logo} alt="logo"/>
+                    </NavLinkMotion>
+                    <NavLinkMotion
+                        to="/"
+                    >
+                        <h3>TRIKMAP</h3>
+
+                    </NavLinkMotion>
                 </div>
                 <div className={classes.link}>
                     <NavLinkMotion
@@ -69,7 +78,7 @@ const Header = () => {
                         Личный кабинет
                     </NavLinkMotion>
                 </div>
-                { !isAuth ? <div className={classes.login}>
+                {!isAuth ? <div className={classes.login}>
                     <NavLinkMotion
                         to="/login"
                         activeClassName={classes.activeLink}
@@ -90,7 +99,6 @@ const Header = () => {
                     <NavLinkMotion
                         onClick={() => dispatch(removeUser())}
                         className={classes.registerButton}
-                        whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Выйти
@@ -99,27 +107,27 @@ const Header = () => {
 
                 <div className={classes.menu}>
                     <Menu className={classes.menu_wrapper}>
-            <MenuButton as={Button} className={classes.customMenuButton}>
-              Меню
-            </MenuButton >
-            <MenuList className={classes.customMenuList}>
-              <NavLink to='/'>
-                <MenuItem>Главная</MenuItem>
-              </NavLink>
-              <NavLink to='/hotels'>
-                <MenuItem>Отели</MenuItem>
-              </NavLink>
-              <NavLink to='/tours'>
-                <MenuItem>Туры</MenuItem>
-              </NavLink>
-              <NavLink to='/attractions'>
-                <MenuItem>Достопримечательности</MenuItem>
-              </NavLink>
-              <NavLink to='/personal-account'>
-                <MenuItem>Личный кабинет</MenuItem>
-              </NavLink>
-            </MenuList>
-          </Menu>
+                        <MenuButton as={Button} className={classes.customMenuButton}>
+                            Меню
+                        </MenuButton>
+                        <MenuList className={classes.customMenuList}>
+                            <NavLink to='/'>
+                                <MenuItem>Главная</MenuItem>
+                            </NavLink>
+                            <NavLink to='/hotels'>
+                                <MenuItem>Отели</MenuItem>
+                            </NavLink>
+                            <NavLink to='/tours'>
+                                <MenuItem>Туры</MenuItem>
+                            </NavLink>
+                            <NavLink to='/attractions'>
+                                <MenuItem>Достопримечательности</MenuItem>
+                            </NavLink>
+                            <NavLink to='/personal-account'>
+                                <MenuItem>Личный кабинет</MenuItem>
+                            </NavLink>
+                        </MenuList>
+                    </Menu>
                 </div>
             </div>
         </div>

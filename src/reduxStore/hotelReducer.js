@@ -1,7 +1,10 @@
-import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer} from "@firebase/firestore";   
+import {collection,getDocs,doc,getDoc, query, limit,where, setDoc, getCountFromServer,  updateDoc,arrayUnion } from "@firebase/firestore";   
 import {db } from '../components/Authorization/firebase/firebase' 
 import axios from "axios";
-const ref = collection(db, "Hotels");
+import { setErrorAC } from "./appReducer";
+
+const ref = collection(db, "Hotels"); 
+const commentRef = collection(db, "Comments");
  let initialState = { 
     totalDocs : null, 
     pageSize: 3, 
@@ -12,7 +15,9 @@ const ref = collection(db, "Hotels");
     selectedHotelCity: [], 
     selectedHotelRegion: [], 
     selectedHotelRating: [], 
-    coordinates: []
+    coordinates: [], 
+    isSucceed: false, 
+    comments: [], 
 }   
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue +'GET_CURRENT_PAGE'
@@ -24,8 +29,9 @@ const TOGGLE_FETCH =defaultValue +'TOGGLE_FETCH'
 const SET_HOTELS = defaultValue +'SET_HOTELS' 
 const SET_SEARCH = defaultValue +'SET_SEARCH' 
 const GET_TOTAL_DOCS = defaultValue +'GET_TOTAL_DOCS'   
-const SET_COORDINATES = defaultValue +'SET_COORDINATES'
-
+const SET_COORDINATES = defaultValue +'SET_COORDINATES' 
+const SET_SUCCEED = defaultValue + 'SET_SUCCEED' 
+const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS' 
 export const hotelReducer = (state = initialState, action) =>{ 
      switch(action.type){ 
         case SET_HOTELS: {  
@@ -84,7 +90,15 @@ export const hotelReducer = (state = initialState, action) =>{
         } 
         case SET_COORDINATES:{ 
           return {...state, coordinates: action.data}
-        }
+        } 
+        case SET_SUCCEED:{ 
+          return{...state, isSucceed:action.data}
+        } 
+        case GET_HOTEL_COMMENTS: { 
+          return { 
+            ...state, comments: action.data
+          }
+        } 
         default: 
         return state
      }
@@ -101,36 +115,56 @@ export const getSelectedRegionAC = (data) =>({type: GET_SELECT_HOTEL_REGION, dat
 export const toggleFetchingAC = (toggle) =>({type: TOGGLE_FETCH, toggle})
 export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
 export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data }) 
- 
+const setSucceedAC = (data) =>({type:SET_SUCCEED, data})
 const setCoordinatedAC = (data) =>({type:SET_COORDINATES, data}) 
+const getHotelComments = (data) =>({type: GET_HOTEL_COMMENTS, data})  
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {    
-        dispath(toggleFetchingAC(true))
+      dispath(toggleFetchingAC(true))
+      try{ 
         const citySnapshot = await getDocs(ref);
         const cityList = citySnapshot.docs.map(doc => doc.data());   
         const snapshot = await getCountFromServer(ref);  
         Promise.all([dispath(getTotalDocsAC(snapshot.data().count)), 
-        dispath(setHotelsAC(cityList)),  
-        dispath(toggleFetchingAC(false)),]) 
+        dispath(setHotelsAC(cityList))]) 
+      } catch{ 
+        dispath(setErrorAC(true))
+      } 
+      dispath(toggleFetchingAC(false))
+        }} 
+
+    export const getCommentsTC = (document) => {
+      return async (dispatch) => { 
+        dispatch(toggleFetchingAC(true))
+        try {
+          const docRef = doc(commentRef, document);
+          const docSnap = await getDoc(docRef); 
+          if (docSnap.exists()) {    
+          dispatch(getHotelComments(docSnap.data()))
+          }
+        } catch (error) { 
+          dispatch(setErrorAC(true))
         } 
-    }
-  
-export const getOrderHotelTC = (document) => {
-  return async (dispatch) => { 
+        dispatch(toggleFetchingAC(false))
+      };
+    };
+export const getOrderHotelTC = (document) => { 
+  return async (dispatch) => {  
     dispatch(toggleFetchingAC(true))
-    try {
+    try { 
       const docRef = doc(ref, document);
       const docSnap = await getDoc(docRef); 
       if (docSnap.exists()) { 
-      const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
-      const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
-      const response = await axios.get(apiUrl);    
-      dispatch(setCoordinatedAC(response.data))
-      dispatch(getOrderingHotelAC(docSnap.data()));
+        const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
+        const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
+        const response = await axios.get(apiUrl);    
+        dispatch(setCoordinatedAC(response.data))
+        dispatch(getOrderingHotelAC(docSnap.data())); 
+        dispatch(getCommentsTC(document))
       }
-    } catch (error) {
-      console.log("Error getting document:", error);
+    } catch (error) { 
+      dispatch(setErrorAC(true))
     } 
     dispatch(toggleFetchingAC(false))
   };
@@ -163,8 +197,7 @@ const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC,rat
   limit(20)
   ); 
   const querySnap = await getDocs(city);
-  const data = querySnap.docs.map((snap) => snap.data()); 
-  console.log(data); 
+  const data = querySnap.docs.map((snap) => snap.data());  
   dispatch(getTotalDocsAC(data.length)); 
   dispatch(AC(data));
 }
@@ -172,7 +205,8 @@ const searchingOptionFlow = async(dispatch, optionMethod,searchingOption ,AC,rat
 export const setNewHotel =  (data) =>{   
     return async ()=>{ 
         const photo = data.photo.flatMap(({ value }) => value); 
-        await setDoc(doc(ref, data.name), {...data, photo});
+        await setDoc(doc(ref, data.name), {...data, photo}); 
+        await setDoc(doc(commentRef, data.name), {});
       }
     } 
    
@@ -183,6 +217,22 @@ export const setNewHotel =  (data) =>{
       const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city))); 
       const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));  
       Promise.all([dispatch(getSelectedHotelCityAC(cityOptions)),dispatch(getSelectedHotelRatingAC(ratingOptions)),dispatch(getSelectedRegionAC(regionOptions))]);
+} 
+export const setBookTC = (date,email,id,name, num,amount,type) => async(dispatch) =>{ 
+  try{ 
+    await setDoc(doc(db, "OrderingHotel",id), {data:date,email:email,id:id,name:name,number: num,amount: amount,type :type});  
+    dispatch(setSucceedAC(true))
+  }catch{ 
+    dispatch(setErrorAC(true))
+  }
+} 
+export const addCommentTC = (document, dataObj) => async(dispatch) =>{ 
+    const postRef = doc(commentRef, document);
+    await updateDoc(postRef, {
+      data: arrayUnion(dataObj)
+    }); 
+    dispatch(getCommentsTC(document))
+  
 }
 
 
