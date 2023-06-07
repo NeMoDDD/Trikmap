@@ -10,8 +10,23 @@ import NarynGeoJsonLayer from "../Regions/Naryn/NarynJsonLayerFunc";
 import JalalAbadGeoJsonLayer from "../Regions/JalalAbad/JalalAbadJsonLayerFunc";
 import IssykKolGeoJsonLayer from "../Regions/IssykKol/IssykKolJsonLayerFunc";
 import {Button} from "antd"
+import location from "../images/location.png"
+import lake from "../images/lake.png"
+import {connect, useSelector} from "react-redux";
+import {getToursSelector} from "../../../Selectors/TourSelectors";
+import {getTourTC} from "../../../reduxStore/tourReducer";
+import gorge from "../images/daddys-gorges.png";
+
 // указываем путь к файлам marker
-L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
+// L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
+// const {type} = useSelector(state => state.attractions)
+
+const customIcon = L.icon({
+    iconUrl: location,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+});
+
 
 class MapComponent extends React.Component {
     state = {
@@ -30,6 +45,9 @@ class MapComponent extends React.Component {
             {geoJsonIsVisible: true, name: "all"},
         ]
     };
+    componentDidMount() {
+        console.log(this.props.type)
+    }
 
     onGeojsonToggleAll = (e) => {
         this.setState(prevState => ({
@@ -178,25 +196,25 @@ class MapComponent extends React.Component {
 
 
                     {this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible &&
-                        <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible &&
-                        <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible &&
-                        <OshGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <OshGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible &&
-                        <BatkenGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <BatkenGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible &&
-                        <JalalAbadGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <JalalAbadGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible &&
-                        <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible &&
-                        <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false}/>
+                        <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
                     }
                 </MapContainer>
             </div>
@@ -204,4 +222,9 @@ class MapComponent extends React.Component {
     }
 }
 
-export default MapComponent;
+const mapStateToProps = (state) =>{
+    return{
+        type: state.attractions.type
+    }
+}
+export default connect(mapStateToProps, null)(MapComponent)

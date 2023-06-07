@@ -11,7 +11,7 @@ const fetchData = function fetchData(url, options) {
         .then(data => data);
 }
 
-export default function IssykKolGeoJsonLayer ({url, cluster}) {
+export default function IssykKolGeoJsonLayer ({url, cluster, marker}) {
     const [data, setData] = useState([]);
     useEffect(()=> {
         if (url) {
@@ -37,6 +37,7 @@ export default function IssykKolGeoJsonLayer ({url, cluster}) {
                 <Marker
                     key={f.properties.id}
                     position={f.geometry.coordinate}
+                    icon={marker}
                 >
                     <Popup
                         maxWidth={250}
