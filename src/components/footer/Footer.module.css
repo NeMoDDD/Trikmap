@@ -48,19 +48,24 @@
     .info{
         display: flex;
         flex-direction: column;
+        font-size: 18px;
     }
     .link{
-        align-items: center;
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center
+    
     }
     .follow{
         display: flex;
         justify-content: center;
-        margin-right: 43px;
+        align-items: center;
+        margin: 0;
     }
     .img{
+        height: 28px;
         display: inline-block;
-        margin-right: 14px;
     }
 }
 @media screen and (max-width: 400px){
@@ -68,11 +73,11 @@
         max-width: 100%;
     }
     .info{
-        width: 50%;
+        width: 90%;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
-        font-size: 10px;
+        font-size: 13px;
     }
     .link{
         justify-content: center;

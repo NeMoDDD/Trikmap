@@ -20,14 +20,14 @@ import MapComponent from "../Map/Json/MapGeoJsonMarkers";
 
 export default function Content() {
   const images = [
-    {imageUrl: Issyk, text: 'Озеро Иссык-Куль'}, 
-    {imageUrl: Sary, text: 'Озеро Сары-Челек'}, 
-    {imageUrl: Soun, text: 'Озеро Сон-Куль'}, 
-    {imageUrl: Ala, text: 'Озеро Ала-Куль'}, 
-    {imageUrl: Fireplace, text: 'Комлекс отдыха 12 коминов'}, 
-    {imageUrl: Waterfall, text: 'Водопад Слезы Барса'}, 
-    {imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'}, 
-    {imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}   
+    {status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль'},
+    {status: false, imageUrl: Sary, text: 'Озеро Сары-Челек'},
+    {status: false, imageUrl: Soun, text: 'Озеро Сон-Куль'},
+    {status: false, imageUrl: Ala, text: 'Озеро Ала-Куль'},
+    {status: false, imageUrl: Fireplace, text: 'Комлекс отдыха 12 коминов'},
+    {status: false, imageUrl: Waterfall, text: 'Водопад Слезы Барса'},
+    {status: false, imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'},
+    {status: false, imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}
   ];
   const imageAlt = 'Изображение';
 

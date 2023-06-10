@@ -27,7 +27,7 @@
   width: 80%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 
 }
 .logo a{
@@ -46,9 +46,14 @@
 .logo_img{
   height: 90px;
 }
-
+.login{
+  width: 21%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+}
 .login .registerButton {
-  padding: 12px 25px;
+  padding: 10px 18px;
   background-color: #007D34;
   border: none;
   border-radius: 10px;
@@ -158,6 +163,8 @@
     display: flex;   
     justify-content: center; 
     align-content: center;
+    position: relative;
+    z-index: 100000;
     /* height:0; */
   }
   .header {
@@ -179,7 +186,7 @@
     height: 60px;
   }
   .logo h3{
-    font-size: 8px;
+    font-size: 20px;
   }
 
   .login {
@@ -206,7 +213,7 @@
 .customMenuList{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start
+  justify-content: flex-start;
 }
 .customMenuList button {
   background-color: #3b6790;  
@@ -214,12 +221,12 @@
   padding: 6px 12px;
   margin: 2px;
   border-radius: 8px;
-  color: #fff;
+  color: #fff;  
 }
 .customMenuButton{
   background-color: #f6f6f6;
   border: none;
   color: #67a1d6;
   border-radius: 5px;
-  padding: 6px 12px;
+  padding: 6px 12px; 
 }

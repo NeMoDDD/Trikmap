@@ -4,7 +4,7 @@
 } */
 .main{
     width: 100%;
-    height: 43em;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -13,7 +13,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 5%;
 }
 
 .title{ 
@@ -45,7 +44,19 @@
     .main{
         max-width: 100%;
     }
-    
+    .title{
+        width: 100%;
+        height: 30em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        text-align: center;
+
+    }
+    .title h1{
+        font-size: 44px;
+    }
 }
 @media (max-width: 767px) {
     .main{

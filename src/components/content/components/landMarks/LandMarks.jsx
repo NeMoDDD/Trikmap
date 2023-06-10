@@ -1,4 +1,7 @@
 import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import {useDispatch, useSelector} from "react-redux"
 import {motion} from 'framer-motion';
 import {NavLink} from 'react-router-dom';
@@ -13,6 +16,14 @@ import {useNavigate} from "react-router-dom";
 const NavLinkMotion = motion(NavLink);
 
 export default function LandMarks() {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
+
     const push = useNavigate()
     const {type} = useSelector(state => state.attractions)
 
@@ -29,6 +40,7 @@ export default function LandMarks() {
     }
 
     return (
+        <Slider {...settings}>
         <div className={s.main}>
             <div className={s.title}>
                 <h2>Достопримечательности</h2>
@@ -54,5 +66,6 @@ export default function LandMarks() {
                 ))}
             </div>
         </div>
+    </Slider>
     );
 }
