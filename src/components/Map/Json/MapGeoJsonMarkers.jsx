@@ -196,25 +196,25 @@ class MapComponent extends React.Component {
 
 
                     {this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible &&
-                        <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <ChuyGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible &&
-                        <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <TalasGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible &&
-                        <OshGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <OshGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible &&
-                        <BatkenGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <BatkenGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible &&
-                        <JalalAbadGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <JalalAbadGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible &&
-                        <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <NarynGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                     {this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible &&
-                        <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" cluster={false} marker={customIcon}/>
+                        <IssykKolGeoJsonLayer url="kyrgyzstanPlaces.json" marker={customIcon}/>
                     }
                 </MapContainer>
             </div>
