@@ -106,11 +106,9 @@ const Header = () => {
                 </div>}
 
                 <div className={classes.menu}>
-                    <Menu className={classes.menu_wrapper}>
-                        <MenuButton as={Button} className={classes.customMenuButton}>
-                            Меню
-                        </MenuButton>
-                        <MenuList className={classes.customMenuList}>
+                    <Menu isLazy>
+                     <MenuButton as={Button} className={classes.customMenuButton}>Меню</MenuButton>
+                     <MenuList className={classes.customMenuList}>
                             <NavLink to='/'>
                                 <MenuItem>Главная</MenuItem>
                             </NavLink>
@@ -127,7 +125,7 @@ const Header = () => {
                                 <MenuItem>Личный кабинет</MenuItem>
                             </NavLink>
                         </MenuList>
-                    </Menu>
+</Menu>
                 </div>
             </div>
         </div>

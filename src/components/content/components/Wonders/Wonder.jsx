@@ -1,5 +1,4 @@
 import React, { useState} from 'react';
-import {motion} from 'framer-motion';
 import Heart from '../../../../assets/img/DefaultHeart.svg';
 import redHeart from '../../../../assets/img/redHeart.svg';
 import s from './Wonder.module.css'
