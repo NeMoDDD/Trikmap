@@ -21,7 +21,7 @@ import FormOrderHotel from './components/Hotel/HotelInfo/OrderHotel/FormOrder/Fo
 import ErrorCatch from './hoc/ErrorCatch';
 import AddHotelContainer from './components/Hotel/addHotel/addhotelContainer'
 import DefineTourContainer from './components/Tours/AllTours/defineTour/DefineTourContainer';
-
+import TourForm from './components/Tours/AllTours/defineTour/TourForm';
 function App() {
   return (
     <div className={classes.container}>
@@ -34,7 +34,8 @@ function App() {
         <Route path='/hotels/:hotel/order' element={<ErrorCatch><FormOrderHotel/> </ErrorCatch>}/>
          
         <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
-        <Route path='/tours/:tour' element={<DefineTourContainer/>}/> 
+        <Route path='/tours/:tour' element={<ErrorCatch><DefineTourContainer/></ErrorCatch>}/>  
+        <Route path='/tours/:tour/order' element={<ErrorCatch><TourForm/> </ErrorCatch>}/>
         <Route path={'/login'} element={<LoginPage />} />
         <Route path={'/register'} element={<RegisterPage />} />
         <Route path={'/personal-account'} element={<PersonalAccount />} />

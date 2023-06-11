@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.tour {
+    height: 100%;
+}
+
+.content { 
+    position: sticky;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+
+}
+.content__wrapper{  
+    height: 100%; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2))
+}
+.content__item {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content__description {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 54px;
+    line-height: 58px;
+    font-weight: 700;
+}
+
+.content__data {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 48px;
+    font-weight: 400;
+}
+
+.map {
+    height: 14em;
+    background-color: #eeeeee;
+}
+
+.map__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.map__title {
+    color: #67a1d6;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+.map__rope {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    line-height: 48px;
+    font-weight: 400;
+}
+
+.route {
+    padding: 5% 0 0 0;
+    height: 100%;
+}
+
+.route__container {
+    padding: 0 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.route__map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 60%;
+    border: 2px solid #67a1d6;
+    box-shadow: #67a1d6 0px 3px 8px;
+}
+
+.route__map>div {
+    height: 100%;
+    width: 100%;
+}
+
+.route__title {
+    padding-top: 6%;
+    width: 60%;
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    line-height: 34px;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+.plan {
+    padding-top: 5%; 
+    padding-bottom: 5%;
+    height: 100%;
+}
+
+.plan__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 22%;
+}
+
+.plan__item {
+    padding-top: 6%;
+}
+
+.plan__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.plan__title {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px;
+    line-height: 34px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.plan__subtitle {
+    padding-top: 3%;
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 31px;
+
+    font-weight: 300;
+}
+
+.tour__swiper_wrapper {
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.swiper__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.tour__swiper_big {
+    width: 100%;
+    height: 50%;
+
+}
+
+.tour__imgages {
+
+    width: 55%;
+}
+
+.swiper__img {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.details { 
+    background-color:#eeeeee;
+    height: 100%;
+    padding-top: 2.5%; 
+    padding-bottom: 3%;
+}
+
+.details__container {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 12%;
+}
+
+.details__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.details__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.details__title {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 31px;
+    font-weight: 400;
+    padding-bottom: 2%;
+}
+
+.details__link {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    line-height: 31px;
+    font-weight: 300;
+}
+
+.order { 
+    padding-top: 5%;
+    display: flex; 
+    flex-direction: column;
+    height: 100%;
+}   
+.order__description{  
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 3%;
+}
+.order__container{  
+    width: 100%;
+    align-items: center;
+    display: flex; 
+    justify-content: space-between; 
+    padding: 0 22%;
+} 
+.order__link{ 
+    height: 100%; 
+    width: 40%;
+} 
+.order__link button{  
+    outline: none;  
+    border:none;
+    border-radius:10px;
+    background-color: #67a1d6; 
+    padding: 4% 0%;  
+    width: 100%;
+    font-family: 'Poppins', sans-serif; 
+    color:white;
+     font-size: 24px; 
+     font-weight: 400;
+} 
+
+
+@media screen and (max-width:1520px) {
+    .order__description,
+    .swiper__description, 
+    .details__description, 
+    .plan__description {
+        font-size: 44px;
+        line-height: 34px;
+    } 
+    .order__link{ 
+        height: 100%; 
+        width: 45%;
+    } 
+    .order__link button{  
+        outline: none;  
+        border:none;
+        border-radius:10px;
+        background-color: #67a1d6; 
+        padding: 4% 0%;  
+        width: 100%;
+        font-family: 'Poppins', sans-serif; 
+        color:white;
+         font-size: 21px; 
+         font-weight: 400;
+    }  
+    .plan__title {
+        font-size: 28px;
+        line-height: 34px;
+
+    }
+    .plan__subtitle {
+        font-size: 21px;
+        line-height: 31px;
+    } 
+    .route__title{ 
+        font-size: 23px;
+        line-height: 34px;
+    } 
+    .plan__container,.order__container{ 
+        padding: 0 15%;
+    }  
+    .tour__imgages {
+        width: 70%;
+    } 
+    .route__map {
+        width: 90%;
+    }
+}
+@media screen and (max-width:1360px) {
+    
+}

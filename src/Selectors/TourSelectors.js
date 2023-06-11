@@ -13,4 +13,8 @@ export const isFetchSelector = createSelector(
 export const defineTourSelector = createSelector( 
     [getToursState], 
     tourPage => tourPage.selectedTour
+) 
+export const isSucceedTOurSelector = createSelector( 
+  [getToursState], 
+  tourPage => tourPage.isSucceed
 )
