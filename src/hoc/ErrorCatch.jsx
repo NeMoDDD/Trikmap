@@ -13,7 +13,7 @@ const ErrorCatch = ({children,setErrorAC,...props}) =>{
 
 
     if(props.isError){ 
-        return <Error setError = {props.setErrorAC}  />
+        return <Error />
     } 
     return children
 } 

@@ -131,7 +131,7 @@ export const getHotelsTC = () => {
       } catch{ 
         dispath(setErrorAC(true))
       } 
-      dispath(toggleFetchingAC(false))
+      dispath(toggleFetchingAC(false)) 
         }} 
 
     export const getCommentsTC = (document) => {
