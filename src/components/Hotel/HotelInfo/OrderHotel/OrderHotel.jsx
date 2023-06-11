@@ -22,7 +22,6 @@ import CommentContainer from './CommentsHotel/CommentContainer';
 
 
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
-    const info = useLocation() 
     return(   
         <div className={s.hotel}>  
         <div className={s.hotel__container}> 
