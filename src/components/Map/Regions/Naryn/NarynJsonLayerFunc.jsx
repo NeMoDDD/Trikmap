@@ -11,7 +11,7 @@ const fetchData = function fetchData(url, options) {
         .then(data => data);
 }
 
-export default function ChuyGeoJsonLayer({url, cluster, marker}) {
+export default function NarynGeoJsonLayer({url, cluster, marker}) {
     const [data, setData] = useState([]);
     useEffect(() => {
         if (url) {
@@ -29,7 +29,7 @@ export default function ChuyGeoJsonLayer({url, cluster, marker}) {
     }, [url]);
 
     return (
-        <RegionMap cluster={false} data={data}/>
+        <RegionMap cluster={false} data={data} marker={marker}/>
     );
 }
 

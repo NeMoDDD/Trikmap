@@ -29,7 +29,7 @@ export default function ChuyGeoJsonLayer({url, cluster, marker}) {
     }, [url]);
 
     return (
-        <RegionMap cluster={false} data={data}/>
+        <RegionMap cluster={false} data={data} marker={marker}/>
     );
 }
 
