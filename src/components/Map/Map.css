@@ -1,28 +1,16 @@
 @import url("~leaflet/dist/leaflet.css");
 @import url("~react-leaflet-markercluster/dist/styles.min.css");
 
-.main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4em;
-}
-
-.title-block__geojson h2 {
-  font-size: 28px;
-  margin-bottom: 1em;
-}
-
 .leaflet-container {
   height: 70vh;
   width: 60vw;
-  margin: 0 auto;
-  border-radius: 15px;
+  position: absolute;
+  right: 20%;
+  top: 15%;
 }
 
 .zoom-slider {
-  /*position: absolute;*/
+  position: absolute;
   top: 20px;
   left: 20px;
   z-index: 1000;
@@ -42,21 +30,21 @@
   width: 200px;
   height: 20px;
 }
+.main {
+  height: 100vh;
+  width: 100%;
+}
 
 .geojson-toggle {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-left: 20%;
+  margin-top: 0%;
   z-index: 1000;
   background: white;
   font-size: 14px;
   padding: 4px;
   border-radius: 3px;
-}
-.geojson-toggle__part {
-  display: flex;
 }
 
 .region-name__geojson {
@@ -88,9 +76,8 @@
   margin: 0;
   border-radius: 0;
 }
-.leaflet-popup-content p {
-  margin: 0 0 0.5em 0 !important;
-}
+
+
 .popup-fixed p span {
   font-weight: 600;
 }
@@ -107,22 +94,4 @@
   width: 100%;
   max-width: 250px;
   height: 150px;
-}
-
-@media screen and (max-width: 900px) {
-  .geojson-toggle {
-    flex-direction: column;
-    margin: 0 auto 1em auto;
-  }
-  .geojson-toggle__part {
-    flex-direction: row;
-    margin-bottom: 0.5em;
-  }
-  .leaflet-container {
-    width: 100%;
-  }
-  .title-block__geojson h2 {
-    font-size: 22px;
-  }
-
 }

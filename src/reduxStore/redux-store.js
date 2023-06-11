@@ -7,7 +7,7 @@ import attractionReducer from '../components/store/slices/attractionsSlice'
 import { appReducer } from './appReducer'
 let reducers = combineReducers({  
     hotelPage: hotelReducer,
-    tourReducer, 
+    tourPage:tourReducer, 
     user: userReducer,
     attractions: attractionReducer, 
     app: appReducer

@@ -33,9 +33,9 @@ export default function Footer() {
                                                                                          className={classes.img}/></Link>
                         </div>
                     </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
 
-        </div>
-    )
+  )
 }

@@ -186,10 +186,10 @@
         justify-items: center;
     }
     .title{
-        width: 100%;
-        justify-content: center;
+        width: 50%;
+        justify-content: flex-start;
         align-items: center;
-        font-size: 15px;
+        font-size: 18px;
     }  
     
 }

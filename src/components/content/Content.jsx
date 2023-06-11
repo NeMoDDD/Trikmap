@@ -57,9 +57,8 @@ export default function Content() {
   };
 
   return (
-      <div>
+    <div className={s.container}>
       <Welcome />
-      <div className={s.container}>
       <motion.div
         className={s.content}
         ref={refWonder}
@@ -85,8 +84,8 @@ export default function Content() {
         animate={inViewMap ? 'visible' : 'hidden'}
         variants={variants}
       >
-        {/*<Map />*/}
-          <MapComponent/>
+        <Map />
+        {/*  <MapComponent/>*/}
       </motion.div>
       <motion.div
         className={s.content}
@@ -97,7 +96,6 @@ export default function Content() {
       >
         <LandMarks />
       </motion.div>
-    </div>
     </div>
   );
 }
