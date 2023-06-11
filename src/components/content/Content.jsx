@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import {motion} from 'framer-motion';
+import {useInView} from 'react-intersection-observer';
 import Welcome from './components/Welcome/Welcome';
 import About from './components/About/About';
 import Map from './components/map/Map';
@@ -17,87 +17,88 @@ import AlaArcha from '../../assets/img/image 6.jpg';
 import JetiOguz from '../../assets/img/image 19.jpg'
 import LandMarks from './components/landMarks/LandMarks';
 import MapComponent from "../Map/Json/MapGeoJsonMarkers";
+import Slider from "./components/landMarks/Slider/Slider";
 
 export default function Content() {
-  const images = [
-    {status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль'},
-    {status: false, imageUrl: Sary, text: 'Озеро Сары-Челек'},
-    {status: false, imageUrl: Soun, text: 'Озеро Сон-Куль'},
-    {status: false, imageUrl: Ala, text: 'Озеро Ала-Куль'},
-    {status: false, imageUrl: Fireplace, text: 'Комлекс отдыха 12 коминов'},
-    {status: false, imageUrl: Waterfall, text: 'Водопад Слезы Барса'},
-    {status: false, imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'},
-    {status: false, imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}
-  ];
-  const imageAlt = 'Изображение';
+    const images = [
+        {status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль'},
+        {status: false, imageUrl: Sary, text: 'Озеро Сары-Челек'},
+        {status: false, imageUrl: Soun, text: 'Озеро Сон-Куль'},
+        {status: false, imageUrl: Ala, text: 'Озеро Ала-Куль'},
+        {status: false, imageUrl: Fireplace, text: 'Комлекс отдыха 12 коминов'},
+        {status: false, imageUrl: Waterfall, text: 'Водопад Слезы Барса'},
+        {status: false, imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'},
+        {status: false, imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}
+    ];
+    const imageAlt = 'Изображение';
 
-  const [refWonder, inViewWonder] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
+    const [refWonder, inViewWonder] = useInView({
+        triggerOnce: true,
+        threshold: 0.2
+    });
 
-  const [refAbout, inViewAbout] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
+    const [refAbout, inViewAbout] = useInView({
+        triggerOnce: true,
+        threshold: 0.2
+    });
 
-  const [refMap, inViewMap] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
+    const [refMap, inViewMap] = useInView({
+        triggerOnce: true,
+        threshold: 0.2
+    });
 
-  const [refLandMarks, inViewLandMarks] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
+    const [refLandMarks, inViewLandMarks] = useInView({
+        triggerOnce: true,
+        threshold: 0.2
+    });
 
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1 } }
-  };
+    const variants = {
+        hidden: {opacity: 0, y: 50},
+        visible: {opacity: 1, y: 0, transition: {duration: 1}}
+    };
 
-  return (
-      <div>
-      <Welcome />
-      <div className={s.container}>
-      <motion.div
-        className={s.content}
-        ref={refWonder}
-        initial="hidden"
-        animate={inViewWonder ? 'visible' : 'hidden'}
-        variants={variants}
-      >
-        <Wonder images={images} imageAlt={imageAlt} />
-      </motion.div>
-      <motion.div
-        className={s.content}
-        ref={refAbout}
-        initial="hidden"
-        animate={inViewAbout ? 'visible' : 'hidden'}
-        variants={variants}
-      >
-        <About />
-      </motion.div>
-      <motion.div
-        className={s.content}
-        ref={refMap}
-        initial="hidden"
-        animate={inViewMap ? 'visible' : 'hidden'}
-        variants={variants}
-      >
-        {/*<Map />*/}
-          <MapComponent/>
-      </motion.div>
-      <motion.div
-        className={s.content}
-        ref={refLandMarks}
-        initial="hidden"
-        animate={inViewLandMarks ? 'visible' : 'hidden'}
-        variants={variants}
-      >
-        <LandMarks />
-      </motion.div>
-    </div>
-    </div>
-  );
+    return (
+        <div>
+            <Welcome/>
+            <div className={s.container}>
+                <motion.div
+                    className={s.content}
+                    ref={refWonder}
+                    initial="hidden"
+                    animate={inViewWonder ? 'visible' : 'hidden'}
+                    variants={variants}
+                >
+                    <Wonder images={images} imageAlt={imageAlt}/>
+                </motion.div>
+                <motion.div
+                    className={s.content}
+                    ref={refAbout}
+                    initial="hidden"
+                    animate={inViewAbout ? 'visible' : 'hidden'}
+                    variants={variants}
+                >
+                    <About/>
+                </motion.div>
+                <motion.div
+                    className={s.content}
+                    ref={refMap}
+                    initial="hidden"
+                    animate={inViewMap ? 'visible' : 'hidden'}
+                    variants={variants}
+                >
+                    {/*<Map />*/}
+                    <MapComponent/>
+                </motion.div>
+                <motion.div
+                    className={s.content}
+                    ref={refLandMarks}
+                    initial="hidden"
+                    animate={inViewLandMarks ? 'visible' : 'hidden'}
+                    variants={variants}
+                >
+                        <Slider/>
+                </motion.div>
+            </div>
+        </div>
+    );
 }

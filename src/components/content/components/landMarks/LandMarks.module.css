@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 .main{
     width: 100%;
-    display: grid;
-    grid-template-rows: repeat(1, 1fr);
-    margin-top: 5%;
-    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 .title{
+    width: 100%;
     text-align: center;
     font-family: 'Alice';
     font-size: 26px;
@@ -29,6 +30,11 @@
     color: #4C265E;
     font-size: 20px;
     font-weight: 700;
+}
+.img{
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
 }
 @media (max-width: 1366px){
     .img_block img{
