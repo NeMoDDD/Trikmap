@@ -21,6 +21,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 import CommentContainer from './CommentsHotel/CommentContainer';
 
 
+
 const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{    
     return(   
         <div className={s.hotel}>  
@@ -32,7 +33,7 @@ const OrderHotel = React.memo(({orderingHotel, coordinates,...props}) =>{
             <div className={s.hotel__item}>   
             <div className={s.hotel__main}> 
                 <div className={s.hotel__name}>{orderingHotel.name}</div>
-                <div className={s.hotel__rating}><Rate disabled value={orderingHotel.rating}  /> </div>
+                <div className={s.hotel__rating}><Rate disabled value={props.currentRating}  /> </div>
             </div>
                  
                  <div className={s.hotel__info}>   

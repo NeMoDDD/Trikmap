@@ -16,7 +16,8 @@ const commentRef = collection(db, "Comments");
     selectedHotelRating: [], 
     coordinates: [], 
     isSucceed: false, 
-    comments: [],  
+    comments: [],   
+    currentRating: null,
 }   
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue +'GET_CURRENT_PAGE'
@@ -30,7 +31,8 @@ const SET_SEARCH = defaultValue +'SET_SEARCH'
 const GET_TOTAL_DOCS = defaultValue +'GET_TOTAL_DOCS'   
 const SET_COORDINATES = defaultValue +'SET_COORDINATES' 
 const SET_SUCCEED = defaultValue + 'SET_SUCCEED' 
-const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'  
+const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'   
+const SET_CURRENT_RATING = defaultValue + 'SET_CURRENT_RATING'
 export const hotelReducer = (state = initialState, action) =>{ 
      switch(action.type){ 
         case SET_HOTELS: {  
@@ -97,7 +99,10 @@ export const hotelReducer = (state = initialState, action) =>{
           return { 
             ...state, comments: action.data
           }
-        } 
+        }  
+        case SET_CURRENT_RATING:{ 
+          return{...state, currentRating:action.data}
+        }
         default: 
         return state
      }
@@ -116,8 +121,8 @@ export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
 export const getCurrentPageAC = (data) => ({type:GET_CURRENT_PAGE, data }) 
 const setSucceedAC = (data) =>({type:SET_SUCCEED, data})
 const setCoordinatedAC = (data) =>({type:SET_COORDINATES, data}) 
-const getHotelComments = (data) =>({type: GET_HOTEL_COMMENTS, data})  
-// const setErrorAC = (data) => ({type: SET_HOTEL_ERROR, data}) 
+const getHotelComments = (data) =>({type: GET_HOTEL_COMMENTS, data})   
+const setCurrentRatingAC = (data) =>({type:SET_CURRENT_RATING, data}) 
 //Thunk Creators
 export const getHotelsTC = () => { 
     return async (dispath) => {    
@@ -127,7 +132,7 @@ export const getHotelsTC = () => {
         const cityList = citySnapshot.docs.map(doc => doc.data());   
         const snapshot = await getCountFromServer(ref);  
         Promise.all([dispath(getTotalDocsAC(snapshot.data().count)), 
-        dispath(setHotelsAC(cityList))]) 
+        dispath(setHotelsAC(cityList))])  
       } catch{ 
         dispath(setErrorAC(true))
       } 
@@ -151,14 +156,12 @@ export const getHotelsTC = () => {
     };
 export const getOrderHotelTC = (document) => { 
   return async (dispatch) => {   
-    debugger
     dispatch(toggleFetchingAC(true))
     try {  
-      debugger
       const docRef = doc(ref, document);
-      const docSnap = await getDoc(docRef); 
-      if (docSnap.exists()) { 
-        debugger 
+      const docSnap = await getDoc(docRef);  
+      if (docSnap.exists()) {  
+        dispatch(setCurrentRatingAC(docSnap.data().rating));
         dispatch(getOrderingHotelAC(docSnap.data())); 
         dispatch(getCommentsTC(document))
         const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
@@ -233,12 +236,46 @@ export const addCommentTC = (document, dataObj) => async(dispatch) =>{
     const postRef = doc(commentRef, document);
     await updateDoc(postRef, {
       data: arrayUnion(dataObj)
-    }); 
+    });  
+    dispatch( getHotelRatingTC(document))
     dispatch(getCommentsTC(document))
   
 }
 
-
+const calculateAverage = (array) => {
+  const sum = array.reduce((acc, num) => acc + num, 0);
+  return sum / array.length;
+};
+export const getHotelRatingTC = (document)=> async(dispatch) =>{ 
+  const hotelRef = doc(commentRef, document);
+  const hotelDoc = await getDoc(hotelRef);
+  
+  let ratings = []
+  if (hotelDoc.exists()) {
+    const data = hotelDoc.data().data;
+    if (Array.isArray(data)) {
+      data.forEach((obj) => {
+        if (obj.rating) {
+          ratings.push(obj.rating);
+        }
+      });
+    }
+  }
+  const averageRating = calculateAverage(ratings); 
+  dispatch(updateHotelRatingTC(document,	Math.ceil(averageRating)))
+} 
+export const updateHotelRatingTC = (document,rating) => async(dispatch)=>{ 
+const newData = {
+  rating
+};
+const docRef = doc(ref, document);
+try { 
+  dispatch(setCurrentRatingAC(rating))
+  await setDoc(docRef, newData,{merge:true});
+} catch (error) {
+  dispatch(setErrorAC(true))
+}
+}
 
 
 

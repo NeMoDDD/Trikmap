@@ -11,10 +11,10 @@ const Comments = React.memo(({name,email,...props }) => {
             Комментарии
             </div>
         {email ? <div className={s.comment__item_form}>
-            <CommentsForm {...props} hotel={props.hotel}  name={name} email={email}/>
+            <CommentsForm {...props} hotel={props.hotel}   name={name} email={email}/>
         </div> : <NavLink className={s.comment__link} to={'/login'}>Войдите в аккаунт, чтобы оставить отзыв</NavLink>}
             <div className={s.comment_item_all}>
-               {props.comments?.data && props.comments.data.map((item, index) => <Comment key={index} title={item.title} email={item.email} name={item.name} />)} 
+               {props.comments?.data && props.comments.data.map((item, index) => <Comment key={index} title={item.title} email={item.email} name={item.name} rating={item.rating}/>)} 
             </div>
         </div>
     )

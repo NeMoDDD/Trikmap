@@ -1,4 +1,4 @@
-import { Input } from 'antd';
+import { Input} from 'antd';
 import sendIcon from '../../../../../assets/img/send.png'
 import { useForm, Controller } from "react-hook-form" 
 import React from 'react'
@@ -33,10 +33,12 @@ const CommentsForm = React.memo(({name,email,...props}) => {
                         render={({ field }) => <TextArea className={s.input_comment} {...field}
                         />}
                     />
-                    {errors.comment && <div className={s.error}>{errors.comment.message || "Это поле обязательное!"}</div>}
-                </div>
+                    {errors.comment && <div className={s.error}>{errors.comment.message || "Это поле обязательное!"}</div>} 
+                </div> 
+                
             </div>
             <div className={s.add__btn}><img onClick={handleSubmit(onSubmit)} src={sendIcon} alt='Send Button' role='button' className={s.img_send} /></div>
+
         </form>
     )
 })
