@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import "../../Map.css"
 import RegionMap from "../../Helpers/RegionMap";
 
+
 const fetchData = function fetchData(url, options) {
     let request = fetch(url, options);
 
@@ -10,7 +11,7 @@ const fetchData = function fetchData(url, options) {
         .then(data => data);
 }
 
-export default function ChuyGeoJsonLayer({url, cluster}) {
+export default function ChuyGeoJsonLayer({url, cluster, marker}) {
     const [data, setData] = useState([]);
     useEffect(() => {
         if (url) {
@@ -31,5 +32,4 @@ export default function ChuyGeoJsonLayer({url, cluster}) {
         <RegionMap cluster={false} data={data} marker={marker}/>
     );
 }
-
 
