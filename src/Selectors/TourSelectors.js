@@ -17,4 +17,8 @@ export const defineTourSelector = createSelector(
 export const isSucceedTOurSelector = createSelector( 
   [getToursState], 
   tourPage => tourPage.isSucceed
+) 
+export const getTourCommentsSelector= createSelector( 
+  [getToursState], 
+  tourPage => tourPage.comments
 )

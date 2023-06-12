@@ -7,7 +7,8 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";   
 import { FreeMode, Navigation, Thumbs } from "swiper"; 
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+import CommentTourContainer from './commentTOur/CommentTourContainer'
 const DefineTour = React.memo(({ tour }) => {
     return (  
         <>
@@ -83,6 +84,10 @@ const DefineTour = React.memo(({ tour }) => {
                 <Link  to={`/tours/${tour.title}/order`} className={s.order__link}><button>Забронировать у нас</button></Link> 
                 <Link  target='_blank' to={tour.book} className={s.order__link}><button>Забронировать у Daina-Tour</button></Link>
             </div>
+        </div> 
+            
+        <div className={s.commetns}> 
+            <CommentTourContainer tour={tour.title}/>
         </div>
 
     </div>)}

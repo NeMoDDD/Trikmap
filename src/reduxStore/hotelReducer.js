@@ -150,18 +150,21 @@ export const getHotelsTC = () => {
       };
     };
 export const getOrderHotelTC = (document) => { 
-  return async (dispatch) => {  
+  return async (dispatch) => {   
+    debugger
     dispatch(toggleFetchingAC(true))
-    try { 
+    try {  
+      debugger
       const docRef = doc(ref, document);
       const docSnap = await getDoc(docRef); 
       if (docSnap.exists()) { 
+        debugger 
+        dispatch(getOrderingHotelAC(docSnap.data())); 
         dispatch(getCommentsTC(document))
         const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`   
         const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;   
         const response = await axios.get(apiUrl);    
         dispatch(setCoordinatedAC(response.data))
-        dispatch(getOrderingHotelAC(docSnap.data())); 
       }
     } catch (error) { 
       dispatch(setErrorAC(true))

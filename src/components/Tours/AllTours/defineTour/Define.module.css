@@ -2,9 +2,10 @@
 
 .tour {
     height: 100%;
-}
+    padding-bottom: 12%;
+} 
 
-.content { 
+.content {
     position: sticky;
     background-attachment: fixed;
     height: 100vh;
@@ -12,17 +13,23 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
+
 
 }
-.content__wrapper{  
-    height: 100%; 
+.commetns{  
+    padding-top: 5%;
+    height: 100%;
+    padding: 0 12%;
+}
+.content__wrapper {
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2))
 }
+
 .content__item {
     height: 20%;
     display: flex;
@@ -75,6 +82,7 @@
     font-size: 18px;
     line-height: 48px;
     font-weight: 400;
+    text-align: center;
 }
 
 .route {
@@ -120,7 +128,7 @@
 
 
 .plan {
-    padding-top: 5%; 
+    padding-top: 5%;
     padding-bottom: 5%;
     height: 100%;
 }
@@ -135,7 +143,7 @@
     padding-top: 6%;
 }
 
-.plan__description {
+.plan__description, .comment__description {
     color: #2f2e41;
     font-family: 'Poppins', sans-serif;
     font-size: 52px;
@@ -143,7 +151,9 @@
     font-weight: 600;
     text-align: center;
 }
-
+.comment__description { 
+    padding: 2% 0;
+}
 .plan__title {
     color: #2f2e41;
     font-family: 'Poppins', sans-serif;
@@ -199,10 +209,10 @@
     width: 100%;
 }
 
-.details { 
-    background-color:#eeeeee;
+.details {
+    background-color: #eeeeee;
     height: 100%;
-    padding-top: 2.5%; 
+    padding-top: 2.5%;
     padding-bottom: 3%;
 }
 
@@ -246,13 +256,14 @@
     font-weight: 300;
 }
 
-.order { 
+.order {
     padding-top: 5%;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     height: 100%;
-}   
-.order__description{  
+}
+
+.order__description {
     color: #2f2e41;
     font-family: 'Poppins', sans-serif;
     font-size: 52px;
@@ -261,78 +272,398 @@
     text-align: center;
     padding-bottom: 3%;
 }
-.order__container{  
+
+.order__container {
     width: 100%;
     align-items: center;
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     padding: 0 22%;
-} 
-.order__link{ 
-    height: 100%; 
+}
+
+.order__link {
+    height: 100%;
     width: 40%;
-} 
-.order__link button{  
-    outline: none;  
-    border:none;
-    border-radius:10px;
-    background-color: #67a1d6; 
-    padding: 4% 0%;  
+}
+
+.order__link button {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #67a1d6;
+    padding: 4% 0%;
     width: 100%;
-    font-family: 'Poppins', sans-serif; 
-    color:white;
-     font-size: 24px; 
-     font-weight: 400;
-} 
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+}
 
 
 @media screen and (max-width:1520px) {
+
     .order__description,
-    .swiper__description, 
-    .details__description, 
-    .plan__description {
+    .swiper__description,
+    .details__description,
+    .plan__description,
+    .comment__description{
         font-size: 44px;
         line-height: 34px;
-    } 
-    .order__link{ 
-        height: 100%; 
+    }
+
+    .order__link {
+        height: 100%;
         width: 45%;
-    } 
-    .order__link button{  
-        outline: none;  
-        border:none;
-        border-radius:10px;
-        background-color: #67a1d6; 
-        padding: 4% 0%;  
+    }
+
+    .order__link button {
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        background-color: #67a1d6;
+        padding: 4% 0%;
         width: 100%;
-        font-family: 'Poppins', sans-serif; 
-        color:white;
-         font-size: 21px; 
-         font-weight: 400;
-    }  
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        font-size: 21px;
+        font-weight: 400;
+    }
+
     .plan__title {
         font-size: 28px;
         line-height: 34px;
 
     }
+
     .plan__subtitle {
         font-size: 21px;
         line-height: 31px;
-    } 
-    .route__title{ 
+    }
+
+    .route__title {
         font-size: 23px;
         line-height: 34px;
-    } 
-    .plan__container,.order__container{ 
+    }
+
+    .plan__container,
+    .order__container {
         padding: 0 15%;
-    }  
+    }
+
     .tour__imgages {
         width: 70%;
-    } 
+    }
+
     .route__map {
         width: 90%;
     }
 }
+
 @media screen and (max-width:1360px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description, .comment__description {
+        font-size: 38px;
+    }
+
+    .order__link button {
+        font-size: 19px;
+    }
+
+    .plan__title {
+        font-size: 25px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 21px;
+        line-height: 31px;
+    }
+
+    .route__title {
+        font-size: 21px;
+        line-height: 34px;
+    }
+
+    .plan__container,
+    .order__container {
+        padding: 0 12%;
+    }
+
+    .details__title {
+        font-size: 24px;
+        padding-bottom: 1.5%;
+    }
+
+    .details__link {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:950px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description, 
+    .comment__description {
+        font-size: 32px;
+    }
+
+    .order__link {
+        height: 100%;
+        width: 45%;
+    }
+
+    .order__link button {
+        font-size: 17px;
+    }
+
+    .plan__title {
+        font-size: 22px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 19px;
+        line-height: 27px;
+    }
+
+    .route__title {
+        width: 85%;
+        font-size: 19px;
+    }
+
+    .plan__container,
+    .order__container,
+    .route__container,
+    .details__container,.commetns {
+        padding: 0 7%;
+    }
+
+    .details__container {
+        justify-content: space-between;
+    }
+
+    .tour__imgages {
+        width: 85%;
+    }
+
+    .route__map {
+        width: 100%;
+    }
+
+    .details__title {
+        font-size: 21px;
+        padding-bottom: 1.5%;
+    }
+
+    .details__link {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
+    .plan__item {
+        padding-top: 4%;
+    }
+
+    .map__rope {
+        width: 90%;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description , 
+    .comment__description{
+        font-size: 28px;
+    }
+
+    .order__link {
+        height: 100%;
+        width: 45%;
+    }
+
+    .order__link button {
+        font-size: 14px;
+    }
+
+    .plan__title {
+        font-size: 22px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 17px;
+        line-height: 27px;
+    }
+
+    .route__title {
+        width: 90%;
+        font-size: 17px;
+    }
+
+    .plan__container,
+    .order__container,
+    .route__container,
+    .details__container,.commetns {
+        padding: 0 4%;
+    }
+
+    .details__container {
+        justify-content: space-around;
+    }
+
+    .tour__imgages {
+        width: 85%;
+    }
+
+    .route__map {
+        width: 100%;
+    }
+
+    .details__title {
+        font-size: 18px;
+        padding-bottom: 1.5%;
+    }
+
+    .details__link {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .plan__item {
+        padding-top: 4%;
+    }
+
+    .map__rope {
+        width: 90%;
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .content__description {
+        font-size: 41px;
+    }
     
+    .content__data {
+        font-size: 21px;
+        line-height: 31px;
+    }
+    
+} 
+
+@media screen and (max-width:430px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description,.comment__description {
+        font-size: 26px;
+    }
+
+    .order__link {
+        height: 100% ;
+        width: 100%;
+        padding-top: 4%;
+    }
+
+    .order__link button { 
+        font-size: 17px;
+    }
+    .order__container{ 
+        flex-direction: column;
+    }
+    .plan__title {
+        font-size: 19px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .route__title {
+        width: 90%;
+        font-size: 16px; 
+        line-height: 28px;
+    }
+
+    .plan__container,
+    .order__container,
+    .route__container,
+    .details__container, .commetns {
+        padding: 0 3%;
+    }
+
+    .details__container {
+        justify-content: space-around;
+    }
+
+    .tour__imgages {
+        width: 91%;
+    }
+
+    .route__map {
+        width: 100%;
+    }
+    .details__row{ 
+        justify-content: space-between;
+    }
+    .details__title {  
+        color: black;
+        font-size: 16px;
+        padding-bottom: 1.5%; 
+        line-height: 24px; 
+    }
+
+    .details__link {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .plan__item {
+        padding-top: 4%;
+    }
+
+    .map__rope {
+        width: 90%;
+        font-size: 17px;
+        line-height: 28px;
+    }
+    .content__description {
+        font-size: 33px; 
+        text-align: center;
+    }
+    
+    .content__data {
+        font-size: 18px;
+    }
+    .map__title{ 
+        font-size: 26px;
+    } 
+    .order,.plan, .tour__swiper_wrapper, .route, .commetns{ 
+        padding-top: 12%;
+    }
+} 
+@media screen and (max-width: 375px) {
+    .details__title{ 
+    font-weight: 600;  
+    font-size: 15px;
+    } 
+    .details__row{ 
+        justify-content: flex-start;
+    }
 }
