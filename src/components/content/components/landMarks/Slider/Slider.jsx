@@ -35,14 +35,13 @@ import WaterReservoir from '../../../../../assets/img/WaterReservoir.jpg'
 
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import React, {useState} from "react";
+import React from "react";
 import {setType} from "../../../../store/slices/attractionsSlice";
 import s from "../LandMarks.module.css";
 
-export default () => {
+const Slider =  () => {
     const push = useNavigate();
     const { type } = useSelector((state) => state.attractions);
-    const [currentSlide, setCurrentSlide] = useState(0);
     const images = [
         { imageUrl: Park, text: 'Парки', type: 'park' },
         { imageUrl: Gorge, text: 'Ущелья', type: 'gorge' },
@@ -98,7 +97,7 @@ export default () => {
                 images.map(image =>{
                     return(
                         <SwiperSlide>
-                            <img className={s.img} onClick={() => setTypeImg(image.type)} src={image.imageUrl}/>
+                            <img className={s.img} onClick={() => setTypeImg(image.type)} src={image.imageUrl} alt = 'Достопримечательности'/>
                             <p onClick={() => { console.log(type) }}>{image.text}</p>
                         </SwiperSlide>
                     )
@@ -108,3 +107,4 @@ export default () => {
         </div>
     );
 };
+export default Slider
