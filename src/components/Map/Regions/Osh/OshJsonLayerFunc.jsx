@@ -6,10 +6,10 @@ import RegionMap from "../../Helpers/RegionMap";
 const fetchData = function fetchData(url, options) {
     let request = fetch(url, options);
 
-//     return request
-//         .then(r => r.json())
-//         .then(data => data);
-// }
+    return request
+        .then(r => r.json())
+        .then(data => data);
+}
 
 export default function OshGeoJsonLayer({url, cluster, marker}) {
     const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ export default function OshGeoJsonLayer({url, cluster, marker}) {
             };
         }
 
-//     }, [url]);
+    }, [url]);
 
     return (
         <RegionMap cluster={false} data={data} marker={marker}/>
