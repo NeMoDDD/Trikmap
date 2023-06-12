@@ -52,7 +52,7 @@ const Hotel = React.memo(({item,...props}) =>{
 
             <div className={`${s.hotel__item}  ${s.hotel__info}`}>  
                 <div className={s.hotel__info_wrapper}> 
-                    <div className={s.hotel__title}>{item.title} </div> 
+                    <div className={s.hotel__title}>{item.subtitle.substring(0, 90)}... </div> 
                     <div><NavLink to={`/hotels/${item.name}`}><button className={s.hotel__btn}>Посмотреть</button></NavLink></div>
                 </div>
             </div> 

@@ -81,9 +81,68 @@
     font-size: 24px; 
     line-height: 28px; 
     text-align: center;
+} 
+.tour{ 
+    height: 100%;
 }
-
-
+.tour__container{  
+    height: 100%; 
+    padding:0 12% ;
+}
+.tour__inner_wrapper{ 
+    height: 100%; 
+    padding: 5% 0;
+}
+.tour__about{     
+   background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+    background-repeat: no-repeat; 
+    background-size:cover; 
+    background-position: center;
+    width: 100%; 
+    height: 62vh; 
+    border-radius: 15px; 
+    display: flex;  
+    flex-direction: column;
+    justify-content: flex-end;
+} 
+.about__item{  
+    height: 60%;
+    padding: 0% 5% 7% 5% ; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between
+}  
+.about__row{ 
+    height: 100%;
+}
+.about__title{ 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 700; 
+    color: white; 
+    font-size: 54px;
+} 
+.about__list{ 
+    text-decoration: none; 
+    list-style: none; 
+    color: white;  
+    font-family: 'Poppins', sans-serif; 
+    
+    font-weight: 400; 
+    font-size: 18px; 
+    line-height: 32px;
+} 
+.about__button{  
+    border: none;
+    padding: 1% 6%; 
+    border-radius:5px; 
+    background-color: #67a1d6;
+} 
+.about__button a{  
+    font-family: 'Poppins', sans-serif; 
+    color: white; 
+    text-decoration: none;
+    font-size: 21px;
+}
 @media screen and (max-width: 1520px) { 
     .custom__arrow svg{  
         font-size: 56px;
@@ -107,7 +166,7 @@
     
 } 
 @media screen and (max-width: 1144px) { 
-    .content__container{ 
+    .content__container,.tour__container{ 
         padding: 0 6%;
     }
     .main__title{ 
@@ -115,10 +174,14 @@
     }  
     .description__container{ 
         padding: 0 15%;
+    }   
+    .about__title{ 
+        font-size: 42px;
     } 
+    
 } 
 @media screen and (max-width:550px) {
-    .content__container{ 
+    .content__container, .tour__container{ 
         padding: 0 3%;
     }
     .main__title{ 
@@ -133,6 +196,24 @@
     } 
     .description__title{ 
         font-size: 19px; 
+    } 
+    .about__title{ 
+        font-size: 34px;
+    }  
+    .about__item{  
+        height: 60%;
+        padding: 0% 5% 5% 5% ; 
+
+    }  
+    .about__list{ 
+        font-size: 15px; 
+        line-height: 28px;
+    } 
+    .about__button{  
+        padding: 1.5% 9%; 
+    } 
+    .about__button a{  
+        font-size: 17px;
     }
 
 } 
@@ -170,5 +251,96 @@
     .description__title{ 
         font-size: 15px; 
         line-height: 20px; 
-    }
+    } 
+    .about__item{  
+        height: 80%;
+    }  
+    .about__list{ 
+        font-size: 14px; 
+    } 
+    .about__button{  
+        padding: 1.5% 9%; 
+    } 
+    .about__button a{  
+        font-size: 15px;
+    } 
+    .about__title{ 
+        font-size: 30px;
+    }  
+} 
+@media screen and (min-height:1211px) {
+    .about__title{ 
+        font-size: 61px;
+    }   
+    .about__list{ 
+        font-size: 25px; 
+        line-height: 28px;
+    } 
+    .about__button{  
+        padding: 2% 11%; 
+    } 
+    .about__button a{  
+        font-size: 24px;
+    } 
+    .about__item{  
+        height: 65%;
+    }  
+} 
+@media screen and (max-height:505px) {
+
+    .about__item{  
+        height: 85%; 
+        padding:0 2% 2% 2%;
+    }   
+    .about__list{ 
+        font-size: 14px; 
+    } 
+    .about__button{  
+        padding: 1.5% 9%; 
+    } 
+    .about__button a{  
+        font-size: 15px;
+    } 
+    .about__title{ 
+        font-size: 34px;
+    }  
+    .main__title{ 
+        font-size: 32px;  
+        line-height: 44px;  
+    }   
+    .custom__arrow svg{  
+        font-size: 38px;
+     } 
+     .main__subtitle{   
+        font-size: 15px;  
+        line-height: 24px;
+    }   
+    .description__title{ 
+        font-size: 15px; 
+        line-height: 20px; 
+    } 
+    .about__item{  
+        height: 80%;
+    } 
+} 
+@media screen and (max-height:360px) {
+
+    .about__item{  
+        height: 90%; 
+        padding:0 2% 2% 2%;
+    }   
+    .about__list{ 
+        font-size: 14px; 
+    } 
+    .about__button{  
+        padding: 1.5% 9%; 
+    } 
+    .about__button a{  
+        font-size: 15px;
+    } 
+    .about__title{ 
+        font-size: 32px;
+    }   
+
+
 }

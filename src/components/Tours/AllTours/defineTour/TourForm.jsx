@@ -1,17 +1,19 @@
 import { Alert, DatePicker} from 'antd';
-import s from './Form.module.css'
+import s from '../../../Hotel/HotelInfo/OrderHotel/FormOrder/Form.module.css'
 import { useForm, Controller } from "react-hook-form"
 import { connect } from "react-redux";
-import { getOrderingHotelOptions, isSucceedSelector } from '../../../../../Selectors/HotelSelectors';
-import { getUserEmail, getUserId } from '../../../../../Selectors/UserSelecors'; 
-import { setBookTC } from '../../../../../reduxStore/hotelReducer';
+
+import { getUserEmail, getUserId } from '../../../../Selectors/UserSelecors'; 
+import { setBookTC } from '../../../../reduxStore/tourReducer';
 import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
+import { defineTourSelector, isSucceedTOurSelector } from '../../../../Selectors/TourSelectors';
 
-const FormOrderHotel = ({name,...props}) => { 
+const FormOrderTour = ({name,...props}) => { 
     const { control, handleSubmit, reset, register, formState: { errors } } = useForm({
         mode: "onBlur",
-    });  
+    });   
+    console.log(name);
     const [disabled, setDisabled] = useState(false)
     const navigate = useNavigate() 
     useEffect(()=>{ 
@@ -21,16 +23,16 @@ const FormOrderHotel = ({name,...props}) => {
     })
 
     const onSubmit = (data) => { 
-        setDisabled(true)
-        props.setBookTC([data.date[0].$d,data.date[1].$d], props.email, props.id, name.name, data.number, data.amount, data.type) 
-        setDisabled(false) 
-        reset()
+        // setDisabled(true)
+        // props.setBookTC([data.date[0].$d,data.date[1].$d], props.email, props.id, name.name, data.number, data.amount, data.type) 
+        // setDisabled(false) 
+        // reset()
     }
     return (
         <div className={s.order}> 
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.order__wrapper}>
-                    <div className={s.order__item_title}><div className={s.order__title}>Бронирование Отеля <strong>{name.name}</strong></div></div>
+                    <div className={s.order__item_title}><div className={s.order__title}>Бронирование Тура <strong>{name.title}</strong></div></div>
                     <div className={s.order__form}>
 
                         <div className={s.order__item}>  
@@ -101,10 +103,10 @@ const FormOrderHotel = ({name,...props}) => {
 } 
 const mapStateToProps = (state) =>{ 
     return{ 
-        name: getOrderingHotelOptions(state), 
+        name: defineTourSelector(state), 
         email: getUserEmail(state), 
         id: getUserId(state), 
-        isSucceed: isSucceedSelector(state)
+        isSucceed: isSucceedTOurSelector(state)
     }
 }
-export default connect(mapStateToProps, {setBookTC})(FormOrderHotel)
+export default connect(mapStateToProps, {setBookTC})(FormOrderTour)

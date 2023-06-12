@@ -202,7 +202,7 @@
     }
 
     .order__title {
-        font-size: 24px;
+        font-size: 21px;
     }
 
     .item__title {
@@ -268,7 +268,7 @@
 
 @media screen and (max-height:680px) {
     .order__title {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .order__wrapper {

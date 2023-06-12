@@ -3,6 +3,7 @@ import classes from './Footer.module.css'
 import Whatsapp from '../../assets/img/ватсапп.svg';
 import Telegram from '../../assets/img/Telegram.svg';
 import Instagram from '../../assets/img/instgrm.svg'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -24,17 +25,17 @@ export default function Footer() {
                             <h3>Follow</h3>
                         </div>
                         <div className={classes.icons}>
-                            <a href={"https://instagram.com/kurmankulovb_?igshid=MmIzYWVlNDQ5Yg=="} target="_blank"><img
-                                src={Instagram} alt="instagram" className={classes.img}/></a>
-                            <a href={"https://t.me/belekkurm"} target="_blank"><img src={Telegram} alt="telegram"
-                                                                                    className={classes.img}/></a>
-                            <a href={"https://wa.me/+996553442209"} target="_blank"><img src={Whatsapp} alt="whatsapp"
-                                                                                         className={classes.img}/></a>
+                            <Link href={"https://instagram.com/kurmankulovb_?igshid=MmIzYWVlNDQ5Yg=="} target="_blank"><img
+                                src={Instagram} alt="instagram" className={classes.img}/></Link>
+                            <Link href={"https://t.me/belekkurm"} target="_blank"><img src={Telegram} alt="telegram"
+                                                                                    className={classes.img}/></Link>
+                            <Link href={"https://wa.me/+996553442209"} target="_blank"><img src={Whatsapp} alt="whatsapp"
+                                                                                         className={classes.img}/></Link>
                         </div>
                     </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
 
-        </div>
-    )
+  )
 }
