@@ -6,7 +6,6 @@ import React,{ useEffect, useCallback}from "react";
 import { getCurrentPage, getHotels, getPageSize, getSelectedHotelCity, getSelectedHotelRatingSelector, getSelectedHotelRegion, getTotalDocs, isFetching } from "../../Selectors/HotelSelectors";
 import { Preloader } from "../common/Preloader";
 
-
 const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props}) => {
   const memoizedAllOptionsFlow = useCallback(() => {
     allOptionsFlow();
@@ -18,10 +17,10 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
   useEffect(() => {  
     memoizedAllOptionsFlow();
     memoizedGetHotelsTC() 
-  }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]); 
+  }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]);  
   if(isFetch){ 
     return <Preloader/> 
-  }   
+  }    
   return ( 
       <HotelInfo 
       getHotelsTC={getHotelsTC}
@@ -38,7 +37,7 @@ const mapStateToProps = (state) => {
         currentPage: getCurrentPage(state), 
         selectedHotelCity: getSelectedHotelCity(state),
         selectedHotelRegion: getSelectedHotelRegion(state), 
-        selectedHotelRating: getSelectedHotelRatingSelector(state), 
+        selectedHotelRating: getSelectedHotelRatingSelector(state),  
     }
 }
 export default compose( 

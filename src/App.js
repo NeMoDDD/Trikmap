@@ -20,17 +20,22 @@ import Error from './components/common/Error'
 import FormOrderHotel from './components/Hotel/HotelInfo/OrderHotel/FormOrder/FormOrderHotel';
 import ErrorCatch from './hoc/ErrorCatch';
 import AddHotelContainer from './components/Hotel/addHotel/addhotelContainer'
-
+import DefineTourContainer from './components/Tours/AllTours/defineTour/DefineTourContainer';
+import TourForm from './components/Tours/AllTours/defineTour/TourForm';
 function App() {
   return (
     <div className={classes.container}>
       <Header />
       <Routes>
         <Route path='/' element={<Content />} />
-        <Route path='/hotels' element={<ErrorCatch> <HotelContainer /> </ErrorCatch>} />
+         
+        <Route path='/hotels' element={<ErrorCatch> <HotelContainer/> </ErrorCatch>} />
         <Route path='/hotels/:hotel' element={<ErrorCatch><OrderingHotel /></ErrorCatch>} />
-        <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
         <Route path='/hotels/:hotel/order' element={<ErrorCatch><FormOrderHotel/> </ErrorCatch>}/>
+         
+        <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
+        <Route path='/tours/:tour' element={<ErrorCatch><DefineTourContainer/></ErrorCatch>}/>  
+        <Route path='/tours/:tour/order' element={<ErrorCatch><TourForm/> </ErrorCatch>}/>
         <Route path={'/login'} element={<LoginPage />} />
         <Route path={'/register'} element={<RegisterPage />} />
         <Route path={'/personal-account'} element={<PersonalAccount />} />

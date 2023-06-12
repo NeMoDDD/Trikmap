@@ -9,30 +9,15 @@ import BatkenGeoJsonLayer from "../Regions/Batken/BatkenJsonLayerFunc";
 import NarynGeoJsonLayer from "../Regions/Naryn/NarynJsonLayerFunc";
 import JalalAbadGeoJsonLayer from "../Regions/JalalAbad/JalalAbadJsonLayerFunc";
 import IssykKolGeoJsonLayer from "../Regions/IssykKol/IssykKolJsonLayerFunc";
-import {Button} from "antd"
-import location from "../images/location.png"
-import lake from "../images/lake.png"
-import {connect, useSelector} from "react-redux";
-import {getToursSelector} from "../../../Selectors/TourSelectors";
-import {getTourTC} from "../../../reduxStore/tourReducer";
-import gorge from "../images/daddys-gorges.png";
-
+import { Button } from "antd"
 // указываем путь к файлам marker
-// L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
-// const {type} = useSelector(state => state.attractions)
-
-const customIcon = L.icon({
-    iconUrl: location,
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-});
-
+L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
 
 class MapComponent extends React.Component {
     state = {
         lat: 41.875969,
         lng: 73.603698,
-        zoom: 6.5,
+        zoom: 7,
 
         geoJsonIsVisibleAll: [
             {geoJsonIsVisible: true, name: "chuy"},
@@ -45,9 +30,6 @@ class MapComponent extends React.Component {
             {geoJsonIsVisible: true, name: "all"},
         ]
     };
-    componentDidMount() {
-        console.log(this.props.type)
-    }
 
     onGeojsonToggleAll = (e) => {
         this.setState(prevState => ({
@@ -146,45 +128,30 @@ class MapComponent extends React.Component {
 
         return (
             <div className="main">
-                <div className="title-block__geojson"><h2>Карта Кыргызстана</h2></div>
                 <div className="geojson-toggle">
-                    <div className="geojson-toggle__part">
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleAll}
-                                    className={this.state.geoJsonIsVisibleAll[7].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Все</Button>
-                        </div>
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleChuy}
-                                    className={this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Чуй</Button>
-                        </div>
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleTalas}
-                                    className={this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Талас</Button>
-                        </div>
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleOsh}
-                                    className={this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Ош</Button>
-                        </div>
-                    </div>
-                    <div className="geojson-toggle__part">
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleBatken}
-                                    className={this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Баткен</Button>
-                        </div>
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleJalalAbad}
-                                    className={this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Джалал-Абад</Button>
-                        </div>
-                        <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleNaryn}
-                                    className={this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Нарын</Button>
-                        </div>
-                    </div>
-                    <div className="geojson-toggle__part">
                     <div className="region-name__geojson">
-                            <Button type="default" onClick={this.onGeojsonToggleIssykKol}
-                                    className={this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Иссык-Куль</Button>
-                        </div>
+                        <Button type="default" onClick={this.onGeojsonToggleAll} className={this.state.geoJsonIsVisibleAll[7].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Все</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleChuy} className={this.state.geoJsonIsVisibleAll[0].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Чуй</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleTalas} className={this.state.geoJsonIsVisibleAll[1].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Талас</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleOsh} className={this.state.geoJsonIsVisibleAll[2].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Ош</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleBatken} className={this.state.geoJsonIsVisibleAll[3].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Баткен</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleJalalAbad} className={this.state.geoJsonIsVisibleAll[4].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Джалал-Абад</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleNaryn} className={this.state.geoJsonIsVisibleAll[5].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Нарын</Button>
+                    </div>
+                    <div className="region-name__geojson">
+                        <Button type="default" onClick={this.onGeojsonToggleIssykKol} className={this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Иссык-Куль</Button>
                     </div>
 
                 </div>
@@ -222,9 +189,4 @@ class MapComponent extends React.Component {
     }
 }
 
-const mapStateToProps = (state) =>{
-    return{
-        type: state.attractions.type
-    }
-}
-export default connect(mapStateToProps, null)(MapComponent)
+export default MapComponent;
