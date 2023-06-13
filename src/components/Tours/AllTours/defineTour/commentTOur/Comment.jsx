@@ -10,7 +10,7 @@ const Comment = React.memo(({ name, title, rating }) => {
                         {name}
                     </div> 
                     <div className={s.row__rate}> 
-                        <Rate value={rating}/>
+                        <Rate disabled value={rating}/>
                     </div>
                 </div>
                 <div className={s.row__title}>
