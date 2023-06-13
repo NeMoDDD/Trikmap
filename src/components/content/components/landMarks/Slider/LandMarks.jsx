@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y } from 'swiper';
+import { Navigation,  A11y } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -39,7 +39,7 @@ import React from "react";
 import {setType} from "../../../../store/slices/attractionsSlice";
 import s from "../LandMarks.module.css";
 
-const Slider =  () => {
+const LandMarks =  () => {
     const push = useNavigate();
     const { type } = useSelector((state) => state.attractions);
     const images = [
@@ -80,31 +80,38 @@ const Slider =  () => {
     return (
         <div className={s.main}>
         <div className={s.title}>
-            <h2>Достопримечательности</h2>
+            <h3>Достопримечательности</h3>
         </div>
+        <div className={s.img_block}>
         <Swiper
             // install Swiper modules
-            modules={[Navigation, A11y]}
-            spaceBetween={50}
+            modules={[Navigation,  A11y]}   
+            navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
             slidesPerView={3}
-            navigation
+            spaceBetween={60}
+            loop = {true}
+            touchRatio={1}
+            grabCursor = {true}
             pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-        >
+        >   
             {
-                images.map(image =>{
+                images.map((image, index )=>{
                     return(
-                        <SwiperSlide>
+                        <SwiperSlide key = {index}>
                             <img className={s.img} onClick={() => setTypeImg(image.type)} src={image.imageUrl} alt = 'Достопримечательности'/>
                             <p onClick={() => { console.log(type) }}>{image.text}</p>
                         </SwiperSlide>
                     )
                 })
             }
+            <div className={`swiper-button-next ${s.swiperButtonNext}`} />
+            <div className={`swiper-button-prev ${s.swiperButtonPrev}`} />
         </Swiper>
+        </div>
         </div>
     );
 };
-export default Slider
+export default LandMarks

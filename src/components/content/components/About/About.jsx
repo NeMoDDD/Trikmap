@@ -4,9 +4,9 @@ export default function About() {
   return (
     <div className = {s.about}>
         <div className={s.title}>
-            <h2>
+            <h3>
                 О нас
-            </h2>
+            </h3>
         </div>
         <div className={s.item}>
             <div className={s.text}>

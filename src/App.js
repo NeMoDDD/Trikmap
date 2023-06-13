@@ -36,12 +36,12 @@ function App() {
         <Route path='/tours' element={<ErrorCatch><ToursContainer /></ErrorCatch>} /> 
         <Route path='/tours/:tour' element={<ErrorCatch><DefineTourContainer/></ErrorCatch>}/>  
         <Route path='/tours/:tour/order' element={<ErrorCatch><TourForm/> </ErrorCatch>}/>
-        <Route path={'/login'} element={<LoginPage />} />
-        <Route path={'/register'} element={<RegisterPage />} />
-        <Route path={'/personal-account'} element={<PersonalAccount />} />
-        <Route path={'/attractions'} element={<AttractionsContainer />} />
+        <Route path={'/login'} element={<ErrorCatch><LoginPage /></ErrorCatch>}/>
+        <Route path={'/register'} element={<ErrorCatch><RegisterPage /></ErrorCatch>} />
+        <Route path={'/personal-account'} element={<ErrorCatch><PersonalAccount /></ErrorCatch>} />
+        <Route path={'/attractions'} element={<ErrorCatch><AttractionsContainer /></ErrorCatch>} />
         <Route path='*' element={<Error />} /> 
-        <Route path='/add' element={<AddHotelContainer/>}/>
+        <Route path='/add' element={<ErrorCatch><AddHotelContainer/></ErrorCatch>}/>
       </Routes>
 
       <Footer />
