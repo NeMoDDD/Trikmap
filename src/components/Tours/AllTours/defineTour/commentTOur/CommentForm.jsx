@@ -10,7 +10,7 @@ const CommentsForm = React.memo(({name,email,...props}) => {
     });
     const onSubmit = (data) => {  
         const {title} = data
-        props.addCommentTC(props.hotel, { name,email, title, rating:data.rating}) 
+        props.addCommentTC(props.tour, { name,email, title, rating:data.rating}) 
         reset()
     }
     return (

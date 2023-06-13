@@ -9,7 +9,8 @@ const SET_SELECTED_TOUR = defaultType + 'SET_SELECTED_TOUR'
 const TOGGLE_FETCH = defaultType + 'TOGGLE_FETCH'  
 const TOGGLE_SUCCEED = defaultType + 'TOGGLE_SUCCEED' 
 const GET_ALL_COMMENTS = defaultType + 'GET_ALL_COMMENTS' 
-const SET_CURRENT_RATING = defaultType + 'SET_CURRENT_RATING'
+const SET_CURRENT_RATING = defaultType + 'SET_CURRENT_RATING' 
+const TOGGLE_COMMENT_LOADING = defaultType + 'TOGGLE_COMMENT_LOADING'
 const initialState = { 
 
     tours : [],  
@@ -17,7 +18,8 @@ const initialState = {
     selectedTour: [],  
     isSucceed: false, 
     comments:[], 
-    currentRating: null
+    currentRating: null, 
+    commentLoading:false
 } 
 const tourReducer = (state = initialState, action) =>{ 
     switch(action.type){  
@@ -46,6 +48,9 @@ const tourReducer = (state = initialState, action) =>{
         } 
         case SET_CURRENT_RATING:{ 
           return{...state, currentRating:action.data}
+        } 
+        case TOGGLE_COMMENT_LOADING:{
+          return{ ...state, commentLoading: action.data}
         }
         default: 
         return state
@@ -57,7 +62,8 @@ const setSelectedTourAC = (data) =>({type: SET_SELECTED_TOUR, data})
 const toggleLoaderAC = (data) =>({type:TOGGLE_FETCH , data}) 
 const setSucceedAC = (data) =>({type:TOGGLE_SUCCEED, data}) 
 const setCommentsAC = (data) =>({type:GET_ALL_COMMENTS, data}) 
-const setCurrentRatingAC = (data) =>({type:SET_CURRENT_RATING, data}) 
+const setCurrentRatingAC = (data) =>({type:SET_CURRENT_RATING, data})  
+const toggleHotelCommentLoadingAC = (data) =>({type:TOGGLE_COMMENT_LOADING, data})
 export const getTourTC = () => async(dispatch) =>{ 
     dispatch(toggleLoaderAC(true)) 
     try{ 
@@ -93,12 +99,18 @@ export const setBookTC = (date,email,id,name, num,amount,type) => async(dispatch
     }
   } 
   export const addCommentTC = (document, dataObj) => async(dispatch) =>{ 
-    const postRef = doc(commentRef, document);
-    await updateDoc(postRef, {
-      data: arrayUnion(dataObj)
-    });  
-    dispatch(getCommentsTC(document))
-    dispatch(getCommentsTC(document))
+    dispatch(toggleHotelCommentLoadingAC(true))   
+    try{ 
+      const postRef = doc(commentRef, document);
+      await updateDoc(postRef, {
+        data: arrayUnion(dataObj)
+      });  
+      dispatch(getCommentsTC(document)) 
+      dispatch(getCommentsTC(document))
+    } catch{ 
+      
+    }
+    dispatch(toggleHotelCommentLoadingAC(false)) 
   
 } 
 export const getCommentsTC = (document) => {

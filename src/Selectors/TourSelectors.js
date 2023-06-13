@@ -25,4 +25,8 @@ export const getTourCommentsSelector= createSelector(
 export const getCurrentRatingsSelector= createSelector( 
   [getToursState], 
   tourPage => tourPage.currentRating
+) 
+export const isTourCommentLoadingSelector= createSelector( 
+  [getToursState], 
+  tourPage => tourPage.commentLoading
 )

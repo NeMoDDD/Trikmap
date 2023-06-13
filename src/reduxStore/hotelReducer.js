@@ -16,7 +16,9 @@ import axios from "axios";
 import {setErrorAC} from "./appReducer";
 
 const ref = collection(db, "Hotels");
-const commentRef = collection(db, "Comments");
+const commentRef = collection(db, "Comments"); 
+const orderRef = collection(db, 'OrderingHotel')
+
 let initialState = {
     totalDocs: null,
     pageSize: 3,
@@ -30,7 +32,8 @@ let initialState = {
     coordinates: [],
     isSucceed: false,
     comments: [],
-    likes: []
+    currentRating:null, 
+    commentLoading: false,
 }
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue + 'GET_CURRENT_PAGE'
@@ -40,22 +43,16 @@ const GET_SELECT_HOTEL_RATING = defaultValue + 'GET_SELECT_HOTEL_RATING'
 const GET_HOTEL = defaultValue + 'GET_HOTEL'
 const TOGGLE_FETCH = defaultValue + 'TOGGLE_FETCH'
 const SET_HOTELS = defaultValue + 'SET_HOTELS'
-const ADD_LIKE = "ADD_LIKE"
 const SET_SEARCH = defaultValue + 'SET_SEARCH'
 const GET_TOTAL_DOCS = defaultValue + 'GET_TOTAL_DOCS'
 const SET_COORDINATES = defaultValue + 'SET_COORDINATES'
 const SET_SUCCEED = defaultValue + 'SET_SUCCEED'
 const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'
 const SET_CURRENT_RATING = defaultValue + 'SET_CURRENT_RATING'
-
+const TOGGLE_COMMENT_LOADING = defaultValue + 'TOGGLE_COMMENT_LOADING'
 export const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_LIKE: {
-            return {
-                ...state,
-                likes: action.payload
-            }
-        }
+
         case SET_HOTELS: {
             return {
                 ...state,
@@ -123,6 +120,12 @@ export const hotelReducer = (state = initialState, action) => {
         }
         case SET_CURRENT_RATING: {
             return {...state, currentRating: action.data}
+        } 
+        case TOGGLE_COMMENT_LOADING:{ 
+            return{ 
+                ...state,
+                commentLoading: action.data
+            }
         }
         default:
             return state
@@ -143,7 +146,8 @@ export const getCurrentPageAC = (data) => ({type: GET_CURRENT_PAGE, data})
 const setSucceedAC = (data) => ({type: SET_SUCCEED, data})
 const setCoordinatedAC = (data) => ({type: SET_COORDINATES, data})
 const getHotelComments = (data) => ({type: GET_HOTEL_COMMENTS, data})
-const setCurrentRatingAC = (data) => ({type: SET_CURRENT_RATING, data})
+const setCurrentRatingAC = (data) => ({type: SET_CURRENT_RATING, data}) 
+const toggleHotelCommentLoadingAC = (data) =>({type:TOGGLE_COMMENT_LOADING, data})
 //Thunk Creators
 export const getHotelsTC = () => {
     return async (dispath) => {
@@ -186,12 +190,14 @@ export const getCommentsTC = (document) => {
     };
 };
 export const getOrderHotelTC = (document) => {
-    return async (dispatch) => {
+    return async (dispatch) => { 
+        dispatch(setSucceedAC(false))
         dispatch(toggleFetchingAC(true))
         try {
             const docRef = doc(ref, document);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
+                dispatch(setCurrentRatingAC(docSnap.data().rating))
                 const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`
                 const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
                 const response = await axios.get(apiUrl);
@@ -246,13 +252,14 @@ export const setNewHotel = (data) => {
     }
 }
 export const addCommentTC = (document, dataObj) => async (dispatch) => {
+    dispatch(toggleHotelCommentLoadingAC(true)) 
     const postRef = doc(commentRef, document);
     await updateDoc(postRef, {
         data: arrayUnion(dataObj)
     });
     dispatch(getHotelRatingTC(document))
+    dispatch(toggleHotelCommentLoadingAC(false))
     dispatch(getCommentsTC(document))
-
 }
 
 const calculateAverage = (array) => {
@@ -298,19 +305,24 @@ export const allOptionsFlow = () => async (dispatch) => {
     Promise.all([dispatch(getSelectedHotelCityAC(cityOptions)), dispatch(getSelectedHotelRatingAC(ratingOptions)), dispatch(getSelectedRegionAC(regionOptions))]);
 }
 export const setBookTC = (date, email, id, name, num, amount, type) => async (dispatch) => {
-    try {
-        await setDoc(doc(db, "OrderingHotel", id), {
-            data: date,
-            email: email,
-            id: id,
-            name: name,
-            number: num,
-            amount: amount,
-            type: type
-        });
+    const postRef = doc(orderRef, email); 
+    const newData={ 
+            date, 
+            email,
+            id, 
+            name, 
+            num,  
+            amount, 
+            type,
+    } 
+    try { 
+        await setDoc(postRef, {
+            data: arrayUnion(newData)
+        }, {merge: true});
         dispatch(setSucceedAC(true))
-    } catch {
-        dispatch(setErrorAC(true))
+    } catch(error) {
+        // dispatch(setErrorAC(true)) 
+        console.log(error);
     }
 }
 

@@ -3,10 +3,23 @@ import s from './Comment.module.css'
 import CommentsForm from './CommentForm';
 import Comment from './Comment';
 import { NavLink } from 'react-router-dom';
+import { message } from 'antd'; 
 
-const Comments = React.memo(({name,email,...props }) => {
+const Comments = React.memo(({name,email, isCommentLoading,...props }) => { 
+    const [messageApi, contextHolder] = message.useMessage();
+
+
+    if (isCommentLoading) {
+      messageApi.open({
+          type: 'loading',
+          content: 'Отзыв отправляется...',
+          duration:0,
+          className: `${s.custom_loader}` 
+        });
+    }
     return (
         <div className={s.comment}>   
+            {contextHolder} 
             <div className={s.comment__description}> 
             Комментарии
             </div>
