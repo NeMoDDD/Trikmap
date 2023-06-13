@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentPage} from "../store/slices/attractionsSlice";
+import {setCurrentPage, setType} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useEffect, useState} from "react";
@@ -19,19 +19,19 @@ const Attractions = () => {
         totalCountNaryn,
         totalCountOsh,
         totalCountTalas,
+        type
         // totalCountOfType,
     } = useSelector(state => state.attractions)
     const [totalCount, setTotalCount] = useState(totalCountAll)
     const [region, setRegion] = useState("all")
     const [dataRegion, setDataRegion] = useState(data.all)
-    const [type, setType] = useState("all")
+    // const [type, setType] = useState("all")
     const [totalCountOfType, setTotalCountOfType] = useState()
 
     const lastPostIndex = currentPage * pageSize;
     const firstPostIndex = lastPostIndex - pageSize
 
     const onSelectChange = (value) => {
-        setType(value)
         if (value !== "all") {
             setTotalCount(dataRegion.filter(p => p.properties.type === value).length)
             setTotalCountOfType(dataRegion.filter(p => p.properties.type === value).length)
@@ -43,7 +43,9 @@ const Attractions = () => {
         }))
         // onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length, null)
         // }
-        setType(value)
+        dispatch(setType({
+            type: value
+        }))
     };
 
     const setCurrentPageClick = (id) => {
@@ -96,6 +98,9 @@ const Attractions = () => {
         onClickRegion("issykkol", null, totalCountIssykkol, data.issykkol)
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const regionVisible = (regionOn, dataRegion) => {
         return (region === regionOn && type !== "all" ? dataRegion.filter(p => p.properties.type === type).slice((firstPostIndex), lastPostIndex)
             .map((p, index) => {
@@ -136,7 +141,7 @@ const Attractions = () => {
         </div>
         <div className={style.selectBlock}>
             <Select
-                defaultValue="all"
+                defaultValue={type}
                 style={{
                     width: 120,
                 }}
