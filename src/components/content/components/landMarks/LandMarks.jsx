@@ -1,32 +1,31 @@
-import React from 'react';
-import {useDispatch, useSelector} from "react-redux"
-import {motion} from 'framer-motion';
-import {NavLink} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import s from './LandMarks.module.css';
 import Museum from '../../../../assets/img/Музеи.jpg';
 import Park from '../../../../assets/img/Парки.jpg';
 import Memorial from '../../../../assets/img/Памятники.jpg';
-import {setType} from "../../../store/slices/attractionsSlice";
-import {useNavigate} from "react-router-dom";
-
-
-const NavLinkMotion = motion(NavLink);
+import Gorge from '../../../../assets/img/Gorge.jpg';
+import { setType } from '../../../store/slices/attractionsSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function LandMarks() {
-    const push = useNavigate()
-    const {type} = useSelector(state => state.attractions)
+  const push = useNavigate();
+  const { type } = useSelector((state) => state.attractions);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-    const images = [
-        {imageUrl: Museum, text: 'Музеи', type: "museum"},
-        {imageUrl: Park, text: 'Парки', type: "park"},
-        {imageUrl: Memorial, text: 'Памятники', type: "statue"},
-    ];
-    const dispatch = useDispatch()
+  const images = [
+    { imageUrl: Museum, text: 'Музеи', type: 'museum' },
+    { imageUrl: Park, text: 'Парки', type: 'park' },
+    { imageUrl: Memorial, text: 'Памятники', type: 'statue' },
+    { imageUrl: Gorge, text: 'Ущелья', type: 'gorge' },
+  ];
+  const dispatch = useDispatch();
 
-    const setTypeImg = (imageType) => {
-        dispatch(setType({type: imageType}))
-        push("/attractions")
-    }
+  const setTypeImg = (imageType) => {
+    dispatch(setType({ type: imageType }));
+    push('/attractions');
+  };
 
     return (
         <div className={s.main}>

@@ -4,7 +4,7 @@
 } */
 .main{
     width: 100%;
-    height: 43em;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -13,8 +13,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 5%;
-    border-radius: 4% 4% 0 0;
+
+}
 
 }
 .title{ 
@@ -37,15 +37,17 @@
         max-width: 100%;
     }
     .title{
-        font-size: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        text-align: center;
+
     }
-    
-}
-@media (max-width: 992px) {
-    .main{
-        max-width: 100%;
+    .title h1{
+        font-size: 60px;
     }
-    
 }
 @media (max-width: 767px) {
     .main{
