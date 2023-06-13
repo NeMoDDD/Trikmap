@@ -4,13 +4,15 @@ import {useState} from "react";
 import {Button, Input} from "antd";
 import {EyeTwoTone, EyeInvisibleOutlined} from '@ant-design/icons';
 import style from "./Form.module.css"
+import {useSelector} from "react-redux";
 
 const isValidEmail = email =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
     );
 const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
-    const { control, handleSubmit, reset, formState: {errors}} = useForm({
+    const {isFetching} = useSelector(state => state.user)
+    const {control, handleSubmit, reset, formState: {errors}} = useForm({
         mode: "onBlur",
     });
     const [email, setEmail] = useState("")
@@ -36,7 +38,7 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className={"register-form"}>
-                { btnValue === "Зарегистрироваться" ? <Controller
+                {btnValue === "Зарегистрироваться" ? <Controller
                     name="nickname"
                     control={control}
                     rules={{
@@ -46,7 +48,7 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     render={({field}) => <Input {...field}
                                                 placeholder="Имя"
                                                 className={errors.nickname ? style.registerForm__input__error : style.registerForm__input}
-                    />}/> : null }
+                    />}/> : null}
                 {errors.nickname && <span className={style.error__message}>{errors.nickname.message}</span>}
 
                 <Controller
@@ -60,7 +62,8 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                                                 placeholder="Email"
                                                 className={errors.email ? style.registerForm__input__error : style.registerForm__input}
                     />}/>
-                {errors.email && <span className={style.error__message}>{errors.email.message || "Неверный email"}</span>}
+                {errors.email &&
+                    <span className={style.error__message}>{errors.email.message || "Неверный email"}</span>}
                 <Controller
                     name="password"
                     control={control}
@@ -77,7 +80,8 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                                                          className={errors.password ? style.registerForm__input__error : style.registerForm__input}
                     />}
                 />
-                {errors.password && <span className={style.error__message}>{errors.password.message || "Это поле обязательное!"}</span>}
+                {errors.password &&
+                    <span className={style.error__message}>{errors.password.message || "Это поле обязательное!"}</span>}
                 {!isAuthSubmit && <span className={style.error__message}>{errorMessage}</span>}
                 <Controller
                     name="btn-submit"
@@ -86,6 +90,7 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                                                  className={style.registerForm__btn}
                                                  type="primary"
                                                  htmlType="submit"
+                                                 disabled={isFetching}
                     >{btnValue}</Button>}
                 />
             </form>
