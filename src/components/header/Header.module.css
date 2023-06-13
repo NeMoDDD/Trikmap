@@ -2,13 +2,11 @@
 
 .main {
   max-width: 100%;
-  height: 100px;
   background-color: #67a1d6;
 }
 
 .header {
   width: 100%;
-  max-width: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -23,13 +21,14 @@
   text-decoration: none;
   color: #F6F6F6;
   z-index: 3;
-  ;
 }
 
 .link {
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 .logo a{
   padding: 0;
@@ -37,9 +36,9 @@
 }
 .logo {
   display: flex;
-  width: 13%;
+  width: 20%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
   z-index: 3;
   color: #F6F6F6;
@@ -58,10 +57,9 @@
   background-color: #007D34;
   border: none;
   border-radius: 10px;
-  color: #67a1d6;
+  color: #f6f6f6;
   z-index: 3;
 }
-
 .login a {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 500;
@@ -69,24 +67,23 @@
   text-decoration: none;
   color: #f6f6f6;
   z-index: 3;
-  ;
 }
 .menu{
-    display: none
+  display: none;
+}
+@media screen and (max-width: 1920px) {
+  .main{
+    width: 100%;
   }
-  @media screen and (max-width: 1920px) {
-    .main{
-      width: 100%;
-    }
-  }
+}
 @media screen and (max-width: 1440px) {
   .main {
     max-width: 100%;
   }
-  
+
   .logo {
     position: relative;
-    flex-direction: column;
+    justify-content: flex-start;
     font-size: 10px;
   }
 
@@ -94,8 +91,7 @@
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     color: #F5E8FB;
-    position: absolute;
-    top: 60%;
+    font-size: 16px;
   }
 }
 
@@ -111,7 +107,6 @@
 
   .logo {
     position: relative;
-    flex-direction: column;
     font-size: 10px;
   }
 
@@ -119,38 +114,37 @@
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     color: #F5E8FB;
-    position: absolute;
-    top: 60%;
+    font-size: 13px;
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 996px) {
   .main {
     max-width: 100%;
   }
 
   .header a {
     padding: 7px;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .logo {
     position: relative;
-    flex-direction: column;
-    font-size: 10px;
   }
 
   .logo h3 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
     color: #F5E8FB;
-    position: absolute;
-    top: 60%;
+    font-size: 11px;
   }
 
   .login .registerButton {
     border-radius: 5px
   }
+}
+.link{
+  font-size: 10px;
 }
 
 @media screen and (max-width: 875px) {
@@ -162,16 +156,16 @@
   }
   .menu{
     /* display: block;
-    justify-content: flex-end; */  
-    display: flex;   
-    justify-content: center; 
+    justify-content: flex-end; */
+    display: flex;
+    justify-content: center;
     align-content: center;
     position: relative;
     z-index: 100000;
     /* height:0; */
   }
   .header {
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
   }
@@ -181,9 +175,9 @@
   }
 
   .logo {
-   display: flex;
-   justify-content: flex-start;
-   align-self: flex-start
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start
   }
   .logo img {
     height: 60px;
@@ -200,7 +194,7 @@
     width: 99%;
     height: 20%;
     display: none;
-  
+
   }
 
   .link a {
@@ -208,33 +202,32 @@
     row-gap: 30px;
   }
 }
-.menu{
-  position: relative;
-  z-index: 1;
-}
+
 .customMenuList a{
   padding: 0;
-  
+
+
 }
 .customMenuList{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
 
+
+}
 .customMenuList button {
-  background-color: #3b6790;  
+  background-color: #3b6790;
   border: none;
   padding: 6px 12px;
   margin: 2px;
   border-radius: 8px;
   color: #fff;
-  
+
 }
 .customMenuButton{
   background-color: #f6f6f6;
   border: none;
   color: #67a1d6;
   border-radius: 5px;
-  padding: 6px 12px; 
+  padding: 6px 12px;
 }
