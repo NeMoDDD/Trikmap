@@ -1,6 +1,6 @@
 import React from "react"
 import s from './Define.module.css'
-import { Image } from "antd"; 
+import { Image, Rate } from "antd"; 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -9,7 +9,7 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper"; 
 import { Link } from "react-router-dom"; 
 import CommentTourContainer from './commentTOur/CommentTourContainer'
-const DefineTour = React.memo(({ tour }) => {
+const DefineTour = React.memo(({ tour, currentRate }) => {
     return (  
         <>
         {tour?.photo && (<div className={s.tour}>
@@ -18,7 +18,10 @@ const DefineTour = React.memo(({ tour }) => {
             <div className={s.content__wrapper}> 
 
             <div className={s.content__item}>
-                <div className={s.content__description}>{tour.title}</div>
+                <div className={s.content__item_wrapper}> 
+                <div className={s.content__description}>{tour.title}</div>  
+                <div className={s.content__rate}><Rate value={currentRate}/> </div>
+                </div>
                 <div className={s.content__data}>{tour.data}</div>
             </div>
             </div>

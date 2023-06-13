@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom" 
  
 import { setSelectedTourTC } from "../../../../reduxStore/tourReducer"
-import { defineTourSelector, isFetchSelector } from "../../../../Selectors/TourSelectors" 
+import { defineTourSelector, getCurrentRatingsSelector, isFetchSelector } from "../../../../Selectors/TourSelectors" 
 import {Preloader} from '../../../common/Preloader'
 const DefineTourContainer = React.memo(({setSelectedTourTC,...props}) =>{ 
     const params = useParams() 
@@ -19,13 +19,14 @@ const DefineTourContainer = React.memo(({setSelectedTourTC,...props}) =>{
         return <Preloader/>
     }
     return( 
-        <DefineTour tour={props.tour}/>
+        <DefineTour tour={props.tour} currentRate={props.currentRating}/>
     )
 })  
 const mapStateToProps = (state) =>{ 
     return{ 
         tour: defineTourSelector(state), 
-        isFetch: isFetchSelector(state)
+        isFetch: isFetchSelector(state), 
+        currentRating: getCurrentRatingsSelector(state)
     }
 }
 export default connect(mapStateToProps, {setSelectedTourTC})(DefineTourContainer)

@@ -15,6 +15,11 @@
     background-repeat: no-repeat;
 
 
+} 
+.content__item_wrapper{ 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
 }
 .commetns{  
     padding-top: 5%;
@@ -444,7 +449,8 @@
     .details__container,.commetns {
         padding: 0 7%;
     }
-
+    .commetns{  
+        padding-top: 5%;}
     .details__container {
         justify-content: space-between;
     }
@@ -520,7 +526,8 @@
     .details__container,.commetns {
         padding: 0 4%;
     }
-
+    .commetns{  
+        padding-top: 4%;}
     .details__container {
         justify-content: space-around;
     }
@@ -634,9 +641,8 @@
         line-height: 20px;
     }
 
-    .plan__item {
-        padding-top: 4%;
-    }
+    .commetns{  
+        padding-top: 4%;}
 
     .map__rope {
         width: 90%;
@@ -666,4 +672,5 @@
     .details__row{ 
         justify-content: flex-start;
     }
-}
+} 
+
