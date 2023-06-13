@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react';
-import { Marker, FeatureGroup, Popup } from 'react-leaflet';
-import MarkerClusterGroup from "react-leaflet-markercluster";
+import React, {useState, useEffect} from 'react';
 import "../../Map.css"
-import {Image} from "antd";
+import RegionMap from "../../Helpers/RegionMap";
+
+
 const fetchData = function fetchData(url, options) {
     let request = fetch(url, options);
 
@@ -11,13 +11,13 @@ const fetchData = function fetchData(url, options) {
         .then(data => data);
 }
 
-export default function NarynGeoJsonLayer ({url, cluster, marker}) {
+export default function NarynGeoJsonLayer({url, cluster, marker}) {
     const [data, setData] = useState([]);
-    useEffect(()=> {
+    useEffect(() => {
         if (url) {
             const abortController = new AbortController();
 
-            fetchData(url, { signal: abortController.signal }).then(data => {
+            fetchData(url, {signal: abortController.signal}).then(data => {
                 setData(data.naryn);
             });
             // cancel fetch on component unmount
@@ -28,32 +28,9 @@ export default function NarynGeoJsonLayer ({url, cluster, marker}) {
 
     }, [url]);
 
-    let GroupComponent = cluster ? MarkerClusterGroup : FeatureGroup;
-
-    // console.info()
     return (
-        <GroupComponent>
-            {data.map(f => (
-                <Marker
-                    key={f.properties.id}
-                    position={f.geometry.coordinate}
-                    icon={marker}
-                >
-                    <Popup
-                        maxWidth={250}
-                        maxHeight={650}
-                        closeButton={true}
-                        className={'popup-fixed'}
-                        autoPan={false}>
-                        <div className="popup-info">
-                            <Image src={f.properties.image} alt="photo of object" className={"image-object"}/>
-                            <p><span>Название: </span>{f.properties.name}</p>
-                            <p><span>Местоположение: </span>{f.properties.location}</p>
-                            <p><span>Описание: </span>{f.properties.description}</p>
-                        </div>
-                    </Popup>
-                </Marker>
-            ))}
-        </GroupComponent>
+        <RegionMap cluster={false} data={data} marker={marker}/>
     );
 }
+
+

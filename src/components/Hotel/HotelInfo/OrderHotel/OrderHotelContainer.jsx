@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
 import { useLocation,useNavigate,useParams } from "react-router-dom"; 
-import {    getOrderHotelTC, getCommentsTC } from "../../../../reduxStore/hotelReducer";
+import {    getOrderHotelTC,getHotelRatingTC } from "../../../../reduxStore/hotelReducer";
   import React from "react"; 
   import OrderHotel from "./OrderHotel";
-import { isFetching } from "../../../../Selectors/HotelSelectors";
+import { getCoordinatesSelector, getCurrentRatingSelector, getOrderingHotelOptions, isFetching } from "../../../../Selectors/HotelSelectors";
 import { Preloader } from "../../../common/Preloader";
 class OrderHotelContainer extends React.Component{  
     componentDidMount( ){ 
         let hotelName = this.props.router.params.hotel  
-        //this.props.getCommentsTC(hotelName)
         this.props.getOrderHotelTC(hotelName)   
     } 
     render(){  
@@ -16,7 +15,7 @@ class OrderHotelContainer extends React.Component{
             return <Preloader/>   
         }
         return( 
-            <OrderHotel coordinates={this.props.coordinates} orderingHotel={this.props.orderingHotel}/>
+            <OrderHotel currentRating={this.props.currentRating} coordinates={this.props.coordinates} orderingHotel={this.props.orderingHotel}/>
         )
     }
 }
@@ -41,11 +40,12 @@ function withRouter(Component) {
 
 const mapStateToProps = (state) =>{ 
     return{ 
-        orderingHotel: state.hotelPage.orderingHotel, 
+        orderingHotel: getOrderingHotelOptions(state), 
         isFetch: isFetching(state), 
-        coordinates: state.hotelPage.coordinates
+        coordinates: getCoordinatesSelector(state),
+        currentRating: getCurrentRatingSelector(state)
     }
 }
-export default connect(mapStateToProps, {getOrderHotelTC,getCommentsTC})(withRouter(OrderHotelContainer))
+export default connect(mapStateToProps, {getOrderHotelTC,getHotelRatingTC})(withRouter(OrderHotelContainer))
 
 

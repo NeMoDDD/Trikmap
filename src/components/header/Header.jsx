@@ -18,22 +18,13 @@ const NavLinkMotion = motion(NavLink);
 
 const Header = () => {
     const dispatch = useDispatch()
-    const {isAuth} = useAuth()
+    const { isAuth } = useAuth()
     return (
         <div className={classes.main}>
             <div className={classes.header}>
                 <div className={classes.logo}>
-                    <NavLinkMotion
-                        to="/"
-                    >
-                        <img src={Logo} alt="logo"/>
-                    </NavLinkMotion>
-                    <NavLinkMotion
-                        to="/"
-                    >
-                        <h3>TRIKMAP</h3>
-
-                    </NavLinkMotion>
+                    <img src={Logo} alt="logo"/>
+                    <h3>TRIKMAP</h3>
                 </div>
                 <div className={classes.link}>
                     <NavLinkMotion
@@ -78,7 +69,7 @@ const Header = () => {
                         Личный кабинет
                     </NavLinkMotion>
                 </div>
-                {!isAuth ? <div className={classes.login}>
+                { !isAuth ? <div className={classes.login}>
                     <NavLinkMotion
                         to="/login"
                         activeClassName={classes.activeLink}
@@ -99,6 +90,7 @@ const Header = () => {
                     <NavLinkMotion
                         onClick={() => dispatch(removeUser())}
                         className={classes.registerButton}
+                        whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Выйти

@@ -27,25 +27,31 @@ export default function LandMarks() {
     push('/attractions');
   };
 
-
-  return (
-    <div className={s.main}>
-      <div className={s.title}>
-        <h2>Достопримечательности</h2>
-      </div>
-
-      <div className={s.img_block}>
-        {images.map((image, index) => (
-          <div key={index} className={index === currentSlide ? s.activeSlide : s.slide}>
-            <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-              <img onClick={() => setTypeImg(image.type)} src={image.imageUrl} alt={`${index + 1}`} />
-            </motion.div>
-            <p onClick={() => { console.log(type) }}>{image.text}</p>
-          </div>
-        ))}
-      </div>
-     
-
-    </div>
-  );
+    return (
+        <div className={s.main}>
+            <div className={s.title}>
+                <h2>Достопримечательности</h2>
+            </div>
+            <div className={s.img_block}>
+                {images.map((image, index) => (
+                    <div key={index}>
+                        <motion.div
+                            whileHover={{scale: 1.1}}
+                            transition={{duration: 0.3}}
+                        >
+                            <img
+                                onClick={() => setTypeImg(image.type)}
+                                key={index}
+                                src={image.imageUrl}
+                                alt={`${index + 1}`}
+                            />
+                        </motion.div>
+                        <p onClick={() => {
+                            console.log(type)
+                        }}>{image.text}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }

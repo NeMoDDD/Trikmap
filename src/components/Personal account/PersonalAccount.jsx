@@ -63,6 +63,7 @@ const PersonalAccount = () => {
 
     const onUpdateProfileImg = (e) => {
         if (e.target.files[0]) {
+            console.log(e.target.files[0])
             setPhoto(e.target.files[0])
         }
     }

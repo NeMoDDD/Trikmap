@@ -9,12 +9,14 @@
     justify-content: center;
     align-items: flex-start;
     text-align: start;
-    background-image: url(../../../../assets/img/welcome.webp);
+    background-image: url(../../../../assets/img/Welcome.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
+}
 .title{ 
     width: 70%;
     display: flex;
@@ -23,7 +25,6 @@
     font-size: 30px;
     padding-top: 2em;
     color:#FFFFFF;
-    
 }
 @media (max-width: 1920px) {
     .main{
@@ -51,7 +52,6 @@
 @media (max-width: 767px) {
     .main{
         max-width: 100%;
-        justify-self: center;
     }
     .title{
         font-size: 15px;

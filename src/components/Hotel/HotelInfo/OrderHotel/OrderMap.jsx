@@ -14,7 +14,7 @@ const OrderMap = React.memo((props) =>{
     const mapRef = useRef();  
     const mapSettings = { 
         maptiler: {
-            url: "https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=Aj1TQCAemuMEEZnv0GsR",
+            url: "https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}.jpg?key=sPKkLMWOBhjrgb1QUw4w",
             attribution: '&copy; <a href="#">IT Academy</a>',
           },
     } 
