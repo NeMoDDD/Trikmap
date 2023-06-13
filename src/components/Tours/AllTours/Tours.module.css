@@ -130,19 +130,31 @@
     font-weight: 400; 
     font-size: 18px; 
     line-height: 32px;
-} 
+}  
+.about__link{ 
+    width: 100%; 
+    height: 100%;
+}
 .about__button{  
     border: none;
     padding: 1% 6%; 
     border-radius:5px; 
-    background-color: #67a1d6;
-} 
-.about__button a{  
+    background-color: #67a1d6; 
+
     font-family: 'Poppins', sans-serif; 
     color: white; 
     text-decoration: none;
-    font-size: 21px;
+    font-size: 21px;  
+
+    transition: all 0.1s ease-in ;
+}  
+.about__button:focus{ 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
+.about__button:hover{
+    transform: scale(1.030);
 }
+
 @media screen and (max-width: 1520px) { 
     .custom__arrow svg{  
         font-size: 56px;
@@ -211,10 +223,8 @@
     } 
     .about__button{  
         padding: 1.5% 9%; 
-    } 
-    .about__button a{  
         font-size: 17px;
-    }
+    } 
 
 } 
 @media screen and (max-width:430px) {
@@ -260,8 +270,6 @@
     } 
     .about__button{  
         padding: 1.5% 9%; 
-    } 
-    .about__button a{  
         font-size: 15px;
     } 
     .about__title{ 
@@ -278,8 +286,6 @@
     } 
     .about__button{  
         padding: 2% 11%; 
-    } 
-    .about__button a{  
         font-size: 24px;
     } 
     .about__item{  
@@ -297,8 +303,6 @@
     } 
     .about__button{  
         padding: 1.5% 9%; 
-    } 
-    .about__button a{  
         font-size: 15px;
     } 
     .about__title{ 
@@ -334,10 +338,9 @@
     } 
     .about__button{  
         padding: 1.5% 9%; 
-    } 
-    .about__button a{  
         font-size: 15px;
     } 
+
     .about__title{ 
         font-size: 32px;
     }   
