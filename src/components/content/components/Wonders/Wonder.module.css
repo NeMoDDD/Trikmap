@@ -23,33 +23,38 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-gap: 10px;
+    grid-gap: 7px;
     justify-content: center;
     justify-items: center;
     align-items: center;
 }
+
 .img img {
     height: 340px;
     border-radius: 10px;
 }
-.imageWrapper {
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  }
-  
-  .imageWrapper:hover {
-    opacity: 0.8;
-    background-color: #000;
-  }
-  
-  .image {
+
+
+.image {
     display: block;
     width: 100%;
     height: auto;
-  }
-  
+}
+.column{
+    position: relative;
+}
+.favourite{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+.favouriteImg{
+    height: 20px !important;
+}
+.heartBlock {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
 
 @media screen and (max-width: 1920px) {
     .main {
@@ -57,180 +62,216 @@
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
 
 }
+
 @media screen and (max-width: 1840px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
+
     .img img {
         height: 300px;
     }
 }
+
 @media screen and (max-width: 1790px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
+
     .img img {
         height: 240px;
     }
 }
+
 @media screen and (max-width: 1680px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
+
     .img img {
         height: 280px;
     }
 }
+
 @media screen and (max-width: 1520px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
+
     .img img {
         height: 260px;
     }
 }
+
 @media screen and (max-width: 1440px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
+
     .img img {
         height: 230px;
     }
 }
+
 @media screen and (max-width: 1400px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
         width: 100%;
     }
+
     .img img {
         height: 230px;
     }
 }
+
 @media screen and (max-width: 1250px) {
     .main {
         max-width: 100%;
         justify-content: center;
         align-items: center;
     }
-    
-    .img{
+
+    .img {
         width: 100%;
+        grid-gap: 6px
     }
+
     .img img {
         height: 215px;
     }
 }
-@media screen and (max-width: 1190px) {
-        .main {
-            justify-content: center;
-            align-items: center;
-        }
-        .img{
-            width: auto;
-            grid-column-gap: 16px;
-            grid-row-gap: 23px;
-            object-fit: fill;
-            grid-template-rows: auto auto;
-            grid-template-columns: repeat(2, 1fr);
-            grid-auto-columns: 1fr;
-            display: grid;
-        }
-        .img img{
-            height:  300px;
-        }
-    }
-@media screen and (max-width:806px){
+
+@media screen and (max-width: 1212px) {
     .main {
         justify-content: center;
         align-items: center;
     }
-    .img{
+
+    .img {
+        width: auto;
+        grid-column-gap: 16px;
+        grid-row-gap: 23px;
+        object-fit: fill;
+        grid-template-rows: auto auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-columns: 1fr;
+        column-gap: 10%;
+        display: grid;
+    }
+
+    .img img {
+        height: 440px;
+    }
+}
+
+@media screen and (max-width: 876px) {
+    .main {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, 1fr);
         width: 100%;
         font-weight: 700;
         justify-items: center;
     }
-    .title{
-        width: 50%;
-        justify-content: flex-start;
+
+    .title {
+        width: 100%;
+        justify-content: center;
         align-items: center;
-        font-size: 18px;
-    }  
-    
+        font-size: 15px;
+    }
 }
+
 @media screen and (max-width: 680px) {
-        .main {
-            max-width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-        .img{
-            width: 100%;
-            align-items: center;
-        }
-        .img img {
-            height: 300px;
-        }
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
     }
 
-@media screen and (max-width: 540px) {
-        .main {
-            max-width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-        .img{
-            width: 100%;
-        }
-        .img img {
-            height: 270px;
-        }
+    .img {
+        width: 100%;
+        align-items: center;
     }
-    @media screen and (max-width: 420px) {
-        .main {
-            max-width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-        .img{
-            width: 100%;
-        }
-        .img img {
-            height: 240px;
-        }
-    }    
+
+    .img img {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img {
+        width: 100%;
+    }
+
+    .img img {
+        height: 270px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .main {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img {
+        width: 100%;
+    }
+
+    .img img {
+        height: 240px;
+    }
+}
