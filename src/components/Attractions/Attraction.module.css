@@ -15,8 +15,10 @@
 
 .attraction__img {
     width: 100%;
-    border-radius: 25px;
-    background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);
+    border-radius: 25px !important;
+    /*background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);*/
+    width: 100% !important;
+    height: 350px !important;
 }
 
 .imageBlock__attraction {

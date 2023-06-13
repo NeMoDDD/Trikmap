@@ -107,9 +107,15 @@
   width: 100%;
   max-width: 250px;
   height: 150px;
-  background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);
+  /*background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);*/
 }
-
+.image-block {
+  width: 100%;
+}
+.image-object-skeleton {
+  width: 100% !important;
+  height: 150px !important;
+}
 @media screen and (max-width: 900px) {
   .geojson-toggle {
     flex-direction: column;

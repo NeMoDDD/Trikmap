@@ -1,14 +1,13 @@
 import style from "./Attraction.module.css"
-import { Image, Skeleton} from 'antd';
+import {Image, Skeleton} from 'antd';
+import {ImageWithSkeleton} from "../Map/Helpers/RegionMap";
 
 const Attraction = ({imgSrc, title, location, description}) => {
     return (
         <div className={style.attraction}>
-            <div className={style.imageBlock__attraction}>
-                <Image
-                    className={style.attraction__img} src={imgSrc} alt="Attraction image"
-                />
-            </div>
+            <ImageWithSkeleton src={imgSrc} alt={"Attraction image"} classNameBlock={style.imageBlock__attraction}
+                               classNameImageSkeleton={style.attraction__img} classNameImage={style.attraction__img}
+            />
             <div className={style.contentBlock__attraction}>
                 <p><b>Название: </b>{title}</p>
                 <p><b>Местотположение: </b>{location}</p>
