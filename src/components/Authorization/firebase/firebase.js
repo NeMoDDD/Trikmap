@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getAuth, onAuthStateChanged, updateProfile} from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useCallback} from "react";
 
 import {getFirestore} from "@firebase/firestore";   
 
@@ -55,3 +55,14 @@ export async function upload(file, currentUser, setLoading) {
     setLoading(false);
     alert("Uploaded file!");
 }
+const useLocalStorage = (key, initial) =>{
+    const [storageValue, setStorageValue] = useState(() =>{
+        const item = window.localStorage.getItem(key)
+        return item ? JSON.parse(item) : initial
+    })
+    const setValue = useCallback((value) =>{
+        setStorageValue(value)
+        window.localStorage.setItem(key,JSON.stringify( value))
+    }, [key])
+}
+export default useLocalStorage

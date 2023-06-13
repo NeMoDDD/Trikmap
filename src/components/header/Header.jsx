@@ -11,7 +11,7 @@ import {
     Button
 } from '@chakra-ui/react';
 import {useAuth} from "../Authorization/hooks/use-auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {removeUser} from "../store/slices/userSlise";
 
 const NavLinkMotion = motion(NavLink);
@@ -19,6 +19,7 @@ const NavLinkMotion = motion(NavLink);
 const Header = () => {
     const dispatch = useDispatch()
     const {isAuth} = useAuth()
+    const {isFetching} = useSelector(state => state.user)
     return (
         <div className={classes.main}>
             <div className={classes.header}>
