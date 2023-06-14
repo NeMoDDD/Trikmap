@@ -39,7 +39,7 @@ export default  function Wonder(imageAlt) {
     return (
         <div className={s.main}>
             <div className={s.title}>
-                <h1>Чудеса Кыргызстана</h1>
+                <h2>Чудеса Кыргызстана</h2>
             </div>
             <div className={s.img}>
                 {images.map((image, index) => (

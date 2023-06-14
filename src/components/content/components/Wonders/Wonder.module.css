@@ -17,6 +17,9 @@
     font-weight: 400;
     margin-bottom: 5%;
 }
+.title h2{
+    font-size: 28px;
+}
 
 .img {
     width: 100%;
@@ -223,7 +226,7 @@
         width: 100%;
         justify-content: center;
         align-items: center;
-        font-size: 15px;
+        font-size: 22px;
     }
 }
 
