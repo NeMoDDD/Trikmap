@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation,  A11y } from 'swiper';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -84,6 +83,15 @@ const LandMarks =  () => {
         </div>
         <div className={s.img_block}>
         <Swiper
+            effect='coverflow'
+            coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+
             // install Swiper modules
             modules={[Navigation,  A11y]}   
             navigation={{
@@ -96,6 +104,24 @@ const LandMarks =  () => {
             touchRatio={1}
             grabCursor = {true}
             pagination={{ clickable: true }}
+            breakpoints={{
+                0:{
+                    slidesPerView: 1,
+                    spaceBetween: 20, 
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                992: {
+                  slidesPerView: 2,
+                  spaceBetween: 40,
+                },
+                1200: {
+                  slidesPerView: 3,
+                  spaceBetween: 60,
+                },
+              }}
         >   
             {
                 images.map((image, index )=>{
