@@ -68,6 +68,9 @@
   color: #f6f6f6;
   z-index: 3;
 }
+.activeNavLink{
+  color: #007D34;
+}
 .menu{
   display: none;
 }
