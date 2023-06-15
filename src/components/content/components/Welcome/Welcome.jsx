@@ -22,7 +22,7 @@ export default function Welcome() {
       <div className={s.main}>
         <motion.div className={s.title} variants={titleVariants}>
           <h1>
-            Добро Пожаловать!
+            Добро пожаловать в Кыргызстан!
           </h1>
         </motion.div>
       </div>

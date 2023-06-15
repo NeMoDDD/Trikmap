@@ -83,10 +83,9 @@
   .main {
     max-width: 100%;
   }
-
   .logo {
     position: relative;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     font-size: 10px;
   }
 

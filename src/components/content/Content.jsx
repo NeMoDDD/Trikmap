@@ -1,6 +1,6 @@
 import React from 'react';
-import {motion} from 'framer-motion';
-import {useInView} from 'react-intersection-observer';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Welcome from './components/Welcome/Welcome';
 import About from './components/About/About';
 import Wonder from './components/Wonders/Wonder';
@@ -20,18 +20,18 @@ import LandMarks from './components/landMarks/Slider/LandMarks';
 
 export default function Content() {
     const images = [
-        {status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль'},
-        {status: false, imageUrl: Sary, text: 'Озеро Сары-Челек'},
-        {status: false, imageUrl: Soun, text: 'Озеро Сон-Куль'},
-        {status: false, imageUrl: Ala, text: 'Озеро Ала-Куль'},
-        {status: false, imageUrl: Fireplace, text: 'Комлекс отдыха 12 коминов'},
-        {status: false, imageUrl: Waterfall, text: 'Водопад Слезы Барса'},
-        {status: false, imageUrl: AlaArcha, text: 'Ущелье Ала-Арча'},
-        {status: false, imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз'}
+        { status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль' },
+        { status: false, imageUrl: Sary, text: 'Озеро Сары-Челек' },
+        { status: false, imageUrl: Soun, text: 'Озеро Сон-Куль' },
+        { status: false, imageUrl: Ala, text: 'Озеро Ала-Куль' },
+        { status: false, imageUrl: Fireplace, text: 'Комлекс отдыха 12 коминов' },
+        { status: false, imageUrl: Waterfall, text: 'Водопад Слезы Барса' },
+        { status: false, imageUrl: AlaArcha, text: 'Ущелье Ала-Арча' },
+        { status: false, imageUrl: JetiOguz, text: 'Ущелье Джети-Огуз' }
     ];
     const imageAlt = 'Изображение';
 
-    const [refWonder, inViewWonder] = useInView({
+    const [refWonders, inViewWonders] = useInView({
         triggerOnce: true,
         threshold: 0.2
     });
@@ -52,22 +52,23 @@ export default function Content() {
     });
 
     const variants = {
-        hidden: {opacity: 0, y: 50},
-        visible: {opacity: 1, y: 0, transition: {duration: 1}}
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 1 } }
     };
 
     return (
         <div>
-            <Welcome/>
+            <Welcome />
             <div className={s.container}>
                 <motion.div
                     className={s.content}
-                    ref={refWonder}
-                    initial="hidden"
-                    animate={inViewWonder ? 'visible' : 'hidden'}
+                    initial= 'hidden'
+                    transition={{ duration: 0.5 }}
+                    ref={refWonders}
                     variants={variants}
+                    animate={inViewWonders ? 'visible' : 'hidden'}
                 >
-                    <Wonder images={images} imageAlt={imageAlt}/>
+                    <Wonder images={images} imageAlt={imageAlt} />
                 </motion.div>
                 <motion.div
                     className={s.content}
@@ -76,7 +77,7 @@ export default function Content() {
                     animate={inViewAbout ? 'visible' : 'hidden'}
                     variants={variants}
                 >
-                    <About/>
+                    <About />
                 </motion.div>
                 <motion.div
                     className={s.content}
@@ -86,18 +87,18 @@ export default function Content() {
                     variants={variants}
                 >
                     {/*<Map />*/}
-                    <MapComponent/>
+                    <MapComponent />
                 </motion.div>
-               <motion.div
+                <motion.div
                     className={s.content}
                     ref={refLandMarks}
                     initial="hidden"
                     animate={inViewLandMarks ? 'visible' : 'hidden'}
                     variants={variants}
                 >
-                        <LandMarks/>
+                    <LandMarks />
                 </motion.div>
-            </div> 
+            </div>
         </div>
     );
 }
