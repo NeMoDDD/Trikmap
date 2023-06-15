@@ -6,7 +6,14 @@
 }   
 .custom_rate { 
     padding-bottom: 3%;
-}
+} 
+.custom_loader > div{ 
+    padding: 22px 50px !important;
+} 
+.custom_loader > div >div >span{ 
+    font-size: 24px !important;
+} 
+
 .comment__link{  
     font-family: 'Poppins', sans-serif; 
     color: #4096ff; 
@@ -87,7 +94,16 @@
 .error{ 
     font-size: 14px; 
     color: red;
-} 
+}  
+@media screen and (max-width:1500px) {
+    .custom_loader > div{ 
+        padding: 18px 35px !important;
+    } 
+    .custom_loader > div >div >span{ 
+        font-size: 22px !important;
+    } 
+    
+}
 @media screen and (max-width: 700px) {
         .row__name{ 
             font-size: 20px; 
@@ -97,6 +113,12 @@
         }  
         .comment__description{ 
             font-size: 36px;
+        }  
+        .custom_loader > div{ 
+            padding: 12px 26px !important;
+        } 
+        .custom_loader > div >div >span{ 
+            font-size: 17px !important;
         } 
 } 
 @media screen and (max-width: 450px) {  
@@ -120,5 +142,11 @@
         } 
         .comment__link{ 
             font-size: 15px;
-        }
+        } 
+        .custom_loader > div{ 
+            padding: 10px 22px !important;
+        } 
+        .custom_loader > div >div >span{ 
+            font-size: 16px !important;
+        } 
 }

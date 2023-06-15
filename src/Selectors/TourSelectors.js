@@ -21,4 +21,12 @@ export const isSucceedTOurSelector = createSelector(
 export const getTourCommentsSelector= createSelector( 
   [getToursState], 
   tourPage => tourPage.comments
+) 
+export const getCurrentRatingsSelector= createSelector( 
+  [getToursState], 
+  tourPage => tourPage.currentRating
+) 
+export const isTourCommentLoadingSelector= createSelector( 
+  [getToursState], 
+  tourPage => tourPage.commentLoading
 )

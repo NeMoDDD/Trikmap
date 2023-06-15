@@ -1,6 +1,6 @@
 const TOGGLE_ERROR_APP = 'TOGGLE_ERROR_APP'  
 const initialState={ 
-    error: true
+    error: false
 }
 export const appReducer = (state = initialState,action) =>{ 
     switch(action.type){ 

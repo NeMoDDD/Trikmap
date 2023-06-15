@@ -3,6 +3,7 @@ import classes from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 import Logo from '../../assets/img/Лого.svg';
 import {motion} from 'framer-motion';
+import CustomLink from './CustomLink';
 import {
     Menu,
     MenuButton,
@@ -24,70 +25,71 @@ const Header = () => {
         <div className={classes.main}>
             <div className={classes.header}>
                 <div className={classes.logo}>
-                    <NavLinkMotion
+                    <NavLink
                         to="/"
+                        
                     >
                         <img src={Logo} alt="logo"/>
-                    </NavLinkMotion>
-                    <NavLinkMotion
+                    </NavLink>
+                    <NavLink
                         to="/"
                     >
                         <h3>TRIKMAP</h3>
 
-                    </NavLinkMotion>
+                    </NavLink>
                 </div>
                 <div className={classes.link}>
-                    <NavLinkMotion
+                    <CustomLink
                         exact
                         to="/"
-                        activeClassName={classes.activeLink}
+                        activeClassName={classes.activeNavLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Главная
-                    </NavLinkMotion>
-                    <NavLinkMotion
+                    </CustomLink>
+                    <CustomLink
                         to="/hotels"
-                        activeClassName={classes.activeLink}
+                        activeClassName={classes.activeNavLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Отели
-                    </NavLinkMotion>
-                    <NavLinkMotion
+                    </CustomLink>
+                    <CustomLink
                         to="/tours"
                         activeClassName={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Туры
-                    </NavLinkMotion>
-                    <NavLinkMotion
+                    </CustomLink>
+                    <CustomLink
                         to="/attractions"
                         activeClassName={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Достопримечательности
-                    </NavLinkMotion>
-                    <NavLinkMotion
+                    </CustomLink>
+                    <CustomLink
                         to="/personal-account"
                         activeClassName={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
                         Личный кабинет
-                    </NavLinkMotion>
+                    </CustomLink>
                 </div>
                 {!isAuth ? <div className={classes.login}>
-                    <NavLinkMotion
-                        to="/login"
-                        activeClassName={classes.activeLink}
-                        whileHover={{color: '#007D34'}}
-                        transition={{duration: 0.3}}
+                    <CustomLink
+                       to="/login"
+                       activeClassName={classes.activeLink}
+                       whileHover={{color: '#007D34'}}
+                       transition={{duration: 0.3}}
                     >
                         Войти
-                    </NavLinkMotion>
+                    </CustomLink>
                     <NavLinkMotion
                         to="/register"
                         whileHover={{scale: 1}}
@@ -97,15 +99,14 @@ const Header = () => {
                         Регистрация
                     </NavLinkMotion>
                 </div> : <div className={classes.login}>
-                    <NavLinkMotion
+                    <NavLink
                         onClick={() => dispatch(removeUser())}
                         className={classes.registerButton}
                         transition={{duration: 0.3}}
                     >
                         Выйти
-                    </NavLinkMotion>
+                    </NavLink>
                 </div>}
-
                 <div className={classes.menu}>
                     <Menu isLazy>
                         <MenuButton as={Button} className={classes.customMenuButton}>Меню</MenuButton>

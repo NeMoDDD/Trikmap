@@ -3,7 +3,6 @@ import {motion} from 'framer-motion';
 import {useInView} from 'react-intersection-observer';
 import Welcome from './components/Welcome/Welcome';
 import About from './components/About/About';
-import Map from './components/map/Map';
 import Wonder from './components/Wonders/Wonder';
 import s from './Content.module.css'
 //импорты картинки
@@ -15,9 +14,9 @@ import Fireplace from '../../assets/img/image 8.jpg';
 import Waterfall from '../../assets/img/image 16.jpg';
 import AlaArcha from '../../assets/img/image 6.jpg';
 import JetiOguz from '../../assets/img/image 19.jpg'
-import LandMarks from './components/landMarks/LandMarks';
 import MapComponent from "../Map/Json/MapGeoJsonMarkers";
-import Slider from "./components/landMarks/Slider/Slider";
+import LandMarks from './components/landMarks/Slider/LandMarks';
+
 
 export default function Content() {
     const images = [
@@ -89,16 +88,16 @@ export default function Content() {
                     {/*<Map />*/}
                     <MapComponent/>
                 </motion.div>
-                <motion.div
+               <motion.div
                     className={s.content}
                     ref={refLandMarks}
                     initial="hidden"
                     animate={inViewLandMarks ? 'visible' : 'hidden'}
                     variants={variants}
                 >
-                        <Slider/>
+                        <LandMarks/>
                 </motion.div>
-            </div>
+            </div> 
         </div>
     );
 }

@@ -32,8 +32,8 @@ const CommentsForm = React.memo(({name,email,...props}) => {
                         rules={{
                             required: true, 
                             minLength: {
-                                value: 6,
-                                message: "Минимум 6 символов!"
+                                value: 3,
+                                message: "Минимум 3 символа!"
                             }, maxLength: {
                                 value: 34,
                                 message: "Минимум 34 символа!"
