@@ -90,12 +90,23 @@ export const setSelectedTourTC = (document) => async(dispatch) =>{
       }  
      dispatch( toggleLoaderAC(false))
 } 
-export const setBookTC = (date,email,id,name, num,amount,type) => async(dispatch) =>{ 
-    try{ 
-      await setDoc(doc(db, "OrderingTour",id), {date,email,id,name,number: num,amount,type});  
-      dispatch(setSucceedAC(true))
-    }catch{ 
-      dispatch(setErrorAC(true))
+export const setBookTC = (email,name, num,amount) => async(dispatch) =>{ 
+    const postRef = doc(db, "OrderingTour", email);  
+    const newData={ 
+            email,
+            name, 
+            num,  
+            amount, 
+    }  
+
+    try { 
+        await setDoc(postRef, {
+            data: arrayUnion(newData)
+        }, {merge: true});
+        dispatch(setSucceedAC(true))
+    } catch(error) {
+        dispatch(setErrorAC(true)) 
+        console.log(error);
     }
   } 
   export const addCommentTC = (document, dataObj) => async(dispatch) =>{ 

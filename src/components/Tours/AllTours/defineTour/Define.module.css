@@ -289,6 +289,15 @@
 .order__link {
     height: 100%;
     width: 40%;
+    transition: all 0.1s ease-in ;
+} 
+ 
+.order__link button:focus{ 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
+.order__link button:hover{ 
+    cursor: pointer;
+    transform: scale(1.030);
 }
 
 .order__link button {

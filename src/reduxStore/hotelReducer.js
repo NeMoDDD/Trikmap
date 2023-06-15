@@ -304,10 +304,11 @@ export const allOptionsFlow = () => async (dispatch) => {
     const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));
     Promise.all([dispatch(getSelectedHotelCityAC(cityOptions)), dispatch(getSelectedHotelRatingAC(ratingOptions)), dispatch(getSelectedRegionAC(regionOptions))]);
 }
-export const setBookTC = (date, email, id, name, num, amount, type) => async (dispatch) => {
-    const postRef = doc(orderRef, email); 
+export const setBookTC = (inner, out, email, id, name, num, amount, type) => async (dispatch) => {
+    const postRef = doc(orderRef, email);  
     const newData={ 
-            date, 
+            inner, 
+            out,
             email,
             id, 
             name, 
