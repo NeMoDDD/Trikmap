@@ -181,7 +181,7 @@ class MapComponent extends React.Component {
                         </div>
                     </div>
                     <div className="geojson-toggle__part">
-                    <div className="region-name__geojson">
+                        <div className="region-name__geojson">
                             <Button type="default" onClick={this.onGeojsonToggleIssykKol}
                                     className={this.state.geoJsonIsVisibleAll[6].geoJsonIsVisible ? "geojson-toggle__btn__active" : "geojson-toggle__btn"}>Иссык-Куль</Button>
                         </div>

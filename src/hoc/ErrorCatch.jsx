@@ -2,9 +2,18 @@ import { connect } from "react-redux"
 import { getError } from "../Selectors/AppSelecort"
 import Error from '../components/common/Error' 
 import { setErrorAC } from "../reduxStore/appReducer"
-const ErrorCatch = ({children,...props}) =>{ 
+import { useLocation} from 'react-router-dom' 
+import { useEffect } from "react" 
+const ErrorCatch = ({children,setErrorAC,...props}) =>{   
+    const location = useLocation()  
+    useEffect(() =>{ 
+        setErrorAC(false)
+    },[location.pathname, setErrorAC]) 
+
+
+
     if(props.isError){ 
-        return <Error setError = {props.setErrorAC}  />
+        return <Error />
     } 
     return children
 } 

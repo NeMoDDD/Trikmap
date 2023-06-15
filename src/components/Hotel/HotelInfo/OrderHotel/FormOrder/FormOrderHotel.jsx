@@ -30,7 +30,7 @@ const FormOrderHotel = ({name,...props}) => {
         <div className={s.order}> 
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.order__wrapper}>
-                    <div className={s.order__item_title}><div className={s.order__title}>Бронирование Отеля <strong>Aurum Hotel</strong></div></div>
+                    <div className={s.order__item_title}><div className={s.order__title}>Бронирование Отеля <strong>{name.name}</strong></div></div>
                     <div className={s.order__form}>
 
                         <div className={s.order__item}>  

@@ -53,4 +53,16 @@ export const isSucceedSelector= createSelector(
 export const getCommentsSelector= createSelector(
   [getHotelPageState],
   hotelPage => hotelPage.comments
-);
+); 
+export const getCoordinatesSelector= createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.coordinates
+); 
+export const getCurrentRatingSelector= createSelector(
+  [getHotelPageState],
+  hotelPage => hotelPage.currentRating
+); 
+export const isHotelCommentLoadingSelector= createSelector( 
+  [getHotelPageState], 
+  hotelPage => hotelPage.commentLoading
+)

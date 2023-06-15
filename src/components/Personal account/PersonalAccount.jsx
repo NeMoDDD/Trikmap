@@ -1,17 +1,15 @@
-import {Navigate, NavLink} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import style from "./PersonalAccount.module.css"
-import {useDispatch} from "react-redux";
-import {removeUser, setUserImg} from "../store/slices/userSlise";
-import {Button, Spin, Upload} from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import {upload, useAuthh} from "../Authorization/firebase/firebase";
-import {useAuth} from "../Authorization/hooks/use-auth";
-import {lastId} from "leaflet/src/core/Util";
+import { useDispatch } from "react-redux";
+import { setUserImg } from "../store/slices/userSlise";
+
+import { upload, useAuthh } from "../Authorization/firebase/firebase";
+import { useAuth } from "../Authorization/hooks/use-auth";
 
 const PersonalAccount = () => {
 
-    const {nickname, email, isAuth, userImg} = useAuth()
+    const { nickname, email, isAuth, userImg } = useAuth()
     const dispatch = useDispatch()
     const currentUser = useAuthh()
     const [photo, setPhoto] = useState(null);
@@ -19,7 +17,76 @@ const PersonalAccount = () => {
     const [loading, setLoading] = useState(false);
 
 
-    // Пропсы для upload
+
+
+
+
+    const onUpdateProfileImg = (e) => {
+        if (e.target.files[0]) {
+            console.log(e.target.files[0])
+            setPhoto(e.target.files[0])
+        }
+    }
+
+    const onClickProfileImg = () => {
+        upload(photo, currentUser, setLoading);
+        dispatch(setUserImg({
+            userImg: photoURL
+        }))
+    }
+    useEffect(() => {
+        if (currentUser?.photoURL) {
+            setPhotoURL(currentUser.photoURL);
+        }
+    }, [currentUser])
+    if (!isAuth) {
+        return <Navigate to={"/login"} />
+    }
+    return (
+
+            <div className={style.main}> 
+            <div className={style.container}> 
+                <div className={style.userInfo}>
+                    <div>
+                        <div className={style.profileImgBlock__userInfo}>
+                            <img
+                                src={userImg}
+                                className={style.profileImg__userInfo}
+                                alt={"avatar"}
+                                />
+                            <input type={"file"} name="userPhoto" onChange={onUpdateProfileImg} />
+                            <button onClick={onClickProfileImg} disabled={loading || !photo}>Загрузить</button>
+                        </div>
+                    </div>
+                    <div className={style.userInfo__summary}>
+                        <h3>Имя:  {nickname}</h3>
+                        <h3>Почта:  {email}</h3>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+    )
+}
+export default PersonalAccount;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // Пропсы для upload
     // const props = {
     //     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     //     onChange({ file, fileList }) {
@@ -58,55 +125,3 @@ const PersonalAccount = () => {
     //         // },
     //     ],
     // };
-
-
-
-    const onUpdateProfileImg = (e) => {
-        if (e.target.files[0]) {
-            setPhoto(e.target.files[0])
-        }
-    }
-
-    const onClickProfileImg = () => {
-        upload(photo, currentUser, setLoading);
-        dispatch(setUserImg({
-            userImg: photoURL
-        }))
-    }
-    useEffect(() => {
-        if (currentUser?.photoURL) {
-            setPhotoURL(currentUser.photoURL);
-        }
-    }, [currentUser])
-    return (
-        <div>
-            {
-                isAuth ? <div className={style.main}>
-                        <div className={style.userInfo}>
-                            <div>
-                                <div className={style.profileImgBlock__userInfo}>
-                                    <img
-                                        src={userImg}
-                                        className={style.profileImg__userInfo}
-                                        alt={"avatar"}
-                                    />
-                                    <input type={"file"} name="userPhoto" onChange={onUpdateProfileImg}/>
-                                    <button onClick={onClickProfileImg} disabled={loading || !photo}>Загрузить</button>
-                                    {/*<Upload {...props}>*/}
-                                    {/*    <Button icon={<UploadOutlined />}>Upload</Button>*/}
-                                    {/*</Upload>*/}
-                                </div>
-                            </div>
-                            <div className={style.userInfo__summary}>
-                                <h3>Имя:  {nickname}</h3>
-                                <h3>Почта:  {email}</h3>
-                            </div>
-                        </div>
-                    </div> :
-                    <Navigate to={"/login"}/>
-            }
-        </div>
-
-    )
-}
-export default PersonalAccount;

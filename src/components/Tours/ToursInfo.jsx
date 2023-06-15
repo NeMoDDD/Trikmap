@@ -1,10 +1,12 @@
 import ContentTour from "./ContentTour"
-
-const TourInfo = props =>{ 
+import Tours from "./AllTours/Tours" 
+import React from "react"
+const TourInfo =React.memo( ({tours,...props}) =>{ 
     return( 
         <div> 
-            <ContentTour/>
+            <ContentTour/> 
+            <Tours tours={tours}/>
         </div>
     )
-} 
+} )
 export default TourInfo

@@ -4,7 +4,9 @@ const Tours = ({tours,...props}) =>{
     return( 
         <div className={s.tour}> 
             <div className={s.tour__container}>  
-                {tours.map((item, index) => <Tour key={index} title={item.title} />)}
+                {tours.map((item, index) => <Tour key={index} tour={item} />)} 
+                {tours.map((item, index) => <Tour key={index} tour={item} />)} 
+                {tours.map((item, index) => <Tour key={index} tour={item} />)}
             </div> 
         </div>
     )

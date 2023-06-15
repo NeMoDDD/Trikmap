@@ -3,6 +3,7 @@ import classes from './Footer.module.css'
 import Whatsapp from '../../assets/img/ватсапп.svg';
 import Telegram from '../../assets/img/Telegram.svg';
 import Instagram from '../../assets/img/instgrm.svg'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -32,9 +33,9 @@ export default function Footer() {
                                                                                          className={classes.img}/></a>
                         </div>
                     </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
 
-        </div>
-    )
+  )
 }
