@@ -117,7 +117,7 @@ export const addCommentTC = (document, dataObj) => async (dispatch) => {
     await updateDoc(postRef, {
       data: arrayUnion(dataObj)
     });
-    dispatch(getCommentsTC(document))
+    dispatch(getHotelRatingTC(document))
     dispatch(getCommentsTC(document))
   } catch {
 

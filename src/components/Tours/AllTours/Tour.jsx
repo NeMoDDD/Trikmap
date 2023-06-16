@@ -8,7 +8,7 @@ const Tour = ({tour,...props}) =>{
         <div style={{backgroundImage: `url(${tour.photo[0]}), -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2))` }} className={s.tour__about}> 
             <div className={s.about__item}>   
                 <div className={s.about__title}>{tour.title}</div>   
-                <div className={s.about__rate}><Rate value={tour.rating}/></div>
+                <div className={s.about__rate}><Rate disabled value={tour.rating}/></div>
                 <div className={s.about__date}> 
                     <ul> 
                         <li className={s.about__list}>Даты:</li> 
