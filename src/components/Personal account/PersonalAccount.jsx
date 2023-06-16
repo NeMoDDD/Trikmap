@@ -26,7 +26,6 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
     }
 
     const onClickProfileImg = () => {
-        console.log('asda');
         upload(photo, currentUser, setLoading);
         dispatch(setUserImg({
             userImg: photoURL

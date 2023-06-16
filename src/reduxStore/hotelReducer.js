@@ -165,14 +165,6 @@ export const getHotelsTC = () => {
     }
 }
 
-// export const getLikes = () =>{
-//     return async (dispatch) =>{
-//         dispatch(toggleFetchingAC(true))
-//         try{
-//
-//         }
-//     }
-// }
 
 export const getCommentsTC = (document) => {
     return async (dispatch) => {
@@ -322,56 +314,7 @@ export const setBookTC = (inner, out, email, id, name, num, amount, type) => asy
         }, {merge: true});
         dispatch(setSucceedAC(true))
     } catch(error) {
-        // dispatch(setErrorAC(true)) 
         console.log(error);
     }
 }
 
-// Promise.all([dispath(getTotalDocsAC(snapshot.data().count)) ,dispath(getSelectedHotelCityAC(cityOptions)),dispath(getSelectedHotelRatingAC(ratingOptions)),dispath(getSelectedRegionAC(regionOptions)),dispath(setHotelsAC(cityList)),dispath(toggleFetchingAC(false))]);
-// export const getTotalDocsTC = () => async (dispatch)=>{ 
-//   const snapshot = await getCountFromServer(ref); 
-//   dispatch(getTotalDocsAC(snapshot.data().count))
-// } 
-
-
-// export const getSelectedHotelCityTC = () =>{
-//     return (dispath) =>{
-//         const myCollectionRef = collection(db, "Hotels")
-//         const arr = [] 
-//     getDocs(myCollectionRef)
-//         .then((querySnapshot) => {
-//             querySnapshot.forEach((doc) => arr.push(doc.data().city));
-//         let uniqueArray = arr.filter((item, pos)=> {
-//               return arr.indexOf(item) === pos;
-//             })
-//         dispath(getSelectedHotelCityAC(uniqueArray))
-//     })
-//     .catch((error) => {
-//         console.log("Error getting documents: ", error);
-//     })
-//     .finally(() =>{ 
-//         dispath(toggleFetchingAC(false)) 
-//     })  
-
-// }
-// }  
-// export const getSerchingCityTC = (searchingCity) =>{ 
-//     return async (dispatch) =>{   
-//                 if(searchingCity === ''){  
-//                 dispatch(getHotelsTC())
-//                 return dispatch(getTotalDocsTC())
-//                 } 
-//                 const city = query(  
-//                     collection(firestore, 'Hotels'), 
-//                     where( 'city' , '==', searchingCity) , 
-//                     limit(20)            
-//                 )    
-//                 const data = []
-//                 const  querySnap = await getDocs(city)  
-//                 querySnap.forEach((snap) =>{  
-//                     data.push(snap.data())
-//                 })    
-//                 dispatch(getTotalDocsAC(data.length))
-//                 dispatch(setSearchingCityAC(data))            
-//             } 
-// }

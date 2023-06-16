@@ -43,25 +43,3 @@ const mapStateToProps = (state) => {
 export default compose( 
     connect(mapStateToProps, {getHotelsTC, allOptionsFlow,getSerchingCityTC,toggleFetchingAC,getCurrentPageAC,getSerchingRegionTC,getSerchingRatingTC})(HotelContainer)
 ) 
-
-        // class HotelContainer extends React.PureComponent{ 
-        //     componentDidMount() {    
-        //         this.props.getHotelsTC()   
-        //         this.props.getSelectedHotelCityTC()    
-        //         this.props.getSelectedHotelRegionTC()
-        //         this.props.getTotalDocsTC()
-        //     }  
-            
-            
-        //     render(){  
-        //         console.log('render');
-        //         return(  
-        //         <HotelInfo totalDocs={this.props.totalDocs} getCurrentPageAC={this.props.getCurrentPageAC}
-        //         hotels={this.props.hotels}  currentPage={this.props.currentPage}
-        //         selectedHotelCity={this.props.selectedHotelCity} isFetch={this.props.isFetch}  
-        //         getSerchingCityTC={this.props.getSerchingCityTC} pageSize={this.props.pageSize} 
-        //         selectedHotelRegion={this.props.selectedHotelRegion} 
-        //         />    
-        //         )
-        //     }
-        // } 
