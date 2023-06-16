@@ -9,7 +9,7 @@ import { useAuth } from "../Authorization/hooks/use-auth";
 import ava from '../../assets/img/userProfile.svg'
 import { Modal } from "antd";
 import { getBookedHotelSelector, getBookedTourSelector } from "../../Selectors/AppSelecort";
-const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHotelTC, bookedTour, isFetching}) => {
+const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHotelTC, bookedTour, isFetching }) => {
     const [hotel, setHotel] = useState(false)
     const [tour, setTour] = useState(false)
     const { nickname, email, isAuth, userImg } = useAuth()
@@ -25,6 +25,7 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
     }
 
     const onClickProfileImg = () => {
+        console.log('asda');
         upload(photo, currentUser, setLoading);
         dispatch(setUserImg({
             userImg: photoURL
@@ -34,15 +35,14 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
         if (currentUser?.photoURL) {
             setPhotoURL(currentUser.photoURL);
         }
-    }, [currentUser]) 
-    console.log(email);
-    useEffect(() => { 
-        getBookedTourTC(email) 
+    }, [currentUser])
+    useEffect(() => {
+        getBookedTourTC(email)
         getBookedHotelTC(email)
-    }, [getBookedTourTC,getBookedHotelTC,email])
+    }, [getBookedTourTC, getBookedHotelTC, email])
     if (!isAuth) {
         return <Navigate to={"/login"} />
-    } 
+    }
     const handleFetchTour = () => {
         setTour(true)
         getBookedTourTC(email)
@@ -50,7 +50,7 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
     const handleFetchHotel = () => {
         setHotel(true)
         getBookedHotelTC(email)
-    } 
+    }
 
     return (
 
@@ -85,38 +85,44 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                             <button onClick={handleFetchHotel} className={style.booked_btn}>
                                 Забронированные отели
                             </button>
+
                             <Modal
                                 footer={null}
                                 confirmLoading
                                 onCancel={() => setHotel(false)}
-                                open={hotel}> 
-                                 {bookedHotel && bookedHotel.data&& bookedHotel.data.map((item,index) => <div key={index} className={style.modal__inner}>
-                                    <div className={style.modal__name}>
-                                        <div className={style.modal__title}>Название Отеля:</div>
-                                        <div className={style.modal__subtitle}>{item.name}</div>
-                                    </div>
-                                    <div className={style.modal__type}>
-                                        <div className={style.modal__title}>Тип Отеля:</div>
-                                        <div className={style.modal__subtitle}>{item.type}</div>
-                                    </div>
-                                    <div className={style.modal__num}>
-                                        <div className={style.modal__title}>Ваш номер:</div>
-                                        <div className={style.modal__subtitle}>{item.num}</div>
-                                    </div>
-                                    <div className={style.modal__amount}>
-                                        <div className={style.modal__title}>Количество людей:</div>
-                                        <div className={style.modal__subtitle}>{item.amount}</div>
-                                    </div>
-                                    <div className={style.modal__in}> 
-                                        <div className={style.modal__title}>Дата въезда:</div>
-                                        <div className={style.modal__subtitle}></div> 
-                                    </div>
-                                    <div className={style.modal__in}> 
-                                        <div className={style.modal__title}>Дата выезда:</div>
-                                        <div className={style.modal__subtitle}></div> 
-                                    </div>
-                                </div>)}
-                                
+                                className={style.modal}
+                                open={hotel}>
+                                <div className={style.modal__wrapper}>
+
+                                    {bookedHotel && bookedHotel.data && bookedHotel.data.map((item, index) => <div key={index} className={style.modal__inner}>
+                                        <div className={style.modal__descrip}>{item.name}</div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Название Отеля:</div>
+                                            <div className={style.modal__subtitle}>{item.name}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Тип Отеля:</div>
+                                            <div className={style.modal__subtitle}>{item.type}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Ваш номер:</div>
+                                            <div className={style.modal__subtitle}>{item.num}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Количество людей:</div>
+                                            <div className={style.modal__subtitle}>{item.amount}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Дата въезда:</div>
+                                            <div className={style.modal__subtitle}>{item.inner}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Дата выезда:</div>
+                                            <div className={style.modal__subtitle}>{item.out}</div>
+                                        </div>
+                                    </div>)}
+
+                                </div>
                             </Modal>
                         </div>
                         <div className={style.ordering__tour}>
@@ -128,7 +134,23 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                                 confirmLoading
                                 onCancel={() => setTour(false)}
                                 open={tour}>
-                                <div>
+                                <div className={style.modal__wrapper}>
+
+                                    {bookedTour && bookedTour.data && bookedTour.data.map((item, index) => <div key={index} className={style.modal__inner}>
+                                        <div className={style.modal__descrip}>{item.name}</div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Название Тура:</div>
+                                            <div className={style.modal__subtitle}>{item.name}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Ваш номер:</div>
+                                            <div className={style.modal__subtitle}>{item.num}</div>
+                                        </div>
+                                        <div className={style.modal__item}>
+                                            <div className={style.modal__title}>Количество людей:</div>
+                                            <div className={style.modal__subtitle}>{item.amount}</div>
+                                        </div>
+                                    </div>)}
 
                                 </div>
                             </Modal>
@@ -144,7 +166,7 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
 const mapStateToProps = (state) => {
     return {
         bookedHotel: getBookedHotelSelector(state),
-        bookedTour: getBookedTourSelector(state), 
+        bookedTour: getBookedTourSelector(state),
         isFetching: state.app.isFetching
     }
 }
