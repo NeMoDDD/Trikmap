@@ -204,7 +204,17 @@
     font-family: 'Poppins',sans-serif;  
     color: #2f2e41;  
     font-weight: 600; 
-    text-align: center;
+     text-align: center;
+} 
+.modal__loader{ 
+    height: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+} 
+.modal__spin{ 
+    width: 52px; 
+    height: 52px;
 }
 @media screen and (max-width:1500px) {
     .wrapper{  

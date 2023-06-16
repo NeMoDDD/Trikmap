@@ -45,7 +45,6 @@ const  setBookedHotelAC = (data) =>({type: GET_BOOKED_HOTEL, data})
 const setBookedTourAC = (data) =>({type: GET_BOOKED_TOUR, data})  
 const toggleLoaderAC = (data) =>({type:APP_TOGGLE_FETCH, data})
 export const getBookedTourTC = (document) => async(dispatch) =>{
-    dispatch(toggleLoaderAC(true))
     try { 
         const docRef = doc(tourRef, document);
         const docSnap = await getDoc(docRef); 
@@ -55,7 +54,6 @@ export const getBookedTourTC = (document) => async(dispatch) =>{
       } catch (error) {
         dispatch(setBookedTourAC(null))
       }
-    dispatch(toggleLoaderAC(false))  
 }  
 export const getBookedHotelTC = (document) => async(dispatch) =>{
     dispatch(toggleLoaderAC(true))
