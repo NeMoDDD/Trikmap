@@ -16,7 +16,6 @@ const Tour = ({tour,...props}) =>{
                     </ul> 
                 </div> 
                 <div className={s.about__btn}> 
-                    {/* <button className={s.about__button}><NavLink to={`/tours/${tour.title}`}>Подробнее</NavLink></button>  */}
                     <NavLink className={s.about__link} to={`/tours/${tour.title}`}><button className={s.about__button}>Подробнее</button></NavLink>
                 </div>
                 </div>
