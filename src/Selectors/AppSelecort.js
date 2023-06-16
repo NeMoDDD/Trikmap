@@ -12,4 +12,8 @@ export const getBookedHotelSelector = createSelector(
 export const getBookedTourSelector = createSelector(
   [getAppState],
   app => app.OrderedTours
+); 
+export const isFetchingAppSelector = createSelector(
+  [getAppState],
+  app => app.isFetching
 );

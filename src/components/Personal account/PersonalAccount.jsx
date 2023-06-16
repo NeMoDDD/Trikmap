@@ -9,7 +9,7 @@ import { useAuth } from "../Authorization/hooks/use-auth";
 import ava from '../../assets/img/userProfile.svg'
 import { Modal } from "antd";
 import { Spinner } from "@chakra-ui/react";
-import { getBookedHotelSelector, getBookedTourSelector } from "../../Selectors/AppSelecort";
+import { getBookedHotelSelector, getBookedTourSelector, isFetchingAppSelector } from "../../Selectors/AppSelecort";
 const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHotelTC, bookedTour, isFetching }) => {
     const [hotel, setHotel] = useState(false)
     const [tour, setTour] = useState(false)
@@ -173,7 +173,7 @@ const mapStateToProps = (state) => {
     return {
         bookedHotel: getBookedHotelSelector(state),
         bookedTour: getBookedTourSelector(state),
-        isFetching: state.app.isFetching
+        isFetching: isFetchingAppSelector(state)
     }
 }
 export default connect(mapStateToProps, { getBookedHotelTC, getBookedTourTC })(PersonalAccount);
