@@ -53,7 +53,7 @@ export const getBookedTourTC = (document) => async(dispatch) =>{
         dispatch(setBookedTourAC(docSnap.data()))
         }
       } catch (error) {
-        console.log(error);
+        dispatch(setBookedTourAC(null))
       }
     dispatch(toggleLoaderAC(false))  
 }  
@@ -66,7 +66,7 @@ export const getBookedHotelTC = (document) => async(dispatch) =>{
         dispatch(setBookedHotelAC(docSnap.data()))
         }
       } catch (error) {
-        console.log(error);
+        dispatch(setBookedHotelAC(null))
       }
     dispatch(toggleLoaderAC(false))  
 }

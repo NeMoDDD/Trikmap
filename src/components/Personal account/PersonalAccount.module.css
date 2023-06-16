@@ -194,6 +194,17 @@
     font-weight: 600;
     line-height: 38px; 
 
+} 
+.modal__empty{  
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 34px; 
+    font-family: 'Poppins',sans-serif;  
+    color: #2f2e41;  
+    font-weight: 600; 
+    text-align: center;
 }
 @media screen and (max-width:1500px) {
     .wrapper{  
@@ -267,6 +278,10 @@
     }
     .modal__subtitle{ 
         font-size: 17px;  
+    } 
+    .modal__empty{   
+
+        font-size: 28px; 
     }
 
 } 
@@ -362,7 +377,10 @@
     .modal__subtitle{ 
         font-size: 16px;  
     }
-
+    .modal__empty{  
+         text-align: center;
+        font-size: 20px; 
+    }
 } 
 
 @media screen and (max-width:450px) {

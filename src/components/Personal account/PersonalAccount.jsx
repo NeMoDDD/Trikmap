@@ -45,11 +45,9 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
     }
     const handleFetchTour = () => {
         setTour(true)
-        getBookedTourTC(email)
     }
     const handleFetchHotel = () => {
         setHotel(true)
-        getBookedHotelTC(email)
     }
 
     return (
@@ -94,7 +92,7 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
                                 open={hotel}>
                                 <div className={style.modal__wrapper}>
 
-                                    {bookedHotel && bookedHotel.data && bookedHotel.data.map((item, index) => <div key={index} className={style.modal__inner}>
+                                {bookedHotel?.data ?  bookedHotel && bookedHotel.data && bookedHotel.data.map((item, index) => <div key={index} className={style.modal__inner}>
                                         <div className={style.modal__descrip}>{item.name}</div>
                                         <div className={style.modal__item}>
                                             <div className={style.modal__title}>Название Отеля:</div>
@@ -120,7 +118,9 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
                                             <div className={style.modal__title}>Дата выезда:</div>
                                             <div className={style.modal__subtitle}>{item.out}</div>
                                         </div>
-                                    </div>)}
+                                    </div>) : <div className={style.modal__empty}> 
+                                        Вы еще ничего не бронировали
+                                </div> }   
 
                                 </div>
                             </Modal>
@@ -136,7 +136,7 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
                                 open={tour}>
                                 <div className={style.modal__wrapper}>
 
-                                    {bookedTour && bookedTour.data && bookedTour.data.map((item, index) => <div key={index} className={style.modal__inner}>
+                                    {bookedHotel?.data ? bookedTour && bookedTour.data && bookedTour.data.map((item, index) => <div key={index} className={style.modal__inner}>
                                         <div className={style.modal__descrip}>{item.name}</div>
                                         <div className={style.modal__item}>
                                             <div className={style.modal__title}>Название Тура:</div>
@@ -150,7 +150,9 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
                                             <div className={style.modal__title}>Количество людей:</div>
                                             <div className={style.modal__subtitle}>{item.amount}</div>
                                         </div>
-                                    </div>)}
+                                    </div>) : <div className={style.modal__empty}> 
+                                        Вы еще ничего не бронировали
+                                </div> }
 
                                 </div>
                             </Modal>
