@@ -13,7 +13,6 @@ import JetiOguz from "../../../../assets/img/image 19.jpg";
 
 export default  function Wonder(imageAlt) {
 
-    const [heart, setHeart] = useState(false);
     const [images, setImages] = useState([
         {id: 0, status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль'},
         {id: 1, status: false, imageUrl: Sary, text: 'Озеро Сары-Челек'},
@@ -37,7 +36,9 @@ export default  function Wonder(imageAlt) {
 
 
     return (
-        <div className={s.main}>
+        <div
+      className={s.main}
+    >
             <div className={s.title}>
                 <h2>Чудеса Кыргызстана</h2>
             </div>
@@ -61,7 +62,6 @@ export default  function Wonder(imageAlt) {
                         </div>
                         <div
                             className={s.imageWrapper}
-                            // whileHover={{opacity: 0.8, backgroundColor: '#000'}}
                         >
                             <img
                                 src={image.imageUrl}
@@ -73,6 +73,6 @@ export default  function Wonder(imageAlt) {
                     </div>
                 ))}
             </div>
-        </div>
+            </div>
     );
 }
