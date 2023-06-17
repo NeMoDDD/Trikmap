@@ -1,0 +1,685 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.tour {
+    height: 100%;
+    padding-bottom: 12%;
+} 
+
+.content {
+    position: sticky;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+} 
+.content__item_wrapper{ 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+.commetns{  
+    padding-top: 5%;
+    height: 100%;
+    padding: 0 12%;
+}
+.content__wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2))
+}
+
+.content__item {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content__description {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 54px;
+    line-height: 58px;
+    font-weight: 700;
+}
+
+.content__data {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 48px;
+    font-weight: 400;
+}
+
+.map {
+    height: 14em;
+    background-color: #eeeeee;
+}
+
+.map__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.map__title {
+    color: #67a1d6;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+.map__rope {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    line-height: 48px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.route {
+    padding: 5% 0 0 0;
+    height: 100%;
+}
+
+.route__container {
+    padding: 0 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.route__map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 60%;
+    border: 2px solid #67a1d6;
+    box-shadow: #67a1d6 0px 3px 8px;
+}
+
+.route__map>div {
+    height: 100%;
+    width: 100%;
+}
+
+.route__title {
+    padding-top: 6%;
+    width: 60%;
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    line-height: 34px;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+.plan {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    height: 100%;
+}
+
+.plan__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 22%;
+}
+
+.plan__item {
+    padding-top: 6%;
+}
+
+.plan__description, .comment__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+}
+.comment__description { 
+    padding: 2% 0;
+}
+.plan__title {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px;
+    line-height: 34px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.plan__subtitle {
+    padding-top: 3%;
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 31px;
+
+    font-weight: 300;
+}
+
+.tour__swiper_wrapper {
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.swiper__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.tour__swiper_big {
+    width: 100%;
+    height: 50%;
+
+}
+
+.tour__imgages {
+
+    width: 55%;
+}
+
+.swiper__img {
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.details {
+    background-color: #eeeeee;
+    height: 100%;
+    padding-top: 2.5%;
+    padding-bottom: 3%;
+}
+
+.details__container {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 12%;
+}
+
+.details__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.details__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.details__title {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 31px;
+    font-weight: 400;
+    padding-bottom: 2%;
+}
+
+.details__link {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    line-height: 31px;
+    font-weight: 300;
+}
+
+.order {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.order__description {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px;
+    line-height: 34px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.order__container {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 22%;
+}
+
+.order__link {
+    height: 100%;
+    width: 40%;
+    transition: all 0.1s ease-in ;
+} 
+ 
+.order__link button:focus{ 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
+.order__link button:hover{ 
+    cursor: pointer;
+    transform: scale(1.030);
+}
+
+.order__link button {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #67a1d6;
+    padding: 4% 0%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+@media screen and (max-width:1520px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description,
+    .comment__description{
+        font-size: 44px;
+        line-height: 34px;
+    }
+
+    .order__link {
+        height: 100%;
+        width: 45%;
+    }
+
+    .order__link button {
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        background-color: #67a1d6;
+        padding: 4% 0%;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        font-size: 21px;
+        font-weight: 400;
+    }
+
+    .plan__title {
+        font-size: 28px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 21px;
+        line-height: 31px;
+    }
+
+    .route__title {
+        font-size: 23px;
+        line-height: 34px;
+    }
+
+    .plan__container,
+    .order__container {
+        padding: 0 15%;
+    }
+
+    .tour__imgages {
+        width: 70%;
+    }
+
+    .route__map {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:1360px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description, .comment__description {
+        font-size: 38px;
+    }
+
+    .order__link button {
+        font-size: 19px;
+    }
+
+    .plan__title {
+        font-size: 25px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 21px;
+        line-height: 31px;
+    }
+
+    .route__title {
+        font-size: 21px;
+        line-height: 34px;
+    }
+
+    .plan__container,
+    .order__container {
+        padding: 0 12%;
+    }
+
+    .details__title {
+        font-size: 24px;
+        padding-bottom: 1.5%;
+    }
+
+    .details__link {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:950px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description, 
+    .comment__description {
+        font-size: 32px;
+    }
+
+    .order__link {
+        height: 100%;
+        width: 45%;
+    }
+
+    .order__link button {
+        font-size: 17px;
+    }
+
+    .plan__title {
+        font-size: 22px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 19px;
+        line-height: 27px;
+    }
+
+    .route__title {
+        width: 85%;
+        font-size: 19px;
+    }
+
+    .plan__container,
+    .order__container,
+    .route__container,
+    .details__container,.commetns {
+        padding: 0 7%;
+    }
+    .commetns{  
+        padding-top: 5%;}
+    .details__container {
+        justify-content: space-between;
+    }
+
+    .tour__imgages {
+        width: 85%;
+    }
+
+    .route__map {
+        width: 100%;
+    }
+
+    .details__title {
+        font-size: 21px;
+        padding-bottom: 1.5%;
+    }
+
+    .details__link {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
+    .plan__item {
+        padding-top: 4%;
+    }
+
+    .map__rope {
+        width: 90%;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description , 
+    .comment__description{
+        font-size: 28px;
+    }
+
+    .order__link {
+        height: 100%;
+        width: 45%;
+    }
+
+    .order__link button {
+        font-size: 14px;
+    }
+
+    .plan__title {
+        font-size: 22px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 17px;
+        line-height: 27px;
+    }
+
+    .route__title {
+        width: 90%;
+        font-size: 17px;
+    }
+
+    .plan__container,
+    .order__container,
+    .route__container,
+    .details__container,.commetns {
+        padding: 0 4%;
+    }
+    .commetns{  
+        padding-top: 4%;}
+    .details__container {
+        justify-content: space-around;
+    }
+
+    .tour__imgages {
+        width: 85%;
+    }
+
+    .route__map {
+        width: 100%;
+    }
+
+    .details__title {
+        font-size: 18px;
+        padding-bottom: 1.5%;
+    }
+
+    .details__link {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .plan__item {
+        padding-top: 4%;
+    }
+
+    .map__rope {
+        width: 90%;
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .content__description {
+        font-size: 41px;
+    }
+    
+    .content__data {
+        font-size: 21px;
+        line-height: 31px;
+    }
+    
+} 
+
+@media screen and (max-width:430px) {
+
+    .order__description,
+    .swiper__description,
+    .details__description,
+    .plan__description,.comment__description {
+        font-size: 26px;
+    }
+
+    .order__link {
+        height: 100% ;
+        width: 100%;
+        padding-top: 4%;
+    }
+
+    .order__link button { 
+        font-size: 17px;
+    }
+    .order__container{ 
+        flex-direction: column;
+    }
+    .plan__title {
+        font-size: 19px;
+        line-height: 34px;
+
+    }
+
+    .plan__subtitle {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .route__title {
+        width: 90%;
+        font-size: 16px; 
+        line-height: 28px;
+    }
+
+    .plan__container,
+    .order__container,
+    .route__container,
+    .details__container, .commetns {
+        padding: 0 3%;
+    }
+
+    .details__container {
+        justify-content: space-around;
+    }
+
+    .tour__imgages {
+        width: 91%;
+    }
+
+    .route__map {
+        width: 100%;
+    }
+    .details__row{ 
+        justify-content: space-between;
+    }
+    .details__title {  
+        color: black;
+        font-size: 16px;
+        padding-bottom: 1.5%; 
+        line-height: 24px; 
+    }
+
+    .details__link {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .commetns{  
+        padding-top: 4%;}
+
+    .map__rope {
+        width: 90%;
+        font-size: 17px;
+        line-height: 28px;
+    }
+    .content__description {
+        font-size: 33px; 
+        text-align: center;
+    }
+    
+    .content__data {
+        font-size: 18px;
+    }
+    .map__title{ 
+        font-size: 26px;
+    } 
+    .order,.plan, .tour__swiper_wrapper, .route, .commetns{ 
+        padding-top: 12%;
+    }
+} 
+@media screen and (max-width: 375px) {
+    .details__title{ 
+    font-weight: 600;  
+    font-size: 15px;
+    } 
+    .details__row{ 
+        justify-content: flex-start;
+    }
+} 
+

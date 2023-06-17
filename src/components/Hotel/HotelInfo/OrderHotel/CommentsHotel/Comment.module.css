@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
+.comment{ 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column;  
+}   
+.custom_rate { 
+    padding-bottom: 3%;
+} 
+.custom_loader > div{ 
+    padding: 22px 50px !important;
+} 
+.custom_loader > div >div >span{ 
+    font-size: 24px !important;
+} 
+
+.comment__link{  
+    font-family: 'Poppins', sans-serif; 
+    color: #4096ff; 
+    text-decoration: none; 
+    cursor: pointer; 
+    text-align: center; 
+    font-size: 18px; 
+    transition: 0.3s all ease-in-out;
+} 
+.comment__link:hover{  
+    text-decoration: underline;
+    cursor: pointer;
+}
+.comment__item_form{ 
+    height: 25%; 
+} 
+.add{  
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+} 
+.img_send{ 
+    height: 25px;
+} 
+.add__input{ 
+    width: 50%;
+} 
+.add__btn {  
+    margin-left: 2%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+} 
+.comment_row{ 
+    margin-top: 5%;
+    width: 80%;   
+    border-radius: 15px; 
+    background-color: azure; 
+    border: 1px solid #4096ff;;
+} 
+.row__wrapper{  
+    padding: 2% 5% 6% 5%;
+}   
+.row__rate ul{ 
+    font-size: 21px;
+}
+.row__name{ 
+
+    font-family: 'Poppins', sans-serif; 
+    font-size: 26px; 
+    font-weight: 700; 
+    color: #2f2e41;
+} 
+.row__title{  
+    padding-top: 3%;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 17px; 
+    font-weight: 200; 
+    color: #43434d;
+} 
+.comment_item_all{ 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+.comment__description{   
+    padding: 2% 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;  
+    font-weight: 700;
+    font-size: 42px;
+    color: #2f2e41; 
+} 
+.input_comment{
+    font-size: 16px;
+} 
+.error{ 
+    font-size: 14px; 
+    color: red;
+}  
+@media screen and (max-width:1500px) {
+    .custom_loader > div{ 
+        padding: 18px 35px !important;
+    } 
+    .custom_loader > div >div >span{ 
+        font-size: 22px !important;
+    } 
+    
+}
+@media screen and (max-width: 700px) {
+        .row__name{ 
+            font-size: 20px; 
+        } 
+        .row__title{ 
+            font-size: 16px; 
+        }  
+        .comment__description{ 
+            font-size: 36px;
+        }  
+        .custom_loader > div{ 
+            padding: 12px 26px !important;
+        } 
+        .custom_loader > div >div >span{ 
+            font-size: 17px !important;
+        } 
+} 
+@media screen and (max-width: 450px) {  
+    .row__rate ul{ 
+        font-size: 14px;
+    }
+        .comment_row{ 
+            width: 100%;
+        }
+        .row__name{ 
+            font-size: 18px; 
+        } 
+        .row__title{ 
+            font-size: 15px; 
+        }  
+        .comment__description{ 
+            font-size: 28px;
+        }  
+        .add__input{ 
+            width: 70%;
+        } 
+        .comment__link{ 
+            font-size: 15px;
+        } 
+        .custom_loader > div{ 
+            padding: 10px 22px !important;
+        } 
+        .custom_loader > div >div >span{ 
+            font-size: 16px !important;
+        } 
+}

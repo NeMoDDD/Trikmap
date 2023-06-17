@@ -1,0 +1,97 @@
+.main {
+    width: 100%;
+    height: auto;
+    padding: 0 5em;
+}
+
+.attraction {
+    display: flex;
+    margin-top: 1em;
+    margin-bottom: 3em;
+    border: 1px solid #67a1d6;
+    border-radius: 15px;
+    padding: 25px 30px;
+}
+
+.attraction__img {
+    border-radius: 25px !important;
+    /*background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);*/
+    width: 100% !important;
+    height: 350px !important;
+}
+
+.imageBlock__attraction {
+    width: 40%;
+}
+
+.contentBlock__attraction {
+    width: 60%;
+    padding: 0 0 10px 0;
+    margin-left: 2em;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.geojsonToggle__btn__active {
+    border: 1px solid green;
+    color: green;
+    margin-left: 1em;
+
+}
+
+.geojsonToggle__btn__active:hover {
+    color: green !important;
+    border: 1px solid green !important;
+}
+
+.geojsonToggle__btn {
+    margin-left: 1em;
+}
+
+.geojsonToggle__btn:hover {
+    color: green !important;
+    border: 1px solid green !important;
+}
+
+.geojsonToggle {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.selectBlock {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 900px){
+    .main {
+        padding: 0 1em;
+    }
+    .geojsonToggle__btn {
+        margin-top: 1em;
+    }
+    .geojsonToggle__btn__active {
+        margin-top: 1em;
+    }
+    .selectBlock {
+        margin-bottom: 1em;
+    }
+    .attraction {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .imageBlock__attraction {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .contentBlock__attraction {
+        width: 100%;
+        margin-left: 10px;
+        height: 200px;
+    }
+    .contentBlock__attraction p {
+        font-size: 14px;
+    }
+}

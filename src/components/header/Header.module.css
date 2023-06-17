@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.main {
+  max-width: 100%;
+  background-color: #67a1d6;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.header a {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 28px;
+  text-decoration: none;
+  color: #F6F6F6;
+  z-index: 3;
+}
+
+.link {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.logo a{
+  padding: 0;
+  margin: 0;
+}
+.logo {
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  z-index: 3;
+  color: #F6F6F6;
+}
+.logo_img{
+  height: 90px;
+}
+.login{
+  width: 21%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+}
+.login .registerButton {
+  padding: 10px 18px;
+  background-color: #007D34;
+  border: none;
+  border-radius: 10px;
+  color: #f6f6f6;
+  z-index: 3;
+}
+.login a {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  color: #f6f6f6;
+  z-index: 3;
+}
+.activeNavLink{
+  color: #007D34;
+}
+.menu{
+  display: none;
+}
+@media screen and (max-width: 1920px) {
+  .main{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .main {
+    max-width: 100%;
+  }
+  .logo {
+    position: relative;
+    justify-content: space-evenly;
+    font-size: 10px;
+  }
+
+  .logo h3 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    color: #F5E8FB;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main {
+    max-width: 100%;
+  }
+
+  .header a {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .logo {
+    position: relative;
+    font-size: 10px;
+  }
+
+  .logo h3 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    color: #F5E8FB;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .main {
+    max-width: 100%;
+  }
+
+  .header a {
+    padding: 7px;
+    font-size: 13px;
+  }
+
+  .logo {
+    position: relative;
+  }
+
+  .logo h3 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    color: #F5E8FB;
+    font-size: 11px;
+  }
+
+  .login .registerButton {
+    border-radius: 5px
+  }
+}
+.link{
+  font-size: 10px;
+}
+
+@media screen and (max-width: 875px) {
+  .main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .menu{
+    /* display: block;
+    justify-content: flex-end; */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    z-index: 100000;
+    /* height:0; */
+  }
+  .header {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .header a {
+    padding: 5px;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start
+  }
+  .logo img {
+    height: 60px;
+  }
+  .logo h3{
+    font-size: 20px;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .link {
+    width: 99%;
+    height: 20%;
+    display: none;
+
+  }
+
+  .link a {
+    font-size: 10px;
+    row-gap: 30px;
+  }
+}
+
+.customMenuList a{
+  padding: 0;
+
+
+}
+.customMenuList{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+
+}
+.customMenuList button {
+  background-color: #3b6790;
+  border: none;
+  padding: 6px 12px;
+  margin: 2px;
+  border-radius: 8px;
+  color: #fff;
+
+}
+.customMenuButton{
+  background-color: #f6f6f6;
+  border: none;
+  color: #67a1d6;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
