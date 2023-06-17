@@ -174,8 +174,12 @@ export const getCommentsTC = (document) => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 dispatch(getHotelComments(docSnap.data()))
+            } else{  
+            await setDoc(doc(commentRef, document), {}); 
+                dispatch(getCommentsTC(document))
             }
-        } catch (error) {
+        } catch (error) { 
+            console.log(error);
             dispatch(setErrorAC(true))
         }
         dispatch(toggleFetchingAC(false))
