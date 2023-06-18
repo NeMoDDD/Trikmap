@@ -19,6 +19,7 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
     const [photo, setPhoto] = useState(null);
     const [photoURL, setPhotoURL] = useState();
     const [loading, setLoading] = useState(false);
+
     const onUpdateProfileImg = (e) => {
         if (e.target.files[0]) {
             setPhoto(e.target.files[0])
