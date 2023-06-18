@@ -42,7 +42,10 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     name="nickname"
                     control={control}
                     rules={{
-                        required: "Это поле обязательное!",
+                        required: "Это поле обязательное!", maxLength: {
+                            value: 15,
+                            message: "Максимум 15 символов!"
+                        },
                         onChange: (e) => setNickname(e.target.value)
                     }}
                     render={({field}) => <Input {...field}
@@ -68,7 +71,7 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     name="password"
                     control={control}
                     rules={{
-                        required: true, minLength: {
+                        required: "Это поле обязательное!", minLength: {
                             value: 6,
                             message: "Минимум 6 символов!"
                         }, onChange: (e) => setPassword(e.target.value)

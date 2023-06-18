@@ -7,6 +7,7 @@ const initialState = {
     pageSize: 5,
     portionSize: 10,
     currentPage: 1,
+    totalCount: (data.chuy.length + data.batken.length + data.issykkol.length + data.jalalabad.length + data.naryn.length + data.osh.length + data.talas.length),
     isFetching: false,
     type: "all",
     totalCountChuy: data.chuy.length,
@@ -28,10 +29,13 @@ const attractionsSlice = createSlice({
         },
         setType(state, action) {
             state.type = action.payload.type
+        },
+        setTotalCount(state, action) {
+            state.totalCount = action.payload.totalCount
         }
     }
 })
 
-export const {setCurrentPage, setType} = attractionsSlice.actions
+export const {setCurrentPage, setType, setTotalCount} = attractionsSlice.actions
 
 export default attractionsSlice.reducer

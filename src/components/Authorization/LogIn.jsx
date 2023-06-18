@@ -34,15 +34,18 @@ const LogIn = () => {
                 localStorage.setItem('user', userDataJSON);
                 dispatch(setUserFetching(false))
 
-                push("/personal-account")
             })
             .catch((error) => {
+                console.log(error)
                 if (error.code === "auth/wrong-password") {
                     setIsAuthSubmit(false)
                     setErrorMessage("Неверный email или пароль")
                 } else if (error.code === "auth/too-many-requests") {
                     setIsAuthSubmit(false)
                     setErrorMessage("Слишком много запросов. Попробуйте позже!")
+                } else if (error.code === "auth/user-not-found") {
+                    setIsAuthSubmit(false)
+                    setErrorMessage("Аккаунт с таким Email не найден!")
                 }
             })
 
@@ -54,7 +57,7 @@ const LogIn = () => {
                              handleClick={handleLogin}
                              isAuthSubmit={isAuthSubmit}
                              errorMessage={errorMessage}
-            /> : <Navigate to={"/"}/>}
+            /> : <Navigate to={localStorage.getItem("redirectPath")}/>}
 
         </div>
     )

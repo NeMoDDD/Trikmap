@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentPage, setType} from "../store/slices/attractionsSlice";
+import {setCurrentPage, setTotalCount, setType} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useEffect, useState} from "react";
@@ -7,6 +7,7 @@ import {Button, Pagination, Select} from "antd";
 import style from "./Attraction.module.css"
 
 const Attractions = () => {
+
     const dispatch = useDispatch()
     const {
         pageSize,
@@ -19,29 +20,32 @@ const Attractions = () => {
         totalCountNaryn,
         totalCountOsh,
         totalCountTalas,
-        type
+        type,
+        totalCount
         // totalCountOfType,
     } = useSelector(state => state.attractions)
-    const [totalCount, setTotalCount] = useState(totalCountAll)
     const [region, setRegion] = useState("all")
     const [dataRegion, setDataRegion] = useState(data.all)
-    // const [type, setType] = useState("all")
-    const [totalCountOfType, setTotalCountOfType] = useState()
-
     const lastPostIndex = currentPage * pageSize;
     const firstPostIndex = lastPostIndex - pageSize
 
+    useEffect(() => {
+        dispatch(setTotalCount({totalCount: dataRegion.filter(p => p.properties.type === type).length}))
+        dispatch(setCurrentPage({
+            currentPage: 1
+        }))
+    }, [type])
+
     const onSelectChange = (value) => {
         if (value !== "all") {
-            setTotalCount(dataRegion.filter(p => p.properties.type === value).length)
-            setTotalCountOfType(dataRegion.filter(p => p.properties.type === value).length)
+            dispatch(setTotalCount({ totalCount: dataRegion.filter(p => p.properties.type === value).length}))
         } else {
-            setTotalCount(dataRegion.length)
+            dispatch(setTotalCount({ totalCount: dataRegion.length}))
+
         }
         dispatch(setCurrentPage({
             currentPage: 1
         }))
-        // onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length, null)
         // }
         dispatch(setType({
             type: value
@@ -55,9 +59,9 @@ const Attractions = () => {
     }
     const onClickRegion = (region, totalCount, totalCountOfRegion, data) => {
         if (type === "all") {
-            setTotalCount(totalCountOfRegion)
+            dispatch(setTotalCount({ totalCount: totalCountOfRegion}))
         } else {
-            setTotalCount(data.filter(p => p.properties.type === type).length)
+            dispatch(setTotalCount({ totalCount: data.filter(p => p.properties.type === type).length}))
         }
         dispatch(setCurrentPage({
             currentPage: 1

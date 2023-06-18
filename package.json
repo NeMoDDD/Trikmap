@@ -27,11 +27,7 @@
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
-<<<<<<< HEAD
-    "react-scripts": "^2.1.3",
-=======
     "react-scripts": "5.0.1",
->>>>>>> 6bdbcc231d8e585cb5a91e7594d4c7c47903f96b
     "react-scrollama": "^2.3.2",
     "react-slick": "^0.29.0",
     "redux": "^4.2.1",
