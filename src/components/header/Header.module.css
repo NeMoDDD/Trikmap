@@ -52,6 +52,21 @@
   justify-content: flex-start;
   align-items: center
 }
+.quitButton{
+  width: 21%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 2%;
+}
+.quitButton .registerButton{
+  padding: 10px 18px;
+  background-color: #007D34;
+  border: none;
+  border-radius: 10px;
+  color: #f6f6f6;
+  z-index: 3;
+}
 .login .registerButton {
   padding: 10px 18px;
   background-color: #007D34;
