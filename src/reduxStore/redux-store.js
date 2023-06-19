@@ -5,12 +5,14 @@ import tourReducer from './tourReducer'
 import userReducer from '../components/store/slices/userSlise' 
 import attractionReducer from '../components/store/slices/attractionsSlice'
 import { appReducer } from './appReducer'
+import personalAccountSlice from "../components/store/slices/personalAccountSlice";
 let reducers = combineReducers({  
     hotelPage: hotelReducer,
     tourPage:tourReducer, 
     user: userReducer,
     attractions: attractionReducer, 
-    app: appReducer
+    app: appReducer,
+    personalAccount: personalAccountSlice
 }) 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

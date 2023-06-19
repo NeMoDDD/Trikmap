@@ -61,4 +61,8 @@ export const getCoordinatesSelector= createSelector(
 export const getCurrentRatingSelector= createSelector(
   [getHotelPageState],
   hotelPage => hotelPage.currentRating
-);
+); 
+export const isHotelCommentLoadingSelector= createSelector( 
+  [getHotelPageState], 
+  hotelPage => hotelPage.commentLoading
+)

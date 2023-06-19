@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getDocs,  orderBy,startAfter,where, startAt,collection, getFirestore,doc,setDoc,getDoc, addDoc, onSnapshot, limitToLast,  endBefore,limit,query} from "@firebase/firestore";  
+import {getFirestore} from "@firebase/firestore";  
 const firebaseConfig = {
   apiKey: "AIzaSyBonj03by4roWxY0N6Byi6gY36TKc81qKY",
   authDomain: "trikmap-39edf.firebaseapp.com",
@@ -12,7 +12,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig); 
 export const db = getFirestore(app)  
 export const firestore = getFirestore()
-const ref = collection(db, 'Hotels')
 
 
 

@@ -110,8 +110,16 @@
     border: none;
     font-size: 20px;
     line-height: 28px;
-    border-radius: 9px;
-}
+    border-radius: 9px; 
+}  
+.order_btn input:hover { 
+    cursor: pointer;
+} 
+.order_btn input:focus { 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
+
+
 
 @media screen and (max-width:1475px) {
     .form {

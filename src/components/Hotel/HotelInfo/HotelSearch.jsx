@@ -2,7 +2,6 @@
 import React from 'react'
 import s from './HotelInfo.module.css'  
 import { useForm } from 'react-hook-form' 
-// import axios from 'axios';
 import {SearchOutlined} from '@ant-design/icons';
 const HotelSearch =  React.memo((props) => {     
     const { 

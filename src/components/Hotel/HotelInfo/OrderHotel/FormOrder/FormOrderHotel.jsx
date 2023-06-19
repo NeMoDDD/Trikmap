@@ -19,10 +19,11 @@ const FormOrderHotel = ({name,...props}) => {
             return navigate('/login', {replace:true})
         }
     })
-
     const onSubmit = (data) => { 
+        let inner = data.date[0].$d.toString()
+        let out =data.date[1].$d.toString() 
         setDisabled(true)
-        props.setBookTC([data.date[0].$d,data.date[1].$d], props.email, props.id, name.name, data.number, data.amount, data.type) 
+        props.setBookTC(inner.split(' ').slice(0,4).join(' '), out.split(' ').slice(0,4).join(' '), props.email, props.id, name.name, data.number, data.amount, data.type) 
         setDisabled(false) 
         reset()
     }
@@ -82,11 +83,11 @@ const FormOrderHotel = ({name,...props}) => {
                             <select  className={s.input_select} {...register('type', {
                                 required: "Это поле обязательное!",
                             })}>
-                                <option value="eco">Эконом</option>
-                                <option value={'comfort'}>Комфорт</option>
-                                <option value="pre-lux">Полу-Люкс</option>
-                                <option value='lux'>Люкс</option>
-                                <option value="extra-lux">Президентский</option>
+                                <option value="Эконом">Эконом</option>
+                                <option value={'Комфорт'}>Комфорт</option>
+                                <option value="Полу-Люкс">Полу-Люкс</option>
+                                <option value='Люкс'>Люкс</option>
+                                <option value="Президентский">Президентский</option>
                             </select>
                             {errors.type && <div className={s.error}>{errors.type.message || 'Это поле обязательное!'}</div>}
                         </div> 
