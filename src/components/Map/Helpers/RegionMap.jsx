@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import { FeatureGroup, Marker, Popup } from "react-leaflet";
 import { getMarkerIcon } from "./MapIcon";
-import { Skeleton } from "antd";
+import { Skeleton, Image } from "antd";
 
 export default function RegionMap({ cluster, data, marker }) {
     let GroupComponent = cluster ? MarkerClusterGroup : FeatureGroup;
@@ -51,7 +51,7 @@ export const ImageWithSkeleton = ({ src, alt, classNameBlock, classNameImageSkel
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const image = new Image();
+        const image = new window.Image();
         image.src = src;
         image.onload = () => {
             setIsLoading(false);
@@ -63,7 +63,7 @@ export const ImageWithSkeleton = ({ src, alt, classNameBlock, classNameImageSkel
             {isLoading ? (
                 <Skeleton.Image active={true} size="large" className={classNameImageSkeleton}/>
             ) : (
-                <img src={src} alt={alt} className={classNameImage}/>
+                <Image src={src} alt={alt} className={classNameImage} />
             )}
         </div>
     );

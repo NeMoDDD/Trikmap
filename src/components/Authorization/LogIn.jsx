@@ -14,10 +14,10 @@ const LogIn = () => {
     const {isAuth} = useAuth()
 
     const handleLogin = (email, password) => {
+        dispatch(setUserFetching({isFetching: true}))
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
-                dispatch(setUserFetching(true))
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,
@@ -32,8 +32,6 @@ const LogIn = () => {
                 const userData = { email, password, id, token, nickname, userImg };
                 const userDataJSON = JSON.stringify(userData);
                 localStorage.setItem('user', userDataJSON);
-                dispatch(setUserFetching(false))
-
             })
             .catch((error) => {
                 console.log(error)
@@ -48,11 +46,10 @@ const LogIn = () => {
                     setErrorMessage("Аккаунт с таким Email не найден!")
                 }
             })
-
+        dispatch(setUserFetching({isFetching: false}))
     }
     return (
         <div>
-            {/*<Spiner isFetching={}/>*/}
             {!isAuth ?  <Form btnValue="Войти"
                              handleClick={handleLogin}
                              isAuthSubmit={isAuthSubmit}

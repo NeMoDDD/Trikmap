@@ -13,7 +13,7 @@ const SignUp = () => {
     const {isAuth} = useAuth()
     const [errorMessage, setErrorMessage] = useState("")
     const handleSignup = (email, password, nickname) => {
-        dispatch(setUserFetching(true))
+        dispatch(setUserFetching({isFetching: true}))
         const auth = getAuth();
         const nickName = nickname
         createUserWithEmailAndPassword(auth, email, password)
@@ -35,9 +35,6 @@ const SignUp = () => {
                 const userData = {email, password, id, token, nickName};
                 const userDataJSON = JSON.stringify(userData);
                 localStorage.setItem('user', userDataJSON);
-                dispatch(setUserFetching(false))
-
-                push("/personal-account")
             })
             .catch((error) => {
                 if (error.code === "auth/email-already-in-use") {
@@ -45,6 +42,8 @@ const SignUp = () => {
                     setErrorMessage("Email уже используется!")
                 }
             })
+        dispatch(setUserFetching({isFetching: false}))
+
     }
     return (
         !isAuth ? <div>
