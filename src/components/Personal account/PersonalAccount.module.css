@@ -39,6 +39,14 @@
 .data__text {
     border-bottom: 1px solid #EAEAEA;
 }
+.data__text__error {
+    border-bottom: 1px solid red;
+}
+
+.error__message {
+    color: red;
+    margin-top: 5px;
+}
 
 .profile__img {
     height: 100%;
@@ -70,7 +78,10 @@
     font-size: 35px;
     line-height: 52px;
     font-weight: 500;
+    border: 0;
+    width: 100%;
 }
+
 
 .subtitle { 
     word-wrap: break-word;
@@ -252,6 +263,11 @@
 .modal__spin {
     width: 52px;
     height: 52px;
+}
+
+.save__btn {
+    width: 15%;
+    margin-top: 0.5em;
 }
 
 @media screen and (max-width:1500px) {
