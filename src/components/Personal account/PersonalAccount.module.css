@@ -111,6 +111,7 @@
 
 .profile__load button:hover {
     transform: scale(1.03);
+    cursor: pointer;
 }
 
 .profile__plus {

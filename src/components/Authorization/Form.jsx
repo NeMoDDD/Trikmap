@@ -10,8 +10,8 @@ const isValidEmail = email =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
     );
-const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
-    const {isFetching} = useSelector(state => state.user)
+const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage, isFetching}) => {
+    // const {isFetching} = useSelector(state => state.user)
     const {control, handleSubmit, reset, formState: {errors}} = useForm({
         mode: "onBlur",
     });
