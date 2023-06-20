@@ -35,8 +35,8 @@ const CommentsForm = React.memo(({name,email,...props}) => {
                                 value: 3,
                                 message: "Минимум 3 символа!"
                             }, maxLength: {
-                                value: 34,
-                                message: "Минимум 34 символа!"
+                                value: 90,
+                                message: "Минимум 90 символов!"
                             }
                         }}
                         render={({ field }) => <TextArea className={s.input_comment} {...field}

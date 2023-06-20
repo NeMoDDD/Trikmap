@@ -63,7 +63,7 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
                                 <label className={style.profile__file}> <span className={style.profile__plus}>+</span> <span className={style.profile__title}>Добавить фото</span> <input type={"file"} name="userPhoto" onChange={onUpdateProfileImg} />
 
                                 </label>
-                                <div className={style.profile__load}><button onClick={onClickProfileImg} disabled={loading || !photo} >Сохранить</button></div>
+                                <div className={style.profile__load}><button className={style.profile__save_btn} onClick={onClickProfileImg} disabled={loading || !photo} >Сохранить</button></div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,6 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
 
                             <Modal
                                 footer={null}
-                                confirmLoading
                                 onCancel={() => setHotel(false)}
                                 className={style.modal}
                                 open={hotel}>
@@ -134,14 +133,13 @@ const PersonalAccount = React.memo(({ getBookedTourTC, bookedHotel, getBookedHot
                             </button>
                             <Modal
                                 footer={null}
-                                confirmLoading={isFetching}
                                 onCancel={() => setTour(false)}
                                 open={tour}>
                                 <div className={style.modal__wrapper}>
 
                                     {isFetching ? <div className={style.modal__loader}>
                                         <Spinner className={style.modal__spin} color='blue' colorScheme='cyan' />
-                                    </div> : bookedHotel?.data ?  bookedTour.data.map((item, index) => <div key={index} className={style.modal__inner}>
+                                    </div> : bookedTour?.data ?  bookedTour.data.map((item, index) => <div key={index} className={style.modal__inner}>
                                         <div className={style.modal__descrip}>{item.name}</div>
                                         <div className={style.modal__item}>
                                             <div className={style.modal__title}>Название Тура:</div>

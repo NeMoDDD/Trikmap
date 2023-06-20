@@ -33,7 +33,9 @@ let initialState = {
     isSucceed: false,
     comments: [],
     currentRating:null, 
-    commentLoading: false, 
+    commentLoading: false,  
+    hotelFetch:false, 
+    isHotelError: false
 }
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue + 'GET_CURRENT_PAGE'
@@ -49,63 +51,37 @@ const SET_COORDINATES = defaultValue + 'SET_COORDINATES'
 const SET_SUCCEED = defaultValue + 'SET_SUCCEED'
 const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'
 const SET_CURRENT_RATING = defaultValue + 'SET_CURRENT_RATING'
-const TOGGLE_COMMENT_LOADING = defaultValue + 'TOGGLE_COMMENT_LOADING' 
+const TOGGLE_COMMENT_LOADING = defaultValue + 'TOGGLE_COMMENT_LOADING'  
+const TOGGLE_HOTEL_OPTION_FETCH = defaultValue + 'TOGGLE_HOTEL_OPTION_FETCH' 
+const TOGGLE_HOTEL_ERRROR = defaultValue + 'TOGGLE_HOTEL_ERRROR'
 export const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
-
         case SET_HOTELS: {
-            return {
-                ...state,
-                hotels: action.data
-            }
+            return {...state,hotels: action.data}
         }
         case GET_HOTEL : {
-            return {
-                ...state,
-                orderingHotel: action.data
-            }
+            return {...state,orderingHotel: action.data}
         }
-        case TOGGLE_FETCH : {
-            return {
-                ...state,
-                isFetching: action.toggle
-            }
+        case TOGGLE_FETCH : { 
+            return {...state,isFetching: action.toggle} 
         }
         case SET_SEARCH: {
-            return {
-                ...state,
-                hotels: action.data
-            }
+            return {...state,hotels: action.data}
         }
         case GET_SELECT_HOTEL_CITY: {
-            return {
-                ...state,
-                selectedHotelCity: action.data
-            }
+            return {...state,selectedHotelCity: action.data}
         }
         case GET_TOTAL_DOCS: {
-            return {
-                ...state,
-                totalDocs: action.data
-            }
+            return {...state,totalDocs: action.data}
         }
         case GET_CURRENT_PAGE: {
-            return {
-                ...state,
-                currentPage: action.data
-            }
+            return {...state,currentPage: action.data}
         }
         case GET_SELECT_HOTEL_REGION: {
-            return {
-                ...state,
-                selectedHotelRegion: action.data
-            }
+            return {...state,selectedHotelRegion: action.data}
         }
         case GET_SELECT_HOTEL_RATING: {
-            return {
-                ...state,
-                selectedHotelRating: action.data
-            }
+            return {...state,selectedHotelRating: action.data}
         }
         case SET_COORDINATES: {
             return {...state, coordinates: action.data}
@@ -114,48 +90,55 @@ export const hotelReducer = (state = initialState, action) => {
             return {...state, isSucceed: action.data}
         }
         case GET_HOTEL_COMMENTS: {
-            return {
-                ...state, comments: action.data
-            }
+            return {...state, comments: action.data}
         }
         case SET_CURRENT_RATING: {
             return {...state, currentRating: action.data}
         } 
-        case TOGGLE_COMMENT_LOADING:{ 
-            return{ 
-                ...state,
-                commentLoading: action.data
-            }
+        case TOGGLE_COMMENT_LOADING: { 
+            return {...state,commentLoading: action.data}
+        } 
+        case TOGGLE_HOTEL_OPTION_FETCH: { 
+            return {...state, hotelFetch: action.data}
+        } 
+        case TOGGLE_HOTEL_ERRROR: { 
+            return {...state, isHotelError: action.data}
         }
-        default:
-            return state
+        default:return state
     }
 }
 //Action Creators 
-export const setHotelsAC = (data) => ({type: SET_HOTELS, data})
-export const getOrderingHotelAC = (data) => ({type: GET_HOTEL, data})
-export const setSearchingCityAC = (data) => ({type: SET_HOTELS, data})
+const setHotelsAC = (data) => ({type: SET_HOTELS, data})
+const getOrderingHotelAC = (data) => ({type: GET_HOTEL, data})
+//Фунции, для загрузки отелей 
 
-export const getSelectedHotelRatingAC = (data) => ({type: GET_SELECT_HOTEL_RATING, data})
-export const getSelectedHotelCityAC = (data) => ({type: GET_SELECT_HOTEL_CITY, data})
-export const getSelectedRegionAC = (data) => ({type: GET_SELECT_HOTEL_REGION, data})
+const getSelectedHotelRatingAC = (data) => ({type: GET_SELECT_HOTEL_RATING, data})
+const getSelectedHotelCityAC = (data) => ({type: GET_SELECT_HOTEL_CITY, data})
+const getSelectedRegionAC = (data) => ({type: GET_SELECT_HOTEL_REGION, data})
+const setCurrentRatingAC = (data) => ({type: SET_CURRENT_RATING, data})  
+//Фунции, для загрузки данных, с помощью которых осуществляется поиск на странице 
 
-export const toggleFetchingAC = (toggle) => ({type: TOGGLE_FETCH, toggle})
-export const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
-export const getCurrentPageAC = (data) => ({type: GET_CURRENT_PAGE, data})
-const setSucceedAC = (data) => ({type: SET_SUCCEED, data})
+const getTotalDocsAC = (data) => ({type: GET_TOTAL_DOCS, data})
+export const getCurrentPageAC = (data) => ({type: GET_CURRENT_PAGE, data}) 
+//Функции, для получения данных от странице для пагинации
+ 
 const setCoordinatedAC = (data) => ({type: SET_COORDINATES, data})
 const getHotelComments = (data) => ({type: GET_HOTEL_COMMENTS, data})
-const setCurrentRatingAC = (data) => ({type: SET_CURRENT_RATING, data}) 
+//Функции, для получения определенных данных, для определенных отелей(комментарии и координаты для локации отеля) 
+
+const setSucceedAC = (data) => ({type: SET_SUCCEED, data})
+const toggleFetchingAC = (toggle) => ({type: TOGGLE_FETCH, toggle})
 const toggleHotelCommentLoadingAC = (data) =>({type:TOGGLE_COMMENT_LOADING, data}) 
-
-
+const toggleHotelOptionLoaderAC = (data) =>({type:TOGGLE_HOTEL_OPTION_FETCH,data})
+const toggleHotelErrorAC = (data) =>({type:TOGGLE_HOTEL_ERRROR,data})
+//Различные фунции, которые предназначены для отлова ошибок и различных заргрузок(Preloaders) 
 
 //Thunk Creators 
 
 export const getHotelsTC = () => {
-    return async (dispath) => {
+    return async (dispath) => {  
         dispath(toggleFetchingAC(true))
+        dispath(toggleHotelErrorAC(false))
         try {
             const citySnapshot = await getDocs(ref);
             const cityList = citySnapshot.docs.map(doc => doc.data());
@@ -224,32 +207,42 @@ export const getSerchingCityTC = (searchingCity, rating = false) => async (dispa
 export const getSerchingRatingTC = (searchingRating) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating, setHotelsAC)
 export const getSerchingRegionTC = (searchingRegion, rating = false) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion, setHotelsAC, +rating)
 const searchingOptionFlow = async (dispatch, optionMethod, searchingOption, AC, rating) => {
-    if (searchingOption === '') {
-        return await Promise.all([dispatch(getHotelsTC())]);
-    }
-    if (!rating) {
+    dispatch(toggleHotelOptionLoaderAC(true))
+    try{   
+        dispatch(toggleHotelErrorAC(false))
+        if (searchingOption === '') {
+            return await Promise.all([dispatch(getHotelsTC())]);
+        } 
+        if (!rating) {
+            const city = query(
+                ref,
+                where(optionMethod, '==', searchingOption),
+                limit(20)
+            );
+            const querySnap = await getDocs(city);
+            const data = querySnap.docs.map((snap) => snap.data());
+            dispatch(getTotalDocsAC(data.length));
+            dispatch(AC(data));
+            return     dispatch(toggleHotelOptionLoaderAC(false))
+        }
         const city = query(
             ref,
             where(optionMethod, '==', searchingOption),
+            where('rating', '==', rating),
             limit(20)
         );
-        const querySnap = await getDocs(city);
+        const querySnap = await getDocs(city); 
+        if (!querySnap.exists()) { 
+            throw new Error()
+        }
         const data = querySnap.docs.map((snap) => snap.data());
         dispatch(getTotalDocsAC(data.length));
-        dispatch(AC(data));
-        return;
-    }
-
-    const city = query(
-        ref,
-        where(optionMethod, '==', searchingOption),
-        where('rating', '==', rating),
-        limit(20)
-    );
-    const querySnap = await getDocs(city);
-    const data = querySnap.docs.map((snap) => snap.data());
-    dispatch(getTotalDocsAC(data.length));
-    dispatch(AC(data));
+        dispatch(AC(data)); 
+    }catch(error){  
+        dispatch(toggleHotelErrorAC(true))
+    }  
+    dispatch(toggleHotelOptionLoaderAC(false))
+    
 }
 // Рефакторинг кода(можно было получше,но нету времени, а на написание комментариев есть), 
 // Данные 3 функциии выполняют почти один и тот же фунционал, оличаются данными, которые приходят 
@@ -316,7 +309,8 @@ export const updateHotelRatingTC = (document, rating) => async (dispatch) => {
         dispatch(setErrorAC(true))
     }
 }
-//Функция, которая обновляет рейтинг отеля  
+//Функция, которая обновляет рейтинг отеля   
+
 
 
 export const allOptionsFlow = () => async (dispatch) => {

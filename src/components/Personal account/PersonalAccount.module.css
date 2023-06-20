@@ -95,12 +95,13 @@
     font-size: 28px;
     font-weight: 400;
     background-color: #67a1d6;
-    transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in; 
+    cursor: pointer;
+}
+.profile__save_btn:disabled {
+    cursor: not-allowed;
 }
 
-.profile__load button:hover {
-    transform: scale(1.03);
-}
 
 .profile__plus {
     flex-direction: column;
