@@ -118,7 +118,7 @@ const Header = () => {
                     >
                         Регистрация
                     </NavLinkMotion>
-                </div> : <div className={classes.login}>
+                </div> : <div className={classes.quitButton}>
                     <NavLink
                         onClick={() => dispatch(removeUser())}
                         className={classes.registerButton}

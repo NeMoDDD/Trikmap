@@ -300,7 +300,7 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
 
                                     {isFetching ? <div className={style.modal__loader}>
                                         <Spinner className={style.modal__spin} color='blue' colorScheme='cyan'/>
-                                    </div> : bookedHotel?.data ? bookedTour.data.map((item, index) => <div key={index}
+                                    </div> : bookedTour?.data ? bookedTour.data.map((item, index) => <div key={index}
                                                                                                            className={style.modal__inner}>
                                         <div className={style.modal__descrip}>{item.name}</div>
                                         <div className={style.modal__item}>
