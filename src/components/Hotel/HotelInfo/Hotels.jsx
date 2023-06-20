@@ -12,8 +12,7 @@ import img from '../../../assets/img/secondError.svg'
       return <Preloader/>
     } 
     if(props.isHotelError){  
-      console.log(props.isHotelError);
-      return <CustomError title={'Отель не найден или отель не существует.'} img={img}/>
+      return <CustomError title={'Отель не найден или отель не существует.'} text={'Ой!'} img={img}/>
     }
     return( 
        <div className={s.hotel}> 
