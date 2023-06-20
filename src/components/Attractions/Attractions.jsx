@@ -1,12 +1,13 @@
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentPage, setType} from "../store/slices/attractionsSlice";
+import {setCurrentPage, setTotalCount, setType} from "../store/slices/attractionsSlice";
 import data from "../../json/kyrgyzstanPlaces.json"
 import Attraction from "./Attraction";
 import React, {useEffect, useState} from "react";
-import {Button, Pagination, Select} from "antd";
+import {Button, Empty, Pagination, Select} from "antd";
 import style from "./Attraction.module.css"
 
 const Attractions = () => {
+
     const dispatch = useDispatch()
     const {
         pageSize,
@@ -19,29 +20,32 @@ const Attractions = () => {
         totalCountNaryn,
         totalCountOsh,
         totalCountTalas,
-        type
+        type,
+        totalCount
         // totalCountOfType,
     } = useSelector(state => state.attractions)
-    const [totalCount, setTotalCount] = useState(totalCountAll)
     const [region, setRegion] = useState("all")
     const [dataRegion, setDataRegion] = useState(data.all)
-    // const [type, setType] = useState("all")
-    const [totalCountOfType, setTotalCountOfType] = useState()
-
     const lastPostIndex = currentPage * pageSize;
     const firstPostIndex = lastPostIndex - pageSize
 
+    useEffect(() => {
+        dispatch(setTotalCount({totalCount: dataRegion.filter(p => p.properties.type === type).length}))
+        dispatch(setCurrentPage({
+            currentPage: 1
+        }))
+    }, [type])
+
     const onSelectChange = (value) => {
         if (value !== "all") {
-            setTotalCount(dataRegion.filter(p => p.properties.type === value).length)
-            setTotalCountOfType(dataRegion.filter(p => p.properties.type === value).length)
+            dispatch(setTotalCount({totalCount: dataRegion.filter(p => p.properties.type === value).length}))
         } else {
-            setTotalCount(dataRegion.length)
+            dispatch(setTotalCount({totalCount: dataRegion.length}))
+
         }
         dispatch(setCurrentPage({
             currentPage: 1
         }))
-        // onClickRegion(region, dataRegion.filter(p => p.properties.type === value).length, null)
         // }
         dispatch(setType({
             type: value
@@ -55,9 +59,9 @@ const Attractions = () => {
     }
     const onClickRegion = (region, totalCount, totalCountOfRegion, data) => {
         if (type === "all") {
-            setTotalCount(totalCountOfRegion)
+            dispatch(setTotalCount({totalCount: totalCountOfRegion}))
         } else {
-            setTotalCount(data.filter(p => p.properties.type === type).length)
+            dispatch(setTotalCount({totalCount: data.filter(p => p.properties.type === type).length}))
         }
         dispatch(setCurrentPage({
             currentPage: 1
@@ -109,7 +113,8 @@ const Attractions = () => {
                                 description={p.properties.description}
                                 title={p.properties.name}
                                 imgSrc={p.properties.image}
-                                key={index}/>)
+                                key={index}/>
+                )
             }) : (region === regionOn && type === "all" ? dataRegion.slice(firstPostIndex, lastPostIndex).map((d, index) =>
             <Attraction location={d.properties.location}
                         description={d.properties.description}
@@ -260,40 +265,38 @@ const Attractions = () => {
                 ]}
             />
         </div>
+        {totalCount !== 0 ? <div>
+            <Pagination defaultCurrent={currentPage} total={totalCount} defaultPageSize={pageSize}
+                        showSizeChanger={false} onChange={setCurrentPageClick}/>
+            {
+                regionVisible("all", data.all)
+            }
 
-        {/*<Paginator pageSize={pageSize}*/}
-        {/*           portionSize={portionSize}*/}
-        {/*           currentPage={currentPage}*/}
-        {/*           totalItemsCount={totalCount}*/}
-        {/*           onPageChanged={setCurrentPageClick}*/}
-        {/*/>*/}
-        <Pagination defaultCurrent={currentPage} total={totalCount} defaultPageSize={pageSize}
-                    showSizeChanger={false} onChange={setCurrentPageClick}/>
-        {
-            regionVisible("all", data.all)
-        }
+            {
+                regionVisible("chuy", data.chuy)
+            }
+            {
+                regionVisible("talas", data.talas)
+            }
+            {
+                regionVisible("osh", data.osh)
+            }
+            {
+                regionVisible("batken", data.batken)
+            }
+            {
+                regionVisible("jalalabad", data.jalalabad)
+            }
+            {
+                regionVisible("naryn", data.naryn)
+            }
+            {
+                regionVisible("issykkol", data.issykkol)
+            }
+        </div> : <div className={style.empty__block}>
+            <Empty/>
+        </div>}
 
-        {
-            regionVisible("chuy", data.chuy)
-        }
-        {
-            regionVisible("talas", data.talas)
-        }
-        {
-            regionVisible("osh", data.osh)
-        }
-        {
-            regionVisible("batken", data.batken)
-        }
-        {
-            regionVisible("jalalabad", data.jalalabad)
-        }
-        {
-            regionVisible("naryn", data.naryn)
-        }
-        {
-            regionVisible("issykkol", data.issykkol)
-        }
     </div>)
 }
 

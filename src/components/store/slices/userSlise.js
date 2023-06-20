@@ -6,7 +6,7 @@ const initialState = {
     id: null,
     nickname: null,
     userImg: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-    isFetching: false
+    isFetching: false,
 }
 
 // const storage = getStorage();
@@ -32,12 +32,18 @@ const userSlice = createSlice({
             state.userImg = action.payload.userImg
         },
         setUserFetching(state, action) {
-            state.isFetching = action.isFetching
+            state.isFetching = action.payload.isFetching
+        },
+        updateNickName(state, action) {
+            state.nickname = action.payload.nickname
+        },
+        updateEmailRedux(state, action) {
+            state.email = action.payload.email
         }
     }
 })
 
-export const {setUser, removeUser, setUserImg, setUserFetching} = userSlice.actions
+export const {setUser, removeUser, setUserImg, setUserFetching, updateNickName, updateEmailRedux} = userSlice.actions
 
 
 export default userSlice.reducer

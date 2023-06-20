@@ -45,8 +45,25 @@ class MapComponent extends React.Component {
             {geoJsonIsVisible: true, name: "all"},
         ]
     };
-    componentDidMount() {
-        console.log(this.props.type)
+    componentDidUpdate(prevProps, prevState) {
+        // Проверяем изменения нужного состояния, например, this.state.geoJsonIsVisibleAll
+        if (prevState.geoJsonIsVisibleAll !== this.state.geoJsonIsVisibleAll) {
+            // Вызываем перерисовку карты
+            this.forceUpdate();
+            console.log(1)
+        }
+    }
+    onGeojsonToggle = (region) => {
+        this.setState(prevState => ({
+            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
+                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
+            )
+        }))
+        this.setState(prevState => ({
+            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
+                obj => (obj.name === region ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
+            )
+        }))
     }
 
     onGeojsonToggleAll = (e) => {
@@ -57,88 +74,25 @@ class MapComponent extends React.Component {
         }))
     }
     onGeojsonToggleChuy = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "chuy" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("chuy")
     }
     onGeojsonToggleTalas = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "talas" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("talas")
     }
     onGeojsonToggleOsh = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "osh" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("osh")
     }
     onGeojsonToggleBatken = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "batken" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("batken")
     }
     onGeojsonToggleJalalAbad = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "jalalabad" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("jalalabad")
     }
     onGeojsonToggleNaryn = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "naryn" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("naryn")
     }
     onGeojsonToggleIssykKol = () => {
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj ? Object.assign(obj, {geoJsonIsVisible: false}) : obj)
-            )
-        }))
-        this.setState(prevState => ({
-            geoJsonIsVisibleAll: prevState.geoJsonIsVisibleAll.map(
-                obj => (obj.name === "issykkol" ? Object.assign(obj, {geoJsonIsVisible: true}) : obj)
-            )
-        }))
+        this.onGeojsonToggle("issykkol")
     }
 
     render() {
@@ -188,7 +142,7 @@ class MapComponent extends React.Component {
                     </div>
 
                 </div>
-                <MapContainer zoom={this.state.zoom} center={center} zoomControl={false}>
+                <MapContainer zoom={this.state.zoom} center={center} zoomControl={false} >
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}

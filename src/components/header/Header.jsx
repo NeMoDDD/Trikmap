@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 import Logo from '../../assets/img/Лого.svg';
@@ -14,25 +14,40 @@ import {
 import {useAuth} from "../Authorization/hooks/use-auth";
 import {useDispatch, useSelector} from "react-redux";
 import {removeUser} from "../store/slices/userSlise";
+import {useLocation} from 'react-router-dom';
 
 const NavLinkMotion = motion(NavLink);
 
 const Header = () => {
+    const location = useLocation(); // Нужен!
+    useEffect(() => {
+        if (window.location.pathname !== "/login" && window.location.pathname !== "/register") {
+            localStorage.setItem('redirectPath', window.location.pathname)
+        }
+    }, [window.location.pathname]);
+
     const dispatch = useDispatch()
     const {isAuth} = useAuth()
     const {isFetching} = useSelector(state => state.user)
+
+    const navigateLink = () => {
+        if (window.location.pathname !== "/login" && window.location.pathname !== "/register") {
+            localStorage.setItem('redirectPath', window.location.pathname)
+        }
+    }
     return (
         <div className={classes.main}>
             <div className={classes.header}>
                 <div className={classes.logo}>
                     <NavLink
                         to="/"
-                        
+                        onClick={() => navigateLink()}
                     >
                         <img src={Logo} alt="logo"/>
                     </NavLink>
                     <NavLink
                         to="/"
+                        onClick={navigateLink}
                     >
                         <h3>TRIKMAP</h3>
 
@@ -45,6 +60,7 @@ const Header = () => {
                         activeClassName={classes.activeNavLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
+                        onClick={navigateLink}
                     >
                         Главная
                     </CustomLink>
@@ -53,6 +69,7 @@ const Header = () => {
                         activeClassName={classes.activeNavLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
+                        onClick={navigateLink}
                     >
                         Отели
                     </CustomLink>
@@ -61,6 +78,7 @@ const Header = () => {
                         activeClassName={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
+                        onClick={navigateLink}
                     >
                         Туры
                     </CustomLink>
@@ -69,6 +87,7 @@ const Header = () => {
                         activeClassName={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
+                        onClick={navigateLink}
                     >
                         Достопримечательности
                     </CustomLink>
@@ -77,16 +96,17 @@ const Header = () => {
                         activeClassName={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
+                        onClick={navigateLink}
                     >
                         Личный кабинет
                     </CustomLink>
                 </div>
                 {!isAuth ? <div className={classes.login}>
                     <CustomLink
-                       to="/login"
-                       activeClassName={classes.activeLink}
-                       whileHover={{color: '#007D34'}}
-                       transition={{duration: 0.3}}
+                        to="/login"
+                        activeClassName={classes.activeLink}
+                        whileHover={{color: '#007D34'}}
+                        transition={{duration: 0.3}}
                     >
                         Войти
                     </CustomLink>
@@ -98,7 +118,7 @@ const Header = () => {
                     >
                         Регистрация
                     </NavLinkMotion>
-                </div> : <div className={classes.login}>
+                </div> : <div className={classes.quitButton}>
                     <NavLink
                         onClick={() => dispatch(removeUser())}
                         className={classes.registerButton}

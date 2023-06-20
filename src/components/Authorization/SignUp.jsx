@@ -9,11 +9,11 @@ import {useAuth} from "./hooks/use-auth";
 const SignUp = () => {
     const dispatch = useDispatch()
     const push = useNavigate()
-    const [userIsAlreadyReg, setUserIsAlreadyReg] = useState(false)
+    const [isAuthSubmit, setIsAuthSubmit] = useState(true)
     const {isAuth} = useAuth()
-
+    const [errorMessage, setErrorMessage] = useState("")
     const handleSignup = (email, password, nickname) => {
-        dispatch(setUserFetching(true))
+        dispatch(setUserFetching({isFetching: true}))
         const auth = getAuth();
         const nickName = nickname
         createUserWithEmailAndPassword(auth, email, password)
@@ -35,24 +35,24 @@ const SignUp = () => {
                 const userData = {email, password, id, token, nickName};
                 const userDataJSON = JSON.stringify(userData);
                 localStorage.setItem('user', userDataJSON);
-                dispatch(setUserFetching(false))
-
-                push("/personal-account")
             })
             .catch((error) => {
                 if (error.code === "auth/email-already-in-use") {
-                    setUserIsAlreadyReg(true)
+                    setIsAuthSubmit(false)
+                    setErrorMessage("Email уже используется!")
                 }
             })
+        dispatch(setUserFetching({isFetching: false}))
+
     }
     return (
         !isAuth ? <div>
                 <Form btnValue="Зарегистрироваться"
                       handleClick={handleSignup}
-                      isAuthSubmit={true}
+                      isAuthSubmit={isAuthSubmit}
+                      errorMessage={errorMessage}
                 />
-                {userIsAlreadyReg && <span>Email уже используется!</span>}
-            </div> : <Navigate to={"/"}/>
+            </div> : <Navigate to={localStorage.getItem("redirectPath")}/>
 
     )
 }

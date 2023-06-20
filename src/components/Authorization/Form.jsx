@@ -42,7 +42,10 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     name="nickname"
                     control={control}
                     rules={{
-                        required: "Это поле обязательное!",
+                        required: "Это поле обязательное!", maxLength: {
+                            value: 15,
+                            message: "Максимум 15 символов!"
+                        },
                         onChange: (e) => setNickname(e.target.value)
                     }}
                     render={({field}) => <Input {...field}
@@ -64,11 +67,11 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                     />}/>
                 {errors.email &&
                     <span className={style.error__message}>{errors.email.message || "Неверный email"}</span>}
-                <Controller
+                { btnValue === "Зарегистрироваться" ? <Controller
                     name="password"
                     control={control}
                     rules={{
-                        required: true, minLength: {
+                        required: "Это поле обязательное!", minLength: {
                             value: 6,
                             message: "Минимум 6 символов!"
                         }, onChange: (e) => setPassword(e.target.value)
@@ -79,7 +82,20 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
                                                          placeholder="Пароль"
                                                          className={errors.password ? style.registerForm__input__error : style.registerForm__input}
                     />}
-                />
+                /> : <Controller
+                    name="password"
+                    control={control}
+                    rules={{
+                        required: "Это поле обязательное!", onChange: (e) => setPassword(e.target.value)
+                    }}
+                    render={({field}) => <Input.Password {...field}
+                                                         iconRender={(visible) => (visible ? <EyeTwoTone/> :
+                                                             <EyeInvisibleOutlined/>)}
+                                                         placeholder="Пароль"
+                                                         className={errors.password ? style.registerForm__input__error : style.registerForm__input}
+                    />}
+                />}
+
                 {errors.password &&
                     <span className={style.error__message}>{errors.password.message || "Это поле обязательное!"}</span>}
                 {!isAuthSubmit && <span className={style.error__message}>{errorMessage}</span>}
@@ -97,5 +113,4 @@ const Form = ({btnValue, handleClick, isAuthSubmit, errorMessage}) => {
         </>
     );
 }
-
 export default Form;

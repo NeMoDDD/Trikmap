@@ -20,7 +20,7 @@ const HotelContainer = React.memo(({ allOptionsFlow,getHotelsTC,isFetch,...props
   }, [memoizedGetHotelsTC, memoizedAllOptionsFlow]);  
   if(isFetch){ 
     return <Preloader/> 
-  }    
+  }     
   return ( 
       <HotelInfo 
       getHotelsTC={getHotelsTC}

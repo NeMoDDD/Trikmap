@@ -14,10 +14,10 @@ const LogIn = () => {
     const {isAuth} = useAuth()
 
     const handleLogin = (email, password) => {
+        dispatch(setUserFetching({isFetching: true}))
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
-                dispatch(setUserFetching(true))
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,
@@ -32,29 +32,29 @@ const LogIn = () => {
                 const userData = { email, password, id, token, nickname, userImg };
                 const userDataJSON = JSON.stringify(userData);
                 localStorage.setItem('user', userDataJSON);
-                dispatch(setUserFetching(false))
-
-                push("/personal-account")
             })
             .catch((error) => {
+                console.log(error)
                 if (error.code === "auth/wrong-password") {
                     setIsAuthSubmit(false)
                     setErrorMessage("Неверный email или пароль")
                 } else if (error.code === "auth/too-many-requests") {
                     setIsAuthSubmit(false)
                     setErrorMessage("Слишком много запросов. Попробуйте позже!")
+                } else if (error.code === "auth/user-not-found") {
+                    setIsAuthSubmit(false)
+                    setErrorMessage("Аккаунт с таким Email не найден!")
                 }
             })
-
+        dispatch(setUserFetching({isFetching: false}))
     }
     return (
         <div>
-            {/*<Spiner isFetching={}/>*/}
             {!isAuth ?  <Form btnValue="Войти"
                              handleClick={handleLogin}
                              isAuthSubmit={isAuthSubmit}
                              errorMessage={errorMessage}
-            /> : <Navigate to={"/"}/>}
+            /> : <Navigate to={localStorage.getItem("redirectPath")}/>}
 
         </div>
     )

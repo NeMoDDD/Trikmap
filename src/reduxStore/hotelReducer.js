@@ -33,7 +33,7 @@ let initialState = {
     isSucceed: false,
     comments: [],
     currentRating:null, 
-    commentLoading: false,
+    commentLoading: false, 
 }
 const defaultValue = 'HOTEL/'
 const GET_CURRENT_PAGE = defaultValue + 'GET_CURRENT_PAGE'
@@ -49,7 +49,7 @@ const SET_COORDINATES = defaultValue + 'SET_COORDINATES'
 const SET_SUCCEED = defaultValue + 'SET_SUCCEED'
 const GET_HOTEL_COMMENTS = defaultValue + 'GET_HOTEL_COMMENTS'
 const SET_CURRENT_RATING = defaultValue + 'SET_CURRENT_RATING'
-const TOGGLE_COMMENT_LOADING = defaultValue + 'TOGGLE_COMMENT_LOADING'
+const TOGGLE_COMMENT_LOADING = defaultValue + 'TOGGLE_COMMENT_LOADING' 
 export const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
 
@@ -147,8 +147,12 @@ const setSucceedAC = (data) => ({type: SET_SUCCEED, data})
 const setCoordinatedAC = (data) => ({type: SET_COORDINATES, data})
 const getHotelComments = (data) => ({type: GET_HOTEL_COMMENTS, data})
 const setCurrentRatingAC = (data) => ({type: SET_CURRENT_RATING, data}) 
-const toggleHotelCommentLoadingAC = (data) =>({type:TOGGLE_COMMENT_LOADING, data})
-//Thunk Creators
+const toggleHotelCommentLoadingAC = (data) =>({type:TOGGLE_COMMENT_LOADING, data}) 
+
+
+
+//Thunk Creators 
+
 export const getHotelsTC = () => {
     return async (dispath) => {
         dispath(toggleFetchingAC(true))
@@ -164,7 +168,7 @@ export const getHotelsTC = () => {
         dispath(toggleFetchingAC(false))
     }
 }
-
+//Функция, которая возвращает массив данных, при монтировании отелей с лоадером и общим количеством данных, для пагинации
 
 export const getCommentsTC = (document) => {
     return async (dispatch) => {
@@ -184,7 +188,11 @@ export const getCommentsTC = (document) => {
         }
         dispatch(toggleFetchingAC(false))
     };
-};
+}; 
+// Функция, которая возвращает массив определенных комментариев, в зависимости от отеля,  
+//   а если такого отеля нет, то создает новый документ с название,как у отеля
+ 
+
 export const getOrderHotelTC = (document) => {
     return async (dispatch) => { 
         dispatch(setSucceedAC(false))
@@ -206,15 +214,18 @@ export const getOrderHotelTC = (document) => {
         }
         dispatch(toggleFetchingAC(false))
     };
-}
+} 
+//Функция, которая возварщает, массив определенного отеля, аргументом которого является название отеля.
+//Также данная функция, делает запрос на сервер для получения координатов отеля. 
+//Также данная функция, обновляет(обнуляет) форму, которую возможно пользователь отправил на сервер.
+ 
+
 export const getSerchingCityTC = (searchingCity, rating = false) => async (dispatch) => searchingOptionFlow(dispatch, 'city', searchingCity, setHotelsAC, +rating)
 export const getSerchingRatingTC = (searchingRating) => async (dispatch) => searchingOptionFlow(dispatch, 'rating', +searchingRating, setHotelsAC)
 export const getSerchingRegionTC = (searchingRegion, rating = false) => async (dispatch) => searchingOptionFlow(dispatch, 'region', searchingRegion, setHotelsAC, +rating)
-
 const searchingOptionFlow = async (dispatch, optionMethod, searchingOption, AC, rating) => {
     if (searchingOption === '') {
-        await Promise.all([dispatch(getHotelsTC())]);
-        return;
+        return await Promise.all([dispatch(getHotelsTC())]);
     }
     if (!rating) {
         const city = query(
@@ -228,6 +239,7 @@ const searchingOptionFlow = async (dispatch, optionMethod, searchingOption, AC, 
         dispatch(AC(data));
         return;
     }
+
     const city = query(
         ref,
         where(optionMethod, '==', searchingOption),
@@ -239,6 +251,11 @@ const searchingOptionFlow = async (dispatch, optionMethod, searchingOption, AC, 
     dispatch(getTotalDocsAC(data.length));
     dispatch(AC(data));
 }
+// Рефакторинг кода(можно было получше,но нету времени, а на написание комментариев есть), 
+// Данные 3 функциии выполняют почти один и тот же фунционал, оличаются данными, которые приходят 
+// Функция, которая возварщает множество массивов отелей, в зависимоти от аргументов(рейтинг,область,город), также возвращает размер всех массивов для пагинации
+// Если аргумент с данными пустой, то вызывает коллбек, на загрузку всех отелей, иначе высылается запрос на сервер с определенными аргументами, которые возможно комбинировать
+ 
 
 export const setNewHotel = (data) => {
     return async () => {
@@ -246,7 +263,9 @@ export const setNewHotel = (data) => {
         await setDoc(doc(ref, data.name), {...data, photo});
         await setDoc(doc(commentRef, data.name), {});
     }
-}
+} 
+// Функция для админки, т.е добавление новых отелей на сервер
+
 export const addCommentTC = (document, dataObj) => async (dispatch) => {
     dispatch(toggleHotelCommentLoadingAC(true)) 
     const postRef = doc(commentRef, document);
@@ -256,12 +275,16 @@ export const addCommentTC = (document, dataObj) => async (dispatch) => {
     dispatch(getHotelRatingTC(document))
     dispatch(toggleHotelCommentLoadingAC(false))
     dispatch(getCommentsTC(document))
-}
+} 
+//Добавление новых комментариев и отзывов для определенных отелей 
+
 
 const calculateAverage = (array) => {
     const sum = array.reduce((acc, num) => acc + num, 0);
     return sum / array.length;
-};
+}; 
+// Фунция, для вычисленния среднего значения
+
 export const getHotelRatingTC = (document) => async (dispatch) => {
     const hotelRef = doc(commentRef, document);
     const hotelDoc = await getDoc(hotelRef);
@@ -280,6 +303,7 @@ export const getHotelRatingTC = (document) => async (dispatch) => {
     const averageRating = calculateAverage(ratings);
     dispatch(updateHotelRatingTC(document, Math.ceil(averageRating)))
 }
+// Фунция, для получения всех отзывов и вычисления рейтинга, которые оставили пользователи, с дальнейшим обновление на сервере
 export const updateHotelRatingTC = (document, rating) => async (dispatch) => {
     const newData = {
         rating
@@ -292,6 +316,8 @@ export const updateHotelRatingTC = (document, rating) => async (dispatch) => {
         dispatch(setErrorAC(true))
     }
 }
+//Функция, которая обновляет рейтинг отеля  
+
 
 export const allOptionsFlow = () => async (dispatch) => {
     const querySnapshot = await getDocs(ref);
@@ -299,7 +325,9 @@ export const allOptionsFlow = () => async (dispatch) => {
     const cityOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().city)));
     const regionOptions = Array.from(new Set(querySnapshot.docs.map((doc) => doc.data().region)));
     Promise.all([dispatch(getSelectedHotelCityAC(cityOptions)), dispatch(getSelectedHotelRatingAC(ratingOptions)), dispatch(getSelectedRegionAC(regionOptions))]);
-}
+}  
+// Зарефакторенный код, который уменьшился за в 10 раз 
+// Фунция, которая проходит по всем отелям и возвращает регионы, города и рейтинг все отелей, для последующего использовании в Селекторе выбора поиска
 export const setBookTC = (inner, out, email, id, name, num, amount, type) => async (dispatch) => {
     const postRef = doc(orderRef, email);  
     const newData={ 
@@ -321,4 +349,4 @@ export const setBookTC = (inner, out, email, id, name, num, amount, type) => asy
         console.log(error);
     }
 }
-
+// Функция, при помозщи которой можно добавить документ о бронировании отеля
