@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.container { 
+.container {
     position: relative;
     background-color: white;
     height: 80%;
@@ -40,6 +40,7 @@
 .data__text {
     border-bottom: 1px solid #EAEAEA;
 }
+
 .data__text__error {
     border-bottom: 1px solid red;
 }
@@ -67,12 +68,12 @@
     font-family: 'Poppins', sans-serif;
     font-size: 48px;
     line-height: 56px;
-    font-weight: 500; 
+    font-weight: 500;
 
     word-wrap: break-word;
 }
 
-.title { 
+.title {
     word-wrap: break-word;
     color: #2f2e41;
     font-family: 'Poppins', sans-serif;
@@ -84,7 +85,7 @@
 }
 
 
-.subtitle { 
+.subtitle {
     word-wrap: break-word;
     color: #6f6f6f;
     font-family: 'Poppins', sans-serif;
@@ -107,14 +108,9 @@
     font-size: 28px;
     font-weight: 400;
     background-color: #67a1d6;
-    transition: all 0.1s ease-in; 
+    transition: all 0.1s ease-in;
     cursor: pointer;
 }
-
-
-.profile__load button:hover {
-    transform: scale(1.03);
-    cursor: pointer;
 
 .profile__load button:disabled {
     cursor: not-allowed;
@@ -197,17 +193,18 @@
 
 }
 
-.modal__wrapper { 
+.modal__wrapper {
     height: 550px;
     width: 100%;
     overflow-y: scroll;
 }
+
 .modal>div {
     width: 100%;
     height: 100%;
 }
 
-.modal__inner { 
+.modal__inner {
     padding: 10px;
     padding-bottom: 40px;
     display: flex;
@@ -282,19 +279,21 @@
     width: 17%;
     margin-top: 0.5em;
     margin-left: 1em;
-} 
-.profile__change{ 
-    width: auto; 
-} 
-.change__btn{ 
+}
+
+.profile__change {
+    width: auto;
+}
+
+.change__btn {
     font-family: 'Poppins', sans-serif;
     color: #2f2e41;
     font-weight: 400;
-    background-color: #67a1d6; 
-    border: none; 
-    font-size: 18px; 
-    color: white;  
-    padding: 4% 8%; 
+    background-color: #67a1d6;
+    border: none;
+    font-size: 18px;
+    color: white;
+    padding: 4% 8%;
     cursor: pointer;
     border-radius: 10px;
 }
@@ -408,27 +407,33 @@
     .booked_btn {
         padding: 2% 8%;
         font-size: 22px;
-    } 
-    .profile__change{ 
-        width: auto; 
-    } 
-    .change__btn{ 
-        font-size: 15px; 
-        color: white;  
-        padding: 3.5% 6%; 
+    }
+
+    .profile__change {
+        width: auto;
+    }
+
+    .change__btn {
+        font-size: 15px;
+        color: white;
+        padding: 3.5% 6%;
         cursor: pointer;
         border-radius: 10px;
     }
 }
-@media screen  and (max-width:880px) {
-    .profile__load button{ 
+
+@media screen and (max-width:880px) {
+    .profile__load button {
         width: 80%;
-    }  
-    .save__btn,  .cancel__btn{ 
+    }
+
+    .save__btn,
+    .cancel__btn {
         width: 25% !important;
     }
 
 }
+
 @media screen and (max-width:620px) {
     .container {
         height: 70%;
@@ -529,8 +534,10 @@
     .modal__empty {
         text-align: center;
         font-size: 20px;
-    } 
-    .save__btn,  .cancel__btn{ 
+    }
+
+    .save__btn,
+    .cancel__btn {
         width: 30% !important;
     }
 }
@@ -590,7 +597,7 @@
     }
 
     .profile__img {
-        width: 100%; 
+        width: 100%;
     }
 
     .profile__img img {
@@ -598,7 +605,7 @@
         width: 128px;
     }
 
-    .profile__item { 
+    .profile__item {
 
         align-items: flex-start;
         justify-content: space-between;
@@ -633,34 +640,42 @@
 
     .modal__subtitle {
         font-size: 14px;
-    } 
-    .profile__change{    
+    }
+
+    .profile__change {
         width: 100%;
         padding-top: 2.5%;
 
-    } 
-    .change__btn{ 
-        font-size: 15px; 
-        color: white;  
-        padding: 1.5% 0%; 
-        width: 100%; 
-    } 
-    .profile__load button{ 
+    }
+
+    .change__btn {
+        font-size: 15px;
+        color: white;
+        padding: 1.5% 0%;
         width: 100%;
-    } 
-    .save__btn,  .cancel__btn{ 
+    }
+
+    .profile__load button {
+        width: 100%;
+    }
+
+    .save__btn,
+    .cancel__btn {
         width: 40% !important;
     }
 }
+
 @media screen and (max-height:650px) {
     .profile__img img {
         height: 118px;
         width: 118px;
-    } 
+    }
+
     .main {
         height: 120vh;
     }
 }
+
 @media screen and (max-height:710px) {
     .container {
         height: 95%;
@@ -669,6 +684,10 @@
 }
 
 @media screen and (max-height:520px) {
+    .main {
+        height: 125vh;
+    }
+
     .booked_btn {
         width: 100%;
         font-size: 16px;
@@ -709,6 +728,10 @@
     .booked_btn {
         width: 100%;
         font-size: 14px;
+    }
+
+    .main {
+        height: 130vh;
     }
 
     .profile__img img {
