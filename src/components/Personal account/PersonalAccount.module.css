@@ -9,7 +9,8 @@
     align-items: center;
 }
 
-.container {
+.container { 
+    position: relative;
     background-color: white;
     height: 80%;
     width: 70%;
@@ -109,7 +110,7 @@
     transition: all 0.1s ease-in; 
     cursor: pointer;
 }
-.profile__save_btn:disabled {
+.profile__load button:disabled {
     cursor: not-allowed;
 }
 
@@ -275,6 +276,21 @@
     width: 15%;
     margin-top: 0.5em;
     margin-left: 1em;
+} 
+.profile__change{ 
+    width: auto; 
+} 
+.change__btn{ 
+    font-family: 'Poppins', sans-serif;
+    color: #2f2e41;
+    font-weight: 400;
+    background-color: #67a1d6; 
+    border: none; 
+    font-size: 18px; 
+    color: white;  
+    padding: 4% 8%; 
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 @media screen and (max-width:1500px) {
@@ -386,10 +402,23 @@
     .booked_btn {
         padding: 2% 8%;
         font-size: 22px;
-
+    } 
+    .profile__change{ 
+        width: auto; 
+    } 
+    .change__btn{ 
+        font-size: 15px; 
+        color: white;  
+        padding: 3.5% 6%; 
+        cursor: pointer;
+        border-radius: 10px;
     }
 }
-
+@media screen  and (max-width:880px) {
+    .profile__load button{ 
+        width: 80%;
+    }
+}
 @media screen and (max-width:620px) {
     .container {
         height: 70%;
@@ -548,7 +577,7 @@
     }
 
     .profile__img {
-        width: 40%;
+        width: 100%; 
     }
 
     .profile__img img {
@@ -556,8 +585,9 @@
         width: 148px;
     }
 
-    .profile__item {
-        align-items: center;
+    .profile__item { 
+
+        align-items: flex-start;
         justify-content: space-between;
         flex-direction: column;
         height: auto;
@@ -568,7 +598,7 @@
     }
 
     .booked_btn {
-        font-size: 18px;
+        font-size: 16px;
 
     }
 
@@ -590,9 +620,28 @@
 
     .modal__subtitle {
         font-size: 14px;
+    } 
+    .profile__change{    
+        width: 100%;
+        padding-top: 2.5%;
+
+    } 
+    .change__btn{ 
+        font-size: 15px; 
+        color: white;  
+        padding: 1.5% 0%; 
+        width: 100%; 
+    } 
+    .profile__load button{ 
+        width: 100%;
     }
 }
-
+@media screen and (max-height:600px) {
+    .profile__img img {
+        height: 118px;
+        width: 118px;
+    }
+}
 @media screen and (max-height:710px) {
     .container {
         height: 95%;
