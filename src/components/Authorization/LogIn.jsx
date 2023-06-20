@@ -12,9 +12,11 @@ const LogIn = () => {
     const [isAuthSubmit, setIsAuthSubmit] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
     const {isAuth} = useAuth()
+    const [isFetching, setIsFetching] = useState(false)
 
     const handleLogin = (email, password) => {
         dispatch(setUserFetching({isFetching: true}))
+        setIsFetching(true)
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
@@ -29,7 +31,7 @@ const LogIn = () => {
                 const token = user.accessToken
                 const nickname = user.displayName
                 const userImg = user.photoURL
-                const userData = { email, password, id, token, nickname, userImg };
+                const userData = {email, password, id, token, nickname, userImg};
                 const userDataJSON = JSON.stringify(userData);
                 localStorage.setItem('user', userDataJSON);
             })
@@ -46,14 +48,16 @@ const LogIn = () => {
                     setErrorMessage("Аккаунт с таким Email не найден!")
                 }
             })
+        setIsFetching(false)
         dispatch(setUserFetching({isFetching: false}))
     }
     return (
         <div>
-            {!isAuth ?  <Form btnValue="Войти"
+            {!isAuth ? <Form btnValue="Войти"
                              handleClick={handleLogin}
                              isAuthSubmit={isAuthSubmit}
                              errorMessage={errorMessage}
+                             isFetching={isFetching}
             /> : <Navigate to={localStorage.getItem("redirectPath")}/>}
 
         </div>
