@@ -270,6 +270,12 @@
     margin-top: 0.5em;
 }
 
+.cancel__btn {
+    width: 15%;
+    margin-top: 0.5em;
+    margin-left: 1em;
+}
+
 @media screen and (max-width:1500px) {
     .wrapper {
         padding: 25px;
