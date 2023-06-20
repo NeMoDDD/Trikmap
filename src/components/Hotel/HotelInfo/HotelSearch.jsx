@@ -11,7 +11,7 @@ const HotelSearch =  React.memo((props) => {
     } = useForm( { 
         mode: 'onBlur', 
     },) 
-    const onSubmit = (data) =>{ 
+    const onSubmit = (data) =>{  
         if(data.city && (data.rating !== '')){ 
             return props.getSerchingCityTC(data.city, data.rating)
         } else if (data.region && (data.rating !== '')){  

@@ -14,7 +14,8 @@ const HotelInfo = React.memo((props) => {
             getSerchingRegionTC={props.getSerchingRegionTC} 
             selectedHotelRegion={props.selectedHotelRegion} 
             selectedHotelCity={props.selectedHotelCity} 
-            getSerchingCityTC={props.getSerchingCityTC}/> 
+            getSerchingCityTC={props.getSerchingCityTC} 
+            /> 
             <Hotels {...props}/> 
             <HotelPagination   
                 getCurrentPageAC={props.getCurrentPageAC}
