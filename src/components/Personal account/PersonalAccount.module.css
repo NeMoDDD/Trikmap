@@ -268,12 +268,12 @@
 }
 
 .save__btn {
-    width: 15%;
+    width: 17%;
     margin-top: 0.5em;
 }
 
 .cancel__btn {
-    width: 15%;
+    width: 17%;
     margin-top: 0.5em;
     margin-left: 1em;
 } 
@@ -417,7 +417,11 @@
 @media screen  and (max-width:880px) {
     .profile__load button{ 
         width: 80%;
+    }  
+    .save__btn,  .cancel__btn{ 
+        width: 25% !important;
     }
+
 }
 @media screen and (max-width:620px) {
     .container {
@@ -519,6 +523,9 @@
     .modal__empty {
         text-align: center;
         font-size: 20px;
+    } 
+    .save__btn,  .cancel__btn{ 
+        width: 30% !important;
     }
 }
 
@@ -564,7 +571,7 @@
     }
 
     .profile__name {
-        font-size: 32px;
+        font-size: 30px;
 
     }
 
@@ -581,8 +588,8 @@
     }
 
     .profile__img img {
-        height: 148px;
-        width: 148px;
+        height: 128px;
+        width: 128px;
     }
 
     .profile__item { 
@@ -634,12 +641,18 @@
     } 
     .profile__load button{ 
         width: 100%;
+    } 
+    .save__btn,  .cancel__btn{ 
+        width: 40% !important;
     }
 }
-@media screen and (max-height:600px) {
+@media screen and (max-height:650px) {
     .profile__img img {
         height: 118px;
         width: 118px;
+    } 
+    .main {
+        height: 120vh;
     }
 }
 @media screen and (max-height:710px) {
@@ -735,14 +748,14 @@
 
 @media screen and (max-width:450px) and (min-height:715px) {
     .container {
-        height: 85%;
+        height: 90%;
         width: 95%;
     }
 }
 
 @media screen and (max-width:450px) and (min-height:815px) {
     .container {
-        height: 75%;
+        height: 85%;
         width: 90%;
     }
 
