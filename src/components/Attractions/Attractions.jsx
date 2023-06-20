@@ -30,10 +30,12 @@ const Attractions = () => {
     const firstPostIndex = lastPostIndex - pageSize
 
     useEffect(() => {
-        dispatch(setTotalCount({totalCount: dataRegion.filter(p => p.properties.type === type).length}))
-        dispatch(setCurrentPage({
-            currentPage: 1
-        }))
+        if (type !== "all") {
+            dispatch(setTotalCount({totalCount: dataRegion.filter(p => p.properties.type === type).length}))
+            dispatch(setCurrentPage({
+                currentPage: 1
+            }))
+        }
     }, [type])
 
     const onSelectChange = (value) => {
@@ -41,7 +43,6 @@ const Attractions = () => {
             dispatch(setTotalCount({totalCount: dataRegion.filter(p => p.properties.type === value).length}))
         } else {
             dispatch(setTotalCount({totalCount: dataRegion.length}))
-
         }
         dispatch(setCurrentPage({
             currentPage: 1
