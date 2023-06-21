@@ -179,9 +179,9 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                                 </div>
                             </div>
                         </div>
-                        <div><Button type={"link"} onClick={() => {
+                        <div className={style.profile__change}><button className={style.change__btn} onClick={() => {
                             dispatch(setDisabled({isDisabled: false}))
-                        }}>Редактировать</Button></div>
+                        }}>Редактировать</button></div>
                     </div>
                     <div className={style.data__item}>
                         <div className={errors.nickname ? style.data__text__error : style.data__text}>

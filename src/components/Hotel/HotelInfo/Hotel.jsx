@@ -49,7 +49,6 @@ const Hotel = React.memo(({item,...props}) =>{
                 </div>
             </div>  
                 </div>
-
             <div className={`${s.hotel__item}  ${s.hotel__info}`}>  
                 <div className={s.hotel__info_wrapper}> 
                     <div className={s.hotel__title}>{item.subtitle.substring(0, 90)}... </div> 
