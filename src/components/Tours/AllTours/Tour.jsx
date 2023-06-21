@@ -12,7 +12,7 @@ const Tour = ({tour,...props}) =>{
                 <div className={s.about__date}> 
                     <ul> 
                         <li className={s.about__list}>Даты:</li> 
-                        {tour.data.map((item, key) => <li  key={key+item} className={s.about__list}> {item} </li> )} 
+                        {tour.data.map((item, key) => <li  key={key+item} className={s.about__list}> {item} </li> )}  
                     </ul> 
                 </div> 
                 <div className={s.about__btn}> 

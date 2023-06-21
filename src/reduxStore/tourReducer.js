@@ -179,5 +179,10 @@ export const updateHotelRatingTC = (document, rating) => async (dispatch) => {
     dispatch(setErrorAC(true))
   }
 }
-
+export const setNewTour = (data) => {
+  return async () => {
+      await setDoc(doc(tourRef, data.title), { ...data});
+      await setDoc(doc(commentRef, data.title), {});
+  }
+}
 export default tourReducer

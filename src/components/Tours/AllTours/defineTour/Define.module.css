@@ -15,7 +15,10 @@
     background-repeat: no-repeat;
 
 
-} 
+}  
+.link_data{ 
+    list-style: none;
+}
 .content__item_wrapper{ 
     display: flex; 
     flex-direction: column; 

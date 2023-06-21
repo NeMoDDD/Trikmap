@@ -9,7 +9,8 @@
     align-items: center;
 }
 
-.container {
+.container { 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
     background-color: white;
     height: 80%;

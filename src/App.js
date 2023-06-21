@@ -25,6 +25,7 @@ import DefineTourContainer from './components/Tours/AllTours/defineTour/DefineTo
 import TourForm from './components/Tours/AllTours/defineTour/TourForm';
 import {setUser, setUserFetching} from "./components/store/slices/userSlise";
 import {useDispatch} from "react-redux";
+import AddTour from './components/Tours/addTour/AddTour';
 function App() {
     const dispatch = useDispatch()
 
@@ -71,7 +72,8 @@ function App() {
         <Route path={'/personal-account'} element={<ErrorCatch><PersonalAccount /></ErrorCatch>} />
         <Route path={'/attractions'} element={<ErrorCatch><AttractionsContainer /></ErrorCatch>} />
         <Route path='*' element={<Error />} /> 
-        <Route path='/add' element={<ErrorCatch><AddHotelContainer/></ErrorCatch>}/>
+        <Route path='/addHotel' element={<ErrorCatch><AddHotelContainer/></ErrorCatch>}/> 
+        <Route path='/addTour' element={<AddTour/>}/>
       </Routes>
 
       <Footer />

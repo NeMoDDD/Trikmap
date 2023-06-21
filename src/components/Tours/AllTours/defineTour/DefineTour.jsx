@@ -22,7 +22,12 @@ const DefineTour = React.memo(({ tour, currentRate }) => {
                 <div className={s.content__description}>{tour.title}</div>  
                 <div className={s.content__rate}><Rate disabled value={currentRate}/> </div>
                 </div>
-                <div className={s.content__data}>{tour.data}</div>
+                <div className={s.content__data}> 
+                 <ul> 
+                {tour.data.map((item,key) => <li className={s.link_data} key={key}>{item}</li>)}
+ 
+                 </ul>
+                 </div>
             </div>
             </div>
         </div>

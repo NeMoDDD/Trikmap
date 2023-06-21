@@ -43,9 +43,9 @@ const Hotel = React.memo(({item,...props}) =>{
                 </div>   
                 <div className={s.border}></div>
                 <div className={s.hotel__advantages}>  
-                    {item.addvantages.wifi && <Advantages value={'WiFi'} img={wifiIcon}/>} 
-                   {item.addvantages.wifi && <div className={s.hotel__box}> <Advantages value={'Бесплатное питание'} img={breakfastIcon}/></div>}  
-                    {item.addvantages.wifi ? <Advantages value={'Ежедневная уборка'} img={cleaningIcon}/> : null} 
+                    {item.addvantages?.wifi && <Advantages value={'WiFi'} img={wifiIcon}/>} 
+                   {item.addvantages?.cleaning && <div className={s.hotel__box}> <Advantages value={'Бесплатное питание'} img={breakfastIcon}/></div>}  
+                    {item.addvantages?.freebreakfast && <Advantages value={'Ежедневная уборка'} img={cleaningIcon}/> } 
                 </div>
             </div>  
                 </div>
