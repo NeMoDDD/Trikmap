@@ -3,10 +3,15 @@ import Hotels from "./HotelInfo/Hotels"
 import HotelSearch from "./HotelInfo/HotelSearch"  
 import HotelPagination from "./HotelInfo/HotelPagination"
 import React from "react"
-import s from './HotelInfo/HotelInfo.module.css'
-const HotelInfo = React.memo((props) => {   
+import s from './HotelInfo/HotelInfo.module.css' 
+import { useRef,useEffect } from "react"
+const HotelInfo = React.memo((props) => {    
+    const scrollToRef = useRef(); 
+    useEffect(() =>{  
+        scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+    },[])
     return( 
-        <div className={s.wrapper}> 
+        <div ref={scrollToRef} className={s.wrapper}> 
             <HotelSearch      
             getHotelsTC={props.getHotelsTC}
             getSerchingRatingTC={props.getSerchingRatingTC} 

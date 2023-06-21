@@ -20,11 +20,15 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import CommentContainer from './CommentsHotel/CommentContainer';
 
+import { useRef,useEffect } from 'react';
 
-
-const OrderHotel = React.memo(({ orderingHotel, coordinates, ...props }) => {
+const OrderHotel = React.memo(({ orderingHotel, coordinates, ...props }) => { 
+    const scrollToRef = useRef(); 
+    useEffect(() =>{  
+        scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+    },[])
     return (
-        <div className={s.hotel}>
+        <div ref={scrollToRef} className={s.hotel}>
             <div className={s.hotel__container}>
                 <div className={s.hotel__nav}>
                     <LeftOutlined />
