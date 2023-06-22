@@ -113,7 +113,11 @@
     cursor: pointer;
 }
 
-.profile__load button:disabled {
+.profile__load button:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}
+.profile__save_btn:disabled {
     cursor: not-allowed;
 }
 
