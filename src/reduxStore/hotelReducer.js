@@ -347,7 +347,7 @@ export const setBookTC = (inner, out, email, id, name, num, amount, type) => asy
         }, { merge: true });
         dispatch(setSucceedAC(true))
     } catch (error) {
-        console.log(error);
+        dispatch(setErrorAC(true))
     }
 }
 // Функция, при помозщи которой можно добавить документ о бронировании отеля
