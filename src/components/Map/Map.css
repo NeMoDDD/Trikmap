@@ -104,9 +104,9 @@
 }
 
 .image-object {
-  width: 100%;
-  max-width: 250px;
-  height: 150px;
+  width: 250px;
+  min-width: 250px;
+  height: 100px;
   /*background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);*/
 }
 .image-block {

@@ -81,11 +81,12 @@ export const setSelectedTourTC = (document) => async (dispatch) => {
   try {
     const docRef = doc(tourRef, document);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      dispatch(setCurrentRatingAC(docSnap.data().rating))
-      dispatch(getCommentsTC(document))
-      dispatch(setSelectedTourAC(docSnap.data()));
+    if (!docSnap.exists()) {
+      throw new Error()
     }
+    dispatch(setCurrentRatingAC(docSnap.data().rating))
+    dispatch(getCommentsTC(document))
+    dispatch(setSelectedTourAC(docSnap.data()));
   } catch (error) {
     dispatch(setErrorAC(true))
   }
@@ -179,5 +180,10 @@ export const updateHotelRatingTC = (document, rating) => async (dispatch) => {
     dispatch(setErrorAC(true))
   }
 }
-
+export const setNewTour = (data) => {
+  return async () => {
+      await setDoc(doc(tourRef, data.title), { ...data});
+      await setDoc(doc(commentRef, data.title), {});
+  }
+}
 export default tourReducer

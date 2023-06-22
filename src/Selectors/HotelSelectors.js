@@ -66,3 +66,11 @@ export const isHotelCommentLoadingSelector= createSelector(
   [getHotelPageState], 
   hotelPage => hotelPage.commentLoading
 )
+export const isHotelOptionLoadingSelector= createSelector( 
+  [getHotelPageState], 
+  hotelPage => hotelPage.hotelFetch
+) 
+export const isHotelErrorSelector= createSelector( 
+  [getHotelPageState], 
+  hotelPage => hotelPage.isHotelError
+)

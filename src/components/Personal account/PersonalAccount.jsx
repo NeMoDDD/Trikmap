@@ -11,7 +11,7 @@ import {Modal, Button, Input} from "antd";
 import {Spinner} from "@chakra-ui/react";
 import {getBookedHotelSelector, getBookedTourSelector, isFetchingAppSelector} from "../../Selectors/AppSelecort";
 import {setDisabled} from "../store/slices/personalAccountSlice";
-import {Controller, useForm} from "react-hook-form";
+import {Controller, set, useForm} from "react-hook-form";
 import {getAuth, updateProfile, updateEmail} from "firebase/auth";
 
 
@@ -20,7 +20,7 @@ const isValidEmail = email =>
         email
     );
 const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHotelTC, bookedTour}) => {
-    const {control, handleSubmit, reset, formState: {errors}} = useForm({
+    const {control, handleSubmit, formState: {errors}} = useForm({
         mode: "onBlur",
     });
     const [hotel, setHotel] = useState(false)
@@ -35,17 +35,20 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
     const [isLoadNickname, setIsLoadNickname] = useState(false);
     const {isDisabled} = useSelector(state => state.personalAccount)
     const {isFetching} = useSelector(state => state.user)
-
+    const [nicknameState, setNicknameState] = useState(nickname)
+    const [emailState, setEmailState] = useState(email)
     const [isLoading, setIsLoading] = useState(true);
 
     const handleUpdate = (email) => {
         dispatch(setUserFetching({isFetching: true}))
         setIsLoadNickname(false)
         setIsLoadEmail(false)
+        dispatch(updateNickName({nickname: nicknameState}))
+        dispatch(updateEmailRedux({email: emailState}))
         const auth = getAuth()
         const user = auth.currentUser;
         updateProfile(user, {
-            displayName: nickname,
+            displayName: nicknameState,
         })
             .then(() => {
                 const nickname = user.displayName
@@ -70,7 +73,7 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                 //     setErrorMessage("Аккаунт с таким Email не найден!")
                 // }
             })
-        updateEmail(user, email.email)
+        updateEmail(user, emailState)
             .then(() => {
                 const email = user.email;
                 const storedUserDataJSON = localStorage.getItem('user');
@@ -117,6 +120,17 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
             setIsLoading(false);
         };
     }, [userImg || ava]);
+    useEffect(() => {
+        if (isLoadEmail && isLoadNickname) {
+            dispatch(setDisabled({isDisabled: true}))
+        }
+    }, [isLoadEmail, isLoadNickname])
+    // useEffect(() => {
+    //     dispatch(updateNickName({nickname: nicknameState}))
+    // }, [nicknameState])
+    // useEffect(() => {
+    //     dispatch(updateEmailRedux({email: emailState}))
+    // }, [emailState])
 
     if (!isAuth) {
         return <Navigate to={"/login"}/>
@@ -136,6 +150,12 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
         }
         return isValid
     };
+
+    const handleCancelSave = () => {
+        dispatch(setDisabled({isDisabled: true}))
+        setNicknameState(nickname)
+        setEmailState(email)
+    }
 
     return (
 
@@ -159,9 +179,9 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                                 </div>
                             </div>
                         </div>
-                        <div><Button type={"link"} onClick={() => {
+                        <div className={style.profile__change}><button className={style.change__btn} onClick={() => {
                             dispatch(setDisabled({isDisabled: false}))
-                        }}>Редактировать</Button></div>
+                        }}>Редактировать</button></div>
                     </div>
                     <div className={style.data__item}>
                         <div className={errors.nickname ? style.data__text__error : style.data__text}>
@@ -174,10 +194,10 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                                         value: 15,
                                         message: "Максимум 15 символов!"
                                     },
-                                    onChange: (e) => dispatch(updateNickName({nickname: e.target.value}))
+                                    onChange: (e) => setNicknameState(e.target.value)
                                 }}
                                 render={({field}) => <Input {...field}
-                                                            value={nickname}
+                                                            value={nicknameState}
                                                             disabled={isDisabled}
                                                             className={style.title}
                                 />}/>
@@ -190,17 +210,18 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                                 control={control}
                                 rules={{
                                     required: "Это поле обязательное!", validate: handleEmailValidation,
-                                    onChange: (e) => dispatch(updateEmailRedux({email: e.target.value}))
+                                    onChange: (e) => setEmailState(e.target.value)
                                 }}
                                 render={({field}) => <Input {...field}
-                                                            value={email}
+                                                            value={emailState}
                                                             className={style.title}
                                                             disabled={isDisabled}
                                 />}/>
                         </div>
                         {errors.email &&
                             <span className={style.error__message}>{errors.email.message || "Неверный email"}</span>}
-                        {!isDisabled ? <Controller
+                        {!isDisabled ? <div>
+                            <Controller
                             name="btn-submit"
                             control={control}
                             render={({field}) => <Button {...field}
@@ -209,7 +230,9 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
                                                          onClick={handleSubmit(handleUpdate)}
                                                          disabled={isFetching}
                             >Сохранить</Button>}
-                        /> : null}
+                        />
+                            <Button className={style.cancel__btn} onClick={handleCancelSave}>Отменить</Button>
+                        </div> : null}
                         {isLoadNickname && isLoadEmail ? <div><p>Успешно обновлено!</p></div> : null}
                     </div>
 
@@ -277,7 +300,7 @@ const PersonalAccount = React.memo(({getBookedTourTC, bookedHotel, getBookedHote
 
                                     {isFetching ? <div className={style.modal__loader}>
                                         <Spinner className={style.modal__spin} color='blue' colorScheme='cyan'/>
-                                    </div> : bookedHotel?.data ? bookedTour.data.map((item, index) => <div key={index}
+                                    </div> : bookedTour?.data ? bookedTour.data.map((item, index) => <div key={index}
                                                                                                            className={style.modal__inner}>
                                         <div className={style.modal__descrip}>{item.name}</div>
                                         <div className={style.modal__item}>

@@ -3,3 +3,21 @@
     margin: 0; 
     box-sizing: border-box;
 }
+
+@media screen and (max-width:850px) {
+   .ant-picker-range-wrapper{ 
+    width: 350px !important;       
+} 
+} 
+@media screen and (max-width:450px) {
+    .ant-picker-range-wrapper{ 
+     width: 250px !important;     
+        
+ }    
+    .ant-picker-panels{ 
+        overflow-x: scroll;
+    }
+    .ant-picker-dropdown{ 
+        left: 5% !important;
+    }
+ }

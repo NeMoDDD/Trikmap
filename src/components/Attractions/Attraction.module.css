@@ -1,5 +1,6 @@
 .main {
     width: 100%;
+    min-height: 100vh;
     height: auto;
     padding: 0 5em;
 }
@@ -16,7 +17,7 @@
 .attraction__img {
     border-radius: 25px !important;
     /*background: linear-gradient(to right, #ff6e7f, #86c6ff, #bfe9ff);*/
-    width: 100% !important;
+    width: 550px !important;
     height: 350px !important;
 }
 
@@ -65,6 +66,9 @@
     justify-content: space-around;
 }
 
+.empty__block {
+    margin-top: 20%;
+}
 @media screen and (max-width: 900px){
     .main {
         padding: 0 1em;
