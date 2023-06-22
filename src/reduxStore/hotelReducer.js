@@ -184,16 +184,18 @@ export const getOrderHotelTC = (document) => {
         try {
             const docRef = doc(ref, document);
             const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                dispatch(setCurrentRatingAC(docSnap.data().rating))
-                const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`
-                const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-                const response = await axios.get(apiUrl);
-                dispatch(setCoordinatedAC(response.data))
-                dispatch(getOrderingHotelAC(docSnap.data()));
-                dispatch(getCommentsTC(document))
+            if (!docSnap.exists()) {
+                throw new Error()
             }
-        } catch (error) {
+            dispatch(setCurrentRatingAC(docSnap.data().rating))
+            const address = `${docSnap.data().street}, ${docSnap.data().city}, Кыргызстан`
+            const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+            const response = await axios.get(apiUrl);
+            dispatch(setCoordinatedAC(response.data))
+            dispatch(getOrderingHotelAC(docSnap.data()));
+            dispatch(getCommentsTC(document))
+        } catch (error) { 
+            console.log(error);
             dispatch(setErrorAC(true))
         }
         dispatch(toggleFetchingAC(false))

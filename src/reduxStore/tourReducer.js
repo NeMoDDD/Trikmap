@@ -81,11 +81,12 @@ export const setSelectedTourTC = (document) => async (dispatch) => {
   try {
     const docRef = doc(tourRef, document);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      dispatch(setCurrentRatingAC(docSnap.data().rating))
-      dispatch(getCommentsTC(document))
-      dispatch(setSelectedTourAC(docSnap.data()));
+    if (!docSnap.exists()) {
+      throw new Error()
     }
+    dispatch(setCurrentRatingAC(docSnap.data().rating))
+    dispatch(getCommentsTC(document))
+    dispatch(setSelectedTourAC(docSnap.data()));
   } catch (error) {
     dispatch(setErrorAC(true))
   }
