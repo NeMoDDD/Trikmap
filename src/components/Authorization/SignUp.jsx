@@ -21,9 +21,9 @@ const SignUp = () => {
                 if (user.message === "EMAIL_EXISTS") {
 
                 }
-                // await updateProfile(user, {
-                //     displayName: nickname
-                // })
+                updateProfile(user, {
+                    displayName: nickName
+                })
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,

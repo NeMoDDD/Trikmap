@@ -1,6 +1,299 @@
-.form{ 
-    display: flex; 
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.add {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #ededed;
+    align-items: center;
+}
+
+.add__container {
+    margin: 5% 0;
+    height: 80%;
+    width: 70%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+}
+
+.from__decription {
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    line-height: 48px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form {
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+}
+
+.from__item {
+    padding-top: 3%;
+}
+
+.from__title {
+    word-wrap: break-word;
+    color: #6f6f6f;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    line-height: 38px;
+    font-weight: 300;
+}
+
+.from__inputs {
+    width: 100%;
+}
+
+.from__item__checkbox {
+    display: flex;
     flex-direction: column;
-    height: 100vh; 
-    justify-content: space-around;
+}
+
+.input { 
+    color: #6f6f6f;
+    border-radius: 6px;
+    border: 1px solid #67a1d6;
+    padding: 1% 1%;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #1677ff;
+}
+
+.errors {
+    font-family: 'Poppins', sans-serif;
+    color: red;
+    font-size: 16px;
+}
+
+.form__row {
+    cursor: pointer;
+    color: #2f2e41;
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    line-height: 42px;
+    font-weight: 300;
+}
+
+.danger__btn {
+    width: 7%;
+    height: 100%;
+    background-color: #ff4d4f;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    line-height: 42px;
+    font-weight: 300;
+}
+
+.add__btn {
+    width: 30%;
+    height: 3%;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 42px;
+    font-weight: 300;
+}
+
+.add__item { 
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input_block {
+    width: 91%;
+}
+
+.add_button {
+    padding-top: 8%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.add_button button {
+    border: none;
+    width: 35%;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1677ff;
+    ;
+    color: white;
+    font-size: 26px;
+    font-weight: 400;
+    padding: 2% 0;
+}
+
+.add_button button:hover {
+    cursor: pointer;
+    background-color: #4096ff;
+}
+
+
+@media screen and (max-width: 1440px) {
+    .add__container {
+        height: 80%;
+        width: 80%;
+    }
+
+    .from__decription {
+        font-size: 38px;
+    }
+
+    .from__title {
+        font-size: 19px;
+    }
+
+    .errors {
+        font-size: 14px;
+    }
+
+    .form__row {
+        font-size: 19px;
+    }
+
+    .danger__btn {
+        width: 7%; 
+        font-size: 19px;
+        line-height: 34px;
+    }
+
+    .add__btn {
+        font-size: 21px;
+    }
+
+    .add_button button {
+        width: 35%;
+        font-size: 24px;
+        padding: 1.6% 0;
+    }
+} 
+
+
+@media screen and (max-width: 1040px) {
+    .add__container {
+        margin: 3% 0;
+        height: 80%;
+        width: 88%;
+    }
+    .danger__btn {
+        width: 10%;
+        line-height: 34px;
+    } 
+    .input_block {
+        width: 87%;
+    }  
+    .add_button{ 
+        padding-top: 10%;
+    }
+    .add_button button {
+        width: 47%;
+        padding: 1.6% 0;
+    }
+    .add__btn {
+        width: 45%;
+        height: 3%;
+    }
+} 
+
+@media screen and (max-width: 600px) {
+    .add__container {
+        height: 80%;
+        width: 90%;
+    } 
+    .from__decription {
+        font-size: 32px;
+    }
+
+    .from__title { 
+        line-height: 30px;
+        font-size: 16px;
+    }
+
+    .errors {
+        font-size: 13px;
+    }
+
+    .form__row {
+        font-size: 17px;
+    }
+
+    .danger__btn {
+        width: 13%;
+        line-height: 26px; 
+        font-size: 16px;
+    } 
+    .input_block {
+        width: 83%;
+    }  
+    .add_button{ 
+        padding-top: 15%;
+    }
+    .add_button button {
+        width: 80%; 
+        font-size: 20px;
+        padding: 2.3% 0;
+    }
+    .add__btn {
+        width: 50%; 
+        font-size: 16px;
+        height: 1.6%;
+    }
+} 
+
+@media screen and (max-width: 420px) {
+    .from__decription {
+        font-size: 27px;
+    }
+    .from__item {
+        padding-top: 6.5%;
+    }
+    .from__title { 
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    .errors {
+        font-size: 12px;
+    }
+
+    .form__row {
+        font-size: 16px;
+    }
+.input{ 
+    padding: 2% 1%;
+}
+    .danger__btn {
+        width: 18%;
+        line-height: 28px; 
+        font-size: 14px;
+    } 
+    .input_block {
+        width: 78%;
+    }  
+    .add_button{ 
+        padding-top: 20%;
+    }
+    .add_button button {
+        width: 90%; 
+        font-size: 18px;
+    }
+    .add__btn {
+        width: 70%; 
+        font-size: 15px;
+        height: 1.2% !important; 
+        padding: 0;
+    }
 }

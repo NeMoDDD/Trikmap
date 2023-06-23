@@ -5,14 +5,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
-import "swiper/css/thumbs";   
+import "swiper/css/thumbs";    
+import { useRef,useEffect } from "react";
 import { FreeMode, Navigation, Thumbs } from "swiper"; 
 import { Link } from "react-router-dom"; 
 import CommentTourContainer from './commentTOur/CommentTourContainer'
-const DefineTour = React.memo(({ tour, currentRate }) => {
+const DefineTour = React.memo(({ tour, currentRate }) => { 
+    const scrollToRef = useRef(); 
+    useEffect(() =>{  
+        scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+    },[])
     return (  
-        <>
-        {tour?.photo && (<div className={s.tour}>
+        <div ref={scrollToRef}>
+        {tour?.photo && (<div  className={s.tour}>
 
         <div style={{ backgroundImage: `url(${tour?.photo[0]})` }} className={s.content}> 
             <div className={s.content__wrapper}> 
@@ -22,7 +27,12 @@ const DefineTour = React.memo(({ tour, currentRate }) => {
                 <div className={s.content__description}>{tour.title}</div>  
                 <div className={s.content__rate}><Rate disabled value={currentRate}/> </div>
                 </div>
-                <div className={s.content__data}>{tour.data}</div>
+                <div className={s.content__data}> 
+                 <ul> 
+                {tour.data.map((item,key) => <li className={s.link_data} key={key}>{item}</li>)}
+ 
+                 </ul>
+                 </div>
             </div>
             </div>
         </div>
@@ -94,7 +104,7 @@ const DefineTour = React.memo(({ tour, currentRate }) => {
         </div>
 
     </div>)}
-        </>
+        </div>
     )
 })
 export default DefineTour

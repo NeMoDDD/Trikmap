@@ -204,9 +204,20 @@
   }
 
   .login {
+    width: 70%;
+    justify-content: flex-end;
+  }
+  .login .registerButton{
     display: none;
   }
-
+  .quitButton{
+    width: 70%;
+    justify-content: flex-end;
+  }
+  .quitButton .registerButton{
+    padding: 0;
+    background-color: #67a1d6;
+  }
   .link {
     width: 99%;
     height: 20%;
