@@ -6,7 +6,7 @@ const Attraction = ({imgSrc, title, location, description}) => {
     return (
         <div className={style.attraction}>
             <ImageWithSkeleton src={imgSrc} alt={"Attraction image"} classNameBlock={style.imageBlock__attraction}
-                               classNameImageSkeleton={style.attraction__img} classNameImage={style.attraction__img}
+                               classNameImageSkeleton={style.attraction__skeleton__img} classNameImage={style.attraction__img}
             />
             <div className={style.contentBlock__attraction}>
                 <p><b>Название: </b>{title}</p>
