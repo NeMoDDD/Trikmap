@@ -55,9 +55,8 @@ const Header = () => {
                 </div>
                 <div className={classes.link}>
                     <CustomLink
-                        exact
                         to="/"
-                        activeClassName={classes.activeNavLink}
+                        activeclassname={classes.activeNavLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                         onClick={navigateLink}
@@ -66,7 +65,7 @@ const Header = () => {
                     </CustomLink>
                     <CustomLink
                         to="/hotels"
-                        activeClassName={classes.activeNavLink}
+                        activeclassname={classes.activeNavLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                         onClick={navigateLink}
@@ -75,7 +74,7 @@ const Header = () => {
                     </CustomLink>
                     <CustomLink
                         to="/tours"
-                        activeClassName={classes.activeLink}
+                        activeclassname={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                         onClick={navigateLink}
@@ -84,7 +83,7 @@ const Header = () => {
                     </CustomLink>
                     <CustomLink
                         to="/attractions"
-                        activeClassName={classes.activeLink}
+                        activeclassname={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                         onClick={navigateLink}
@@ -93,7 +92,7 @@ const Header = () => {
                     </CustomLink>
                     <CustomLink
                         to="/personal-account"
-                        activeClassName={classes.activeLink}
+                        activeclassname={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                         onClick={navigateLink}
@@ -104,7 +103,7 @@ const Header = () => {
                 {!isAuth ? <div className={classes.login}>
                     <CustomLink
                         to="/login"
-                        activeClassName={classes.activeLink}
+                        activeclassname={classes.activeLink}
                         whileHover={{color: '#007D34'}}
                         transition={{duration: 0.3}}
                     >
