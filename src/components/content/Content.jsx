@@ -1,9 +1,11 @@
 import React from 'react';
+import { useEffect, useState  } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Welcome from './components/Welcome/Welcome';
 import About from './components/About/About';
 import Wonder from './components/Wonders/Wonder';
+import { Preloader } from '../common/Preloader';
 import s from './Content.module.css'
 //импорты картинки
 import Issyk from '../../assets/img/image 11.jpg';
@@ -31,6 +33,14 @@ export default function Content() {
     ];
     const imageAlt = 'Изображение';
 
+    const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Симулируем асинхронную загрузку данных
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
     const [refWonders, inViewWonders] = useInView({
         triggerOnce: true,
         threshold: 0.2
@@ -56,8 +66,12 @@ export default function Content() {
         visible: { opacity: 1, y: 0, transition: { duration: 1 } }
     };
 
+    if(isLoading){
+        return <Preloader/>
+    }
+
     return (
-        <div>
+            <div>
             <Welcome />
             <div className={s.container}>
                 <motion.div
@@ -98,7 +112,7 @@ export default function Content() {
                 >
                     <LandMarks />
                 </motion.div>
+                </div>
             </div>
-        </div>
     );
 }
