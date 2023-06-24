@@ -206,6 +206,7 @@
   .login {
     width: 70%;
     justify-content: flex-end;
+    margin-right: 1.5%;
   }
   .login .registerButton{
     display: none;
@@ -213,6 +214,7 @@
   .quitButton{
     width: 70%;
     justify-content: flex-end;
+    align-items: center
   }
   .quitButton .registerButton{
     padding: 0;
