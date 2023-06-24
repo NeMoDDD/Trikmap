@@ -20,7 +20,7 @@ import MapComponent from "../Map/Json/MapGeoJsonMarkers";
 import LandMarks from './components/landMarks/Slider/LandMarks';
 
 
-export default function Content() {
+export default function Content(props) {
     const images = [
         { status: false, imageUrl: Issyk, text: 'Озеро Иссык-Куль' },
         { status: false, imageUrl: Sary, text: 'Озеро Сары-Челек' },
@@ -91,7 +91,7 @@ export default function Content() {
                     animate={inViewAbout ? 'visible' : 'hidden'}
                     variants={variants}
                 >
-                    <About />
+                    <About  scrollToRef={props.scrollToRef}/>
                 </motion.div>
                 <motion.div
                     className={s.content}

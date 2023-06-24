@@ -1,5 +1,5 @@
 import classes from './components/footer/Footer.module.css'
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { Routes, Route } from "react-router-dom"
 import LoginPage from "./components/Authorization/pages/LoginPage";
 import RegisterPage from "./components/Authorization/pages/RegisterPage"
@@ -53,12 +53,13 @@ function App() {
                 });
             dispatch(setUserFetching(false))
         }
-    }, []);
+    }, []); 
+    const scrollToRef = useRef();
   return (
     <div className={classes.container}>
       <Header />
       <Routes>
-        <Route path='/' element={<Content />} />
+        <Route path='/' element={<Content scrollToRef={scrollToRef}/>} />
          
         <Route path='/hotels' element={<ErrorCatch> <HotelContainer/> </ErrorCatch>} />
         <Route path='/hotels/:hotel' element={<ErrorCatch><OrderingHotel /></ErrorCatch>} />
@@ -76,7 +77,7 @@ function App() {
         <Route path='/addTour' element={<AddTour/>}/>
       </Routes>
 
-      <Footer />
+      <Footer scrollToRef={scrollToRef} />
     </div>
   );
 }
