@@ -3,18 +3,23 @@ import classes from './Footer.module.css'
 import Whatsapp from '../../assets/img/ватсапп.svg';
 import Telegram from '../../assets/img/Telegram.svg';
 import Instagram from '../../assets/img/instgrm.svg'
-import { Link } from 'react-router-dom';
+export default function Footer({scrollToRef, ...props}) {
 
-export default function Footer() {
+
+    const handleClick = () => {
+    scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+  }; 
     return (
         <div className={classes.main}>
             <div className={classes.footer}>
                 <div className={classes.footer_item}>
                     <div className={classes.info}>
-                        <div>
-                            Политика конфиденциальности
+                        <div>  <a href="https://policies.google.com/privacy?hl=ru" target='_blank'>
+                        Политика конфиденциальности
+                        </a>
+                           
                         </div>
-                        <div>
+                        <div onClick={handleClick}>
                             О нас
                         </div>
                     </div>

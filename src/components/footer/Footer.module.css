@@ -16,7 +16,13 @@
 .info{
     display: flex;
     flex-direction: column;
-    color: #f6f6f6
+    color: #f6f6f6;
+    cursor: pointer;
+}
+.info div a {
+    text-decoration: none;
+    color: #f6f6f6;
+    cursor: pointer;
 }
 .link{
     display: flex;
