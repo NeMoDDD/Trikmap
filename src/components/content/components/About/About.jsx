@@ -2,9 +2,9 @@ import React from 'react';
 import AboutImg from '../../../../assets/img/aboutImg.jpg';
 import s from './About.module.css';
 
-export default function About() {
+export default function About(props) {
   return (
-    <div className={s.about}>
+    <div className={s.about} ref={props.scrollToRef}>
       <div className={s.title}>
         <h3>О нас</h3>
       </div>
