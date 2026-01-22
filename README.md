@@ -1,3 +1,37 @@
+# Trikmap
+
+Trikmap is a frontend web application that represents an interactive map of Kyrgyzstan with various tourist attractions.  
+The project is focused on presenting travel destinations and providing features related to tourism and trip planning.
+
+## Live Demo
+- https://trikmap.vercel.app/
+
+## Project Overview
+Trikmap is designed as a tourism-oriented platform where users can explore a map of Kyrgyzstan, discover different attractions, search for tours and hotels, and manage their personal account.
+
+The main goal of the project is to practice building a complex frontend application with real-world features such as user interaction, navigation, and UI structure.
+
+## Features
+- Interactive map of Kyrgyzstan
+- Display of tourist attractions and places of interest
+- Search for tours and hotels
+- Hotel booking functionality (frontend-side)
+- User authentication and personal account
+- Responsive design for desktop and mobile devices
+
+## Tech Stack
+- React/Redux (Create React App)
+- JavaScript
+- CSS / SCSS
+- npm
+- Git & GitHub
+- Deployed on Vercel
+- React Router (for navigation)
+- REST API data handling
+- Map library (interactive map component)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
